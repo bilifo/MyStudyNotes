@@ -1,0 +1,21 @@
+介绍:
+	Makefile是一种管理和编译 Linux C/C++ 项目的工具，而Gradle也是一种代码构建工具，只不过是针对Java语言的，它同样可以通过一些配置文件和脚本来完成代码的依赖、第三方库的引入、编译的自动化配置等功能。 Groovy代码相当于shell脚本命令
+
+Gradle核心是Groovy，Groovy本质又是Java，所以很明显可以发现Gradle环境必须依赖JDK与Groovy库
+
+Gradle的三种主要对象解释如下：
+	Project对象：每个build.gradle会转换成一个Project对象。
+	Gradle对象：构建初始化时创建，整个构建执行过程中只有这么一个对象，一般很少去修改这个默认配置脚本。
+	Settings对象：每个settings.gradle会转换成一个Settings对象。它用来进行一些项目设置的配置。这个文件一般放置在工程的根目录。
+
+在Gradle中每个待编译的工程都是一个Project（每个工程的build.gradle对应一个Project对象），每个Project在构建的时候都包含一系列Task，这些Task中很多又是Gradle的插件默认支持的。
+
+Gradle 里的任何东西都是基于这两个基础概念:
+	projects ( 项目 )
+	tasks ( 任务 )
+
+gradle命令会在当前目录中查找一个叫build.gradle的文件.
+
+目标文件和原文件:(目标文件和依赖文件)
+
+http://blog.csdn.net/yanbober/article/details/49314255

@@ -1,0 +1,14 @@
+物联网应用中，通信技术包括Wi-Fi、RFID、NFC、ZigBee、Bluetooth、LoRa、NB-IoT、GSM、GPRS、3/4/5G网络、Ethernet、RS232、RS485、USB等。
+
+相关的通信协议（协议栈、技术标准）包括Wi-Fi（IEEE 802.11b）、RFID、NFC、ZigBee、Bluetooth、LoRa、NB-IoT、CDMA/TDMA、TCP/IP、WCDMA、TD-SCDMA、TD-LTE、FDD-LTE、TCP/IP、HTTP等。
+
+常用的3种无线通讯方式：
+zigbee（低功耗，低传输率，自组网，安全，支持65000个节点）
+蓝牙（低功耗，较低传输率）
+wifi（高功耗，高传输率，普及）
+
+有线通信协议：
+usb
+串口
+
+zigbee更新慢，或有淘汰趋势。蓝牙4.0的功耗降低了。wifi也在发展低功耗。

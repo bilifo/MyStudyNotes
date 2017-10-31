@@ -1,0 +1,3 @@
+上电----加载BIOS信息（按照BIOS设置的启动设备来启动，通常是硬盘）----读取MBR（即第0磁道第一扇区512字节的内容，也是存放BootLoader的地方）-----复制MBR内容到内存----运行bootloader（操作系统的引导程序）-----加载系统内核kernel boot（/boot文件夹）-----运行init（init 进程是系统所有进程的起点，init 程序首先是需要读取配置文件 /etc/inittab）
+
+Linux启动过程详解  http://blog.chinaunix.net/uid-26495963-id-3066282.html

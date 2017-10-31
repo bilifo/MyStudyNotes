@@ -1,0 +1,3 @@
+“gif适配5.0”android-gif-drawable-master是关于gif图片加载的
+
+“myserial.rar” android-serialport-api-master（官网源码，有对应apk）是关于安卓串口控制多的

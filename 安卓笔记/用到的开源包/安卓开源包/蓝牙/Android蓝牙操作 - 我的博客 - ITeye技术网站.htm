@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Android蓝牙操作 - 我的博客 - ITeye技术网站</title>
+    <meta name="description" content="蓝牙是一种支持设备短距离传输数据的无线技术。android在2.0以后提供了这方面的支持。 从查找蓝牙设备到能够相互通信要经过几个基本步骤(本机做为服务器)： 1.设置权限 在manifest中配置   &lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&gt;  &lt;uses-permission ..." />
+    <meta name="keywords" content="android Android蓝牙操作" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/open_search.xml" title="ITeye" />
+    <link href="/rss" rel="alternate" title="我的博客" type="application/rss+xml" />
+    <link href="http://www.iteye.com/stylesheets/blog.css?1451979484" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://www.iteye.com/stylesheets/themes/blog/blue.css?1448702469" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://www.iteye.com/javascripts/application.js?1448702469" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="http://www.iteye.com/javascripts/syntaxhighlighter/SyntaxHighlighter.css?1448702469" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://www.iteye.com/javascripts/syntaxhighlighter/shCoreCommon.js?1448702469" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/hotkey.js?1448702469" type="text/javascript"></script>
+  <script src="http://www.iteye.com/javascripts/code_favorites.js?1448702469" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/weiboshare.js?1448702469" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">招聘</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="/login">登录</a>
+    <a href="/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="/">我的博客</a></h1>
+        </div>
+        <div id='fd'></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class='blog_navbar_for'><a href="http://zhouyunan2010.iteye.com"><strong>博客</strong></a></li>
+            <li ><a href="/weibo">微博</a></li>
+            <li ><a href="/album">相册</a></li>
+            <li ><a href="/link">收藏</a></li>
+            <li ><a href="/blog/guest_book">留言</a></li>
+            <li ><a href="/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="" />
+              <input class="submit_search" type="submit" value="" />
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style='display:none'>
+  <a href="http://zhouyunan2010.iteye.com" class="p-author" target="_blank">zhouYunan2010</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="/blog/1186021">Android蓝牙操作</a>
+      <em class="actions">      </em>
+    </h3>
+    
+        <div class='news_tag'><a href="http://www.iteye.com/blogs/tag/android">android</a>&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    蓝牙是一种支持设备短距离传输数据的无线技术。android在2.0以后提供了这方面的支持。<br />从查找蓝牙设备到能够相互通信要经过几个基本步骤(本机做为服务器)：<br />1.设置权限<br />在manifest中配置<br /><pre class="xml" name="code">
+&lt;uses-permission android:name="android.permission.BLUETOOTH"/&gt;
+&lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/&gt;
+</pre><br /><br />2.启动蓝牙<br />首先要查看本机是否支持蓝牙，获取BluetoothAdapter蓝牙适配器对象<br /><pre class="java" name="code">
+BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+if(mBluetoothAdapter == null){
+        //表明此手机不支持蓝牙
+        return;
+}
+if(!mBluetoothAdapter.isEnabled()){	//蓝牙未开启，则开启蓝牙
+			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+}
+//......
+public void onActivityResult(int requestCode, int resultCode, Intent data){
+       if(requestCode == REQUEST_ENABLE_BT){
+              if(requestCode == RESULT_OK){
+                   //蓝牙已经开启 
+              }
+       }
+}
+</pre><br /><br />3。发现蓝牙设备<br />这里可以细分为几个方面<br />(1)使本机蓝牙处于可见(即处于易被搜索到状态)，便于其他设备发现本机蓝牙<br /><pre class="java" name="code">
+//使本机蓝牙在300秒内可被搜索
+private void ensureDiscoverable() {
+        if (mBluetoothAdapter.getScanMode() !=
+            BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discoverableIntent);
+        }
+}
+</pre><br />(2)查找已经配对的蓝牙设备，即以前已经配对过的设备<br /><pre class="java" name="code">
+		Set&lt;BluetoothDevice&gt; pairedDevices = mBluetoothAdapter.getBondedDevices();
+		if (pairedDevices.size() &gt; 0) {
+			findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
+			for (BluetoothDevice device : pairedDevices) {
+				//device.getName() +" "+ device.getAddress());
+			}
+		} else {
+			mPairedDevicesArrayAdapter.add("没有找到已匹对的设备");
+		}
+</pre><br />(3)通过mBluetoothAdapter.startDiscovery();搜索设备，要获得此搜索的结果需要注册<br />一个BroadcastReceiver来获取。先注册再获取信息，然后处理<br /><pre class="java" name="code">
+//注册，当一个设备被发现时调用onReceive
+IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+		this.registerReceiver(mReceiver, filter);
+
+//当搜索结束后调用onReceive
+filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+		this.registerReceiver(mReceiver, filter);
+//.......
+private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if(BluetoothDevice.ACTION_FOUND.equals(action)){
+				 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+	              // 已经配对的则跳过
+	             if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+	                  mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());  //保存设备地址与名字
+	             }
+			}else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {  //搜索结束
+                if (mNewDevicesArrayAdapter.getCount() == 0) {
+                    mNewDevicesArrayAdapter.add("没有搜索到设备");
+                }
+			}
+
+		}
+};
+</pre><br /><br />4.建立连接<br />查找到设备 后，则需要建立本机与其他设备之间的连接。<br />一般用本机搜索其他蓝牙设备时，本机可以作为一个服务端，接收其他设备的连接。<br />启动一个服务器端的线程，死循环等待客户端的连接，这与ServerSocket极为相似。<br />这个线程在准备连接之前启动<br /><pre class="java" name="code">
+//UUID可以看做一个端口号
+private static final UUID MY_UUID =
+        UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
+   //像一个服务器一样时刻监听是否有连接建立
+    private class AcceptThread extends Thread{
+    	private BluetoothServerSocket serverSocket;
+    	
+    	public AcceptThread(boolean secure){
+    		BluetoothServerSocket temp = null;
+    		try {
+	    		temp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(
+	    					NAME_INSECURE, MY_UUID);
+    		} catch (IOException e) {
+				  Log.e("app", "listen() failed", e);
+			}
+    		serverSocket = temp;
+    	}
+    	
+    	public void run(){
+    		BluetoothSocket socket=null;
+    		while(true){
+    			try {
+					socket = serverSocket.accept();
+				} catch (IOException e) {
+					 Log.e("app", "accept() failed", e);
+	                 break;
+				}
+    		}
+    		if(socket!=null){
+    			//此时可以新建一个数据交换线程，把此socket传进去
+    		}
+    	}
+    	
+    	//取消监听
+    	public void cancel(){	
+	        try {
+	            serverSocket.close();
+	        } catch (IOException e) {
+	            Log.e("app", "Socket Type" + socketType + "close() of server failed", e);
+	        }
+    	}
+
+}
+</pre><br /><br />搜索到设备后可以获取设备的地址，通过此地址获取一个BluetoothDeviced对象，可以看做客户端，通过此对象device.createRfcommSocketToServiceRecord(MY_UUID);同一个UUID可与服务器建立连接获取另一个socket对象，由此服务端与客户端各有一个socket对象，此时<br />他们可以互相交换数据了。<br />创立客户端socket可建立线程<br /><pre class="java" name="code">
+    //另一个设备去连接本机,相当于客户端
+    private class ConnectThread extends Thread{
+    	private BluetoothSocket socket;
+    	private BluetoothDevice device;
+    	public ConnectThread(BluetoothDevice device,boolean secure){
+    		this.device = device;
+    		BluetoothSocket tmp = null;
+    		try {
+				tmp = device.createRfcommSocketToServiceRecord(MY_UUID_SECURE);
+			} catch (IOException e) {
+				 Log.e("app", "create() failed", e);
+			}
+    	}
+    	
+    	public void run(){
+    		mBluetoothAdapter.cancelDiscovery();	//取消设备查找
+    		try {
+				socket.connect();
+			} catch (IOException e) {
+				try {
+					socket.close();
+				} catch (IOException e1) {
+					 Log.e("app", "unable to close() "+
+	                            " socket during connection failure", e1);
+				}
+				connetionFailed();	//连接失败
+				return;
+			}
+	        //此时可以新建一个数据交换线程，把此socket传进去
+    	}
+    	
+    	  public void cancel() {
+              try {
+                  socket.close();
+              } catch (IOException e) {
+                  Log.e("app", "close() of connect  socket failed", e);
+              }
+          }
+    }
+</pre><br /><br />5.建立数据通信线程，进行读取数据<br /><pre class="java" name="code">
+//建立连接后，进行数据通信的线程
+    private class ConnectedThread extends Thread{
+    	private BluetoothSocket socket;
+    	private InputStream inStream;
+    	private OutputStream outStream;
+    	
+    	public ConnectedThread(BluetoothSocket socket){
+    		
+    		this.socket = socket;
+    		try {
+    			//获得输入输出流
+				inStream = socket.getInputStream();
+				outStream = socket.getOutputStream();
+			} catch (IOException e) {
+				Log.e("app", "temp sockets not created", e);
+			}
+    	}
+    	
+    	public void run(){
+    		byte[] buff = new byte[1024];
+    		int len=0;
+    		//读数据需不断监听，写不需要
+    		while(true){
+    			try {
+					len = inStream.read(buff);
+					//把读取到的数据发送给UI进行显示
+					Message msg = handler.obtainMessage(BluetoothChat.MESSAGE_READ,
+							len, -1, buff);
+					msg.sendToTarget();
+				} catch (IOException e) {
+					Log.e("app", "disconnected", e);
+                    connectionLost();	//失去连接
+                    start();	//重新启动服务器
+                    break;
+				}
+    		}
+    	}
+    	
+    	
+    	public void write(byte[] buffer) {
+            try {
+                outStream.write(buffer);
+
+                // Share the sent message back to the UI Activity
+                handler.obtainMessage(BluetoothChat.MESSAGE_WRITE, -1, -1, buffer)
+                        .sendToTarget();
+            } catch (IOException e) {
+                Log.e("app", "Exception during write", e);
+            }
+        }
+
+        public void cancel() {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                Log.e("app", "close() of connect socket failed", e);
+            }
+        }
+    }
+</pre><br /><br />到这里，蓝牙通信的基本操作已经全部完成。<br /><br /><br />
+  </div>
+
+  
+
+  
+  
+  <IFRAME SRC="/iframe_ggbd/794" SCROLLING=no WIDTH=680 HEIGHT=90 FRAMEBORDER=0></IFRAME>
+  
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type='sina' href="javascript:;" title="分享到新浪微博"><img src="/images/sina.jpg"></a>
+      <a data-type='qq' href="javascript:;" title="分享到腾讯微博"><img src="/images/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="/blog/1211544" class="next" title="插入排序(包括希尔排序)及其变体">插入排序(包括希尔排序)及其变体</a>
+      |
+      <a href="/blog/1184310" class="pre" title="基本算法题目汇总(不断追加中..)">基本算法题目汇总(不断追加中..)</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-10-06 20:20</li>
+      <li>浏览 24938</li>
+      <li><a href="#comments">评论(7)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/mobile">移动开发</a></li>      
+      <li class='last'><a href="http://www.iteye.com/wiki/blog/1186021" target="_blank" class="more">相关推荐</a></li>
+    </ul>
+  </div>
+
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2362063">
+  <div class="comment_title">
+    7 楼
+    <a href='http://yahier.iteye.com' target='_blank' title='yahier'>yahier</a>
+    2014-11-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">写的很清晰&nbsp;<img src="/images/smiles/icon_idea.gif" /> </div>
+</div>
+
+<div id="bc2361611">
+  <div class="comment_title">
+    6 楼
+    <a href='http://purplefall.iteye.com' target='_blank' title='purplefall'>purplefall</a>
+    2014-10-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">代码能否给我参考一下，感激不尽<br />purplefall@163.com</div>
+</div>
+
+<div id="bc2348145">
+  <div class="comment_title">
+    5 楼
+    <a href='http://a569507680.iteye.com' target='_blank' title='a569507680'>a569507680</a>
+    2014-05-15&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">很好，能否分享下源码<br />gjirui123@126.com</div>
+</div>
+
+<div id="bc2325465">
+  <div class="comment_title">
+    4 楼
+    <a href='http://zhouyunan2010.iteye.com' target='_blank' title='zhouYunan2010'>zhouYunan2010</a>
+    2013-09-13&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">在下个路口 写道</div><div class="quote_div">搜索设备的时候OnReceive方法是怎么保证调用的，在哪里调用呢？怎么保证是搜索到一个设备就调用一次，而不是只是搜索到第一个设备时被调用一次呢？求解！</div><br /><br />你注册ACTION_FOUND广播接受者后，当有设备发现时OnReceive会由系统进行调用。<br />每次搜索到一个设备此方法就会被调用一次。<br />查找设备的逻辑处理由系统完成，你注册监听，它就会把这个信息告诉你。</div>
+</div>
+
+<div id="bc2323753">
+  <div class="comment_title">
+    3 楼
+    <a href='http://326301045.iteye.com' target='_blank' title='在下个路口'>在下个路口</a>
+    2013-08-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">搜索设备的时候OnReceive方法是怎么保证调用的，在哪里调用呢？怎么保证是搜索到一个设备就调用一次，而不是只是搜索到第一个设备时被调用一次呢？求解！</div>
+</div>
+
+<div id="bc2303322">
+  <div class="comment_title">
+    2 楼
+    <a href='http://zw-lovec.iteye.com' target='_blank' title='zw_lovec'>zw_lovec</a>
+    2013-03-11&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">很好，学习了。。</div>
+</div>
+
+<div id="bc2293223">
+  <div class="comment_title">
+    1 楼
+    <a href='http://jeaken.iteye.com' target='_blank' title='jeaken'>jeaken</a>
+    2012-12-11&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">lz这个例子能否共享一下</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="/login" style="background-color:white;"> <img src="/images/login_icon.png" style="vertical-align:middle; margin-right: 10px;" /></a><a href="/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1186021;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Android蓝牙操作');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Android蓝牙操作');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href='http://zhouyunan2010.iteye.com'><img alt="zhouYunan2010的博客" class="logo" src="http://www.iteye.com/upload/logo/user/485509/d33c4c85-dcf5-3040-8f02-5166f5dd6163.jpg?1306034993" title="zhouYunan2010的博客: 我的博客" width="" /></a></div>
+  <div id="blog_owner_name">zhouYunan2010</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 115900 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="http://www.iteye.com/images/icon_minigender_1.gif?1448702469" title="男" /></li>
+              <li>来自: 湖南</li>
+              <li><img src='/images/status/offline.gif'/></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style='font-weight:normal;font-size:12px;padding-left:30px;'><a href="/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://zhxin.iteye.com' target='_blank'><img alt="ZHxin的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1448702469" title="ZHxin的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://zhxin.iteye.com' target='_blank' title='ZHxin'>ZHxin</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://an94er.iteye.com' target='_blank'><img alt="an94er的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1448702469" title="an94er的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://an94er.iteye.com' target='_blank' title='an94er'>an94er</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://amu-happy.iteye.com' target='_blank'><img alt="amu_happy的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1448702469" title="amu_happy的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://amu-happy.iteye.com' target='_blank' title='amu_happy'>amu_happy</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://123529867.iteye.com' target='_blank'><img alt="123529867的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1448702469" title="123529867的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://123529867.iteye.com' target='_blank' title='123529867'>123529867</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="/">全部博客 (28)</a></li>
+                
+              </ul>
+            </div>
+            <div id='month_blogs'>
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="/blog/post">我的论坛</a> (78)
+                </li>
+                <li><a href="/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="/blog/monthblog/2013-11">2013-11</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2013-09">2013-09</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2012-04">2012-04</a> (1)</li>
+                
+                <li><a href="/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href='http://okwudebin.iteye.com' target='_blank' title='okwudebin'>okwudebin</a>： 
+                   ...<br />
+                  <a href="/blog/1488725#bc2374193">android2.3 View视图框架源码分析之一:android是如何创建一个view的？</a>
+                </li>
+                
+                <li>
+                  <a href='http://770901644.iteye.com' target='_blank' title='田兴苗'>田兴苗</a>： 
+                   ...<br />
+                  <a href="/blog/1972789#bc2367559">Android Property Animation(属性动画)原理分析</a>
+                </li>
+                
+                <li>
+                  <a href='http://sky88088.iteye.com' target='_blank' title='sky88088'>sky88088</a>： 
+                  写得挺不错，有点笔误：getAnimationValue应为g ...<br />
+                  <a href="/blog/1972789#bc2364747">Android Property Animation(属性动画)原理分析</a>
+                </li>
+                
+                <li>
+                  <a href='http://yahier.iteye.com' target='_blank' title='yahier'>yahier</a>： 
+                  写的很清晰 <br />
+                  <a href="/blog/1186021#bc2362063">Android蓝牙操作</a>
+                </li>
+                
+                <li>
+                  <a href='http://purplefall.iteye.com' target='_blank' title='purplefall'>purplefall</a>： 
+                  代码能否给我参考一下，感激不尽purplefall@163.c ...<br />
+                  <a href="/blog/1186021#bc2361611">Android蓝牙操作</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr/>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br />
+          &copy; 2003-2016 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script>
+
+<script src="http://csdnimg.cn/pubfooter/js/tracking.js?version=20130923164150" type="text/javascript"></script>
+
+    
+    
+  </body>
+</html>

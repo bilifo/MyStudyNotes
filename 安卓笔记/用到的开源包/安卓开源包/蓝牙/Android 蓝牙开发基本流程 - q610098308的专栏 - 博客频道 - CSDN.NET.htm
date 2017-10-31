@@ -1,0 +1,1181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+    
+     
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>Android 蓝牙开发基本流程 - q610098308的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="virtual方法(virtual function)：If a method is virtual, then calling the method on an object always invokes the method as implemented by the most heavily derived class. If the method is not virtual, the" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/skin-yellow/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/q610098308/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue_black.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/q610098308">q610098308的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/q610098308?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/q610098308?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/q610098308/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "q610098308";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/q610098308";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=2741">
+<font color=red>2016软考项目经理实战班
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/yearPromotion">
+<font color=blue>学院周年礼-顶尖课程钜惠呈现
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=2755">
+<font color=red>微信公众平台应用开发</font>
+&nbsp;&nbsp;&nbsp;
+<a href="http://bss.csdn.net/m/topic/community_star/index">
+<font color=blue>CSDN 2015年度社区之星荣誉榜
+</font></a>
+
+</div>                        </div>
+                        
+
+<!--AdForward Begin:-->
+<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|blog|fumeiti&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"></script>
+<!--AdForward End-->
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0" />
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/q610098308/article/details/45248423">
+        Android 蓝牙开发基本流程            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href='http://www.csdn.net/tag/android' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">android</a><a href='http://www.csdn.net/tag/%e8%93%9d%e7%89%99' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">蓝牙</a><a href='http://www.csdn.net/tag/bluetooth' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">bluetooth</a><a href='http://www.csdn.net/tag/%e9%80%9a%e4%bf%a1' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">通信</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2015-04-24 16:42</span>
+            <span class="link_view" title="阅读次数">7553人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(6)</span>
+            <span class="link_collect"> <a href="javascript:void(0);" onclick="javascript:collectArticle('Android 蓝牙开发基本流程','45248423');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(45248423,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('2267555','q610098308','top','45248423');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">android<em>（47）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/q610098308/article/category/2267555">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2267555">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>  
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-size:14px">此例子基于 android demo</span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-size:14px"><strong style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-weight:700; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimHei; font-size:12px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">对于一般的软件开发人员来说，蓝牙是很少用到的，尤其是</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">Android</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">的蓝牙开发，国内的例子很少</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;
+ &nbsp;&nbsp;&nbsp;Android</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">对于蓝牙开发从</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">2.0</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">版本的</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">sdk</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">才开始支持，而且模拟器不支持，测试至少需要两部手机，所以制约了很多技术人员的开发；</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"></span></span><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;&nbsp;&nbsp; 鉴于很多开发人员现在也有蓝牙开发的需求，也为了大家少走些弯路，先将我积攒的一点点在Android蓝牙开发经验与大家分享一下！</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimHei; font-size:12px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;&nbsp; 首先，要操作蓝牙，先要在AndroidManifest.xml里加入权限</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimHei; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&lt;uses-permissionandroid:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;
+ /&gt;</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimHei; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&lt;uses-permissionandroid:name=&quot;android.permission.BLUETOOTH&quot;
+ /&gt;</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimHei; font-size:12px"><span style="padding:0px; margin:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">然后，看下api，</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">Android</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">所有关于蓝牙开发的类都在android.bluetooth包下，如下图，只有8个类</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<strong style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-weight:700; padding-top:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<img id="aimg_3500" title="1.jpg" alt="1.jpg" src="http://www.eoeandroid.com/data/attachment/forum/month_1004/10042311551487d497e50f9e34.jpg" width="192" style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px"></span><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">而我们需要用到了就只有几个而已：</span></span></strong></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="font-size:24px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp; 1.BluetoothAdapter&nbsp;</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br>
+</span></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">顾名思义，蓝牙适配器，直到我们建立bluetoothSocket连接之前，都要不断操作它BluetoothAdapter</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">里的方法很多，常用的有以下几个：</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;</span></span></strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="font-family:FangSong_GB2312">cancelDiscovery()&nbsp;</span></span><span style="font-family:FangSong_GB2312"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">根据字面意思，是取消发现，也就是说当我们正在搜索设备的时候调用这个方法将不再继续搜索</span></span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;disable()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">关闭蓝牙</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><span style="padding:0px; margin:0px"><span style="font-family:FangSong_GB2312"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;enable()</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="font-family:FangSong_GB2312">打开蓝牙，这个方法打开蓝牙不会弹出提示，更多的时候我们需要问下用户是否打开，一下这两行代码同样是打开蓝牙，不过会提示用户</span></span></span><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">：</span></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">Intemtenabler=new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">startActivityForResult(enabler,reCode);//</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">同startActivity(enabler);</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getAddress()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取本地蓝牙地址</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getDefaultAdapter()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取默认BluetoothAdapter，实际上，也只有这一种方法获取BluetoothAdapter</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getName()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取本地蓝牙名称</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getRemoteDevice(String address)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">根据蓝牙地址获取远程蓝牙设备</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getState()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取本地蓝牙适配器当前状态（感觉可能调试的时候更需要）</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;isDiscovering()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">判断当前是否正在查找设备，是返回true</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;isEnabled()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">判断蓝牙是否打开，已打开返回true，否则，返回false</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp;&nbsp;listenUsingRfcommWithServiceRecord(String
+ name,UUID uuid)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">根据名称，UUID创建并返回BluetoothServerSocket，这是创建BluetoothSocket服务器端的第一步</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;startDiscovery()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">开始搜索，这是搜索的第一步</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><strong>2.BluetoothDevice</strong></span><strong><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br>
+</span></strong></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">看名字就知道，这个类描述了一个蓝牙设备</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;createRfcommSocketToServiceRecord(UUIDuuid)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">根据UUID创建并返回一个BluetoothSocket</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">getState()</span></span>
+ 蓝牙状态这里要说一下，只有在 BluetoothAdapter.STATE_ON 状态下才可以监听，具体可以看andrid api;</span></span><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br>
+</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这个方法也是我们获取BluetoothDevice的目的——创建BluetoothSocket</span><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这个类其他的方法，如getAddress(),getName(),同BluetoothAdapter</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp; 3.BluetoothServerSocket</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br>
+</span></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">如果去除了Bluetooth相信大家一定再熟悉不过了，既然是Socket，方法就应该都差不多，</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这个类一种只有三个方法</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">两个重载的accept(),accept(inttimeout)两者的区别在于后面的方法指定了过时时间，需要注意的是，执行这两个方法的时候，直到接收到了客户端的请求（或是过期之后），都会阻塞线程，应该放在新线程里运行！</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">还有一点需要注意的是，这两个方法都返回一个BluetoothSocket，最后的连接也是服务器端与客户端的两个BluetoothSocket的连接</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;close()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这个就不用说了吧，翻译一下——关闭！</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;4.BluetoothSocket
+<br>
+</span></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;
+</span></span></strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">跟BluetoothServerSocket相对，是客户端一共5个方法，不出意外，都会用到</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;close(),</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">关闭</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;connect()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">连接</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getInptuStream()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取输入流</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getOutputStream()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取输出流</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;getRemoteDevice()</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">获取远程设备，这里指的是获取bluetoothSocket指定连接的那个远程蓝牙设备</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<br>
+</p>
+<p><span style="font-family:SimSun; font-size:14px"><strong><span style="color:#444444; line-height:21px; border-collapse:collapse"><span style="padding:0px; margin:0px"><span></span></span></span></strong></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">1</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">、获取本地蓝牙适配器</span></span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;BluetoothAdapter<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+mAdapter= BluetoothAdapter.getDefaultAdapter();</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;2</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">、打开蓝牙</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;if(!mAdapter.isEnabled()){</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">//</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">弹出对话框提示用户是后打开</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">Intent enabler = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">startActivityForResult(enabler, REQUEST_ENABLE);</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;//</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">不做提示，强行打开</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;// mAdapter.enable();</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">}</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">3</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">、搜索设备<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+&nbsp;&nbsp; 1)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">刚才说过了mAdapter.startDiscovery()</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">是第一步,可以你会发现没有返回的蓝牙设备，怎么知道查找到了呢？向下看，不要急</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">2)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">定义BroadcastReceiver,关于BroadcastReceiver不多讲了，不是今天的讨论内容，代码如下</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><span style="font-family:FangSong_GB2312"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"></span></span></span></span><pre name="code" class="java">    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            //找到设备
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent
+                        .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+                if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+
+                    Log.v(TAG, &quot;find device:&quot; + device.getName()
+                            + device.getAddress());
+                }
+            }
+            //搜索完成
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
+                    .equals(action)) {
+                setTitle(&quot;搜索完成&quot;);
+                if (mNewDevicesAdapter.getCount() == 0) {
+                    Log.v(TAG, &quot;find over&quot;);
+                }
+            }
+        }
+    };</pre><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;
+</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这样，没当查找到新设备或是搜索完成，相应的操作都在上段代码的两个if里执行了，不过前提是你要先注册</span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:12pt; padding-top:0px">BroadcastReceiver</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:12pt; padding-top:0px">，具体代码如下</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:12pt; padding-top:0px"></span></span></strong></span><pre name="code" class="java">    IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+    registerReceiver(mReceiver, filter);
+    filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+    registerReceiver(mReceiver, filter)&lt;span style=&quot;font-family:SimSun;&quot;&gt;;&lt;/span&gt;</pre><span style="font-family:FangSong_GB2312"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:12pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:12pt; padding-top:0px">（这段代码，一般写在onCreate（）里..）</span></span></span><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+</span></span></strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="font-family:FangSong_GB2312">&nbsp; 4、</span></span><span style="font-family:FangSong_GB2312"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">建立连接，首先Android
+ sdk（2.0以上版本）支持的蓝牙连接是通过BluetoothSocket建立连接（说的不对请高人指正），服务器端（BluetoothServerSocket）和客户端（BluetoothSocket）需指定同样的UUID，才能建立连接，因为建立连接的方法会阻塞线程，所以服务器端和客户端都应启动新线程连接</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">1</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">）服务器端：</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+//UUID</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&#26684;式一般是&quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;可到</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;//http://www.uuidgenerator.com&nbsp;</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">申请</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+BluetoothServerSocket serverSocket = mAdapter. listenUsingRfcommWithServiceRecord(serverSocketName,UUID);<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+serverSocket.accept();</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+2)</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">客户端：<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+//</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">还记得我们刚才在BroadcastReceiver获取了BLuetoothDevice么？<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+BluetoothSocket clienSocket=dcvice. createRfcommSocketToServiceRecord(UUID);<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+clienSocket.connect();</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:SimSun; font-size:14px"><span style="padding:0px; margin:0px"><span style="font-family:FangSong_GB2312"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+5</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">、数据传递，通过以上操作，就已经建立的BluetoothSocket连接了，数据传递无非是通过流的形式<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+1</span></span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="font-family:FangSong_GB2312">）获取流<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+inputStream = socket.getInputStream();<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+outputStream = socket.getOutputStream();</span></span></span><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+</span></span></strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><span style="font-family:FangSong_GB2312">2</span></span><span style="font-family:FangSong_GB2312"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">）写出、读入<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">这是基础的东西，在这就不多赘述了<br style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">终于写完了，这是我这两天的学习经验，希望对有蓝牙需求的朋友有所帮助！另外，之前我们提过</span></span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">android.bluetooth</span><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">下有8个类，还有4个类没有用到，那4个类里定义的都是常量，我也没用到它们..</span></span></span></p>
+<p style="text-align:left; padding-bottom:0px; line-height:30px; text-indent:2em; margin:0px; padding-left:0px; padding-right:0px; padding-top:0px">
+<span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px"><br>
+</span></span></span></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">&nbsp;&nbsp;
+<strong>最后把我找到的几个蓝牙的例子附在</strong></span></span><strong><span style="padding:0px; margin:0px"><span style="padding-bottom:0px; margin:0px; padding-left:0px; padding-right:0px; font-size:13.5pt; padding-top:0px">后面，希望从事软件开发，尤其是Android开发的朋友以后多沟通、多分享！</span></span></strong></span></p>
+<p><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif; font-size:14px; color:#444444; line-height:21px; border-collapse:collapse">补充一下，使设备能够被搜索</span></p>
+<p><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif; font-size:14px; color:#444444; line-height:21px; border-collapse:collapse">Intent enabler = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);</span></p>
+<p><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif; font-size:14px; color:#444444; line-height:21px; border-collapse:collapse">startActivityForResult(enabler,REQUEST_DISCOVERABLE);</span></p>
+<p><span style="font-size:14px"><br>
+</span></p>
+<p><font size="3"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif; font-size:14px; color:#444444; line-height:21px; border-collapse:collapse"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif">demo<span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif">是包括客户端和服务端；分别放到两个手机上<span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif">就可以通信；大家改改应该就可以<span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif">用；</span></span></span></span></span></font></p>
+<p><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif; font-size:14px; color:#444444; line-height:21px; border-collapse:collapse"><font size="3"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif"><span style="font-family:'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif">http://download.csdn.net/detail/q610098308/8681065<br>
+这个是官方的demo:<br>
+http://download.csdn.net/detail/q610098308/8628675</span></span></span></span></font><br>
+</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox" style="float: right;">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" ArticleId="45248423">
+            <dl id="btnDigg" class="digg digg_disable">
+               
+                 <dt>顶</dt>
+                <dd>2</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/q610098308/article/details/45217959';">上一篇</span><a href="/q610098308/article/details/45217959" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">Android 使用 Application 简单介绍</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/q610098308/article/details/45605389';">下一篇</span><a href="/q610098308/article/details/45605389" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">android 蓝牙 通信 bluetooth</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article"  style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c"style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span  style="cursor:pointer"  onclick="GetCategoryArticles('2267555','q610098308','foot','45248423');">android<em>（47）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141"  style="max-height:195px;">
+                        <a href="http://blog.csdn.net" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script  type="text/javascript">
+        $(function () {
+            GetCategoryArticles('2267555', 'q610098308','foot','45248423');
+        });
+    </script>
+      
+</div>
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/q610098308/svc/GetSuggestContent/45248423",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "45248423",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'Android 蓝牙开发基本流程' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>   
+
+    <div id="ad_cen">        
+<!--AdForward Begin:-->
+<script type="text/javascript" src="http://csdnim.qtmojo.com/main/s?user=csdn|blog|banner2&db=csdnim&border=0&local=yes&js=ie" charset="gbk"></script>
+<!--AdForward End-->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '45248423';
+    var commentscount = 6;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script  language="javascript" type='text/javascript'>     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/q610098308/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });
+        },200);  
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }    
+
+</script>
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/q610098308" target="_blank">
+    <img src="http://avatar.csdn.net/8/E/9/1_q610098308.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/q610098308" class="user_name" target="_blank">q610098308</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=q610098308','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="2" >
+                                            </a>
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>24069次</span></li>
+    <li>积分：<span>794</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog3.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：794 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>48篇</span></li>
+    <li>转载：<span>52篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>14条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/adv003.html" target="_blank"><img src="http://img.blog.csdn.net/20151217201920801" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/adv003.html" target="_blank">android 开发高级编程</a>
+    <p>文章：5篇</p>
+    <span>阅读：342</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/a003.html" target="_blank"><img src="http://img.blog.csdn.net/20151216223819046" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/a003.html" target="_blank">android 高级编程</a>
+    <p>文章：7篇</p>
+    <span>阅读：579</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android--002.html" target="_blank"><img src="http://img.blog.csdn.net/20151127203641101" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android--002.html" target="_blank">Android 开发进阶</a>
+    <p>文章：7篇</p>
+    <span>阅读：576</span>
+    </td>
+    </tr></table>
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-dev-base.html" target="_blank"><img src="http://img.blog.csdn.net/20151211161352419" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-dev-base.html" target="_blank">移动开发 android 入门开发</a>
+    <p>文章：10篇</p>
+    <span>阅读：2549</span>
+    </td>
+    </tr></table>
+    </ul>
+</div>
+
+<div id="custom_column_40875011" class="panel">
+<ul class="panel_head"><span>说明</span></ul>
+<ul class="panel_body">
+
+Android 交流学习群 QQ:458506426
+
+</ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/q610098308/article/category/2267555" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android</a><span>(48)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5946415" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android 基础入门阶段</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5980121" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android 开发进阶</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5981985" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android 高级开发</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/2267557" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C/C++</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/2452469" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">IOS</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/2452471" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">lua</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/2452473" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">erlang</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/2812483" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">IOS 七日之三</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/3087877" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JSP</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5587591" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">soft engineer</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5618679" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">gps</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5633349" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">sqlite</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5636813" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Python</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5636823" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">设计模式</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5639215" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">java</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5669931" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">other</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5981987" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android 外设开发</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/q610098308/article/category/5981989" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android NDK开发</a><span>(4)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/q610098308/article/month/2015/12">2015年12月</a><span>(10)</span></li><li><a href="/q610098308/article/month/2015/11">2015年11月</a><span>(15)</span></li><li><a href="/q610098308/article/month/2015/10">2015年10月</a><span>(9)</span></li><li><a href="/q610098308/article/month/2015/09">2015年09月</a><span>(5)</span></li><li><a href="/q610098308/article/month/2015/08">2015年08月</a><span>(3)</span></li><li><a href="/q610098308/article/month/2015/07">2015年07月</a><span>(16)</span></li><li><a href="/q610098308/article/month/2015/06">2015年06月</a><span>(6)</span></li><li><a href="/q610098308/article/month/2015/05">2015年05月</a><span>(4)</span></li><li><a href="/q610098308/article/month/2015/04">2015年04月</a><span>(5)</span></li><li><a href="/q610098308/article/month/2015/03">2015年03月</a><span>(8)</span></li><li><a href="/q610098308/article/month/2015/02">2015年02月</a><span>(8)</span></li><li><a href="/q610098308/article/month/2015/01">2015年01月</a><span>(1)</span></li><li><a href="/q610098308/article/month/2014/12">2014年12月</a><span>(2)</span></li><li><a href="/q610098308/article/month/2014/09">2014年09月</a><span>(4)</span></li><li><a href="/q610098308/article/month/2014/06">2014年06月</a><span>(1)</span></li><li><a href="/q610098308/article/month/2014/05">2014年05月</a><span>(4)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/q610098308/article/details/45248423" title="Android 蓝牙开发基本流程">Android 蓝牙开发基本流程</a><span>(7447)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/46981715" title="关于讯飞 使用android SDK出现21001错误码的分析">关于讯飞 使用android SDK出现21001错误码的分析</a><span>(1321)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/43865889" title="IOS开发 键盘添加工具条 退出 上一项 下一项 简单实现">IOS开发 键盘添加工具条 退出 上一项 下一项 简单实现</a><span>(1041)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/46474559" title="讯飞语音合成 简单使用">讯飞语音合成 简单使用</a><span>(1010)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/45605389" title="android 蓝牙 通信 bluetooth">android 蓝牙 通信 bluetooth</a><span>(926)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/47062049" title="win8 C 盘 突然少了 十几G 空间 原因，解决方法">win8 C 盘 突然少了 十几G 空间 原因，解决方法</a><span>(651)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/49589493" title="android menu 开发">android menu 开发</a><span>(492)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/49451537" title="Android 基础控件 TextView">Android 基础控件 TextView</a><span>(476)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/49448105" title="Android2.2 API中文文档——View">Android2.2 API中文文档——View</a><span>(409)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/49447475" title="Android API 中文   ListView">Android API 中文   ListView</a><span>(409)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/q610098308/article/details/45248423" title="Android 蓝牙开发基本流程">Android 蓝牙开发基本流程</a><span>(6)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/46981715" title="关于讯飞 使用android SDK出现21001错误码的分析">关于讯飞 使用android SDK出现21001错误码的分析</a><span>(5)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/45605389" title="android 蓝牙 通信 bluetooth">android 蓝牙 通信 bluetooth</a><span>(1)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/49589493" title="android menu 开发">android menu 开发</a><span>(1)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/48808851" title="Android 媒体键监听以及模拟媒体键盘的实现 demo">Android 媒体键监听以及模拟媒体键盘的实现 demo</a><span>(1)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/41643497" title="简单 android popupwindow 实现">简单 android popupwindow 实现</a><span>(0)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/39478019" title="Android数据的四种存储方式">Android数据的四种存储方式</a><span>(0)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/39204921" title="Java将Unix时间戳转换成指定格式日期">Java将Unix时间戳转换成指定格式日期</a><span>(0)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/50440475" title="android 数据存储----文件方式 总结">android 数据存储----文件方式 总结</a><span>(0)</span>
+</li>
+<li>
+<a href="/q610098308/article/details/26246133" title="android NDk环境编译总结">android NDk环境编译总结</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/baimafujinji/article/details/50467970" 
+
+target="_blank">*机器学习与数据挖掘网上资源搜罗——良心推荐</a></li>
+<li><a href="http://blog.csdn.net/foruok/article/details/50416725" 
+
+target="_blank">*架构设计：系统间通信（17）——服务治理与Dubbo 中篇（分析）</a></li>
+<li><a href="http://blog.csdn.net/bluecloudmatrix/article/details/49490339" 
+
+target="_blank">* 拉开大变革序幕（中）：Docker 场景化尝试</a></li>
+<li><a 
+
+href="http://blog.csdn.net/yanbober/article/details/46417531"target="_blank">*Android应用开发allowBackup敏感信息泄露的一点反思</a></li>
+<li><a href="http://blog.csdn.net/nk_test/article/details/50449470" 
+
+target="_blank">*Linux多线程实践（四 ）线程的特定数据</a></li>
+<li><a href="http://blog.csdn.net/andywuchuanlong/article/details/50450816"  
+
+target="_blank">*Android点击Button水波纹效果</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/q610098308/article/details/45248423#comments">Android 蓝牙开发基本流程</a>
+    <p style="margin:0px;"><a href="/qq_20898277" class="user_name">qq_20898277</a>:
+@q610098308:可以用，太叼了，已关注
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/45248423#comments">Android 蓝牙开发基本流程</a>
+    <p style="margin:0px;"><a href="/q610098308" class="user_name">q610098308</a>:
+@qq_20898277:你好，在我上传的资源中：http://download.csdn.net/...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/45248423#comments">Android 蓝牙开发基本流程</a>
+    <p style="margin:0px;"><a href="/qq_20898277" class="user_name">qq_20898277</a>:
+所以，例子在哪里，并没有看见啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/45248423#comments">Android 蓝牙开发基本流程</a>
+    <p style="margin:0px;"><a href="/u012975705" class="user_name">u012975705</a>:
+多谢分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/45248423#comments">Android 蓝牙开发基本流程</a>
+    <p style="margin:0px;"><a href="/hucj001" class="user_name">hucj001</a>:
+不错
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/45605389#comments">android 蓝牙 通信 bluetooth</a>
+    <p style="margin:0px;"><a href="/yaochangliang159" class="user_name">yaochangliang159</a>:
+楼主，我给你赞一个
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/49589493#comments">android menu 开发</a>
+    <p style="margin:0px;"><a href="/u010037928" class="user_name">u010037928</a>:
+简单明了，谢谢楼主
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/48808851#comments">Android 媒体键监听以及模拟媒体键盘的实现 demo</a>
+    <p style="margin:0px;"><a href="/wtjandjay" class="user_name">wtjandjay</a>:
+典型的  brocastReceiver
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/46981715#comments">关于讯飞 使用android SDK出现21001错误码的分析</a>
+    <p style="margin:0px;"><a href="/q610098308" class="user_name">q610098308</a>:
+@lo106258:appid 需要你知道去申请；
+    </p>
+    </li>
+    <li>
+   
+         <a href="/q610098308/article/details/46981715#comments">关于讯飞 使用android SDK出现21001错误码的分析</a>
+    <p style="margin:0px;"><a href="/lo106258" class="user_name">lo106258</a>:
+SpeechUtility.createUtility(MainActivity.this, &quot;ap...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=644219"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+</body>
+</html>   
+ 

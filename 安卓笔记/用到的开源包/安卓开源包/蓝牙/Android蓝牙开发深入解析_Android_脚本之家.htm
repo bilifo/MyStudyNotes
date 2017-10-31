@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="gb2312" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<title>Android蓝牙开发深入解析_Android_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+<meta name="keywords" content="Android,蓝牙开发" />
+<meta name="description" content="由于近期正在开发一个通过蓝牙进行数据传递的模块，在参考了有关资料，并详细阅读了Android的官方文档后，总结了Android中蓝牙模块的使用" />
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/article/42416.htm" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/42416.htm" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/42416.htm" />
+<script type="text/javascript">
+var tougao="jingxian";var lmname="Android";
+(function(){var ua=navigator.userAgent.toLowerCase();var bIsIpad=ua.match(/ipad/i)=="ipad";var bIsIphoneOs=ua.match(/iphone os/i)=="iphone os";var bIsAndroid=ua.match(/android/i)=="android";var bIsWM=ua.match(/windows mobile/i)=="windows mobile";if(bIsIpad||bIsIphoneOs||bIsAndroid||bIsWM){window.location.href="http://m.jb51.net/article/42416.htm"}})();
+</script>
+<link type="text/css" href="http://img.jb51.net/skin/2016/base.css" rel="stylesheet" />
+<link type="text/css" href="http://img.jb51.net/skin/2016/common.css" rel="stylesheet" />
+<script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery.min.js"></script>
+<script type=text/javascript src="http://img.jb51.net/js/common.js"></script>
+</head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+                <a href="http://www.jb51.net/softs/android.html" target="_blank">android软件</a>
+                <a href="http://www.jb51.net/softs/mac.html" target="_blank">MAC软件</a>
+                <a href="http://www.jb51.net/fonts/ target="_blank">字体下载</a> <a href="http://www.jb51.net/dll/" target="_blank">DLL下载</a> </div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/codes/asp.html" target="_blank">asp源码</a> <a href="http://www.jb51.net/codes/php.html" target="_blank">php源码</a> <a href="http://www.jb51.net/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="http://www.jb51.net/codes/jsp.html" target="_blank">jsp源码</a> <a href="http://www.jb51.net/codes/editor.html" target="_blank">网页编辑器</a> <a href="http://www.jb51.net/codes/list123_1.html" target="_blank">数据库管理</a> <a href="http://www.jb51.net/codes/list124_1.html" target="_blank">常用组件</a> </div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/shouce/" target="_blank">在线手册</a> <a href="http://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank">JS格式化</a> <a href="http://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a>
+</div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net" target="_blank">手机版</a></div>
+          <div class="two"><img src="http://img.jb51.net/images/m.jb51.net.png" /></div>     
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://weibo.com/jb51net" target="_blank" rel="nofollow"><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="http://img.jb51.net/images/weixin_200.gif" /></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar" > </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="http://www.jb51.net/images/logo.gif" title="脚本之家" alt="脚本之家" /></a></div>
+      <div class="logom fl" id="logo_m"></div>
+      <div class="logor fr" id="logo_r"></div>
+    </div>
+<!-- 导航-->
+<DIV class="nav_top clearfix">
+<UL>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+
+</UL>
+</DIV>
+
+<!--导航结束-->
+<div class="subnav clearfix">
+<ul><li><a href='/list/list_85_1.htm' title="C#教程">C#教程</a></li>
+<li><a href='/list/list_93_1.htm' title="vb">vb</a></li>
+<li><a href='/list/list_205_1.htm' title="vb.net">vb.net</a></li>
+<li><a href='/list/list_159_1.htm' title="C 语言">C 语言</a></li>
+<li><a href='/list/list_134_1.htm' title="Java编程">Java编程</a></li>
+<li><a href='/list/list_206_1.htm' title="Delphi">Delphi</a></li>
+<li><a href='/list/list_207_1.htm' title="java">java</a></li>
+<li><a href='/list/list_233_1.htm' title="Android">Android</a></li>
+<li><a href='/list/list_238_1.htm' title="IOS">IOS</a></li>
+<li><a href='/list/list_244_1.htm' title="Swift">Swift</a></li>
+<li><a href='/list/list_250_1.htm' title="Scala">Scala</a></li>
+<li><a href='/list/list_188_1.htm' title="其它相关">其它相关</a></li>
+</ul>
+</div>
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href='/'>首页</a> → <a href="/list/index_84.htm" title="软件编程">软件编程</a> → <a href="/list/list_233_1.htm" title="Android">Android</a> → 正文内容 Android 蓝牙开发</div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input" placeholder="请输入关键词">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="tonglanad clearfix" id="tonglanbd"><script type="text/javascript">dy("tonglanbd")</script></div>
+<div class="blank5 clearfix"></div>
+<div class="clearfix mt10" id="tonglan1"></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">Android蓝牙开发深入解析</h1>
+            <p>作者：  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 时间：2013-10-25<a href="#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10"><div id="art_demo">由于近期正在开发一个通过蓝牙进行数据传递的模块，在参考了有关资料，并详细阅读了Android的官方文档后，总结了Android中蓝牙模块的使用</div></div>
+        <div class="lbd clearfix" id="bdctop"><script type="text/javascript">dy("art_up")</script></div>
+        <div id="content">
+<P><STRONG><FONT style="COLOR: #ff0000">1. 使用蓝牙的响应权限<BR></FONT></STRONG><div class="codetitle"><span><a style="CURSOR: pointer" data="95594" class="copybut" id="copybut95594" onclick="doCopy('code95594')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code95594"><BR>&lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;<BR>&lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /&gt;<BR></div><BR><STRONG><FONT style="COLOR: #ff0000">2. 配置本机蓝牙模块</FONT></STRONG></P>
+<P>在这里首先要了解对蓝牙操作一个核心类BluetoothAdapter<BR><div class="codetitle"><span><a style="CURSOR: pointer" data="87308" class="copybut" id="copybut87308" onclick="doCopy('code87308')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code87308"><BR>BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();<BR>//直接打开系统的蓝牙设置面板<BR>Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);<BR>startActivityForResult(intent, 0x1);<BR>//直接打开蓝牙<BR>adapter.enable();<BR>//关闭蓝牙<BR>adapter.disable();<BR>//打开本机的蓝牙发现功能（默认打开120秒，可以将时间最多延长至300秒）<BR>Intent discoveryIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);<BR>discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);//设置持续时间（最多300秒）<BR></div><BR><STRONG><FONT style="COLOR: #ff0000">3.搜索蓝牙设备</FONT></STRONG></P>
+<P>使用BluetoothAdapter的startDiscovery()方法来搜索蓝牙设备</P>
+<P>startDiscovery()方法是一个异步方法，调用后会立即返回。该方法会进行对其他蓝牙设备的搜索，该过程会持续12秒。该方法调用后，搜索过程实际上是在一个System Service中进行的，所以可以调用cancelDiscovery()方法来停止搜索（该方法可以在未执行discovery请求时调用）。</P>
+<P>请求Discovery后，系统开始搜索蓝牙设备，在这个过程中，系统会发送以下三个广播：</P>
+<P>ACTION_DISCOVERY_START：开始搜索</P>
+<P>ACTION_DISCOVERY_FINISHED：搜索结束</P>
+<P>ACTION_FOUND：找到设备，这个Intent中包含两个extra fields：EXTRA_DEVICE和EXTRA_CLASS，分别包含BluetooDevice和BluetoothClass。</P>
+<P>我们可以自己注册相应的BroadcastReceiver来接收响应的广播，以便实现某些功能<BR><div class="codetitle"><span><a style="CURSOR: pointer" data="65282" class="copybut" id="copybut65282" onclick="doCopy('code65282')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code65282"><BR>// 创建一个接收ACTION_FOUND广播的BroadcastReceiver<BR>private final BroadcastReceiver mReceiver = new BroadcastReceiver() {<BR>&nbsp;&nbsp;&nbsp; public void onReceive(Context context, Intent intent) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String action = intent.getAction();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 发现设备<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (BluetoothDevice.ACTION_FOUND.equals(action)) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 从Intent中获取设备对象<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 将设备名称和地址放入array adapter，以便在ListView中显示<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mArrayAdapter.add(device.getName() + "\n" + device.getAddress());<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp; }<BR>};<BR>// 注册BroadcastReceiver<BR>IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);<BR>registerReceiver(mReceiver, filter); // 不要忘了之后解除绑定<BR></div><BR><STRONG><FONT style="COLOR: #ff0000">4. 蓝牙Socket通信</FONT></STRONG></P>
+<P>如果打算建议两个蓝牙设备之间的连接，则必须实现服务器端与客户端的机制。当两个设备在同一个RFCOMM channel下分别拥有一个连接的BluetoothSocket，这两个设备才可以说是建立了连接。</P>
+<P>服务器设备与客户端设备获取BluetoothSocket的途径是不同的。服务器设备是通过accepted一个incoming connection来获取的，而客户端设备则是通过打开一个到服务器的RFCOMM channel来获取的。</P>
+<P><STRONG>服务器端的实现</STRONG></P>
+<P>通过调用BluetoothAdapter的listenUsingRfcommWithServiceRecord(String, UUID)方法来获取BluetoothServerSocket（UUID用于客户端与服务器端之间的配对）</P>
+<P>调用BluetoothServerSocket的accept()方法监听连接请求，如果收到请求，则返回一个BluetoothSocket实例（此方法为block方法，应置于新线程中）</P>
+<P>如果不想在accept其他的连接，则调用BluetoothServerSocket的close()方法释放资源（调用该方法后，之前获得的BluetoothSocket实例并没有close。但由于RFCOMM一个时刻只允许在一条channel中有一个连接，则一般在accept一个连接后，便close掉BluetoothServerSocket）<BR><div class="codetitle"><span><a style="CURSOR: pointer" data="4803" class="copybut" id="copybut4803" onclick="doCopy('code4803')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code4803"><BR>private class AcceptThread extends Thread {<BR>&nbsp;&nbsp;&nbsp; private final BluetoothServerSocket mmServerSocket;</P>
+<P>&nbsp;&nbsp;&nbsp; public AcceptThread() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Use a temporary object that is later assigned to mmServerSocket,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // because mmServerSocket is final<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BluetoothServerSocket tmp = null;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // MY_UUID is the app's UUID string, also used by the client code<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmServerSocket = tmp;<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; public void run() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BluetoothSocket socket = null;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Keep listening until exception occurs or a socket is returned<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (true) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; socket = mmServerSocket.accept();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // If a connection was accepted<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (socket != null) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do work to manage the connection (in a separate thread)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; manageConnectedSocket(socket);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmServerSocket.close();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; /** Will cancel the listening socket, and cause the thread to finish */<BR>&nbsp;&nbsp;&nbsp; public void cancel() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmServerSocket.close();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp; }<BR>}<BR></div><BR><STRONG>客户端的实现 <BR></STRONG>通过搜索得到服务器端的BluetoothService</P>
+<P>调用BluetoothService的listenUsingRfcommWithServiceRecord(String, UUID)方法获取BluetoothSocket（该UUID应该同于服务器端的UUID）</P>
+<P>调用BluetoothSocket的connect()方法（该方法为block方法），如果UUID同服务器端的UUID匹配，并且连接被服务器端accept，则connect()方法返回</P>
+<P>注意：在调用connect()方法之前，应当确定当前没有搜索设备，否则连接会变得非常慢并且容易失败<BR><div class="codetitle"><span><a style="CURSOR: pointer" data="86240" class="copybut" id="copybut86240" onclick="doCopy('code86240')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code86240"><BR>private class ConnectThread extends Thread {<BR>&nbsp;&nbsp;&nbsp; private final BluetoothSocket mmSocket;<BR>&nbsp;&nbsp;&nbsp; private final BluetoothDevice mmDevice;</P>
+<P>&nbsp;&nbsp;&nbsp; public ConnectThread(BluetoothDevice device) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Use a temporary object that is later assigned to mmSocket,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // because mmSocket is final<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BluetoothSocket tmp = null;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmDevice = device;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get a BluetoothSocket to connect with the given BluetoothDevice<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // MY_UUID is the app's UUID string, also used by the server code<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmp = device.createRfcommSocketToServiceRecord(MY_UUID);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket = tmp;<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; public void run() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Cancel discovery because it will slow down the connection<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mBluetoothAdapter.cancelDiscovery();</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Connect the device through the socket. This will block<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // until it succeeds or throws an exception<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket.connect();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException connectException) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Unable to connect; close the socket and get out<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket.close();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException closeException) { }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Do work to manage the connection (in a separate thread)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; manageConnectedSocket(mmSocket);<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; /** Will cancel an in-progress connection, and close the socket */<BR>&nbsp;&nbsp;&nbsp; public void cancel() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket.close();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp; }<BR>}<BR></div><BR>连接管理（数据通信） <BR>分别通过BluetoothSocket的getInputStream()和getOutputStream()方法获取InputStream和OutputStream</P>
+<P>使用read(bytes[])和write(bytes[])方法分别进行读写操作</P>
+<P>注意：read(bytes[])方法会一直block，知道从流中读取到信息，而write(bytes[])方法并不是经常的block（比如在另一设备没有及时read或者中间缓冲区已满的情况下，write方法会block）<BR><div class="codetitle"><span><a style="CURSOR: pointer" data="68486" class="copybut" id="copybut68486" onclick="doCopy('code68486')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code68486"><BR>private class ConnectedThread extends Thread {<BR>&nbsp;&nbsp;&nbsp; private final BluetoothSocket mmSocket;<BR>&nbsp;&nbsp;&nbsp; private final InputStream mmInStream;<BR>&nbsp;&nbsp;&nbsp; private final OutputStream mmOutStream;</P>
+<P>&nbsp;&nbsp;&nbsp; public ConnectedThread(BluetoothSocket socket) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket = socket;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; InputStream tmpIn = null;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutputStream tmpOut = null;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Get the input and output streams, using temp objects because<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // member streams are final<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmpIn = socket.getInputStream();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tmpOut = socket.getOutputStream();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmInStream = tmpIn;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmOutStream = tmpOut;<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; public void run() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte[] buffer = new byte[1024];&nbsp; // buffer store for the stream<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int bytes; // bytes returned from read()</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Keep listening to the InputStream until an exception occurs<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (true) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Read from the InputStream<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytes = mmInStream.read(buffer);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Send the obtained bytes to the UI Activity<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .sendToTarget();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; /* Call this from the main Activity to send data to the remote device */<BR>&nbsp;&nbsp;&nbsp; public void write(byte[] bytes) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmOutStream.write(bytes);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp; }</P>
+<P>&nbsp;&nbsp;&nbsp; /* Call this from the main Activity to shutdown the connection */<BR>&nbsp;&nbsp;&nbsp; public void cancel() {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmSocket.close();<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) { }<BR>&nbsp;&nbsp;&nbsp; }<BR>}<BR></div><BR>引用资料：Android官方SDK、《Android/OPhone完全开发讲义》</P>
+
+</div><!--endmain-->
+<div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="/article/53471.htm" title="Android提高之蓝牙隐藏API探秘" target="_blank">Android提高之蓝牙隐藏API探秘</a></li><li><a href="/article/53470.htm" title="Android提高之蓝牙传感应用实例" target="_blank">Android提高之蓝牙传感应用实例</a></li><li><a href="/article/45250.htm" title="android实现蓝牙文件发送的实例代码,支持多种机型" target="_blank">android实现蓝牙文件发送的实例代码,支持多种机型</a></li><li><a href="/article/38618.htm" title="android通过蓝牙接收文件打开时无法自动选择合适的应用程序" target="_blank">android通过蓝牙接收文件打开时无法自动选择合适的应用程序</a></li><li><a href="/article/38617.htm" title="android接收到蓝牙配对请求时如何点亮屏幕具体实现" target="_blank">android接收到蓝牙配对请求时如何点亮屏幕具体实现</a></li><li><a href="/article/64484.htm" title="Android编程之蓝牙测试实例" target="_blank">Android编程之蓝牙测试实例</a></li></ul>
+</div>
+<div id="bot_ad" class="lbd clearfix">
+<script type="text/javascript">
+var cpro_id="u776243";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"650",rsi1:"250",pat:"1",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"0",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",tft:"0",tlt:"1",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+<div id="shoucang">
+    <div class="bdsharebuttonbox"><A class=bds_more href="http://share.baidu.com/code#" data-cmd="more"></A><A class=bds_qzone title=分享到QQ空间 href="http://share.baidu.com/code#" data-cmd="qzone"></A><A class=bds_tsina title=分享到新浪微博 href="http://share.baidu.com/code#" data-cmd="tsina"></A><A class=bds_tqq title=分享到腾讯微博 href="http://share.baidu.com/code#" data-cmd="tqq"></A><A class=bds_renren title=分享到人人网 href="http://share.baidu.com/code#" data-cmd="renren"></A><A class=bds_weixin title=分享到微信 href="http://share.baidu.com/code#" data-cmd="weixin"></A></div>
+</div>
+<div class="tags mt10">
+<strong>Tags：</strong><a href="http://img.jb51.net/tag/Android/1.htm" target="_blank" title="搜索关于Android的文章">Android</a> <a href="http://img.jb51.net/tag/%C0%B6%D1%C0%BF%AA%B7%A2/1.htm" target="_blank" title="搜索关于蓝牙开发的文章">蓝牙开发</a> 
+</div>
+<DIV class="relatedarticle clearfix mt5">
+<H2>相关文章</H2>
+<ul><li><span>2013-12-12</span><a href="/article/44219.htm" title="android 动态控制状态栏显示和隐藏的方法实例" target="_blank">android 动态控制状态栏显示和隐藏的方法实例</a></li><li><span>2015-05-05</span><a href="/article/66923.htm" title="android实现listview分页的方法" target="_blank">android实现listview分页的方法</a></li><li><span>2015-12-12</span><a href="/article/75749.htm" title="Android通过Handler与AsyncTask两种方式动态更新ListView(附源码)" target="_blank">Android通过Handler与AsyncTask两种方式动态更新ListView(附源码</a></li><li><span>2014-07-07</span><a href="/article/52676.htm" title="android 定位的4种方式介绍" target="_blank">android 定位的4种方式介绍</a></li><li><span>2013-11-11</span><a href="/article/42680.htm" title="快速解决Android平台移植ffmpeg的一些问题" target="_blank">快速解决Android平台移植ffmpeg的一些问题</a></li><li><span>2013-06-06</span><a href="/article/38549.htm" title="Android 静默方式实现批量安装卸载应用程序的深入分析" target="_blank">Android 静默方式实现批量安装卸载应用程序的深入分析</a></li><li><span>2015-10-10</span><a href="/article/73440.htm" title="Android实现ListView异步加载图片的方法" target="_blank">Android实现ListView异步加载图片的方法</a></li><li><span>2015-06-06</span><a href="/article/67514.htm" title="Android中获得手机屏幕大小实现代码" target="_blank">Android中获得手机屏幕大小实现代码</a></li><li><span>2015-10-10</span><a href="/article/73434.htm" title="Android游戏开发学习之引擎用法实例详解" target="_blank">Android游戏开发学习之引擎用法实例详解</a></li><li><span>2015-11-11</span><a href="/article/74361.htm" title="Android编程中EditText限制文字输入的方法" target="_blank">Android编程中EditText限制文字输入的方法</a></li></ul>
+</DIV>
+<div class="lbd clearfix mt5">
+<script type="text/javascript">
+var cpro_id="u2261530";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"680",rsi1:"200",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+<a href="#comments"></a>
+<div id="comments">
+<H2>最新评论</H2>
+<div class="pd5"><div id="SOHUCS" sid="art_42416"></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix" id="r1"></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">大家感兴趣的内容</H4>
+<UL class="newsList newList-in">
+<li><EM class="no1">1</EM><a href="/article/50395.htm" title="一看就懂的Android APP开发入门教程" target="_blank">一看就懂的Android APP开发入门教</a></li><li><EM class="no2">2</EM><a href="/article/41750.htm" title="微信公众平台开发入门教程(图文详解)" target="_blank">微信公众平台开发入门教程(图文详</a></li><li><EM class="no3">3</EM><a href="/article/40108.htm" title="Android基础之使用Fragment控制切换多个页面" target="_blank">Android基础之使用Fragment控制切</a></li><li><EM class="no4">4</EM><a href="/article/51052.htm" title="六款值得推荐的android（安卓）开源框架简介" target="_blank">六款值得推荐的android（安卓）开</a></li><li><EM class="no5">5</EM><a href="/article/31911.htm" title="Android应用开发SharedPreferences存储数据的使用方法" target="_blank">Android应用开发SharedPreferenc</a></li><li><EM class="no6">6</EM><a href="/article/32031.htm" title="android PopupWindow 和 Activity弹出窗口实现方式" target="_blank">android PopupWindow 和 Activit</a></li><li><EM class="no7">7</EM><a href="/article/32366.htm" title="Android Bitmap详细介绍" target="_blank">Android Bitmap详细介绍</a></li><li><EM class="no8">8</EM><a href="/article/37175.htm" title="解决Android SDK下载和更新失败的方法详解" target="_blank">解决Android SDK下载和更新失败的</a></li><li><EM class="no9">9</EM><a href="/article/32339.htm" title="Android 动画之TranslateAnimation应用详解" target="_blank">Android 动画之TranslateAnimati</a></li><li><EM class="no10">10</EM><a href="/article/33060.htm" title="android TextView设置中文字体加粗实现方法" target="_blank">android TextView设置中文字体加</a></li>
+</UL>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10" id="r2"></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">最近更新的内容</H4>
+<UL class="newsListA">
+<ul><li><a href="/article/47801.htm" title="android打开rar压缩文件" target="_blank">android打开rar压缩文件</a></li><li><a href="/article/35783.htm" title="用Android Location获取当前地理位置的方法" target="_blank">用Android Location获取当前地理位置的方</a></li><li><a href="/article/33048.htm" title="Android 第三方应用接入微信平台研究情况分享(一)" target="_blank">Android 第三方应用接入微信平台研究情况</a></li><li><a href="/article/50512.htm" title="android 设置全屏的两种方法" target="_blank">android 设置全屏的两种方法</a></li><li><a href="/article/38753.htm" title="Android 吸入动画效果实现分解" target="_blank">Android 吸入动画效果实现分解</a></li><li><a href="/article/41423.htm" title="Android 如何定制vibrator的各种震动模式M 具体方法" target="_blank">Android 如何定制vibrator的各种震动模式</a></li><li><a href="/article/42675.htm" title="android禁止锁屏保持常亮(示例代码)" target="_blank">android禁止锁屏保持常亮(示例代码)</a></li><li><a href="/article/33438.htm" title="Android开发技巧之ViewStub控件惰性装载" target="_blank">Android开发技巧之ViewStub控件惰性装载</a></li><li><a href="/article/32472.htm" title="android生命周期深入分析(一)" target="_blank">android生命周期深入分析(一)</a></li><li><a href="/article/32920.htm" title="Android中判断网络连接是否可用及监控网络状态" target="_blank">Android中判断网络连接是否可用及监控网络</a></li></ul>
+</UL>
+</DIV>
+</DIV>   
+<div class="r300 clearfix mt10" id="idctu1"></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">常用在线小工具</H4>
+<UL class="newsListA" id="bctools">
+</UL>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10" id="idctu2"></div>
+<div class="r300 clearfix mt10" id="r3">
+<script type="text/javascript">
+var cpro_id="u1397867";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&copy;CopyRight 2006-2016 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="/jslib/syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="Stylesheet" href="/jslib/syntaxhighlighter/styles/shThemeDefault.css" />
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shAutoloader.js"></script>
+<script type="text/javascript"> 
+if (top.location != self.location)top.location=self.location;
+$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript" src="http://img.jb51.net/js/a.js"></script>
+<div id="tongji">
+<script type="text/javascript" src="http://img.jb51.net/inc/tongji.js"></script>
+<script type="text/javascript" src="http://www.jb51.net/pl.asp?id=42416"></script>
+</div>
+<script>
+(function(){
+var appid = 'cyrHH3dwi',
+conf = 'prod_1dc5dc80970106099d43fe242b7465fc';
+var doc = document,
+s = doc.createElement('script'),
+h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+s.type = 'text/javascript';
+s.charset = 'utf-8';
+s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+h.insertBefore(s,h.firstChild);
+window.SCS_NO_IFRAME = true;
+})();
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<script type="text/javascript" charset="utf-8" src="http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=cyrEjJlIw"></script>
+</body>
+</html>
+<!-- published at 2015-12-28 21:09:36By dxycms qq:461478385  -->

@@ -1,0 +1,16 @@
+SyntaxError: invalid syntax
+解析错
+一般是语句不规范
+
+KeyError: 'Thomas'
+key值不存在
+没找到对于的key值
+
+TypeError: abs() takes exactly one argument (2 given)
+abs()方法只有一个参数
+
+TypeError: bad operand type for abs(): 'str'
+abs（）参数类型不符
+
+
+

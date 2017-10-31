@@ -1,0 +1,22 @@
+Groovy 是 用于Java虚拟机的一种敏捷的动态语言，它是一种成熟的面向对象编程语言，既可以用于面向对象编程，又可以用作纯粹的脚本语言。
+
+groovy类似java或python.
+
+所有的变量都是对象(类似python),无论是类\变量\方法
+
+Groovy类和java类一样，完全可以用标准java bean的语法定义一个Groovy类。但能更优化.
+1/不需要public修饰符.默认就是public
+2/不需要类型声明(可以用def来表示变量,但1.0后不强制要求了)
+3/不需要getter/setter方法
+4/不需要构造函数
+5/不需要return
+6/方法调用不需要带"（）"
+	例:person1.setName('kk')--->person1.setName 'kk'
+
+7/不需要语句结束符";"(为了与java保持一致性，你也可以使用;号作为语句结束符)
+8/不需要字符串连接符"+"(三个”号之间不在需要+号进行连接)
+
+字符串处理:
+	groovy中字符串分两种1，原java普通字符串，单引号。2，GString，双引号 允许占位符 $。三组引号允许字符串在多行换行，不用连接符.
+
+http://blog.csdn.net/kmyhy/article/details/4200563

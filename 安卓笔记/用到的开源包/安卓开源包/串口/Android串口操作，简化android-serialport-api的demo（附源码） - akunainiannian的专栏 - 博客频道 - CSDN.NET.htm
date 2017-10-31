@@ -1,0 +1,1319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+    
+     
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>Android串口操作，简化android-serialport-api的demo（附源码） - akunainiannian的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Dubbo是什么？Dubbo是阿里巴巴SOA服务化治理方案的核心框架，每天为2,000+个服务提供3,000,000,000+次访问量支持，并被广泛应用于阿里巴巴集团的各成员站点。Dubbo[]是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案。其核心部分包含:远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/dark1/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/akunainiannian/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/akunainiannian">akunainiannian的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/akunainiannian?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/akunainiannian?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/akunainiannian/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "akunainiannian";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/akunainiannian";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=2738">
+<font color=red>【免费公开课】解码皮肤美化算法
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/yearPromotion">
+<font color=blue>学院周年礼-顶尖课程钜惠呈现
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://bss.csdn.net/m/topic/cuanke_vote">
+<font color=red>当讲师？爱学习？投票攒课吧
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://vote.blog.csdn.net/blogstar2015/result">
+<font color=blue>CSDN 2015博客之星评选结果公布
+</font></a>
+
+</div>                        </div>
+                        
+
+<!--AdForward Begin:-->
+<script type="text/javascript" ads-src="http://csdnim.qtmojo.com/main/s?user=csdn|blog|fumeiti&db=csdnim&border=0&local=yes&js=ie" src="http://creatim.qtmojo.cn/td/AllyesDeliver.min.js" charset="gbk"></script>
+<!--AdForward End-->
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0" />
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/akunainiannian/article/details/8740007">
+        Android串口操作，简化android-serialport-api的demo（附源码）            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href='http://www.csdn.net/tag/android%20serialport%20J' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">android serialport J</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2013-03-30 15:39</span>
+            <span class="link_view" title="阅读次数">15940人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(39)</span>
+            <span class="link_collect"> <a href="javascript:void(0);" onclick="javascript:collectArticle('Android串口操作，简化android-serialport-api的demo（附源码）','8740007');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(8740007,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label>
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">android<em></em></span>                       
+                    </label>      
+        </div>
+    </div>
+    <script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>  
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;最近在做android串口的开发，找到一个开源的串口类android-serialport-api。其主页在这里<span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">http://code.google.com/p/android-serialport-api/ &nbsp;，这里可以下到APK及对源码。</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; &nbsp; 但是下载源码之后发现源码不能直接使用，而且源码结构较为复杂。关于串口的操作不外乎几步：</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; &nbsp;1.打开串口（及配置串口）；</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; &nbsp;2.读串口；</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; &nbsp;3.写串口；</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; &nbsp;4.关闭串口。</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">android-serialport-api的代码使用了继承等复杂的行为，不容易使初学者很快掌握关于串口的上述4步，所以我特别自己写了一个demo，只有一个activity，其中包含了打开串口，写串口，读串口的操作，对于关闭串口，大家一开就会不明白怎么写了。</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">这篇文章主要参考http://blog.csdn.net/tangcheng_ok/article/details/7021470</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">还有http://blog.csdn.net/jerome_home/article/details/8452305</span></p>
+<p><br>
+</p>
+<p>下面言归正传：</p>
+<p><br>
+</p>
+<p>第一：</p>
+<p>&nbsp; 说道android 串口，就不得不提JNI技术，它使得java中可以调用c语言写成的库。为可在android中使用串口，android-serialport-api的作者自己写了一个c语言的动态链接库serial_port.so(自动命名成libserial_port.so），并把它放在了<span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">libs/aemeabi
+ 里，其c源文件在JNI中，大家在下载了android-serialport-api的源代码后，将这两个文件夹copy到自己新建的工程中即可。</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><img src="http://img.my.csdn.net/uploads/201303/30/1364626760_8653.png" alt=""><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px"><span style="line-height:26px"><span style="color:#362e2b">第二：</span></span></span></p>
+<p><span style="font-family:Arial; font-size:18px"><span style="line-height:26px"><span style="color:#362e2b">然后将调用c语言写成的动态链接库的java类放入到src文件夹下的</span><span style="color:#ff0000">android.serialport</span><span style="color:#362e2b">包下，这里一定要将包名命名成这个，因为对JNI有一定了解的人就会知道，在写c语言链接库时候，函数的命名是和调用它的类所在的包名相关的，一旦包名与链接库中函数的命名不相符，就不能调用链接库的函数。这里可以打开jni中的.c文件（他就是动态链接库的源文件），可以看到源码：</span></span></span><pre name="code" class="cpp"></pre><pre name="code" class="cpp">/*
+ * Copyright 2009 Cedric Priscal
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include &lt;termios.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;string.h&gt;
+#include &lt;jni.h&gt;
+
+#include &quot;android/log.h&quot;
+static const char *TAG=&quot;serial_port&quot;;
+#define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
+#define LOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, TAG, fmt, ##args)
+#define LOGE(fmt, args...) __android_log_print(ANDROID_LOG_ERROR, TAG, fmt, ##args)
+
+static speed_t getBaudrate(jint baudrate)
+{
+	switch(baudrate) {
+	case 0: return B0;
+	case 50: return B50;
+	case 75: return B75;
+	case 110: return B110;
+	case 134: return B134;
+	case 150: return B150;
+	case 200: return B200;
+	case 300: return B300;
+	case 600: return B600;
+	case 1200: return B1200;
+	case 1800: return B1800;
+	case 2400: return B2400;
+	case 4800: return B4800;
+	case 9600: return B9600;
+	case 19200: return B19200;
+	case 38400: return B38400;
+	case 57600: return B57600;
+	case 115200: return B115200;
+	case 230400: return B230400;
+	case 460800: return B460800;
+	case 500000: return B500000;
+	case 576000: return B576000;
+	case 921600: return B921600;
+	case 1000000: return B1000000;
+	case 1152000: return B1152000;
+	case 1500000: return B1500000;
+	case 2000000: return B2000000;
+	case 2500000: return B2500000;
+	case 3000000: return B3000000;
+	case 3500000: return B3500000;
+	case 4000000: return B4000000;
+	default: return -1;
+	}
+}
+
+/*
+ * Class:     cedric_serial_SerialPort
+ * Method:    open
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT jobject JNICALL Java_android_serialport_SerialPort_open
+  (JNIEnv *env, jobject thiz, jstring path, jint baudrate)
+{
+	int fd;
+	speed_t speed;
+	jobject mFileDescriptor;
+
+	/* Check arguments */
+	{
+		speed = getBaudrate(baudrate);
+		if (speed == -1) {
+			/* TODO: throw an exception */
+			LOGE(&quot;Invalid baudrate&quot;);
+			return NULL;
+		}
+	}
+
+	/* Opening device */
+	{
+		jboolean iscopy;
+		const char *path_utf = (*env)-&gt;GetStringUTFChars(env, path, &amp;iscopy);
+		LOGD(&quot;Opening serial port %s&quot;, path_utf);
+		fd = open(path_utf, O_RDWR | O_DIRECT | O_SYNC);
+		LOGD(&quot;open() fd = %d&quot;, fd);
+		(*env)-&gt;ReleaseStringUTFChars(env, path, path_utf);
+		if (fd == -1)
+		{
+			/* Throw an exception */
+			LOGE(&quot;Cannot open port&quot;);
+			/* TODO: throw an exception */
+			return NULL;
+		}
+	}
+
+	/* Configure device */
+	{
+		struct termios cfg;
+		LOGD(&quot;Configuring serial port&quot;);
+		if (tcgetattr(fd, &amp;cfg))
+		{
+			LOGE(&quot;tcgetattr() failed&quot;);
+			close(fd);
+			/* TODO: throw an exception */
+			return NULL;
+		}
+
+		cfmakeraw(&amp;cfg);
+		cfsetispeed(&amp;cfg, speed);
+		cfsetospeed(&amp;cfg, speed);
+
+		if (tcsetattr(fd, TCSANOW, &amp;cfg))
+		{
+			LOGE(&quot;tcsetattr() failed&quot;);
+			close(fd);
+			/* TODO: throw an exception */
+			return NULL;
+		}
+	}
+
+	/* Create a corresponding file descriptor */
+	{
+		jclass cFileDescriptor = (*env)-&gt;FindClass(env, &quot;java/io/FileDescriptor&quot;);
+		jmethodID iFileDescriptor = (*env)-&gt;GetMethodID(env, cFileDescriptor, &quot;&lt;init&gt;&quot;, &quot;()V&quot;);
+		jfieldID descriptorID = (*env)-&gt;GetFieldID(env, cFileDescriptor, &quot;descriptor&quot;, &quot;I&quot;);
+		mFileDescriptor = (*env)-&gt;NewObject(env, cFileDescriptor, iFileDescriptor);
+		(*env)-&gt;SetIntField(env, mFileDescriptor, descriptorID, (jint)fd);
+	}
+
+	return mFileDescriptor;
+}
+
+/*
+ * Class:     cedric_serial_SerialPort
+ * Method:    close
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_android_serialport_SerialPort_close
+  (JNIEnv *env, jobject thiz)
+{
+	jclass SerialPortClass = (*env)-&gt;GetObjectClass(env, thiz);
+	jclass FileDescriptorClass = (*env)-&gt;FindClass(env, &quot;java/io/FileDescriptor&quot;);
+
+	jfieldID mFdID = (*env)-&gt;GetFieldID(env, SerialPortClass, &quot;mFd&quot;, &quot;Ljava/io/FileDescriptor;&quot;);
+	jfieldID descriptorID = (*env)-&gt;GetFieldID(env, FileDescriptorClass, &quot;descriptor&quot;, &quot;I&quot;);
+
+	jobject mFd = (*env)-&gt;GetObjectField(env, thiz, mFdID);
+	jint descriptor = (*env)-&gt;GetIntField(env, mFd, descriptorID);
+
+	LOGD(&quot;close(fd = %d)&quot;, descriptor);
+	close(descriptor);
+}
+</pre><br>
+可以看到，函数的命名规则直接和包名有关。</p>
+<p><span style="font-family:Arial; font-size:18px"><span style="line-height:26px"><span style="color:#362e2b"><br>
+</span></span></span></p>
+<p><span style="font-family:Arial; font-size:18px"><span style="line-height:26px"><span style="color:#362e2b">第三：</span></span></span></p>
+<p><span style="color:#ff0000; font-family:Arial; font-size:18px; line-height:26px">android.serialport</span><span style="color:#362e2b; font-family:Arial; font-size:18px; line-height:26px">包下，有两个类，分别是SerialPort.java 和SerialPortFinder.java。</span><br>
+</p>
+<p><span style="color:#362e2b; font-family:Arial; font-size:18px; line-height:26px">其中，<span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px">SerialPort.java，<span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px">这个类主要用来加载SO文件，通过JNI的方式打开关闭串口。</span></span></span><pre name="code" class="java">/*
+ * Copyright 2009 Cedric Priscal
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ */
+
+package android.serialport;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import android.util.Log;
+
+public class SerialPort {
+
+	private static final String TAG = &quot;SerialPort&quot;;
+
+	/*
+	 * Do not remove or rename the field mFd: it is used by native method close();
+	 */
+	private FileDescriptor mFd;
+	private FileInputStream mFileInputStream;
+	private FileOutputStream mFileOutputStream;
+
+	public SerialPort(File device, int baudrate) throws SecurityException, IOException {
+
+		/* Check access permission */
+		if (!device.canRead() || !device.canWrite()) {
+			try {
+				/* Missing read/write permission, trying to chmod the file */
+				Process su;
+				su = Runtime.getRuntime().exec(&quot;/system/bin/su&quot;);
+				String cmd = &quot;chmod 777 &quot; + device.getAbsolutePath() + &quot;\n&quot;
+						+ &quot;exit\n&quot;;
+				/*String cmd = &quot;chmod 777 /dev/s3c_serial0&quot; + &quot;\n&quot;
+				+ &quot;exit\n&quot;;*/
+				su.getOutputStream().write(cmd.getBytes());
+				if ((su.waitFor() != 0) || !device.canRead()
+						|| !device.canWrite()) {
+					throw new SecurityException();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new SecurityException();
+			}
+		}
+
+		mFd = open(device.getAbsolutePath(), baudrate);
+		if (mFd == null) {
+			Log.e(TAG, &quot;native open returns null&quot;);
+			throw new IOException();
+		}
+		mFileInputStream = new FileInputStream(mFd);
+		mFileOutputStream = new FileOutputStream(mFd);
+	}
+
+	// Getters and setters
+	public InputStream getInputStream() {
+		return mFileInputStream;
+	}
+
+	public OutputStream getOutputStream() {
+		return mFileOutputStream;
+	}
+
+	// JNI
+	private native static FileDescriptor open(String path, int baudrate);
+	public native void close();
+	static {
+		System.loadLibrary(&quot;serial_port&quot;);
+	}
+}
+</pre>可以看到System.loadLibrary(&quot;serial_port&quot;);一句，这一句就是用来加载动态链接库。我们的串口操作就是要给予这个类来实现。</p>
+<p><span style="color:#362e2b; font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><br>
+</span></span></span></p>
+<p><span style="color:#362e2b; font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px">含有一个类<span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px">SerialPortFinder.java，这个类是用来找到系统中可以用的串口的，如果你知道的android设备有什么串口，就不必使用这个类来查找串口了，一次简化我们的demo。</span></span></span></span></p>
+<p><span style="color:#362e2b; font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:18px; line-height:26px"><br>
+</span></span></span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">第四：加入我们自己的Activity类</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">&nbsp; 为了方便我记在android.serialport包下加入了我自己的MyserialActivity.java,大家从上面的图中也可以看见。</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">代码如下：</span></span><pre name="code" class="java">package android.serialport;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import android.app.Activity;
+
+import android.os.Bundle;
+
+
+
+//import android.serialport.sample.R;
+import android.serialport.R;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MyserialActivity extends Activity {
+    /** Called when the activity is first created. */
+	
+	
+	 EditText mReception;
+	 FileOutputStream mOutputStream;
+	 FileInputStream mInputStream;
+	 SerialPort sp;
+	 
+    @Override
+   
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+  
+    
+    final Button buttonSetup = (Button)findViewById(R.id.ButtonSetup);
+    buttonSetup.setOnClickListener(new View.OnClickListener() {
+		public void onClick(View v) {
+			mReception = (EditText) findViewById(R.id.EditTextRec);
+			  
+		      try {
+			sp=new SerialPort(new File(&quot;/dev/ttyS2&quot;),9600);
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}   
+		      
+		    
+		      mOutputStream=(FileOutputStream) sp.getOutputStream();
+		      mInputStream=(FileInputStream) sp.getInputStream();
+			
+		       Toast.makeText(getApplicationContext(), &quot;open&quot;,
+		    		    Toast.LENGTH_SHORT).show();
+			
+		}
+	});
+    
+    
+    
+    final Button buttonsend= (Button)findViewById(R.id.ButtonSent1);
+    buttonsend.setOnClickListener(new View.OnClickListener() {
+		public void onClick(View v) {
+			
+			try {
+				mOutputStream.write(new String(&quot;send&quot;).getBytes());
+				mOutputStream.write('\n');
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			  
+		   
+		      Toast.makeText(getApplicationContext(), &quot;send&quot;,
+		    		     Toast.LENGTH_SHORT).show();
+			
+		}
+	});
+    
+    
+    final Button buttonrec= (Button)findViewById(R.id.ButtonRec);
+    buttonrec.setOnClickListener(new View.OnClickListener() {
+		public void onClick(View v) {
+			int size;
+			
+			try {
+			byte[] buffer = new byte[64];
+			if (mInputStream == null) return;
+			size = mInputStream.read(buffer);
+			if (size &gt; 0) {
+				onDataReceived(buffer, size);
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+			
+		}
+	});
+    }
+    void onDataReceived(final byte[] buffer, final int size) {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				if (mReception != null) {
+					mReception.append(new String(buffer, 0, size));
+				}
+			}
+		});
+	}
+    
+    
+}</pre></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">可以看见，功能比较简单，只有三个按钮，分别用来打开串口（buttonsetup），写串口（buttonsend），读串口（buttonrec），一个文本框用来显示串口接收到的信息。功能已经简化到了最简。</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">下面先说说在模拟器中使用串口的方法：</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">应先使用-serial选项打开你的模拟器，如图（修改你模拟器的名字）</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><img src="http://img.my.csdn.net/uploads/201303/30/1364628427_7078.png" alt=""><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">然后进入adb shell&nbsp;</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">&nbsp; cd /dev</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">chmod 777 ttyS2</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">运行后结果：</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><img src="http://img.my.csdn.net/uploads/201303/30/1364628656_7687.png" alt=""></span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">相比大家都懂得，我们的串口就是ttyS2，使用chmod命令来获取对它的操作，否则之后你的应用可能没有串口的操作权限。</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">然后运行程序：<img src="http://img.my.csdn.net/uploads/201303/30/1364628704_5051.png" alt=""></span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">其中Console就是打开串口（原谅我偷懒，忘改名字了）。</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">你可以把你的电脑的COM1连接到另一台电脑的串口上，并在那台电脑上打开你的串口助手之类的软件，配置好串口（参数不难从源代码里看出来）。按下模拟器中的send键，就能在那台电脑的串口助手中看到:</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><img src="http://img.my.csdn.net/uploads/201303/30/1364629511_7125.png" alt=""><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">同样，从那台电脑向这台电脑发送数据也可以显示</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><img src="http://img.my.csdn.net/uploads/201303/30/1364629205_7142.png" alt=""></span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:18px; color:#362e2b"><span style="line-height:26px">至此，这个小demo就完毕了。</span></span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; line-height:26px">&nbsp; 我的源码在这里： &nbsp;&nbsp;http://download.csdn.net/detail/akunainiannian/5202173</span></p>
+<p><br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox" style="float: right;">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+<ul class="article_next_prev">
+</ul>
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" ArticleId="8740007">
+            <dl id="btnDigg" class="digg digg_disable">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+
+
+        <div class="similar_article"  style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c"style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141">
+                        <a href="http://blog.csdn.net" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script  type="text/javascript">
+        $(function () {
+            GetCategoryArticles('0', 'akunainiannian','foot','8740007');
+        });
+    </script>
+      
+</div>
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/akunainiannian/svc/GetSuggestContent/8740007",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "8740007",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'Android串口操作，简化android-serialport-api的demo（附源码）' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>   
+
+    <div id="ad_cen">        
+<!--AdForward Begin:-->
+<script type="text/javascript" src="http://csdnim.qtmojo.com/main/s?user=csdn|blog|banner2&db=csdnim&border=0&local=yes&js=ie" charset="gbk"></script>
+<!--AdForward End-->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '8740007';
+    var commentscount = 39;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script  language="javascript" type='text/javascript'>     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/akunainiannian/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });
+        },200);  
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }    
+
+</script>
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/akunainiannian" target="_blank">
+    <img src="http://avatar.csdn.net/F/4/A/1_akunainiannian.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/akunainiannian" class="user_name" target="_blank">akunainiannian</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=akunainiannian','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>58906次</span></li>
+    <li>积分：<span>782</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog3.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：782 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>8篇</span></li>
+    <li>转载：<span>31篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>57条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/akunainiannian/article/category/1380314" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2169615" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">pcDuino</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2173863" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">opencv</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2176429" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">摄像头</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2179347" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">opencv cmake</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2185877" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">k60</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2185879" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">arm</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2185881" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">m4</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2199195" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">机器人</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2298415" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">摄像头 算法</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/2634067" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">算法</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/3097343" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">ROS</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/akunainiannian/article/category/5783561" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C++</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/akunainiannian/article/month/2015/10">2015年10月</a><span>(2)</span></li><li><a href="/akunainiannian/article/month/2015/09">2015年09月</a><span>(2)</span></li><li><a href="/akunainiannian/article/month/2015/08">2015年08月</a><span>(3)</span></li><li><a href="/akunainiannian/article/month/2015/05">2015年05月</a><span>(3)</span></li><li><a href="/akunainiannian/article/month/2015/04">2015年04月</a><span>(6)</span></li><li><a href="/akunainiannian/article/month/2015/03">2015年03月</a><span>(2)</span></li><li><a href="/akunainiannian/article/month/2014/11">2014年11月</a><span>(4)</span></li><li><a href="/akunainiannian/article/month/2014/10">2014年10月</a><span>(4)</span></li><li><a href="/akunainiannian/article/month/2014/09">2014年09月</a><span>(1)</span></li><li><a href="/akunainiannian/article/month/2014/05">2014年05月</a><span>(2)</span></li><li><a href="/akunainiannian/article/month/2014/04">2014年04月</a><span>(9)</span></li><li><a href="/akunainiannian/article/month/2013/03">2013年03月</a><span>(1)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/akunainiannian/article/details/8740007" title="Android串口操作，简化android-serialport-api的demo（附源码）">Android串口操作，简化android-serialport-api的demo（附源码）</a><span>(15932)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/24316143" title="详解STM32的PWM输出及频率和脉宽(占空比)的计算——寄存器配置六步曲！">详解STM32的PWM输出及频率和脉宽(占空比)的计算——寄存器配置六步曲！</a><span>(7185)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/27565899" title="大津法---OTSU算法">大津法---OTSU算法</a><span>(3749)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/41130347" title="如何利用matlab将模糊逻辑转化为查询表">如何利用matlab将模糊逻辑转化为查询表</a><span>(3619)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/44993391" title="ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)">ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)</a><span>(3495)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/40073903" title="BP神经网络PYthon实现（带有”增加充量项“）">BP神经网络PYthon实现（带有”增加充量项“）</a><span>(2504)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/22975279" title="pcDuino 刷系统-卡刷">pcDuino 刷系统-卡刷</a><span>(1986)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/25476715" title="STM32的存储器映射详解">STM32的存储器映射详解</a><span>(1933)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/45363731" title="从零开始学习SLAM">从零开始学习SLAM</a><span>(1705)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/23174413" title="在基于pcDuino的Ubuntu上安装Opencv2.4.0">在基于pcDuino的Ubuntu上安装Opencv2.4.0</a><span>(1524)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/akunainiannian/article/details/8740007" title="Android串口操作，简化android-serialport-api的demo（附源码）">Android串口操作，简化android-serialport-api的demo（附源码）</a><span>(39)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/45363731" title="从零开始学习SLAM">从零开始学习SLAM</a><span>(4)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/44993391" title="ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)">ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)</a><span>(4)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/40053027" title="BP算法浅谈（Error Back-propagation）">BP算法浅谈（Error Back-propagation）</a><span>(3)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/23174413" title="在基于pcDuino的Ubuntu上安装Opencv2.4.0">在基于pcDuino的Ubuntu上安装Opencv2.4.0</a><span>(2)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/41130347" title="如何利用matlab将模糊逻辑转化为查询表">如何利用matlab将模糊逻辑转化为查询表</a><span>(2)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/24316143" title="详解STM32的PWM输出及频率和脉宽(占空比)的计算——寄存器配置六步曲！">详解STM32的PWM输出及频率和脉宽(占空比)的计算——寄存器配置六步曲！</a><span>(1)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/44985423" title="ROS学习（1）使用URDF创建机器人3D仿真模型">ROS学习（1）使用URDF创建机器人3D仿真模型</a><span>(1)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/45103519" title="ROS 学习系列 -- RViz中移动机器人来学习 URDF,TF,base_link, map,odom和odom 主题的关系">ROS 学习系列 -- RViz中移动机器人来学习 URDF,TF,base_link, map,odom和odom 主题的关系</a><span>(1)</span>
+</li>
+<li>
+<a href="/akunainiannian/article/details/23468835" title="IAR中cortex-m4启动流程分析">IAR中cortex-m4启动流程分析</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/lovehuangjiaju/article/details/50439715" 
+
+target="_blank">*Spark入门到精通：第九节 Spark SQL运行流程解析</a></li>
+<li><a href="http://blog.csdn.net/foruok/article/details/50416725" 
+
+target="_blank">*架构设计：系统间通信（17）——服务治理与Dubbo 中篇（分析）</a></li>
+<li><a href="http://blog.csdn.net/bluecloudmatrix/article/details/49490339" 
+
+target="_blank">* 拉开大变革序幕（中）：Docker 场景化尝试</a></li>
+<li><a 
+
+href="http://blog.csdn.net/yanbober/article/details/46417531"target="_blank">*Android应用开发allowBackup敏感信息泄露的一点反思</a></li>
+<li><a href="http://blog.csdn.net/nk_test/article/details/50449470" 
+
+target="_blank">*Linux多线程实践（四 ）线程的特定数据</a></li>
+<li><a href="http://blog.csdn.net/andywuchuanlong/article/details/50450816"  
+
+target="_blank">*Android点击Button水波纹效果</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/akunainiannian/article/details/44993391#comments">ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)</a>
+    <p style="margin:0px;"><a href="/shixiaolu63" class="user_name">shixiaolu63</a>:
+大神，你好，在rviz中显示地图信息，只slam_gmapping只需要订阅tf   scan就够了...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/8740007#comments">Android串口操作，简化android-serialport-api的demo（附源码）</a>
+    <p style="margin:0px;"><a href="/jiewoyishengAAAAAA" class="user_name">jiewoyishengAAAAAA</a>:
+LZ，JNI 的xx.c文件中，JNIEXPORT 提示Syntax error，这个c文件对于工程...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/45103519#comments">ROS 学习系列 -- RViz中移动机器人来学习 URDF,TF,base_link, map,odom和odom 主题的关系</a>
+    <p style="margin:0px;"><a href="/shafeiyuan" class="user_name">shafeiyuan</a>:
+你好，我看了你写的文章，写的很详细，有深度，分析的很透彻，我目前正在学习urdf建模，我有个疑问，我...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/44985423#comments">ROS学习（1）使用URDF创建机器人3D仿真模型</a>
+    <p style="margin:0px;"><a href="/specialshoot" class="user_name">specialshoot</a>:
+is neither a launch file in package  nor is  a lau...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/44985423#comments">ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)</a>
+    <p style="margin:0px;"><a href="/wowobubu" class="user_name">wowobubu</a>:
+@Lser2012:你估计是没有启用模拟时间，就是上面的2步骤...你再试试？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/24316143#comments">详解STM32的PWM输出及频率和脉宽(占空比)的计算——寄存器配置六步曲！</a>
+    <p style="margin:0px;"><a href="/u013030441" class="user_name">u013030441</a>:
+参考学习了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/24316143#comments">ROS 学习系列 -- RViz 实时观测机器人建立导航2D封闭空间地图过程 (SLAM)</a>
+    <p style="margin:0px;"><a href="/u013453604" class="user_name">u013453604</a>:
+请问楼主有没有遇到turtlebot建图不准的问题啊，我构建的地图总是在转角的时候把周围的直角走廊构...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/40053027#comments">BP算法浅谈（Error Back-propagation）</a>
+    <p style="margin:0px;"><a href="/akunainiannian" class="user_name">akunainiannian</a>:
+@awawfwfw加一个偏置:
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/40053027#comments">BP算法浅谈（Error Back-propagation）</a>
+    <p style="margin:0px;"><a href="/awawfwfw" class="user_name">awawfwfw</a>:
+@awawfwfw: self.ni = ni + 1 # +1 for bias node  这里...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/akunainiannian/article/details/40053027#comments">BP算法浅谈（Error Back-propagation）</a>
+    <p style="margin:0px;"><a href="/awawfwfw" class="user_name">awawfwfw</a>:
+python的例子给了中文注释，帮助学习了！
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1300105"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+</body>
+</html>   
+ 
