@@ -1,4 +1,11 @@
+http://python.usyiyi.cn/   中文python手册
+
 基本数据类型和转义字符是一样的,单引号双引号都表示字符串？
+执行命令:
+	不带返回:			os.system("命令行")
+	可以获得返回带结果的文件:	output=os.popen("命令行")	output.read()	
+	使用commands模块		(status, output)=subprocess.getstatusoutput('命令行')
+
 
 注释：
 	#	注释
@@ -14,6 +21,10 @@
 	None表空值，不带参数值的return语句返回None。
 	变量不需要预先指定某个类型，变量依据赋值的类型自动改变类型。
 	函数可以返回多个值（其实是假象，返回的是一个tuple（括号集合））
+作用域:
+	global 在方法里写在变量前面,说明该变量是全局变量,global时,不能进行赋值和其他操作
+	global不是一个好的办法,用static={'变量名':变量值}的map来代替,static['变量名']
+
 
 运算符：
 	*	乘
@@ -22,6 +33,7 @@
 	**	幂（多次方）
 
 判断：(格式 if(XXX):)
+	和java不同的是,python的if,会自动判断非0和非空为True,即a=1,if(a):return True
 	in和not in		判断元素是否存在与集合
 	is和not is		判断对象是否是同一个引用
 	is判断变量的引用，==判断变量的值
@@ -37,6 +49,8 @@
 循环：(格式 for i in list:)
 	for 单个变量 in 集合or范围(相当于java的foreach)
 	else：（在循环中没有遇到break或continue时，额外执行）
+	for i in range(1,5,2)相当于java的for(int i=1,i<5,i+2)
+	
 
 字符串：
 	字符串中的占位符：
@@ -68,7 +82,7 @@ IO：
 	获取数组元素：				L[0:3]取L数组中的0，1，2，不包括3
 	数组添加数据到末尾：			SZ.append("XXX")
 	数组添加数据到指定下标：		SZ.insert(1,'XXX')
-	数组删除指定下标数据：			SZ.pop(1)
+	数组删除并返回指定下标数据：		SZ.pop(1)
 	数组替换指定下标数据：			SZ[1]="XXX"
 	统计数组里出现了多少次某元素		SZ.count(XXX)
 	删除数组中第一次出现的某元素		SZ.remove(XXX)
@@ -80,7 +94,28 @@ IO：
 字典(相当于map)
 	dict关键字.
 	{“one”：1，“two”：“2”，“three”：temp...}表示map集合。花括号
-set(和java的set一样)
+	eg:diec={"姓":'张',"名":'三'}   diec['名']=='三'
+
+set集合(和java的set一样)
+	setdata=set()
+
+类:
+	class XXX:
+		def __init__(self):#初始化,构造函数
+	self表示对象实例,类似java的this,每个类方法的第一个参数就是它,在调用时不需要传该值
+	“_” 开始的成员变量叫做保护变量，意思是只有类对象和子类对象自己能访问到这些变量
+	“__” 开始的是私有成员，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据
+	"__xxx__"表示系统内建函数,x.__str__()完全等同str(x)
+		例:     self.name=templist.__getitem__(templist.__len__()-1)
+        		self.name2=getitem(templist,len(templist)-1)
+	
+继承:
+	class XXX(ZZZ):#ZZZ就是父类
+		def __init__(self):
+			ZZZ.__init__()
+超类:每个类都有一个超类object
+	
+	
 
 类型转化：
 	int(x) 将x转换为一个整数。
@@ -93,9 +128,11 @@ set(和java的set一样)
 迭代器：
 	a=iter（list）将list数组交给迭代器a
 	next（a）输出迭代器a的下一个元素
+	list.extend(迭代器)  把迭代器的值添加到list中
 
 生成器：
 	yield 只要函数中出现了yield，就可以被称为生成器。它相当于一个栈，把需要保留的变量压入栈。最后并返回这个栈。使用场合是那些需要通过一个函数，返回一个list的时候，而且这个list是个迭代器。
+	http://www.jianshu.com/p/61dbec76b39b
 
 函数：
 	以def关键字开头，后接函数方法名称和（），括号内为传入参数，如在括号内给参数赋值，则为默认值。变量名前面加*的表示不定参数。由于参数不像java一样传递类型，。return用来退出函数，并返回一个表达式。
@@ -103,24 +140,84 @@ set(和java的set一样)
 	作用域？
 
 
-sorted(排序)
+sorted(排序):
+	sort 会改变集合的顺序
+	sorted 不会改变原集合顺序,会返回一个排好序的新集合
 
 内建函数:
 	字符、数组长度：
 	len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
 
 	isinstance函数可以判断一个变量是不是字符串
+	
+	locals返回当前作用域中定义的变量集合
 
 文件操作:
+	os.path.split(或str.split('/')[-1])		取目录与文件名.
+		eg:os.path.splitext("/root/a.py")	结果('/root/a', '.py')
+	os.path.splitext	取文件后缀.
+		eg:os.path.split("/root/a.py")		结果('/root', 'a.py')
 	open	
 		注意路径如果是文件夹,会提示open参数出错.
 		由于win和linux的区别,路径都统一采用"/"
 		open返回的是list,每一行的内容是一个元素
-		"w"会清除已有文件的内容来添加新内容,"a"是追加,"w+"表示在默认读的权限上加上写
+		open不存在的文件时,会自己创建,但前提是权限是w
+		"w"会清除已有文件的内容来添加新内容,"a"是追加,"w+"表示在默认读权限加上写
+		权限包含"b"以字节方式读写,再添加encoding="utf-8",会报binary mode doesn't take an encoding argument的错
+		用"with open(文件) as 变量名"的方式打开文件,可以不用考虑关闭
+
 	seek
 		将游标从定位到文件开头
 	print(内容,file=文件名)将会直接把内容保存到文件中,当然,前提是文件要先open
+	read
 
 异常处理:
-	try: ... except: ...(如果选择不处理,用pass)
+	try: ... except: ...(如果选择不处理,用pass) finally: ...(都会执行)
+通用储存:
+	使用pickle引擎(相当于安卓shard),以二进制方式储存和读写
+	用法:
+		import pickle
+		with open('测试文件.txt','wb',) as tempfile:
+			#保存数据到文件
+			pickle.dump([1,2,three],tempfile)
+		with open('测试文件.txt','rb',) as tempfile:
+			#取文件数据
+			pickle.load(tempfile)
+
+开启新线程:
+	from multiprocessing.dummy import Pool
+	pool=Pool(4)#2核开4线程
+	results=pool.map(方法函数名,方法函数的参数)
+	pool.close()#关闭进程池，不再接受新的进程
+	pool.join()#主进程阻塞等待子进程的退出
+pip:
+	包管理工具.它可以从PyPI下载一些软件包和框架,能查看软件包信息
+	pip install 安装包
+	pip download 下载包
+	pip uninstall 卸载包
+	pip freeze  在需求模式中安装包?
+	pip list 列出已经安装的包
+	pip show 看包的具体信息
+	pip check 验证已安装的包是否需要兼容的依赖项
+	pip search 搜索PyPI上的包
+	pip wheel 根据你的需求构造轮子?
+	pip hash 包档案的散列
+	pip completion 用于命令完成的辅助命令?
+	pip help
+
+爬虫要解决的要点:
+	1/判重算法
+	2/多线程运行,分布式集群
+	3/抽取有效数据
+	4/考虑网页的更新
+	5/爬的规律和防御策略
+
+爬虫入门框架:
+	requests+lxml
+爬虫分布式系统:
+	scrapy+momgodb+redis
+scrapy教程:
+	http://www.cnblogs.com/-E6-/p/7213872.html
+python实现的PID:
+	http://blog.csdn.net/u010256153/article/details/54928039
 

@@ -1,13 +1,4 @@
-python基础视频教程：http://pan.baidu.com/s/1qYTZiNE
-python高手晋级视频教程：http://pan.baidu.com/s/1hrXwY8k
-python windows开发环境视频教程：http://pan.baidu.com/s/1kVcaH3x
-python linux开发环境视频教程：http://pan.baidu.com/s/1i4VZh5b
-python web开发视频教程：http://pan.baidu.com/s/1jIMdU2i
-python机器学习深度学习视频教程：http://pan.baidu.com/s/1o8qNB8Q
-python树莓派视频教程：http://pan.baidu.com/s/1slFee2T
-看完Python教程，你是否对Python的独特之处感到好奇？
-1.Python是非常通用的语言，因为易于阅读和编写，常被称为实用主义。
-2.Python还非常简单，设计者不太强调惯用语法，这使它更易于使用，甚至非程序员或开发人员也很容易上手。
-3.Python还能够满足各种开发需求，为程序员提供了各种选择，它是一门真正通用的编程语言。
-如果习惯了使用python，程序员可以很容易地从一个行业跳到另外一个行业，因为Python被广泛地用于系统操作、网页开发、服务器和管理工具、部署、科学建模等几乎所有的常见领域。
-另外不得不提到一点：在Python的开发者社区，无论你是新手还是常年遨游在代码海洋的老司机，你几乎总能够在这个活跃的社区得到帮助和支持。
+https://www.zhihu.com/question/21358581
+第一回答的技术路线
+
+www.yiibai.com/scrapy scrapy的教程

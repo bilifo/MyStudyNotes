@@ -1,0 +1,15 @@
+robots协议并非是规范，只是行业内一个约定俗成的协议。它确定了哪些爬虫不能爬哪些界面.
+
+User-agent:
+	爬虫抓取时会声明自己的身份，这就是User-agent，没错，就是http协议里的User-agent。
+Disallow:
+	Disallow 行列出的是要拦截的网页，以正斜线 (/) 开头，可以列出特定的网址或模式。
+allow:
+	允许爬取的网页,作为Disallow的补充,比如不允许爬a1-a100,但允许爬a50
+sitemap:
+	也是允许爬取网页,不过它是用一个单独的文件,把所有允许网页放里面
+Crawl-delay
+	除了控制哪些可以抓哪些不能抓之外，robots.txt还可以用来控制爬虫抓取的速率。
+
+参考;
+http://lusongsong.com/reed/732.html   玩转robots协议

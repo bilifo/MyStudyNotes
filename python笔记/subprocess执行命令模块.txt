@@ -1,0 +1,31 @@
+调用命令:
+	由于os.system()和os.popen()过于简单,不能给运行的命令提供输入或者读取命令的输出，判断该命令的运行状态，管理多个命令的并行等等
+	
+	subprocess.Popen(args, 			#可执行文件,及命令
+			bufsize=0, 		#指定缓冲
+			executable=None, 	#当shell=True,该参数表示shell下的可执行命令
+			stdin=None, 		#标准输入
+			stdout=None, 		#标准输出
+			stderr=None,		#错误句柄
+			preexec_fn=None,	#preexec_fn只在Unix平台下有效
+			close_fds=False,	#
+			shell=False,		#设为true，程序将通过shell来执行
+			cwd=None,		#用于设置子进程的当前目录
+			env=None, 		#字典类型，用于指定子进程的环境变量
+			universal_newlines=False, #设置为True,统一把换行符当作'/n'来处理
+			startupinfo=None, 
+			creationflags=0)
+	一般只会用到args,stdin,stdout
+	例:
+		p = subprocess.Popen(["adb","devices"]或"adb devices",stdout = subprocess.PIPE, shell = False,universal_newlines=True)
+		print(shlex.split(p.stdout.read()))
+
+注意:
+	args参数。可以是一个字符串，可以是一个包含程序参数的列表。要执行的程序一般就是这个列表的第一项，或者是字符串本身。
+	subprocess.Popen(["cat","test.txt"])
+	subprocess.Popen("cat test.txt")
+	这两个之中，后者将不会工作。因为如果是一个字符串的话，必须是程序的路径才可以。(考虑unix的api函数exec，接受的是字符串列表)
+	但是下面的可以工作
+	subprocess.Popen("cat test.txt", shell=True)这是因为它相当于subprocess.Popen(["/bin/sh", "-c", "cat test.txt"])在*nix下，当shell=False（默认）时，Popen使用os.execvp()来执行子程序。args一般要是一个【列表】。如果args是个字符串的话，会被当做是可执行文件的路径，这样就不能传入任何参数了。
+
+	shlex.split()可以被用于序列化复杂的命令参数

@@ -1,0 +1,43 @@
+'__class__'			
+	
+
+'__doc__'
+
+
+
+
+
+
+'__new__'	相当于java的new(),一般是super.__new__
+'__init__'	在__new__成功创建实例后调用,相当于java的构造函数
+'__del__'	和java的finalize()相似
+'__repr__'	对应repr()内建函数,返回string,和__str__功能一样,但优先级高于它
+'__str__'	对应str()内建函数,相当于java的toString()
+'__bytes__'	对应bytes()内建函数,返回该对象的bytes对象,相当于java的序列化
+'__format__'对应format()内建函数,格式化字符串
+'__le__'	x<=y调用x.__le__(y)
+'__lt__'	x<y调用x.__lt__(y)
+'__ne__'	x!=y调用x.__ne__(y)
+'__eq__'	x==y调用x.__eq__(y)
+'__gt__'	x>y调用x.__gt__(y)
+'__ge__'	x>=y调用x.__ge__(y)
+'__hash__'	对应hash()内建函数,相当于java的hashCode
+'__bool__'	对应bool()内建函数,用来检测是否是实例对象
+'__getattribute__'
+'__getattr__'	当没有该属性时会被调用
+'__get__'
+3个都是获得某个属性值,相当于java的get.实例对象.某个属性时,调用顺序:__getattribute__,__getattr__,__get__
+'__set__'
+'__setattr__'设置对应属性的值
+'__delattr__'删除某个属性
+'__delete__'
+
+'__dir__'	对应dir()内建函数,返回list,显示该对象的所有属性
+'__slots__'	
+'__reduce__'
+'__reduce_ex__'
+
+
+'__sizeof__'
+
+'__subclasshook__'

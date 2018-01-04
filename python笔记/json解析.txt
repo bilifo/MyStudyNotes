@@ -1,0 +1,12 @@
+import json 
+from urllib.request import urlopen 
+def getCountry(ipAddress): 
+  response = urlopen("http://freegeoip.net/json/"+ipAddress).read() 
+  .decode('utf-8') 
+  responseJson = json.loads(response) 
+  return responseJson.get("country_code") 
+print(getCountry("50.78.253.58"))
+
+以打印出 IP 地址为 50.78.253.58 的国家代码
+
+JSON 转换成字典，JSON 数组转换成列表，JSON 字符串转换成 Python 字符串

@@ -1,0 +1,8 @@
+urllib模块可以非常容易的抓取URL内容
+
+urllib.urlopen(url[,data[,proxies]])	打开一个url,返回一个文件对象
+
+处理网页格式utf-8和gbk,最好是先看一下网页的meta下charset是什么格式
+
+有的代码是导的urllib2,这其实是python2.X所使用的包,python3.X是直接的urllib
+

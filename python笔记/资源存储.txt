@@ -1,0 +1,16 @@
+存储文件有两种主要的方式：只获取文件 URL 链接，或者直接把源文件下载下来。这主要取决于资源文件使用频次,如果使用不频繁,就可以只存URl
+
+只存URl的缺点:
+	些内嵌在你的网站或应用中的外站 URL 链接被称为盗链（hotlinking），使用盗链可
+能会让你麻烦不断，每个网站都会实施防盗链措施。
+
+urllib.request.urlretrieve 可以根据文件的 URL 下载文件:
+	#序从 http://pythonscraping.com 下载 logo 图片，保存为logo.jpg 文件
+	from urllib.request import urlretrieve
+	from urllib.request import urlopen
+	from bs4 import BeautifulSoup
+	html = urlopen("http://www.pythonscraping.com")
+	bsObj = BeautifulSoup(html)
+	imageLocation = bsObj.find("a", {"id": "logo"}).find("img")["src"]
+	urlretrieve (imageLocation, "logo.jpg")
+
