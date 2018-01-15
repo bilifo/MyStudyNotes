@@ -1,3 +1,8 @@
+object虽然说是python所有对象的基类,但type的父类并不是它,type.__class__()是type自己.这有些像java中Integet和int的关系一样
+
+
+
+
 '__class__'			
 	
 
@@ -14,7 +19,7 @@
 '__repr__'	对应repr()内建函数,返回string,和__str__功能一样,但优先级高于它
 '__str__'	对应str()内建函数,相当于java的toString()
 '__bytes__'	对应bytes()内建函数,返回该对象的bytes对象,相当于java的序列化
-'__format__'对应format()内建函数,格式化字符串
+'__format__'	对应format()内建函数,格式化字符串
 '__le__'	x<=y调用x.__le__(y)
 '__lt__'	x<y调用x.__lt__(y)
 '__ne__'	x!=y调用x.__ne__(y)
@@ -32,7 +37,7 @@
 '__delattr__'删除某个属性
 '__delete__'
 
-'__dir__'	对应dir()内建函数,返回list,显示该对象的所有属性
+'__dir__'	对应dir()内建函数,返回list,显示该对象的所有属性和方法
 '__slots__'	
 '__reduce__'
 '__reduce_ex__'
