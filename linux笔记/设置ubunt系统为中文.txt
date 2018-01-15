@@ -1,0 +1,8 @@
+1、修改／etc/default/locale
+如不存在则新建一个
+如下：
+LANG='en_US' #中文可以用zh_CN
+LANGUAGE='en_US:en' #中文可以用zh_CN:zh
+2、reboot即可
+
+但win10的子系统这样修改并不成功
