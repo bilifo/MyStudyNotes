@@ -1,0 +1,16 @@
+pyinstaller将Python脚本打包成可执行程序，使在没有Python环境的机器上运行,可运行在Windows，Mac和Linux操作系统下。
+
+但它不是跨编译的，也就是说在Windows下用PyInstaller生成的exe只能运行在Windows下，在Linux下生成的只能运行在Linux下。
+
+安装:
+	使用命令pip install pyinstaller,并自动安装依赖pywin32
+
+打包编译:
+	简单:
+		pyinstaller -F -w -i 图片路径 程序路径
+	详细:
+
+	-h:	查看帮助
+	-F:	打包为单文件
+	-w:	Windows程序，不显示命令行窗口
+	-i:	是程序图标，app.py是你要打包的py文件
