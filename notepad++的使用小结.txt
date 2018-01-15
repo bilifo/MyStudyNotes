@@ -1,0 +1,13 @@
+1.修改为中文
+	settings--->preferences--->localization--->中文简体
+2.修改window下的文档兼容linux
+	编辑--->文档格式转换--->转换成UNIX格式
+3.为win右键添加"以notepad++打开"
+	1.开始--->运行--->regedit打开注册表
+	2.在HKEY_CLASSSES_ROOT→ * → Shell 下，在Shell下，新建项命名为Open With Notepad++（注意*也是一个项）
+	3.在该新建项的右边窗口新建字符串值（右键--新建--字符串值）.名称:Icon;值:D:\program files(x86)\Notepad++\Notepad++.exe(注：使用您自己的安装文件目录)
+	4.在新建的项Open With Notepad++下面新建项Command（必须这个名称）.
+	5.将刚新建的Command项右侧窗口的默认值，修改为：D:\program files (x86)\Notepad++\Notepad++.exe %1(注：使用您自己的安装文件目录)
+
+	
+
