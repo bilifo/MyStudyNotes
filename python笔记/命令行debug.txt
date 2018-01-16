@@ -1,0 +1,13 @@
+python可以使用pdb在cmd下来进行debug
+1.要调试的程序,必须 import pdb
+2.在断点上方,添加代码 pdb.set_trace(),运行程序后,会在遇到第一个断点停止
+3.	n--->步进
+	c--->前进到下一个断点
+	s--->进入函数内部
+	r--->跳出函数
+	p--->打印变量值.如:(Pdb) p var  结果:'this is var value'
+	b--->动态添加断点.如:(Pdb) b 18  结果:在18行添加断点
+	l--->查看debug游标走到了哪
+	q--->结束调试
+	动态改变变量值.如:(Pdb) var='change value'
+	

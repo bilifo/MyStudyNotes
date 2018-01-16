@@ -8,6 +8,22 @@
 	3.在该新建项的右边窗口新建字符串值（右键--新建--字符串值）.名称:Icon;值:D:\program files(x86)\Notepad++\Notepad++.exe(注：使用您自己的安装文件目录)
 	4.在新建的项Open With Notepad++下面新建项Command（必须这个名称）.
 	5.将刚新建的Command项右侧窗口的默认值，修改为：D:\program files (x86)\Notepad++\Notepad++.exe %1(注：使用您自己的安装文件目录)
-
+4.安装自动对齐插件
+	由于7.5以上和64位不自带插件管理器,所以百度上大多数方法并不适用.
+	官方给出的插件安装方法:
+		1.下载插件的dll文件
+		2.放到notepad++安装目录的plugins目录下
+		3.将配置文件(configuration)放到plugin\config 目录下
+		4.如果有,尽量将说明文档(documentation)放到plugin\doc目录下
+		5.重启notepad++
 	
+	自动对齐的插件是NppAStyle,32下载地址:https://sourceforge.net/projects/nppastyle/files/NppAStyle_bin_0.10.02.14.zip/download
+	64位的上github吧
+
+	xml自动对齐:https://sourceforge.net/projects/npp-plugins/files/XML%20Tools/Xml%20Tools%202.4.9%20Unicode/
+	然后照着install文档操作
+
+
+
+
 
