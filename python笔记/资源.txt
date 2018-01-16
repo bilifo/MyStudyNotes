@@ -1,4 +1,0 @@
-https://www.zhihu.com/question/21358581
-第一回答的技术路线
-
-www.yiibai.com/scrapy scrapy的教程
