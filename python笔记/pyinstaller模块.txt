@@ -8,6 +8,11 @@ pyinstaller将Python脚本打包成可执行程序，使在没有Python环境的机器上运行,可运行在
 打包编译:
 	简单:
 		pyinstaller -F -w -i 图片路径 程序路径
+	结果:
+		在运行后,会发现程序路径下,会生成这3个文件:
+			dist,放有可执行的文件,如exe
+			build,
+			__pycache__,
 	详细:
 
 	-h:	查看帮助
