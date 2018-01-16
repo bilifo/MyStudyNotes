@@ -67,15 +67,17 @@ http://python.usyiyi.cn/   中文python手册
 			>>> '%.2f' % 3.1415926		'3.14'
 
 	字符串的拼接：
-	虽然还是‘+’号，但print的第一个字符串后只能接‘，’号。
+		虽然还是‘+’号，但print的第一个字符串后只能接‘，’号。
 
 	更改编码：
-	"XXX".encode("UTF-8")
+		"XXX".encode("UTF-8")
 
 	字符、数组长度：
-	len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
+		len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
 
 	isinstance函数可以判断一个变量是不是字符串
+	
+	
 
 IO：
 	输出显示：	print	eg：print("XXX")
