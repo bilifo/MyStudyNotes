@@ -1,0 +1,4 @@
+git clone 项目地址	//把项目git到本地
+
+git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态
+git reset commit号	//对于还没有push的回退.
