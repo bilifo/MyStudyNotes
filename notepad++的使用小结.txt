@@ -22,6 +22,7 @@
 
 	xml自动对齐:https://sourceforge.net/projects/npp-plugins/files/XML%20Tools/Xml%20Tools%202.4.9%20Unicode/
 	然后照着install文档操作
+	xmltools,对齐xml,选print(libXML)和print(attributes)
 
 
 
