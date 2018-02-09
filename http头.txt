@@ -1,0 +1,51 @@
+http协议
+http method
+    get 查询
+    post 更新
+    put 上传
+    delete 删除
+    在实际应用中，get post应用的比较多。
+
+status code
+    1** - 代表服务器已经收到信息，但还没有处理完，将继续。
+    最原始的ajax请求中，是以判断status code来决定是否该次的ajax异步请求完成，或状态。
+    2** - 返回状态，一般是代表成功终止，即正常的一次请求完成。
+    	200 - ok
+    3** - 请求的转移
+	301 - 永久转移，会在响应头中跟随location这个key,来标志下次该跳转的目标URL地址。
+	302 - 临时转移
+	304 - 无更新，从缓存中取数据。
+    4** - 客户端错误
+	400 - 客户端格式错误
+	401 - 无权限
+	403 - 禁止访问
+	404 - file not found
+    5** - 服务器错误
+	500 - 服务器端处理中出现异常
+
+http header参数
+    accept： 客户端可接受的数据类型
+    text/html 即html的文本
+    application/xhtml+xml 即xhtml，像jsp, asp等
+    accept-encoding: 客户端要求服务器返回的数据编码格式,一般设为gzip, deflate的比较多
+    accept-language ： 要求的自然语言（注意语言和编码的概念不同）
+    connection： 代表client与server的连接性，是keep-alive或者是None
+    cookie： client与server之间的沟通状态信息
+    host：client发过去请求后，由哪个地址来解析该请求。
+    If-Modified-Since：代表该网页自哪个时间开始没有再改变过
+    user-agent：客户端把os， browser type等封装成ua发送给服务器端
+    age: 代码页面是从缓存中取出后的多场时间
+    cache_control：服务器要求客户端是否缓存该页面
+    Content-Encoding: server给client的数据的编码格式，往往为gzip
+    Content-Length: server给client端传送数据的总字节数，经常用于判断是否接收结束。
+    Content-Type: 返回数据的类型，一般为text/html， 即纯文本类型。
+
+http cookie参数
+	cookie包括两部分，一部分sent，一部分receive。要严格区分开，在爬虫开发过程中，构建cookies时尤为重要。cookie中往往包含N多的key，要尽量找出其关键的key
+
+ETAG和if-modified-since
+	都跟过期时间有关。很多网址是不更新if-modified-since,而是通过一个hash值或是时间值来给ETAG，标志该资源是否有过更新，从而使资源的更新与时间无关，而与这个key有关。
+
+get和post的区别
+	参数传递方式不一样：get较简单，post是不在地址栏中显示的，而且相应的生成对应掩码的方式，较安全。
+	参数的传递渠道不同：get走的是http协议头，往往被浏览器、os限制了长度，往往小于2KB。post走的是http消息体，长度不限制。

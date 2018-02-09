@@ -1,4 +1,10 @@
 git clone 项目地址	//把项目git到本地
 
-git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态
+git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态,再commit
 git reset commit号	//对于还没有push的回退.
+
+git config --global user.name "Your Name"	//配置用户名
+git config --global user.email "email@example.com"//配置邮箱
+
+git clone的下载代码的时候是连接的https://而不是git@git (ssh)的形式，当我们操作git pull/push到远程的时候，总是提示我们输入账号和密码才能操作成功
+解决方法:git config --global credential.helper store
