@@ -1,0 +1,14 @@
+import requests
+	创建request对象:
+		r = requests.get('https://github.com/timeline.json')  或
+		payload = {'key1': 'value1', 'key2': 'value2'}
+		r = requests.get("http://www.baidu.com/baidu", params=payload)
+	request对象的方法:
+		r.url	有效的url地址
+		r.text	返回的响应内容,以Unicode形式
+		r.encoding	返回响应内容的文字编码
+		r.content	返回响应内容的二进制(对于图片和视频比较有用)
+		r.json()	返回响应内容的json形式(当然,的是.json的地址才有效)
+		r.headers	获得请求头属性的字典
+		r.status_code	返回请求处理状态码(用有判断网页是否成功访问200)
+		

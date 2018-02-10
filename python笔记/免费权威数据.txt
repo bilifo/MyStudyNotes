@@ -1,0 +1,8 @@
+http://data.stats.gov.cn/index.htm	国家数据
+http://www.ceicdata.com/zh-hans		CEIC 
+http://www.wind.com.cn/			wind（万得）
+http://www.soshoo.com/			搜数网
+http://www.tjcn.org/			中国统计信息网 
+http://aws.amazon.com/cn/datasets/?nc1=h_ls	亚马逊aws
+https://figshare.com/			figshare
+https://github.com/caesar0301/awesome-public-datasets	github
