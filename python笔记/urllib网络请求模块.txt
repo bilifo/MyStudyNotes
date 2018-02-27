@@ -1,4 +1,12 @@
-urllib模块可以非常容易的抓取URL内容
+urllib模块是自带库,可以非常容易的抓取URL内容,功能:
+	网页请求
+	响应获取
+	代理和cookie
+	异常处理
+	URL解析
+爬虫所需要的功能，基本上在urllib中都能找到
+原文:https://www.jianshu.com/p/cfbdacbeac6e
+
 
 urllib.urlopen(url[,data[,proxies]])	打开一个url,返回一个文件对象
 
