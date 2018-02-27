@@ -1,0 +1,46 @@
+常用线程模块
+	_thread(弃用)
+	threading(推荐)
+	
+threading:(与java类似)	
+	import threading
+	直接使用:
+		t1=threading.Thread(target=要另开线程来运行的函数方法名,args=(另开线程函数需要的参数))
+		t1.setDaemon(True)#设置成守护线程,只要主线程结束,守护线程也必须结束
+		t1.start()
+	继承:
+		1/建立新的Threading类,继承Threading
+		2/在初始化函数__init__中将可调用对象作为参数传入
+		3/在__init__中,先写threading.Thread.__init__(self)
+		4/在run方法中写线程需要执行的动作
+
+	run(): 用以表示线程活动的方法。
+	start():启动线程活动。
+	join([time]): 等待至线程中止。阻塞主线程直到子线程运行结束或超时
+	isAlive(): 返回线程是否活动的。
+	getName(): 返回线程名。
+	setName(): 设置线程名。
+	acquire(): 上锁
+	release(): 释放锁
+	threading.currentThread(): 返回当前的线程变量。
+	threading.enumerate(): 返回一个包含正在运行的线程的list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。
+	threading.activeCount(): 返回正在运行的线程数量，与len(threading.enumerate())有相同的结果。
+
+锁对象Lock和Rlock,Condiftion,Event的区别:
+	RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况,连续两次Lock,会导致线程死锁。如果使用RLock，那么acquire和release必须成对出现，即调用了n次acquire，必须调用n次的release才能真正释放所占用的琐。
+	Condiftion,Event比Rlock高级点,也是用于解决同步问题
+
+
+更好的多线程库:
+	对多核心的处理比threading好些.
+	multiprocessing .dummy 是 multiprocessing 模块的完整克隆，唯一的不同在于multiprocessing 作用于进程，而 dummy 模块作用于线程.简言之，IO 密集型任务(爬虫)选择multiprocessing.dummy，CPU 密集型任务选择multiprocessing
+	import multiprocessing
+	创建一个线程:
+	if __name__ == '__main__':
+		eee= multiprocessing.Process(target=方法函数名,args=(方法函数参数))
+    		eee.start()
+    		eee.join()
+	注意:必须要写在if __name__ == '__main__'内
+
+	
+
