@@ -5,3 +5,27 @@ inp_dict = json.loads(inp_strr) # 根据字符串书写格式，将字符串自动转换成字典类型
 print inp_dict
 
 JSON 转换成字典，JSON 数组转换成列表，JSON 字符串转换成 Python 字符串
+json.dumps 	将 Python 对象编码成 JSON 字符串
+json.loads	将已编码的 JSON 字符串解码为 Python 对象
+json.dump和json.load  是用来处理json文件的
+
+python 原始类型向 json 类型的转化对照表：
+	Python				JSON
+		dict				object
+		list, tuple			array
+		str, unicode			string
+		int, long, float		number
+		True			 	true
+		False			 	false
+		None			 	null
+json 类型转换到 python 的类型对照表：
+	JSON			 	Python
+		object			 	dict
+		array			 	list
+		string			 	unicode
+		number (int)		 	int, long
+		number (real)		 	float
+		true			 	True
+		false			 	False
+		null			 	None
+
