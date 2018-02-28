@@ -3,6 +3,8 @@ git clone 项目地址	//把项目git到本地
 git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态,再commit
 git reset commit号	//对于还没有push的回退.
 
+git config --system --list 查看系统config
+git config --global --list 查看当前用户config
 git config --global user.name "Your Name"	//配置用户名
 git config --global user.email "email@example.com"//配置邮箱
 
