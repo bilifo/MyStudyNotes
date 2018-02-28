@@ -11,4 +11,16 @@ import requests
 		r.json()	返回响应内容的json形式(当然,的是.json的地址才有效)
 		r.headers	获得请求头属性的字典
 		r.status_code	返回请求处理状态码(用有判断网页是否成功访问200)
+
+注意:
+	url中参数带有中文,如果直接把中文添加到url中,由于url传递参数依赖与浏览器对中文的编码,传给后台时,如果后台解码方式和浏览器不同,就会产生乱码.
+	常常看到url中带有%9d%7e%e3格式的字符,其实这就是中文,只不过是UTF-8编码或者gbk(GB2312)编码，那些百分号（%）后面的数字和字母其实就是16进制数。
+	如果是gbk(GB2312)编码，那么它的形式应该是这样的，即一个汉字对应两组%xx，即%xx%xx
+	如果是UTF-8编码，那么它的形式应该是这样的，即一个汉字对应三组%xx，即%xx%xx%xx
+	如何区分两种编码呢?假设它是GKB编码,把它解码成字节码,在编码成GBK码,如果前后两个GBK相等,即是GBK.
+	如:
+		字符串 abc 如果是GBK编码的话，经过转换
+		abc -> GBK -> byte -> GBK -> abc2,abc==abc2,即使GBK
 		
+	虽然requests模块会自动对中文参数进行处理,直接写成requests.get('http://www.baidu.com/s?wd=观察者')也能返回结果
+	但对于我们分析url需要哪些参数,不起帮助,用网上在线的url编码转换工具http://tool.chinaz.com/tools/urlencode.aspx 
