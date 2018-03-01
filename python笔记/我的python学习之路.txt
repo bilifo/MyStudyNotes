@@ -19,8 +19,13 @@
 		对于异步加载的json数据,查看XHR新添加项.
 		对于像煎蛋一样的,只能通过看它的js代码来逆向
 
-	这期间,发现一个叫dSpider,用js来写的客户端爬虫库,没接触
+	(这期间,发现一个叫dSpider,用js来写的客户端爬虫库,没接触)
 	
+	urllib+正则：无第三方依赖
+	requests+BeautifulSoup：第三方library
+	scrapy：框架
+	由难到易
+
 多线程:
 
 分布式:

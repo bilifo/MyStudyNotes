@@ -1,0 +1,13 @@
+1.导包
+	from lxml import etree
+	import requests
+2.确定网址爬取规则
+	#智联,需要参数.还没.format(),
+	main_url="https://sou.zhaopin.com/jobs/searchresult.ashx?jl={jl}&kw={kw}&sm={sm}&p={p}"
+3.使用requests获得响应结果
+	req = requests.get(main_url.format(jl='重庆', kw='安卓', sm='0', p='1'))
+4.使用lxml.etree解析网页代码
+	xml_parse = etree.HTML(req.text)
+5.使用xpath表达式获得符合的结果
+	sz = xml_parse.xpath('//tr/td[@class="gsmc"]/a/text()')
+	
