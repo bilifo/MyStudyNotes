@@ -1,11 +1,26 @@
 urllib模块是自带库,可以非常容易的抓取URL内容,功能:
-	网页请求
+	urllib.request 网页请求
 	响应获取
 	代理和cookie
-	异常处理
-	URL解析
+	urllib.error 异常处理
+	urllib.parse URL解析
+	urllib.robotparser robots.txt解析模块
 爬虫所需要的功能，基本上在urllib中都能找到
 原文:https://www.jianshu.com/p/cfbdacbeac6e
+
+from urllib import request
+
+#打开一个url,返回一个文件对象.获得内容用read()
+urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)
+	url:
+	data:post请求时使用,通过data = bytes(urllib.parse.urlencode({'word': 'hello'}), encoding='utf8')方式把多个参数封装在data中
+	timeout:设置超时时间
+	cafile:
+	capath:
+	cadefault:
+	context:
+
+
 
 
 urllib.urlopen(url[,data[,proxies]])	打开一个url,返回一个文件对象

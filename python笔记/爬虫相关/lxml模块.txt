@@ -4,8 +4,8 @@ from lxml import etree
 
 输入:
 	html_parse=etree.HTML(字符串形式的html代码)#直接解析字符串形式的html代码
+	或
 	html_parse=etree.parse('文件路径')#读取文件
 输出:
 	result=html_parse.xpath('xpath表达式')#字符串形式的xpath表达式,获得符合的数组结果
 
-table[5]/tbody/tr[1]/td[3]
