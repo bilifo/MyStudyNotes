@@ -227,3 +227,6 @@ scrapy教程:
 python实现的PID:
 	http://blog.csdn.net/u010256153/article/details/54928039
 
+pycharm 添加系统python:
+	file--->settings--->project:XXX--->project interpreter--->齿轮图标--->add Local python--->System Interpreter
+

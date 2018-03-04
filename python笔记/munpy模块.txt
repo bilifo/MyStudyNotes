@@ -1,0 +1,13 @@
+Numpy是Python的一个很重要的第三方库，很多其他科学计算的第三方库都是以Numpy为基础建立的。
+
+import numpy
+
+matrix=array(python数组)#将python数组转化为矩阵对象
+	matrix.size
+	matrix.shape	
+
+matrix2=linspace(起始值,终止值,份数)#生成指定份数等间距的数据
+
+sin(a)
+
+	
