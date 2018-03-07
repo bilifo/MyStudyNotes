@@ -10,3 +10,8 @@ git config --global user.email "email@example.com"//配置邮箱
 
 git clone的下载代码的时候是连接的https://而不是git@git (ssh)的形式，当我们操作git pull/push到远程的时候，总是提示我们输入账号和密码才能操作成功
 解决方法:git config --global credential.helper store
+
+/.git/index.lock': File exists.
+现象:pull无法正常运行
+原因:上锁资源没有释放,在pull时还在运行
+解决:进入项目文件夹下的 .git文件中（需要显示隐藏文件夹）删除index.lock文件即可。
