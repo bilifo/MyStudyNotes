@@ -1,9 +1,3 @@
-#-*-coding:utf-8-*-
-import json
-inp_strr = '{"k1":123, "k2": "456", 'k3':"ares"}'#注意,json必须是双引号
-inp_dict = json.loads(inp_strr) # 根据字符串书写格式，将字符串自动转换成字典类型
-print inp_dict
-
 JSON 转换成字典，JSON 数组转换成列表，JSON 字符串转换成 Python 字符串
 json.dumps 	将 Python 对象编码成 JSON 字符串
 json.loads	将已编码的 JSON 字符串解码为 Python 对象
@@ -28,4 +22,9 @@ json 类型转换到 python 的类型对照表：
 		true			 	True
 		false			 	False
 		null			 	None
-
+示例:
+#-*-coding:utf-8-*-
+import json
+inp_strr = '{"k1":123, "k2": "456", 'k3':"ares"}'#注意,json必须是双引号
+inp_dict = json.loads(inp_strr) # 根据字符串书写格式，将字符串自动转换成字典类型
+print inp_dict
