@@ -19,11 +19,14 @@ import subprocess
 			creationflags=0)
 	一般只会用到args,stdin,stdout
 	例:
+#使用subprocess.PIPE 作为Stdin（标准输入流）Stdout（标准输出流）参数，这个是一个特殊值，用于表明这些通道要开放。
 		p = subprocess.Popen(["adb","devices"]或"adb devices",stdout = subprocess.PIPE, shell = False,universal_newlines=True)
 		print(shlex.split(p.stdout.read()))
 
 	subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, shell=False, timeout=None, check=False)
 	run（）函数是Python 3.5中新添加的。
+
+	communicate()
 注意:
 	args参数。可以是一个字符串，可以是一个包含程序参数的列表。要执行的程序一般就是这个列表的第一项，或者是字符串本身。
 	subprocess.Popen(["cat","test.txt"])不能写成subprocess.Popen(["cat test.txt"])
@@ -31,5 +34,6 @@ import subprocess
 	这两个之中，后者将不会工作。因为如果是一个字符串的话，必须是程序的路径才可以。(考虑unix的api函数exec，接受的是字符串列表)
 	但是下面的可以工作
 	subprocess.Popen("cat test.txt", shell=True)这是因为它相当于subprocess.Popen(["/bin/sh", "-c", "cat test.txt"])在*nix下，当shell=False（默认）时，Popen使用os.execvp()来执行子程序。args一般要是一个【列表】。如果args是个字符串的话，会被当做是可执行文件的路径，这样就不能传入任何参数了。
+	其他踩坑:https://www.cnblogs.com/havePassed/p/4950751.html
 
 	shlex.split()可以被用于序列化复杂的命令参数

@@ -1,0 +1,2 @@
+使用free -m可以查看内存剩余情况,以M为单位
+实际使用的内存(used)=Used+Buffer+Cache

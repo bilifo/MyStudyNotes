@@ -34,4 +34,6 @@
 	多表联合查询:
 		eg:select author.authorName, book.bookName, book.pressName from author, book where author.authorID = book.authorID and age< (select avg(age) from author);
 
+window使用cmd连接数据库:
+	
 	

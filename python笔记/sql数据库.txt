@@ -1,0 +1,10 @@
+Python 标准数据库接口为 Python DB-API，Python DB-API为开发人员提供了数据库应用编程接口。
+Python的DB-API，为大多数的数据库实现了接口，使用它连接各数据库后，就可以用相同的方式操作各数据库。(桥接模式)
+SQLite3 可使用 sqlite3 模块与 Python 进行集成。不需要另行下载安装.
+
+ Python DB-API使用流程：
+
+    引入 API 模块。
+    获取与数据库的连接。
+    执行SQL语句和存储过程。
+    关闭数据库连接。
