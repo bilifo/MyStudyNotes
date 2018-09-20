@@ -1,0 +1,113 @@
+if(a is b)	#比较对象的id
+id(a)		#返回对象ID的整数
+type(a)		#返回对象的类型
+
+None		#表null
+NotImplemented	#表无法实现请求的方法或操作时引发的异常,和java的Exception相似
+Ellipsis	#表...
+
+内建函数:
+object.__dict__
+用于存储对象（可写）属性的一个字典或映射对象。
+instance.__class__
+类实例所属的类。
+class.__bases__
+类对象的基类组成的元组。
+definition.__name__
+类、函数、方法、描述器或生成器实例的名称。
+definition.__qualname__
+类、函数、方法、描述器或生成器实例的限定名。
+版本3.3中的新功能。
+class.__mro__
+此属性是在方法解析期间查找基类时考虑的类的元组。
+class.mro()
+此方法可以由元类覆盖以自定义其实例的方法解析顺序。它在类实例化时调用，其结果存储在__mro__中。
+class.__subclasses__()
+每个类保存一个弱引用列表到它的直接子类。此方法返回所有仍然活着的引用的列表。
+
+用户定义的函数:
+__doc__
+函数的文档字符串，如果没有就为None；不会被子类继承。
+可写
+__name__
+函数的名称
+可写
+__qualname__
+函数的限定名称
+3.3 版本中新加入。
+可写
+__module__
+函数定义所在的模块的名称，如果没有则为None。
+可写
+__defaults__
+一个元组，包含具有默认值的参数的默认参数值，如果没有参数具有默认值则为None
+可写
+__code__
+代码对象表示编译的函数体。
+可写
+__globals__
+对保存函数的全局变量的字典的引用 - 定义函数的模块的全局命名空间。
+只读
+__dict__
+支持任意函数属性的命名空间。
+可写
+__closure__
+None或包含函数的自由变量的绑定的单元格元组。
+只读
+__annotations__
+一个包含参数注解的字典。字典的键为参数的名称，如果返回值有注解，则用'return'表示返回值的注解。
+可写
+__kwdefaults__
+一个包含“非关键字不可”的参数的默认值的字典。
+可写
+
+
+object:
+基本定制:
+object.__new__(cls[, ...])		#调用以创建类cls的新实例,相当于java的new()
+object.__init__(self[, ...])		#在实例（被__new__()）创建之后，返回给调用者之前调用.相当于java的构造函数
+object.__del__(self)			#当实例即将被销毁时调用。这也称为析构函数
+object.__repr__(self)			#对应repr()内建函数,返回string,和__str__功能一样,但优先级高于它
+object.__str__(self)			#对应str()内建函数,相当于java的toString()
+object.__bytes__(self)			#对应bytes()内建函数,返回该对象的bytes对象,相当于java的序列化
+object.__format__(self, format_spec)	#对应format()内建函数,格式化字符串
+object.__hash__(self)			#对应hash()内建函数,相当于java的hashCode
+object.__bool__(self)			#对应bool()内建函数,用来检测是否是实例对象
+
+object.__lt__(self, other)		#x<y调用x.__lt__(y)
+object.__le__(self, other)		#x<=y调用x.__le__(y)
+object.__eq__(self, other)		#x==y调用x.__eq__(y)
+object.__ne__(self, other)		#x!=y调用x.__ne__(y)
+object.__gt__(self, other)		#x>y调用x.__gt__(y)
+object.__ge__(self, other)		#x>=y调用x.__ge__(y)
+
+自定义属性访问:
+#获得某个属性值,相当于java的get.当实例对象获取某个属性时,调用顺序:__getattribute__,__getattr__,__get__
+object.__getattr__(self, name)
+object.__getattribute__(self, name)
+#
+object.__setattr__(self, name, value)
+#删除属性
+object.__delattr__(self, name)
+#对应dir()内建函数,必定返回list,显示该对象的所有属性和方法
+object.__dir__(self)
+
+实现描述器:
+#不明白的函数
+object.__get__(self, instance, owner)
+object.__set__(self, instance, value)
+object.__delete__(self, instance)
+
+object.__slots__
+
+object.__init_subclass__(cls)	#当包含类被子类化时，就会调用此方法。
+
+class:
+class.__instancecheck__(self, instance)	#如果对象应视为类的（直接或间接）实例，则返回true。相当于java的mClass.isInstance(子类对象)
+class.__subclasscheck__(self, subclass)	#如果子类应被视为类的（直接或间接）子类，则返回true。相当于java的mClass.isAssignableFrom(子类)
+object.__call__(self[, args...])		#当对象作为函数方法“调用”时调用,实际是调用__call__里的内容.
+object.__len__(self)					#返回对象长度
+object.__length_hint__(self)			#应该返回对象预估的长度（可能大于或小于实际的长度）。
+object.__getitem__(self, key)			#
+
+

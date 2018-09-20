@@ -33,6 +33,7 @@ http://python.usyiyi.cn/   中文python手册
 	/	浮点除 
 	//	整除
 	**	幂（多次方）
+	没有++和--运算能力
 
 判断：(格式 if(XXX):)
 	和java不同的是,python的if,会自动判断非0和非空为True,即a=1,if(a):return True

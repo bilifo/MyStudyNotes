@@ -1,12 +1,61 @@
+git status		//查看当前git有哪些文件修改了
+
+git blame		//查看文件是谁修改的
+
+git log --graph		//可以看到简单的分支合并图
+
 git clone 项目地址	//把项目git到本地
 
+git reflog		//显示整个本地仓库的commit,包括正常commit和撤销commit
 git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态,再commit
 git reset commit号	//对于还没有push的回退.
+git reset --hard HASH 	//返回到某个节点，不保留修改。
+git reset --soft HASH 	//返回到某个节点。
+
+git checkout . 		//本地所有修改的。没有的提交的，都返回到原来的状态
+
+git rebase master(在topic分支下)
+git rebase master topic	//合并分支.两个都是把topic分支的改动合并到master分支.即把topic的修改,合并到master中
+git rebase <upstream-branch-name> <to-branch-name>
+执行上述命令的过程为：
+1.切换到to-branch分支；
+2.将to-branch中比upstream-branch多的commit先撤销掉，并将这些commit放在一块临时存储区（.git/rebase）；
+3.将upstream-branch中比to-branch多的commit应用到to-branch上，此刻to-branch和upstream-branch的代码状态一致；
+4.将存放的临时存储区的commit重新应用到to-branch上；结束。
+
+冲突解决完之后，使用git add <file-name>来标记冲突已解决，最后执行git rebase --continue继续。如果中间遇到某个补丁不需要应用，可以用下面命令忽略：
+git rebase --skip
+ 如果想回到rebase执行之前的状态，可以执行： 
+git rebase --abort
+
 
 git config --system --list 查看系统config
 git config --global --list 查看当前用户config
 git config --global user.name "Your Name"	//配置用户名
 git config --global user.email "email@example.com"//配置邮箱
+
+分支:
+创建一个新的空白分支	git branch <branch_name>
+创建一个新的分支	git checkout -b <branch_name>
+
+删除本地一个非当前分支	git branch -d <branch_name>
+删除本地当前分支	git branch -D <branch_name>
+删除本地的远程分支	git branch -r -D origin/BranchName
+恢复被删除的分支	git branch <branch_name> <hash_val>
+远程删除git服务器上的分支	git push origin -d BranchName
+
+
+当前修改,不提交到当前分支,而是提交到另一个分支:
+还是按照add,commit的步骤走,在push时,注意写成"git push origin 当前分支名(不需要写成'origin/当前分支名'):另一个分支名(不需要写成'origin/另一分支名')".
+执行完后,另一个分支的远端会得到这次的commit更新,而当前分支的远端不会有commit信息.(码云的远端网页没看见commit更新)
+但通过cmd,git log可以看见本地的当前分支有commit信息,而且也有代码修改.
+
+当前分支的修改,还未完成,先暂时保存:
+git stash	//设置修改隐藏
+git stash list	//参看被隐藏的修改
+git stash pop	//恢复的同时把 stash 存储列表的内容也删了
+git stash clear	//清空所有的stash
+
 
 git clone的下载代码的时候是连接的https://而不是git@git (ssh)的形式，当我们操作git pull/push到远程的时候，总是提示我们输入账号和密码才能操作成功
 解决方法:git config --global credential.helper store
@@ -15,3 +64,37 @@ git clone的下载代码的时候是连接的https://而不是git@git (ssh)的形式，当我们操作gi
 现象:pull无法正常运行
 原因:上锁资源没有释放,在pull时还在运行
 解决:进入项目文件夹下的 .git文件中（需要显示隐藏文件夹）删除index.lock文件即可。
+
+管理多个ssh key:
+ssh key相当于git账户的密码,一个账户只能有一个.
+#新建SSH key：
+$ cd ~/.ssh # 切换到C:\Users\Administrator\.ssh
+ssh-keygen -t rsa -C "mywork@email.com"  # 新建工作的SSH key
+# 设置名称为id_rsa_work.完成后会在.ssh文件夹下生成id_rsa_work和id_rsa_work.pub两个文件
+Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa): id_rsa_work
+修改config文件(该文件用于配置私钥对应的服务器)为:
+  Host github.com
+  HostName github.com
+  User git
+  IdentityFile C:/Users/xlianyu/.ssh/id_rsa
+
+
+问题:ssh-add ~/.ssh/id_key 命令报错Could not open a connection to your authentication agent.
+先执行ssh-agent bash,再ssh-add ~/.ssh/id_key
+
+分支合并:
+当pull拉下了的代码,发现对同一个地方有不同修改时,git会自动进入冲突解决状态.此时的分支名形式如(master|MERGING).并且代码中会用
+<<<<<<< HEAD
+	....本地分支的代码
+=======
+	....远端pull下来的代码
+>>>>>>> 
+至于要删除哪个,自己修改完后,使用
+git add .
+git commit -m "XXX" 
+git pull
+把修改的冲突进行提交
+
+Please, commit your changes or stash them before you can merge.
+问题:提示你本地的修改还没有commit或stash
+
