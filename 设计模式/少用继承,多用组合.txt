@@ -1,0 +1,88 @@
+对类的功能的扩展，要多用组合，少用继承。
+
+继承不推荐的原因:
+一、子类对父类的继承是全部的公有和受保护的继承，这使得子类可能继承了对子类无用甚至有害的父类的方法。换句话说，子类只希望继承父类的一部分方法，怎么办？
+二、实际的对象千变万化，如果每一类的对象都有他们自己的类，尽管这些类都继承了他们的父类，但有些时候还是会造成类的无限膨胀。
+三、 继承的子类，实际上需要编译期确定下来，这满足不了需要在运行内才能确定对象的情况。而组合却可以比继承灵活得多，可以在运行期才决定某个对象。
+
+https://www.cnblogs.com/shipengzhi/articles/2086419.html
+
+示例:
+设计一个map,能按添加顺序进行输出
+继承实现:
+public class ListMap extends HashMap {  
+private List list;  
+public ListMap() {  
+         super();  
+          this.list = new ArrayList();  
+}  
+public Object put(Object key,Object value)  
+{  
+         if(list.contains(key))  
+          {  
+                 list.remove(key);  
+          }  
+         this.list.add(key);  
+          return super.put(key,value);  
+}  
+public Object getKey(int i)  
+{  
+          return this.list.get(i);  
+}  
+public Object getValue(int i)  
+{  
+          return this.get(getKey(i));  
+}  
+public int size()  
+{  
+          return this.list.size();  
+}  
+}  
+结果:
+map.put("a","111");  
+map.put("v","190");  
+map.put("d","132");
+输出:
+111
+190
+132 
+
+组合实现:
+public class MyListMap {  
+private HashMap map;  
+private List list;  
+public MyListMap()  
+{  
+		 this.map = new HashMap();  
+		  this.list = new ArrayList();  
+}  
+public Object put(Object key,Object value)  
+{  
+		 if(list.contains(key))  
+		  {  
+				 list.remove(key);  
+		  }  
+		 this.list.add(key);  
+		  return this.map.put(key,value);  
+}  
+public Object getKey(int i)  
+{  
+		  return this.list.get(i);  
+}  
+public Object getValue(int i)  
+{  
+		  return this.map.get(getKey(i));  
+}  
+public int size()  
+{  
+		  return this.list.size();  
+}  
+}  
+结果:
+map.put("a","111");  
+map.put("v","190");  
+map.put("d","132");
+输出:
+111
+190
+132 
