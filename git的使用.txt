@@ -32,6 +32,30 @@ git rebase --skip
  如果想回到rebase执行之前的状态，可以执行： 
 git rebase --abort
 
+同时提交到多个远程库:
+(以前没有源代码也没有git时) 
+cd 本地项目存放文件夹
+git clone git@132.232.110.38:bilifo/test.git
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+(如果以前有源代码,但没有git,也没有对应远端分支) 
+cd 本地项目存放文件夹
+git init//创建git
+git remote add origin git@132.232.110.38:bilifo/test.git
+git add .
+git commit -m "XXX"
+git push -u origin master
+
+(如果以前有git,且对应有相应的远端分支)
+cd 本地项目存放文件夹
+git remote rename origin old-origin//将原来的远端分支名称更改为old-origin
+git remote add origin git@132.232.110.38:bilifo/test.git//添加现在的远端分支
+git push -u origin --all//提交
+git push -u origin --tags
+
 
 git config --system --list 查看系统config
 git config --global --list 查看当前用户config
