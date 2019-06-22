@@ -1,0 +1,54 @@
+1.下载编辑器 Luaeditor
+2.查看编辑器的使用 http://www.luachina.cn/?post=19
+
+--表示注释
+
+string.match(str2, ".+/([^/]*%.%w+)$") --获得文件名
+string.match(filename, "(.+)/[^/]*%.%w+$") --获得路径
+idx = filename:match(".+()%.%w+$")    filename:sub(1, idx-1)--去除拓展名
+filename:match(".+%.(%w+)$")  --获得拓展名
+
+
+
+local num = tonumber("10");    -- 返回十进制数10
+local num = tonumber("AF",16); -- 返回十六进制数175 
+local num = tonumber("0xA");   -- 返回10
+local num = tonumber("56.9");  -- 返回56.9
+local num = tonumber("0102");  -- 返回102
+local num = tonumber("123456red");     -- 返回nil
+local num = tonumber("red");           -- 返回nil
+local num = tonumber("true");          -- 返回nil
+local num = tonumber({x  =10, y = 20});-- 返回nil
+
+
+local str=string.format("%s %d %f %x %X",12,12,12,12,12) --字符串"12",整数12,小数12,将会被转成小写16进制的12,将会被转成大写16进制的12
+
+table是集合
+	table.concat(table, sep,  start, end)
+	concat是concatenate(连锁, 连接)的缩写. table.concat()函数列出参数中指定table的数组部分从start位置到end位置的所有元素, 元素间以指定的分隔符(sep)隔开。除了table外, 其他的参数都不是必须的, 分隔符的默认值是空字符, start的默认值是1, end的默认值是数组部分的总长. sep, start, end这三个参数是顺序读入的, 所以虽然它们都不是必须参数, 但如果要指定靠后的参数, 必须同时指定前面的参数.
+
+	table.insert(table, pos, value) 
+	table.insert()函数在table的数组部分指定位置(pos)插入值为value的一个元素. pos参数可选, 默认为数组部分末尾.
+
+	table.maxn(table) 
+	table.maxn()函数返回指定table中所有正数key值中最大的key值. 如果不存在key值为正数的元素, 则返回0. 此函数不限于table的数组部分
+
+	table.remove(table, pos) 
+	table.remove()函数删除并返回table数组部分位于pos位置的元素. 其后的元素会被前移. pos参数可选, 默认为table长度, 即从最后一个元素删起.
+
+	table.sort(table, comp) 
+	table.sort()函数对给定的table进行升序排序.comp是一个可选的参数, 此参数是一个外部函数, 可以用来自定义sort函数的排序标准.此函数应满足以下条件: 接受两个参数(依次为a, b), 并返回一个布尔型的值, 当a应该排在b前面时, 返回true, 反之返回false.
+
+	table.foreachi(table, function(i, v))
+	会期望一个从 1（数字 1,也只迭代key为数字的value）开始的连续整数范围，遍历table中的key和value逐对进行function(i, v)操作
+
+	table.foreach(table, function(i, v))
+	与foreachi不同的是，foreach会对整个表进行迭代
+
+	table.getn(table)
+	返回table中元素的个数
+
+	table.setn(table, nSize)
+	设置table中的元素个数
+
+
