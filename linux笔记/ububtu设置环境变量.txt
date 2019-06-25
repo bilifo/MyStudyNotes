@@ -1,0 +1,28 @@
+查看环境变量：
+env：env命令是environment的缩写，用于列出所有的环境变量；
+export：单独使用export命令也可以像env列出所有的环境变量，不过export命令还有其他额外的功能；
+echo $PATH： echo $PATH用于列出变量PATH的值，里面包含了已添加的目录。
+
+系统包含两类环境变量：系统环境变量和用户环境变量。系统环境变量对所有系统用户都有效，用户环境变量仅仅对当前的用户有效。
+
+用户环境变量通常被存储在下面的文件中：
+    ~/.profile
+    ~/.bash_profile 或者 ~./bash_login
+    ~/.bashrc
+上述文件在Ubuntu 10.0以前版本不推荐使用。
+
+系统环境变量一般保存在下面的文件中：
+    /etc/environment
+    /etc/profile
+    /etc/bash.bashrc
+/etc/profile和 /etc/bash.bashrc在Ubuntu 10.0版本中不推荐使用。
+
+/etc/profile中设定的变量(全局)的可以作用于任何用户,而~/.bashrc等中设定的变量(局部)只能继承 /etc/profile中的变量,他们是"父子"关系。 
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+1.用lsusb命令看usb是否识别和ID XXXX:ZZZZ
+2.使用创建并输入 echo 0xXXXX > ~/.android/adb_usb.ini 
+3.在 /etc/udev/rules.d/ 目录下创建70-android.rules，并在其中输入
+	UBSYSTEM=="usb", ATTRS{idVendor}=="XXXX", ATTRS{idProduct}=="ZZZZ", MODE="0666"
+4.sudo chmod 666 /etc/udev/rules.d/70-android.rules将文件权限进行修改
+5.sudo service udev restart重启
+6.以最高权限运行adb kill-server和adb start-server
+7.（可選）設備重啓

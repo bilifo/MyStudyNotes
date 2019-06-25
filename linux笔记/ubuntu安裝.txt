@@ -1,0 +1,7 @@
+ubuntu安装的软件，一般安装软件都是使用apt-get install。
+
+A、下载的软件的存放位置：/var/cache/apt/archives
+B、安装后软件的默认位置：/usr/share
+C、可执行文件位置：/usr/bin
+D、配置文件位置：/etc
+E、lib文件位置：/usr/lib
