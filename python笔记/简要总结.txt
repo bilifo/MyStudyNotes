@@ -1,0 +1,60 @@
+符号定义:
+	(数据) 元组
+	[数据] 列表
+	{key:value} 字典
+
+类型转换:
+	str(123) 转字符串(也可作用于集合,字典)
+	hex(123) 将十进制数123转成16进制hex
+	otc(123) 将十进制数123转成8进制
+	bin(123) 将十进制数123转成2进制
+	
+	int(x,16) 将16进制的字符x转成int//(当然,可以不止2,8,16进制,任何进制都可以)
+	float(x) 将x转换到一个浮点数。//(x可以是字符串也可以是数值)
+
+	list(x) 将元组或字符串转换成列表
+	set([iterable]) 创建无序不重复集合
+	dict() 创建字典.即map集合
+	tuple() 将列表转换成元组(定长不可改变列表,但可以拼接)	
+
+	chr(i) 将数值转成asc码的字符
+可迭代类型(字符串和集合)处理:
+	+	拼接
+	*	重复
+	[i]	获得i位的数
+	[i:j]	获得i(包含i)到j(不包含j)内的数据
+	a in iteration	判断a是否在iteration集合或字符串中
+	for a in iteration	循环迭代iteration
+	len(iteration)	总长
+	max(iteration)	最大值
+	min(iteration)	最小值
+		
+
+集合处理:
+	list:
+	增:	list.append(obj)	末尾添加	
+		list.extend(seq)	末尾一次性添加另一个集合	
+		list.insert(index,obj)	将对象插到index处		
+	删:	list.pop(i)		删除指定序号i项的值(默认删最后一个)
+		list.remove(obj)	删除指定值(注意,当有多个相同值时,只删遇见的第一个值)
+		list.clear()		清空
+	改:	
+	查:	list.index(x[, start[, end]])	查找匹配obj的对象位置
+		list.count(obj)	统计obj出现次数
+	其他:	list.reverse()	反转列表中的元素
+		list.copy()		复制列表
+
+	set:
+	增:	set.add		set.updata	
+	删:	set.pop		set.remove
+	改:
+	查:
+
+	dict:
+	增:	dict.update
+	删:	dict.pop		dict.clear
+
+效率优化:
+	1/数据量比较大的且需要查找元素的时候请使用dict, set.因为dict是O(1)，list需要遍历，是O(n)
+	2/list因为占用的内存会随着元素的增大而增大，所以最好不要用 List 来保存中间结果，而是通过 iterable 对象来迭代
+
