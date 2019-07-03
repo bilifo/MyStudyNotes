@@ -1,0 +1,20 @@
+类型转换:
+	数组(包括字符串数组)转List:
+		List<数组类型> list=Arrays.asList(数组)//注意int[]或float[]这样的基础类型数组,是转不成功的,得用Integer[]或Float[],且返回得list是定长的,无法add和remove
+	List转数组:
+		Object[] obj=list.toArray() 或者list.toArray(T[] t)
+	
+	List转Set:
+		Set set = new HashSet(new ArrayList());
+	Set转List
+		List list = new ArrayList(new HashSet());
+
+	数组转为Set
+		Set set = new HashSet(Arrays.asList(数组));
+	Map的值转化为Set
+		Set set = new HashSet(map.values());
+截取:
+	查找指定目标list的第一次出现的起始位置:
+		Collections.indexOfSubList(list_father,list_child)
+	List截取子list:
+		list.subList(from,to)

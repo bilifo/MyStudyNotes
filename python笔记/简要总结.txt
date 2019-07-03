@@ -38,8 +38,8 @@
 	删:	list.pop(i)		删除指定序号i项的值(默认删最后一个)
 		list.remove(obj)	删除指定值(注意,当有多个相同值时,只删遇见的第一个值)
 		list.clear()		清空
-	改:	
-	查:	list.index(x[, start[, end]])	查找匹配obj的对象位置
+	改:	list[i]=新值
+	查:	list.index(x[, start[, end]])	查找匹配obj的对象位置,如果没有找到对象则抛出异常
 		list.count(obj)	统计obj出现次数
 	其他:	list.reverse()	反转列表中的元素
 		list.copy()		复制列表
@@ -52,7 +52,8 @@
 
 	dict:
 	增:	dict.update
-	删:	dict.pop		dict.clear
+	删:	dict.pop(key[,default])		更据key删除(可以加上值),返回被删除的值	
+		dict.clear		全部清除
 
 效率优化:
 	1/数据量比较大的且需要查找元素的时候请使用dict, set.因为dict是O(1)，list需要遍历，是O(n)
