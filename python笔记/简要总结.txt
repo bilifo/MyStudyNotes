@@ -1,6 +1,7 @@
 符号定义:
 	(数据) 元组
 	[数据] 列表
+	{value1,value2} set
 	{key:value} 字典
 
 类型转换:
@@ -45,16 +46,59 @@
 		list.copy()		复制列表
 
 	set:
-	增:	set.add		set.updata	
-	删:	set.pop		set.remove
-	改:
-	查:
+	增:	set.add(elmnt)
+		set.updata	
+	删:	set.pop		随机移除一个元素
+		set.remove(item)	移除集合中的指定元素,不存在抛异常
+		set.clear()		全清
+		set.discard(value)	删除指定值,删除不存在值时不会像remove报错
+	改:	set.update(set1)	修改当前集合，可以添加新的元素或集合到当前集合中，如果添加的元素在集合中已存在，则该元素只会出现一次，重复的会忽略。
+	查:	set.difference(set2)	返回差集,即set中有,而set2没有的集
+		set.difference_update(set2)	set中删除差集部分元素,形成新集
+		set.intersection(set1, set2 ... etc) 返回两个或更多集合中都包含的元素，即交集
+		set.intersection_update(set1, set2 ... etc)
+		set.isdisjoint(set1)	判断两个集合是否包含相同的元素，如果没有返回 True，否则返回 False
+		set.issubset(set1)	判断集合的所有元素是否都包含在指定集合中，如果是则返回 True，否则返回 False
+		set.issuperset(set1)	判断指定集合的所有元素是否都包含在原始的集合中，如果是则返回 True，否则返回 False
+		set.symmetric_difference(set1)	返回两个集合中不重复的元素集合，即会移除两个集合中都存在的元素。
+		set.symmetric_difference_update(set1)	移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中。
+		set.union(set1, set2...)	返回两个集合的并集，即包含了所有集合的元素，重复的元素只会出现一次。
+		
+	其他:	list.reverse()	反转列表中的元素
+		list.copy()		复制列表
 
 	dict:
 	增:	dict.update
 	删:	dict.pop(key[,default])		更据key删除(可以加上值),返回被删除的值	
 		dict.clear		全部清除
+	改:	dict[key]=value
+	查:	list(a.keys())[list(a.values()).index('a')]	根据value查第一个遇到的key
+		[k for k, v in 字典对象.items() if v == "要查的key的value"]	根据value查所有的key
 
+排序sorted(一般和lambda一起使用):
+	sorted(iterable, key=None, reverse=False)
+	eg: sorted(array,key=lambda x:x["age"])	#以array中的各个数据x的x["age"]为排序标准
+	eg: sorted(array,key=lambda x:abs(x)) 	#以array中的各个数据x的abs(x)为排序标准
+
+字符串处理:
+	增:
+	删:
+	改:	str.encode(encoding='UTF-8',errors='strict')	以指定的编码格式编码字符串。errors参数可以指定不同的错误处理方案。
+		bytes.decode(encoding="utf-8", errors="strict")	以指定的编码格式解码 bytes 对象。
+		str.replace(old, new[, max])	把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次
+	查:	str.find(str1, beg=0, end=len(str))	检测字符串中是否包含子字符串 str ，如果指定 beg（开始） 和 end（结束） 范围，没在范围返回-1
+		str.index(str, beg=0, end=len(string))	和find一样,只是如果没找到会报错		
+		str.count(sub, start= 0,end=len(string))	统计字符串里某个字符或串出现的次数。可选参数为在字符串搜索的开始与结束位置。
+		str.endswith(suffix[, start[, end]])	用于判断字符串是否以指定后缀结尾，如果以指定后缀结尾返回 True，否则返回 False。可选参数 "start" 与 "end" 为检索字符串的开始与结束位置。
+		str.startswith(substr, beg=0,end=len(string));用于检查字符串是否是以指定子字符串开头，如果是则返回 True，否则返回 False。
+	转换:
+		str.join(列表)	eg:("-".join( {"r", "u", "n", "o", "o", "b"} )) #r-n-o-b-u
+		str.lower()		转换字符串中所有大写字符为小写
+		str.swapcase()	大写转换为小写，小写转换为大写
+		str.upper()		小写字母转为大写字母
+		str.capitalize()	第一个字母变成大写,其他字母变小写
+		str.split("分割符",次数)	通过指定分隔符对字符串进行切片，如果参数 num 有指定值，则仅分隔 num+1 个子字符串,注意,分割符不会出现在生成的列表中
+		str.strip([chars])	用于移除字符串头尾指定的字符（默认为空格）或字符序列 eg:"123abcrunoob3132".strip( '12' ) #3abcrunoob313	注意:并不是删"12",而是'1'和'2'
 效率优化:
 	1/数据量比较大的且需要查找元素的时候请使用dict, set.因为dict是O(1)，list需要遍历，是O(n)
 	2/list因为占用的内存会随着元素的增大而增大，所以最好不要用 List 来保存中间结果，而是通过 iterable 对象来迭代
