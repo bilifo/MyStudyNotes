@@ -75,13 +75,13 @@
 	改:	dict[key]=value
 	查:	list(a.keys())[list(a.values()).index('a')]	根据value查第一个遇到的key
 		[k for k, v in 字典对象.items() if v == "要查的key的value"]	根据value查所有的key
-		按key排序:for i in sorted (dict) : 
-		按value排序:sorted(dict.items(), key = lambda kv:(kv[1], kv[0]))
+		max(dict1,key=dict1.get)	查最大值和最小值
 
 排序sorted(一般和lambda一起使用):
 	sorted(iterable, key=None, reverse=False)
 	eg: sorted(array,key=lambda x:x["age"])	#以array中的各个数据x的x["age"]为排序标准
 	eg: sorted(array,key=lambda x:abs(x)) 	#以array中的各个数据x的abs(x)为排序标准
+	eg:dict2 = sorted(dict1,key=lambda x:dict1[x],reverse=True)#dict1字典按照每项key-value对x(字典只能取到key的索引)的value值来由大到小排序
 
 字符串处理:
 	增:
