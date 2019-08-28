@@ -6,7 +6,7 @@ git log --graph		//可以看到简单的分支合并图
 
 git clone 项目地址	//把项目git到本地
 
-git reflog		//显示整个本地仓库的commit,包括正常commit和撤销commit
+git reflog		//显示整个本地仓库的commit,包括正常commit和撤销commit,常常用来对reset --hard的还原
 git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态,再commit
 git reset commit号	//对于还没有push的回退.
 git reset --hard HASH 	//返回到某个节点，不保留修改。
