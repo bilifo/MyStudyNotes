@@ -1,4 +1,4 @@
-符号定义:
+﻿符号定义:
 	(数据) 元组
 	[数据] 列表
 	{value1,value2} set
@@ -82,6 +82,10 @@
 	eg: sorted(array,key=lambda x:x["age"])	#以array中的各个数据x的x["age"]为排序标准
 	eg: sorted(array,key=lambda x:abs(x)) 	#以array中的各个数据x的abs(x)为排序标准
 	eg:dict2 = sorted(dict1,key=lambda x:dict1[x],reverse=True)#dict1字典按照每项key-value对x(字典只能取到key的索引)的value值来由大到小排序
+	
+判断简写:	结果 = 条件表达式 and {为true的返回} or {为false的返回}
+循环简写:	[循环里的操作(如果最后接if,表示if里面的操作) for i in 列表 if 条件表达式]
+	[双重循环里的操作 for i in 列表1 for j in 列表2 if 条件表达式]
 
 字符串处理:
 	增:
