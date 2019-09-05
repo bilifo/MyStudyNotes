@@ -29,6 +29,7 @@
 	len(iteration)	总长
 	max(iteration)	最大值
 	min(iteration)	最小值
+		
 
 
 集合处理:
@@ -108,7 +109,8 @@
 		UPPER_CASE_RE = re.compile('[A-Z]')#表达式匹配大写字符
 		DIGIT_RE.search(data)#搜索data是否包含大写字符
 
-
+lambda表达式:
+		x=lambda x,y:x+y	冒号前是参数,冒号后是x+y
 
 
 
