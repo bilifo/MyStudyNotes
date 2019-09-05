@@ -1,236 +1,239 @@
-http://python.usyiyi.cn/   ����python�ֲ�
+http://python.usyiyi.cn/   中文python手册
 
-�����������ͺ�ת���ַ���һ����,������˫���Ŷ���ʾ�ַ���
-
-
-ִ������:
-	��������:			os.system("������")
-	���Ի�÷��ش�������ļ�:	output=os.popen("������")	output.read()	
-	ʹ��commandsģ��		(status, output)=subprocess.getstatusoutput('������')
+基本数据类型和转义字符是一样的,单引号双引号都表示字符串
 
 
-ע�ͣ�
-	#	ע��
-	'''	����ע�ͣ�ȷʵ'''��ʾ�ɻ����ַ�����
+执行命令:
+	不带返回:			os.system("命令行")
+	可以获得返回带结果的文件:	output=os.popen("命令行")	output.read()
+	使用commands模块		(status, output)=subprocess.getstatusoutput('命令行')
+
+
+注释：
+	#	注释
+	'''	多行注释（确实'''表示可换行字符串）
 
 	#!/usr/bin/env python3
 	# -*- coding: utf-8 -*-
-	��һ��ע����Ϊ�˸���Linux/OS Xϵͳ������һ��Python��ִ�г���Windowsϵͳ��������ע�ͣ�
-	�ڶ���ע����Ϊ�˸���Python������������UTF-8�����ȡԴ���룬��������Դ������д������������ܻ������롣
-	������UTF-8���벢����ζ�����.py�ļ�����UTF-8����ģ����벢��Ҫȷ���ı��༭������ʹ��UTF-8 without BOM���룺
+	第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；
+	第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
+	申明了UTF-8编码并不意味着你的.py文件就是UTF-8编码的，必须并且要确保文本编辑器正在使用UTF-8 without BOM编码：
 
-������
-	None����ֵ����������ֵ��return��䷵��None��
-	��������ҪԤ��ָ��ĳ�����ͣ��������ݸ�ֵ�������Զ��ı����͡�
-	�������Է��ض��ֵ����ʵ�Ǽ��󣬷��ص���һ��tuple�����ż��ϣ���
-������:
-	global �ڷ�����д�ڱ���ǰ��,˵���ñ�����ȫ�ֱ���,globalʱ,���ܽ��и�ֵ����������
-	global����һ���õİ취,��static={'������':����ֵ}��map������,static['������']
+变量：
+	None表空值，不带参数值的return语句返回None。
+	变量不需要预先指定某个类型，变量依据赋值的类型自动改变类型。
+	函数可以返回多个值（其实是假象，返回的是一个tuple（括号集合））
+作用域:
+	global 在方法里写在变量前面,说明该变量是全局变量,global时,不能进行赋值和其他操作
+	global不是一个好的办法,用static={'变量名':变量值}的map来代替,static['变量名']
 
+	*变量名	可变参数(传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple)
+	**变量名	关键参数(传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict)
+	可变参数 和 关键参数 区别在于关键参数传入的是 eg:def person(name, age, *, city, job):	--	person('Jack', 24, city='Beijing', job='Engineer')
+	注意:参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。 eg:def f2(a, b, c=0, *, d, **kw):
 
-�������
-	*	��
-	/	����� 
-	//	����
-	**	�ݣ���η���
-	û��++��--��������
+运算符：
+	*	乘
+	/	浮点除
+	//	整除
+	**	幂（多次方）
+	没有++和--运算能力
 
-�жϣ�(��ʽ if(XXX):)
-	��java��ͬ����,python��if,���Զ��жϷ�0�ͷǿ�ΪTrue,��a=1,if(a):return True
-	in��not in		�ж�Ԫ���Ƿ�����뼯��
-	is��not is		�ж϶����Ƿ���ͬһ������
-	is�жϱ��������ã�==�жϱ�����ֵ
+判断：(格式 if(XXX):)
+	和java不同的是,python的if,会自动判断非0和非空为True,即a=1,if(a):return True
+	in和not in		判断元素是否存在与集合
+	is和not is		判断对象是否是同一个引用
+	is判断变量的引用，==判断变量的值
 
-	�ж������Щ��ͬ��û��{ }�����ã������������滨����
-	�磺if������
+	判断语句有些不同，没有{ }，是用：和缩进来代替花括号
+	如：if（）：
 		XXX
-	elif������
+	elif（）：
 		YYY
-	else��
+	else：
 		ZZZ
 
-ѭ����(��ʽ for i in list:)
-	for �������� in ����or��Χ(�൱��java��foreach)
-	else������ѭ����û������break��continueʱ������ִ�У�
-	for i in range(1,5,2)�൱��java��for(int i=1,i<5,i+2)
-	
+循环：(格式 for i in list:)
+	for 单个变量 in 集合or范围(相当于java的foreach)
+	else：（在循环中没有遇到break或continue时，额外执行）
+	for i in range(1,5,2)相当于java的for(int i=1,i<5,i+2)
 
-�ַ�����
-	ռλ����
-		ʹ��:
+
+字符串：
+	占位符：
+		使用:
 			>>> 'Hi, %s, you have $%d.' % ('Michael', 1000000)
 			'Hi, Michael, you have $1000000.'
-			%s���ַ����滻����%d�������滻����%f������������%x��16��������
-			�м���%?ռλ��������͸�������������ֵ��˳��Ҫ��Ӧ�á����ֻ��һ��%?�����ſ���ʡ�ԡ�
+			%s（字符串替换），%d（整数替换），%f（浮点数），%x（16进制数）
+			有几个%?占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个%?，括号可以省略。
 
-		���ƣ�
+		限制：
 			>>> '%2d-%02d' %(3, 1)		' 3-01'
 			>>> '%.2f' % 3.1415926		'3.14'
 
-	�ַ�����ƴ�ӣ�
-		��Ȼ���ǡ�+���ţ���print�ĵ�һ���ַ�����ֻ�ܽӡ������š����ڳ��ַ���,��Ҫʹ�ø÷�ʽ,����ռ�ڴ�
+	字符串的拼接：
+		虽然还是‘+’号，但print的第一个字符串后只能接‘，’号。对于长字符串,不要使用该方式,极其占内存
 
-	���ı��룺
+	更改编码：
 		"XXX".encode("UTF-8")
 
-	�ַ������鳤�ȣ�
-		len("XXX")   	����a[-1]��ʾ���һ��Ԫ��,[-2]�������ڶ�
+	字符、数组长度：
+		len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
 
-	isinstance���������ж�һ�������ǲ����ַ���
-	
-	
+	isinstance函数可以判断一个变量是不是字符串
 
-IO��
-	�����ʾ��	print	eg��print("XXX")
-	���룺		input	eg��name=input����
 
-���飺���൱��java�еļ��ϣ�(�ַ���Ҳ���Ե�����������ȡĳλ���ַ�)
-	[1����2����temp...]��ʾ���顣������
-	��ȡ����Ԫ�أ�				L[0:3]ȡL�����е�0��1��2��������3
-	�����������ݵ�ĩβ��			SZ.append("XXX")
-	�����������ݵ�ָ���±꣺		SZ.insert(1,'XXX')
-	����ɾ��������ָ���±����ݣ�		SZ.pop(1)
-	�����滻ָ���±����ݣ�			SZ[1]="XXX"
-	ͳ������������˶��ٴ�ĳԪ��		SZ.count(XXX)
-	ɾ�������е�һ�γ��ֵ�ĳԪ��		SZ.remove(XXX)
-	���ȫ������				SZ.clear()
-	��������				SZ.copy()
-	�������Ԫ�ؿ����ǲ�ͬ�����ͣ�����javaһ���ϸ����֣�����������԰�������
 
-	(1����2����temp....)��ʾ���ɱ����顣С����
-�ֵ�(�൱��map)
-	dict�ؼ���.
-	{��one����1����two������2������three����temp...}��ʾmap���ϡ�������
-	eg:diec={"��":'��',"��":'��'}   diec['��']=='��'
+IO：
+	输出显示：	print	eg：print("XXX")
+	输入：		input	eg：name=input（）
 
-set����(��java��setһ��)
+数组：（相当于java中的集合）(字符串也可以当作数组来读取某位的字符)
+	[1，“2”，temp...]表示数组。中括号
+	获取数组元素：				L[0:3]取L数组中的0，1，2，不包括3
+	数组添加数据到末尾：			SZ.append("XXX")
+	数组添加数据到指定下标：		SZ.insert(1,'XXX')
+	数组删除并返回指定下标数据：		SZ.pop(1)
+	数组替换指定下标数据：			SZ[1]="XXX"
+	统计数组里出现了多少次某元素		SZ.count(XXX)
+	删除数组中第一次出现的某元素		SZ.remove(XXX)
+	清空全部数据				SZ.clear()
+	复制数组				SZ.copy()
+	数组里的元素可以是不同的类型（不像java一样严格区分），数组里可以包含数组
+
+	(1，“2”，temp....)表示不可变数组。小括号
+字典(相当于map)
+	dict关键字.
+	{“one”：1，“two”：“2”，“three”：temp...}表示map集合。花括号
+	eg:diec={"姓":'张',"名":'三'}   diec['名']=='三'
+
+set集合(和java的set一样)
 	setdata=set()
 
-��:
+类:
 	class XXX:
-		def __init__(self):#��ʼ��,���캯��
-	self��ʾ����ʵ��,����java��this,ÿ���෽���ĵ�һ������������,�ڵ���ʱ����Ҫ����ֵ
-	��_�� ��ʼ�ĳ�Ա��������������������˼��ֻ����������������Լ��ܷ��ʵ���Щ����
-	��__�� ��ʼ����˽�г�Ա����˼��ֻ��������Լ��ܷ��ʣ����������Ҳ���ܷ��ʵ��������
-	"__xxx__"��ʾϵͳ�ڽ�����,x.__str__()��ȫ��ͬstr(x)
-		��:     self.name=templist.__getitem__(templist.__len__()-1)
+		def __init__(self):#初始化,构造函数
+	self表示对象实例,类似java的this,每个类方法的第一个参数就是它,在调用时不需要传该值
+	“_” 开始的成员变量叫做保护变量，意思是只有类对象和子类对象自己能访问到这些变量
+	“__” 开始的是私有成员，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据
+	"__xxx__"表示系统内建函数,x.__str__()完全等同str(x)
+		例:     self.name=templist.__getitem__(templist.__len__()-1)
         		self.name2=getitem(templist,len(templist)-1)
-	
-�̳�:
-	class XXX(ZZZ):#ZZZ���Ǹ���
+
+继承:
+	class XXX(ZZZ):#ZZZ就是父类
 		def __init__(self):
 			ZZZ.__init__()
-����:ÿ���඼��һ������object
-	
-	
+超类:每个类都有一个超类object
 
-����ת����
-	int(x) ��xת��Ϊһ�������� int(x,16) ��hex��ʽ���ַ�xת��int//(��Ȼ,���Բ�ֹ2,8,16����,�κν��ƶ�����)
-	float(x) ��xת����һ����������
-	list��range(5)�������ɵ�0��5�����У�ת������
+
+
+类型转化：
+	int(x) 将x转换为一个整数。 int(x,16) 将hex形式的字符x转成int//(当然,可以不止2,8,16进制,任何进制都可以)
+	float(x) 将x转换到一个浮点数。
+	list（range(5)）新生成的0到5的序列，转成数组
 	str(123)
-	hex(123) ��ʮ������123ת��hex
-	otc(123) ��ʮ������123ת��8����
-	bin(123) ��ʮ������123ת��2����
-	complex(x) ��xת����һ��������ʵ������Ϊ x����������Ϊ 0��
-	complex(x, y) �� x �� y ת����һ��������ʵ������Ϊ x����������Ϊ y��x �� y �����ֱ���ʽ��
+	hex(123) 将十进制数123转成hex
+	otc(123) 将十进制数123转成8进制
+	bin(123) 将十进制数123转成2进制
+	complex(x) 将x转换到一个复数，实数部分为 x，虚数部分为 0。
+	complex(x, y) 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。
 
-��������
-	a=iter��list����list���齻��������a
-	next��a�����������a����һ��Ԫ��
-	list.extend(������)  �ѵ�������ֵ���ӵ�list��
+迭代器：
+	a=iter（list）将list数组交给迭代器a
+	next（a）输出迭代器a的下一个元素
+	list.extend(迭代器)  把迭代器的值添加到list中
 
-��������
-	yield ֻҪ�����г�����yield���Ϳ��Ա���Ϊ�����������൱��һ��ջ������Ҫ�����ı���ѹ��ջ����󲢷������ջ��ʹ�ó�������Щ��Ҫͨ��һ������������һ��list��ʱ�򣬶������list�Ǹ���������
+生成器：
+	yield 只要函数中出现了yield，就可以被称为生成器。它相当于一个栈，把需要保留的变量压入栈。最后并返回这个栈。使用场合是那些需要通过一个函数，返回一个list的时候，而且这个list是个迭代器。
 	http://www.jianshu.com/p/61dbec76b39b
 
-������
-	��def�ؼ��ֿ�ͷ����Ӻ����������ƺͣ�����������Ϊ������������������ڸ�������ֵ����ΪĬ��ֵ��������ǰ���*�ı�ʾ�������������ڲ�������javaһ���������ͣ���return�����˳�������������һ������ʽ��
-	lambda�γɵ������������൱��java����Ԫ����ʽ��(������ᵽ�� lambda ����ʽ��ͨ��������Ҫһ�������������ֲ������ȥ����һ�������ĳ�����ʹ�ã�Ҳ����ָ����������)
-	������
+函数：
+	以def关键字开头，后接函数方法名称和（），括号内为传入参数，如在括号内给参数赋值，则为默认值。变量名前面加*的表示不定参数。由于参数不像java一样传递类型，。return用来退出函数，并返回一个表达式。
+	lambda形成的匿名函数，相当于java的三元表达式。(编程中提到的 lambda 表达式，通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数。)
+	作用域？
 
 
-sorted(����):
-	sort ��ı伯�ϵ�˳��
-	sorted ����ı�ԭ����˳��,�᷵��һ���ź�����¼���
+sorted(排序):
+	sort 会改变集合的顺序
+	sorted 不会改变原集合顺序,会返回一个排好序的新集合
 
-�ڽ�����:
-	�ַ������鳤�ȣ�
-	len("XXX")   	����a[-1]��ʾ���һ��Ԫ��,[-2]�������ڶ�
+内建函数:
+	字符、数组长度：
+	len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
 
-	isinstance���������ж�һ�������ǲ����ַ���
-	
-	locals���ص�ǰ�������ж���ı�������
+	isinstance函数可以判断一个变量是不是字符串
 
-�ļ�����:
-	os.path.split(��str.split('/')[-1])		ȡĿ¼���ļ���.
-		eg:os.path.splitext("/root/a.py")	���('/root/a', '.py')
-	os.path.splitext	ȡ�ļ���׺.
-		eg:os.path.split("/root/a.py")		���('/root', 'a.py')
-	open	
-		ע��·��������ļ���,����ʾopen��������.
-		����win��linux������,·����ͳһ����"/"
-		open���ص���list,ÿһ�е�������һ��Ԫ��
-		open�����ڵ��ļ�ʱ,���Լ�����,��ǰ����Ȩ����w
-		"w"����������ļ�������������������,"a"��׷��,"w+"��ʾ��Ĭ�϶�Ȩ�޼���д
-		Ȩ�ް���"b"���ֽڷ�ʽ��д,������encoding="utf-8",�ᱨbinary mode doesn't take an encoding argument�Ĵ�
-		��"with open(�ļ�) as ������"�ķ�ʽ���ļ�,���Բ��ÿ��ǹر�
+	locals返回当前作用域中定义的变量集合
+
+文件操作:
+	os.path.split(或str.split('/')[-1])		取目录与文件名.
+		eg:os.path.splitext("/root/a.py")	结果('/root/a', '.py')
+	os.path.splitext	取文件后缀.
+		eg:os.path.split("/root/a.py")		结果('/root', 'a.py')
+	open
+		注意路径如果是文件夹,会提示open参数出错.
+		由于win和linux的区别,路径都统一采用"/"
+		open返回的是list,每一行的内容是一个元素
+		open不存在的文件时,会自己创建,但前提是权限是w
+		"w"会清除已有文件的内容来添加新内容,"a"是追加,"w+"表示在默认读权限加上写
+		权限包含"b"以字节方式读写,再添加encoding="utf-8",会报binary mode doesn't take an encoding argument的错
+		用"with open(文件) as 变量名"的方式打开文件,可以不用考虑关闭
 
 	seek
-		���α�Ӷ�λ���ļ���ͷ
-	print(����,file=open('�ļ�·��','w+'))����ֱ�Ӱ����ݱ��浽�ļ���,��Ȼ,ǰ�����ļ�Ҫ��open
+		将游标从定位到文件开头
+	print(内容,file=open('文件路径','w+'))将会直接把内容保存到文件中,当然,前提是文件要先open
 	read
 
-�쳣����:
-	try: ... except: ...(���ѡ�񲻴���,��pass) finally: ...(����ִ��)
-ͨ�ô���:
-	ʹ��pickle����(�൱�ڰ�׿shard),�Զ����Ʒ�ʽ����Ͷ�д
-	�÷�:
+异常处理:
+	try: ... except: ...(如果选择不处理,用pass) finally: ...(都会执行)
+通用储存:
+	使用pickle引擎(相当于安卓shard),以二进制方式储存和读写
+	用法:
 		import pickle
-		with open('�����ļ�.txt','wb',) as tempfile:
-			#�������ݵ��ļ�
+		with open('测试文件.txt','wb',) as tempfile:
+			#保存数据到文件
 			pickle.dump([1,2,three],tempfile)
-		with open('�����ļ�.txt','rb',) as tempfile:
-			#ȡ�ļ�����
+		with open('测试文件.txt','rb',) as tempfile:
+			#取文件数据
 			pickle.load(tempfile)
 
-�������߳�:
+开启新线程:
 	from multiprocessing.dummy import Pool
-	pool=Pool(4)#2�˿�4�߳�
-	results=pool.map(����������,���������Ĳ���)
-	pool.close()#�رս��̳أ����ٽ����µĽ���
-	pool.join()#�����������ȴ��ӽ��̵��˳�
+	pool=Pool(4)#2核开4线程
+	results=pool.map(方法函数名,方法函数的参数)
+	pool.close()#关闭进程池，不再接受新的进程
+	pool.join()#主进程阻塞等待子进程的退出
 pip:
-	����������.�����Դ�PyPI����һЩ�������Ϳ��,�ܲ鿴��������Ϣ
-	pip install ��װ��
-	pip download ���ذ�
-	pip uninstall ж�ذ�
-	pip freeze  ������ģʽ�а�װ��?
-	pip list �г��Ѿ���װ�İ�
-	pip show �����ľ�����Ϣ
-	pip check ��֤�Ѱ�װ�İ��Ƿ���Ҫ���ݵ�������
-	pip search ����PyPI�ϵİ�
-	pip wheel �����������������?
-	pip hash ��������ɢ��
-	pip completion ����������ɵĸ�������?
+	包管理工具.它可以从PyPI下载一些软件包和框架,能查看软件包信息
+	pip install 安装包
+	pip download 下载包
+	pip uninstall 卸载包
+	pip freeze  在需求模式中安装包?
+	pip list 列出已经安装的包
+	pip show 看包的具体信息
+	pip check 验证已安装的包是否需要兼容的依赖项
+	pip search 搜索PyPI上的包
+	pip wheel 根据你的需求构造轮子?
+	pip hash 包档案的散列
+	pip completion 用于命令完成的辅助命令?
 	pip help
 
-����Ҫ�����Ҫ��:
-	1/�����㷨
-	2/���߳�����,�ֲ�ʽ��Ⱥ
-	3/��ȡ��Ч����
-	4/������ҳ�ĸ���
-	5/���Ĺ��ɺͷ�������
+爬虫要解决的要点:
+	1/判重算法
+	2/多线程运行,分布式集群
+	3/抽取有效数据
+	4/考虑网页的更新
+	5/爬的规律和防御策略
 
-�������ſ��:
+爬虫入门框架:
 	requests+lxml
-����ֲ�ʽϵͳ:
+爬虫分布式系统:
 	scrapy+momgodb+redis
-scrapy�̳�:
+scrapy教程:
 	http://www.cnblogs.com/-E6-/p/7213872.html
-pythonʵ�ֵ�PID:
+python实现的PID:
 	http://blog.csdn.net/u010256153/article/details/54928039
 
-pycharm ����ϵͳpython:
-	file--->settings--->project:XXX--->project interpreter--->����ͼ��--->add Local python--->System Interpreter
-
+pycharm 添加系统python:
+	file--->settings--->project:XXX--->project interpreter--->齿轮图标--->add Local python--->System Interpreter
