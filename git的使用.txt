@@ -18,14 +18,19 @@ git checkout . 		//本地所有修改的。没有的提交的，都返回到原来的状态
 git cherry-pick commit号	//多个commit号使用空格分割, commit号最好按提交时间先后排列, 即最先提交的commit放在前面.
 //如果没有冲突,再push,如果有冲突,使用git status查看冲突的文件,解决冲突。 执行add命令、执行commit命令，最后在提交即可了
 
-git rebase master(在topic分支下)
-git rebase master topic	//合并分支.两个都是把topic分支的改动合并到master分支.即把topic的修改,合并到master中
+git merge master(在topic分支下)	//将相同commit后的master的修改,复制过来,现在topic的修改后面,和rebase相反
+
+git rebase master(在topic分支下)	//将相同commit后的master的修改,复制过来,贴在共同commit后,再将原先topic的修改接在后面
+git rebase master topic	
 git rebase <upstream-branch-name> <to-branch-name>
 执行上述命令的过程为：
 1.切换到to-branch分支；
 2.将to-branch中比upstream-branch多的commit先撤销掉，并将这些commit放在一块临时存储区（.git/rebase）；
 3.将upstream-branch中比to-branch多的commit应用到to-branch上，此刻to-branch和upstream-branch的代码状态一致；
 4.将存放的临时存储区的commit重新应用到to-branch上；结束。
+
+或者在topic分支使用:
+git rebase 开始commit点 结束的commit点 --onto master	//--onto的意思是要将该指定的提交复制到哪个分支上
 
 冲突解决完之后，使用git add <file-name>来标记冲突已解决，最后执行git rebase --continue继续。如果中间遇到某个补丁不需要应用，可以用下面命令忽略：
 git rebase --skip
