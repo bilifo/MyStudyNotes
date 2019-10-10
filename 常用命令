@@ -1,0 +1,4 @@
+1/查看支持的指令
+/bin ,/usr/bin,/sbin,/usr/sbin 目录 ls 就可以看到当前自己linux支持那些命令
+
+

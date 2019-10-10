@@ -1,0 +1,5 @@
+FROM ubuntu
+MAINTAINER bilifo
+ADD setup.sh .
+RUN bash -x setup.sh
+ENV USER=root

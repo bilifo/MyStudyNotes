@@ -26,6 +26,8 @@
 	scrapy：框架
 	由难到易
 
+	selenum2+BrowserMob Proxy（BMP代理），python中有browsermob-proxy-py实现，
+
 多线程:
 
 分布式:

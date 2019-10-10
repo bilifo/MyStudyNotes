@@ -8,6 +8,7 @@ urllib模块是自带库,可以非常容易的抓取URL内容,功能:
 爬虫所需要的功能，基本上在urllib中都能找到
 原文:https://www.jianshu.com/p/cfbdacbeac6e
 
+
 from urllib import request
 
 #打开一个url,返回一个文件对象.获得内容用read()
@@ -21,11 +22,16 @@ urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, c
 	context:
 
 
-
-
 urllib.urlopen(url[,data[,proxies]])	打开一个url,返回一个文件对象
 
 处理网页格式utf-8和gbk,最好是先看一下网页的meta下charset是什么格式
 
 有的代码是导的urllib2,这其实是python2.X所使用的包,python3.X是直接的urllib
+
+
+简单使用:
+import urllib.request
+respones=urllib.request.urlopen("https://www.python.org")
+print(respones.read().decode("UTF-8"))
+
 
