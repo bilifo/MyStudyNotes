@@ -1,0 +1,30 @@
+服务器
+192.168.1.246	123456
+192.168.1.247	123456
+连接：
+cmd中输入ssh panjunlong@192.168.1.247
+
+
+gerrit			
+192.168.1.248:8080		panjunlong		123456
+
+192.168.1.248		代码管理服务器
+192.168.1.253		通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
+
+申请的高通账户
+pan.junlong@bluebank.com.cn
+12345678Aa
+
+
+
+公司项目编译
+在LINUX/android/下
+1/. build
+2/选择3
+3/make -j16
+4/去项目目录下执行 ./pack_all_Flipphone.sh
+
+烧录
+如果是正常进入了安卓系统,需要在adb中输入adb reboot edl,来进入高通的刷机模式
+再用QFIL这个软件刷软件包
+
