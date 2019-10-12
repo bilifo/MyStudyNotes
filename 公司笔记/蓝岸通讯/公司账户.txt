@@ -19,7 +19,7 @@ pan.junlong@bluebank.com.cn
 
 公司项目编译
 在LINUX/android/下
-1/. build
+1/. build/envsetup.sh
 2/选择3
 3/make -j16
 4/去项目目录下执行 ./pack_all_Flipphone.sh
@@ -27,4 +27,9 @@ pan.junlong@bluebank.com.cn
 烧录
 如果是正常进入了安卓系统,需要在adb中输入adb reboot edl,来进入高通的刷机模式
 再用QFIL这个软件刷软件包
+
+CIT 常用指令
+*#2886#   Ceres、QC40A 
+*#37*#  NIKE
+*#*#0574#*#: KAIOS  logmanager
 

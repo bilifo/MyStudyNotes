@@ -1,0 +1,10 @@
+Gerrit实际上一个Git服务器，它为在其服务器上托管的Git仓库提供一系列权限控制，以及一个用来做Code Review是Web前台页面。当然，其主要功能就是用来做Code Review。
+
+我们平常的git代码来自git仓库,而gerrit让公司服务器作为一个代理仓库
+
+首先向管理员申请获得gerrit账号后,在设置里修改邮箱,并修改ssh key,该ssh key为服务器用户的key
+cat .ssh/id_rsa.pub
+
+获得代码:
+登录Gerrit后在Projects-->List, 选择相应工程your_project，进入该工程的General界面。
+选中“clone with commit-msg hook”和“SSH”:
