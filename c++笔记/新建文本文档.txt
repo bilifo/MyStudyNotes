@@ -28,6 +28,8 @@ int main(){
 声明时变量前加"基本类型 *",该指针变量表示另一个变量的地址	
 声明时变量前加"基本类型 **",该二级指针变量表示另一个一级"基本类型 *"型的指针变量地址
 调用时变量前加"*",表示取该地址的内容	
+特别注意:
+	在大多数的操作系统上，程序不允许访问地址为 0 的内存，因为该内存是操作系统保留的。然而，内存地址 0 有特别重要的意义，它表明该指针不指向一个可访问的内存位置。但按照惯例，如果指针包含空值（零值），则假定它不指向任何东西。并且在使用指针时,一定要避免出现使用未赋值的空指针
 
 
 static	文件内全局
@@ -50,3 +52,23 @@ include <iostream>
 	cin >> 变量1 >> 变量2;//将输了给变量,回车结束
 	cerr << "错误信息:" << str <<endl;
 	clog << "日志信息:" << str <<endl;
+
+结构体:
+struct struct 语句定义了一个包含多个成员的新的数据类型，struct 语句的格式如下
+
+struct type_name {
+member_type1 member_name1;
+member_type2 member_name2;
+member_type3 member_name3;
+.
+.
+} object_names;
+type_name 是结构体类型的名称，member_type1 member_name1 是标准的变量定义，比如 int i; 或者 float f;在结构定义的末尾，最后一个分号之前，您可以指定一个或多个结构变量，这是可选的。它是类的雏形
+用"."来访问结构体成员.
+函数的形参:void printBook( struct Books book );
+指向结构的指针:struct Books *struct_pointer;
+
+
+
+类和结构体的区别:
+类的成员默认是private的,而结构体是public.
