@@ -33,3 +33,5 @@ CIT 常用指令
 *#37*#  NIKE
 *#*#0574#*#: KAIOS  logmanager
 
+
+am start -n com.android.launcher3/.Launcher//进入防摔产品walabot的主页面
