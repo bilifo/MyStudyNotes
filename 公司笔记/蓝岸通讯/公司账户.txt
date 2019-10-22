@@ -1,3 +1,14 @@
+qq企业邮箱
+pan.junlong@bluebank.com.cn
+bilifo110BILIFO
+
+wifi
+TOPLINK_SW or TOPLINK_SW_5G
+12345678910
+
+FREEWIFI(可翻墙)
+123@#!123ok
+
 服务器
 192.168.1.246	123456
 192.168.1.247	123456
@@ -9,7 +20,7 @@ gerrit
 192.168.1.248:8080		panjunlong		123456
 
 192.168.1.248		代码管理服务器
-192.168.1.253		通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
+192.168.1.253	22	duan	722611	通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
 
 申请的高通账户
 pan.junlong@bluebank.com.cn
@@ -20,9 +31,12 @@ pan.junlong@bluebank.com.cn
 公司项目编译
 在LINUX/android/下
 1/. build/envsetup.sh
-2/选择3
+2/lunch 选择debug版本
 3/make -j16
 4/去项目目录下执行 ./pack_all_Flipphone.sh
+
+编译单个项目
+如packages/app下的settings,执行完上面1,2后,在3时执行mmm -j16 /packages/app/Settings
 
 烧录
 如果是正常进入了安卓系统,需要在adb中输入adb reboot edl,来进入高通的刷机模式
@@ -35,3 +49,7 @@ CIT 常用指令
 
 
 am start -n com.android.launcher3/.Launcher//进入防摔产品walabot的主页面
+
+bugzlia:
+http://www.bluebank-rd.com.cn:8000/bugzilla/buglist.cgi?Bugzilla_restrictlogin=on&GoAheadAndLogIn=Log%20in&f1=assigned_to&list_id=115498&o1=equals&resolution=---&v1=%25user%25
+黄鹏:huang.peng@bluebank.com.cn 		hp..0912

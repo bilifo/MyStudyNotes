@@ -13,23 +13,30 @@ int main(){
    return 0;
 }
 
+using namespace std命名空间有什么用?
+cout是std空间下的iostream文件的方法,虽然导了iostream,这是为了防止你也有一个iostream,里面也有一个cout方法.
+它起到的作用和java import com.XXX.xxx.iostream 一样.
+如果不使用命名空间,那在调用cout时,需要写成 std::cout < <"  " < <std::endl;
+建议不使用命名空间
+
 导包:#include <包名>			区别于java:implement com.XX.XXX
 
 
 基本类型:bool				区别于java:boolean
-基本类型:wchar_t				区别于java:
+基本类型:wchar_t			区别于java:
 常量:const					区别于java:final
 
 数字后加U/u或L/l表示该数字是无符号整数unsigned,长整数long
-声明时变量前加"基本类型 &",表示引用只是另一个变量的别称,实际是同一个东西(主要用于函数的形参和函数的返回类型)
-调用时变量前加 & 返回该变量的地址
+引用&:
+	声明时变量前加"基本类型 &",表示引用只是另一个变量的别称,实际是同一个东西(主要用于函数的形参和函数的返回类型)
+	调用时变量前加 & 返回该变量的地址
 
-
-声明时变量前加"基本类型 *",该指针变量表示另一个变量的地址	
-声明时变量前加"基本类型 **",该二级指针变量表示另一个一级"基本类型 *"型的指针变量地址
-调用时变量前加"*",表示取该地址的内容	
+指针*:
+	声明时变量前加"基本类型 *",该指针变量表示另一个变量的地址	
+	声明时变量前加"基本类型 **",该二级指针变量表示另一个一级"基本类型 *"型的指针变量地址
+	调用时变量前加"*",表示取该地址的内容	
 特别注意:
-	在大多数的操作系统上，程序不允许访问地址为 0 的内存，因为该内存是操作系统保留的。然而，内存地址 0 有特别重要的意义，它表明该指针不指向一个可访问的内存位置。但按照惯例，如果指针包含空值（零值），则假定它不指向任何东西。并且在使用指针时,一定要避免出现使用未赋值的空指针
+在大多数的操作系统上，程序不允许访问地址为 0 的内存，因为该内存是操作系统保留的。然而，内存地址 0 有特别重要的意义，它表明该指针不指向一个可访问的内存位置。但按照惯例，如果指针包含空值（零值），则假定它不指向任何东西。并且在使用指针时,一定要避免出现使用未赋值的空指针
 
 
 static	文件内全局
@@ -54,21 +61,208 @@ include <iostream>
 	clog << "日志信息:" << str <<endl;
 
 结构体:
-struct struct 语句定义了一个包含多个成员的新的数据类型，struct 语句的格式如下
-
-struct type_name {
-member_type1 member_name1;
-member_type2 member_name2;
-member_type3 member_name3;
-.
-.
-} object_names;
+struct 语句定义了一个包含多个成员的新的数据类型，struct 语句的格式如下
+	struct type_name {
+	member_type1 member_name1;
+	member_type2 member_name2;
+	member_type3 member_name3;
+	.
+	.
+	} object_names;
 type_name 是结构体类型的名称，member_type1 member_name1 是标准的变量定义，比如 int i; 或者 float f;在结构定义的末尾，最后一个分号之前，您可以指定一个或多个结构变量，这是可选的。它是类的雏形
 用"."来访问结构体成员.
 函数的形参:void printBook( struct Books book );
 指向结构的指针:struct Books *struct_pointer;
 
+类：
+class 定义一个类
+	class Box
+	{
+	   public:
+		  double length;   // 盒子的长度
+		  double breadth;  // 盒子的宽度
+		  double height;   // 盒子的高度
+		  Box（）；
+		  ~Box（）；
+	};
+	
+构造函数和析构函数：
+	构造函数是类的一种特殊的成员函数，它会在每次创建类的新对象时执行。构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回 void。构造函数可用于为某些成员变量设置初始值。
+	析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。
+	
+类外联函数：
+	比如上面的Box类，我们已经建立好了，但我们现在要新增一个函数方法，获得box体积，但我们又不想去原来的class box修改，此时就要用到外联。
+	double Box::getVolume(void)
+	{
+		return length * breadth * height;
+	}
+	范围解析运算符 ::来定义类外的实现函数方法。这也是c++约定熟成的函数方法声明方式。（存疑？？？）
+为什么我们要这样做？而不像Java一样，把所有函数方法写在类里面，做成内联的方式？
+	这样做，相当于Java的接口，c++的类，尽量只包含变量的声明和方法的声明，函数方法实现用外联的方式，适应变化
 
+继承：
+	class 子类: public 父类
+多继承：
+	class 子类:public 父类1，public 父类2，public 父类3
+	{
+	public：
+		方法
+	};
+多个父类如果含有相同名称成员或函数方法，势必造成混淆，所以在解决同名变量和方法时，需要用::来指定具体使用哪个父类的方法
+	class 子类:public 父类1，public 父类2，public 父类3
+	{
+	public：
+		父类1::变量名;
+		父类1::方法();
+	};
+或使用虚基类virtual，相当于Java的接口interface，祖先类为抽象类：
+	class 祖先类{}
+	class 父类1:virtual 祖先类{}
+	class 父类2:virtual 祖先类{}
+	class 子类:public 父类1,父类2{}
+尽量避免多继承
 
 类和结构体的区别:
 类的成员默认是private的,而结构体是public.
+
+多态:
+
+文件:
+include <fstream>
+包含3个新的数据类型
+	ofstream	该数据类型表示输出文件流，用于创建文件并向文件写入信息。
+	ifstream	该数据类型表示输入文件流，用于从文件读取信息。
+	fstream		该数据类型通常表示文件流，且同时具有 ofstream 和 ifstream 两种功能，这意味着它可以创建文件，向文件写入信息，从文件读取信息。
+包含的方法函数:
+	void open(const char *filename, ios::openmode mode);//open() 函数是 fstream、ifstream 和 ofstream 对象的一个成员。即三个都有open方法
+		第一个是文件路径,第二个是打开模式(可以结合使用,如 ios::out | ios::trunc):
+		ios::app		追加模式。所有写入都追加到文件末尾。
+		ios::ate		文件打开后定位到文件末尾。
+		ios::in			打开文件用于读取。
+		ios::out		打开文件用于写入。
+		ios::trunc		如果该文件已经存在，其内容将在打开文件之前被截断，即把文件长度设为 0。
+	
+	void close();//close() 函数是 fstream、ifstream 和 ofstream 对象的一个成员。
+	
+	读和写:
+		和iostream中使用的<< 和 >> 相同,不同的是不再使用cout和cin了,而是使用ofstream 和 ifstream的对象
+			char data[100],data2[100];
+			ofstream outfile;
+			outfile.open("test.txt");
+			outfile << data << endl;//向文件写入用户输入的数据
+			outfile.close();
+			
+			ifstream infile; 
+			infile.open("test.txt");
+			infile >> data2; 
+			infile.close();
+
+异常处理:和Java一样
+	try	{
+	   // 保护代码
+	}catch(...)	{
+	  // 能处理任何异常的代码
+	}
+C++ 提供了一系列标准的异常，定义在 <exception> 中，我们可以在程序中使用这些标准的异常。它们是以父子类层次结构组织起来的
+	std::exception			该异常是所有标准 C++ 异常的父类。
+	std::bad_alloc			该异常可以通过 new 抛出。
+	std::bad_cast			该异常可以通过 dynamic_cast 抛出。
+	std::bad_exception		这在处理 C++ 程序中无法预期的异常时非常有用。
+	std::bad_typeid			该异常可以通过 typeid 抛出。
+	std::logic_error		理论上可以通过读取代码来检测到的异常。
+	std::domain_error		当使用了一个无效的数学域时，会抛出该异常。
+	std::invalid_argument	当使用了无效的参数时，会抛出该异常。
+	std::length_error		当创建了太长的 std::string 时，会抛出该异常。
+	std::out_of_range		该异常可以通过方法抛出，例如 std::vector 和 std::bitset<>::operator[]()。
+	std::runtime_error		理论上不可以通过读取代码来检测到的异常。
+	std::overflow_error		当发生数学上溢时，会抛出该异常。
+	std::range_error		当尝试存储超出范围的值时，会抛出该异常。
+	std::underflow_error	当发生数学下溢时，会抛出该异常。
+	
+动态内存:
+C++ 程序中的内存分为两个部分：
+	栈：在函数内部声明的所有变量都将占用栈内存。
+	堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。
+很多时候，您无法提前预知需要多少内存来存储某个定义变量中的特定信息，所需内存的大小需要在运行时才能确定。
+在 C++ 中，您可以使用特殊的运算符为给定类型的变量在运行时分配堆内的内存，这会返回所分配的空间地址。这种运算符即 new 运算符。
+如果您不再需要动态分配的内存空间，可以使用 delete 运算符，删除之前由 new 运算符分配的内存。
+
+new 和 delete 运算符:new和java一样,但java是自动回收,没有delete
+		double* pvalue  = NULL; // 初始化为 null 的指针
+		pvalue  = new double;   // 为变量请求内存
+		*pvalue = 29494.99;     // 在分配的地址存储值
+		delete pvalue;         // 释放内存
+		
+		int *array=new int [m]；// 动态分配,数组长度为 m
+		Box* myBoxArray = new Box[4];//动态分配对象数组(类似java的list)
+		
+预处理:
+预处理器是一些指令，指示编译器在实际编译之前所需完成的预处理。
+所有的预处理器指令都是以井号（#）开头，只有空格字符可以出现在预处理指令之前。预处理指令不是 C++ 语句，所以它们不会以分号（;）结尾。
+C++ 还支持很多预处理指令，比如 #include、#define、#if、#else、#line 等
+	#define		宏名	会被宏名所替换的文本	//用于创建符号常量。该符号常量通常称为宏
+
+条件编译
+	#ifdef NULL
+	   #define NULL 0 (或是该处是些不需要编译的代码)
+	#endif
+
+预定义宏
+	__LINE__	这会在程序编译时包含当前行号。
+	__FILE__	这会在程序编译时包含当前文件名。
+	__DATE__	这会包含一个形式为 month/day/year 的字符串，它表示把源文件转换为目标代码的日期。
+	__TIME__	这会包含一个形式为 hour:minute:second 的字符串，它表示程序被编译的时间。
+	eg:    cout << "Value of __LINE__ : " << __LINE__ << __FILE__ << endl;
+
+信号处理:
+信号是由操作系统传给进程的中断，会提早终止一个程序。在 UNIX、LINUX、Mac OS X 或 Windows 系统上，可以通过按 Ctrl+C 产生中断。
+有些信号不能被程序捕获，但是下表所列信号可以在程序中捕获，并可以基于信号采取适当的动作。这些信号是定义在 C++ 头文件 <csignal> 中。
+	SIGABRT		程序的异常终止，如调用 abort。
+	SIGFPE		错误的算术运算，比如除以零或导致溢出的操作。
+	SIGILL		检测非法指令。
+	SIGINT		接收到交互注意信号。
+	SIGSEGV		非法访问内存。
+	SIGTERM		发送到程序的终止请求。
+C++ 信号处理库提供了 signal 函数，用来捕获突发事件。
+	void (*signal (int sig, void (*func)(int)))(int);//第一个参数是一个整数，代表了信号的编号；第二个参数是一个指向信号处理函数的指针。
+eg:
+	#include <iostream>
+	#include <csignal>
+	#include <unistd.h>
+	using namespace std;
+	void signalHandler( int signum ){
+		cout << "Interrupt signal (" << signum << ") received.\n";
+		// 清理并关闭
+		// 终止程序  
+		exit(signum);  
+	}
+ 
+	int main (){
+		// 注册信号 SIGINT 和信号处理程序
+		signal(SIGINT, signalHandler);  
+		while(1){
+		   cout << "Going to sleep...." << endl;
+		   sleep(1);
+		} 
+		return 0;
+	}
+
+C++ 信号处理库提供了 raise函数，用来生成信号。
+	int raise (signal sig);//sig 是要发送的信号的编号，这些信号包括：SIGINT、SIGABRT、SIGFPE、SIGILL、SIGSEGV、SIGTERM、SIGHUP
+
+多线程:
+	一般情况下，两种类型的多任务处理：基于进程和基于线程。
+	基于进程的多任务处理是程序的并发执行。(并行,多个任务同时进行.并发,在一个时间段里轮流执行多个任务)
+	基于线程的多任务处理是同一程序的片段的并发执行。
+
+	多进程并发是将一个应用程序划分为多个独立的进程（每个进程只有一个线程），这些独立的进程间可以互相通信，共同完成任务。由于操作系统对进程提供了大量的保护机制，以避免一个进程修改了另一个进程的数据，使用多进程比多线程更容易写出安全的代码。但这也造就了多进程并发的两个缺点：
+	1/在进程件的通信，无论是使用信号、套接字，还是文件、管道等方式，其使用要么比较复杂，要么就是速度较慢或者两者兼而有之。
+	2/运行多个线程的开销很大，操作系统要分配很多的资源来对这些进程进行管理。
+
+	多线程并发指的是在同一个进程中执行多个线程。有操作系统相关知识的应该知道，线程是轻量级的进程，每个线程可以独立的运行不同的指令序列，但是线程不独立的拥有资源，依赖于创建它的进程而存在。也就是说，同一进程中的多个线程共享相同的地址空间，可以访问进程中的大部分数据，指针和引用可以在线程间进行传递。这样，同一进程内的多个线程能够很方便的进行数据共享以及通信，也就比进程更适用于并发操作。由于缺少操作系统提供的保护机制，在多线程共享数据及通信时，就需要程序员做更多的工作以保证对共享数据段的操作是以预想的操作顺序进行的，并且要极力的避免死锁(deadlock)。
+
+C++11的标准库中提供了多线程库，使用时需要#include <thread>头文件
+需要创建一个std::thread对象，就会启动一个线程，并使用该std::thread对象来管理该线程。
+do_task();//线程中要运行的函数
+std::thread(do_task);//用线程去运行函数
+在线程运行销毁前,要用std::thread.join()或者std::thread.detach()定义线程是阻塞排他的运行完成再执行下面的代码,还是不阻塞的执行下面代码

@@ -1,0 +1,7 @@
+在安卓源码目录下:
+source build/envsetup.sh
+lunch QC26B-userdebug
+mmm -j16 packages/apps/Settings/
+ls -ls out/target/product/msm8909w/system/priv-app/Settings
+
+看下最后生成时间是不是最新的

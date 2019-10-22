@@ -1,0 +1,7 @@
+右键-->jump to definition			查找定义:(查找变量的声明地方)		
+右键-->jump to base type			查找基本类型:(查找变量的类型)		
+右键-->jump to prototype			跳转到函数原型
+右键-->jump to caller				查找调用处
+
+查看接口对应的实现类:				
+查看父类:							ctrl+左键 or 选中后右键jump to base type
