@@ -1,0 +1,7 @@
+vim build/core/version_defaults.mk 
+//查看 PLATFORM_SDK_VERSION 可以得到安卓的大版本号
+//搜索该文件中的 PLATFORM_VERSION值
+
+怎么看手机的安卓系统版本:
+adb shell getprop
+//看[ro.build.version.release]

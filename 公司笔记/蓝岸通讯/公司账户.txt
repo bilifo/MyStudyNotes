@@ -18,6 +18,7 @@ cmd中输入ssh panjunlong@192.168.1.247
 
 gerrit			
 192.168.1.248:8080		panjunlong		123456
+192.168.1.253:8080
 
 192.168.1.248		代码管理服务器
 192.168.1.253	22	duan	722611	通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
@@ -53,3 +54,7 @@ am start -n com.android.launcher3/.Launcher//进入防摔产品walabot的主页�
 bugzlia:
 http://www.bluebank-rd.com.cn:8000/bugzilla/buglist.cgi?Bugzilla_restrictlogin=on&GoAheadAndLogIn=Log%20in&f1=assigned_to&list_id=115498&o1=equals&resolution=---&v1=%25user%25
 黄鹏:huang.peng@bluebank.com.cn 		hp..0912
+
+
+提交代码:
+ git push bluebank_repo HEAD:refs/for/QC26B

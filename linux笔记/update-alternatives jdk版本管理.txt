@@ -1,0 +1,6 @@
+update-alternatives命令用于处理 Linux 系统中软件版本的切换，使其多版本共存。
+
+update-alternatives --list java 查看java的所有版本,当然也可以是其他,如python
+update-alternatives --config java 选择java版本,输入对应版本的1,2,3就好
+update-alternatives -remove java XXX 用于删除一个命令的link值，其附带的依赖也将一起删除
+

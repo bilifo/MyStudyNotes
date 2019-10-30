@@ -1,0 +1,4 @@
+1/将 replace_settings_app.sh 放到安卓源码目录下.并运行
+(由于平台的不同,一般会出现格式问题,可以在复制文件后,执行  sed -i "s/\r//" XXXX.sh  来更改回车格式问题
+或用notepad,编辑-->文档格式转换-->UNIX)
+2/双击 copy_new_settings_app_to_phone.bat 完成apk的替换

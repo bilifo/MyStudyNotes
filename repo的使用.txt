@@ -1,0 +1,62 @@
+repo是安卓团队对git的再封装.因为安卓源码是由多个不同功能的app模块组成,也就有多个模块git仓库,repo就是统一管理这些仓库的脚本工具
+
+下载repo脚本,以及下载源码,建立环境:
+#下载 repo 工具
+mkdir ~/bin
+PATH=~/bin:$PATH
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+#下载源码,用清华的镜像
+wget -c https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar # 下载初始化包
+tar xf aosp-latest.tar
+cd AOSP   # 解压得到的 AOSP 工程目录
+repo sync # 正常同步一遍即可得到完整目录
+
+将 .repo/manifest.xml 把其中的 aosp 这个 remote 的 fetch 从 https://android.googlesource.com 改为 https://aosp.tuna.tsinghua.edu.cn/。
+<manifest>
+   <remote  name="aosp"
+-           fetch="https://android.googlesource.com"
++           fetch="https://aosp.tuna.tsinghua.edu.cn"
+            review="android-review.googlesource.com" />
+同时，修改 .repo/manifests.git/config，将
+url = https://android.googlesource.com/platform/manifest
+更改为
+url = https://aosp.tuna.tsinghua.edu.cn/platform/manifest
+
+创建xxx项目分支:
+repo start xxx --all
+
+查看项目分支:
+repo branch
+
+删除项目分支:
+repo abandon 分支名 [<project>…]
+或
+repo prune [<project>…]
+
+切换分支:
+repo checkout <branchname>  [<project>…]
+
+查看修改:
+repo diff [<project>…]
+
+查看本地repo管理的所有projects:
+repo list
+
+设置远程仓库:
+repo remote add 分支名 ssh://172.16.1.31/git_repo
+repo remote rm 分支名
+
+切换源码的安卓版本:
+cd 源码目录
+cd .repo/manifests
+git branch -av   # 查看可以切换的安卓版本
+cd 源码目录
+repo init -b 你选择的安卓版本,如:
+repo sync -j8
+
+切换源码的安卓细分版本:
+
+
+
+

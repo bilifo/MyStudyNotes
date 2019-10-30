@@ -1,0 +1,2 @@
+adb shell rm /data/system/locksettings.db*
+adb reboot
