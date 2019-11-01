@@ -1,0 +1,7 @@
+安装插件:
+atom-ide-ui //ide界面插件,提供语法检查和自动补全,必要,Atom Beta 1.21以上版本
+Activate Power Mode //输入动画插件
+Ide Java  //java ide支持,可选,主要设置好jdk路径
+Simplified Chinese Menu //中文目录插件
+Language Gradle //添加gradle支持,这样安卓项目才能跳转
+Language Groovy //gradle的依赖
