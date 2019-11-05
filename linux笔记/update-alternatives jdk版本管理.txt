@@ -1,6 +1,13 @@
-update-alternatives命令用于处理 Linux 系统中软件版本的切换，使其多版本共存。
+update-alternatives命令用于处理 Linux 系统中软件版本的切换，使其多版本共存(不光是java,也可以是python什么的)。
 
 update-alternatives --list java 查看java的所有版本,当然也可以是其他,如python
 update-alternatives --config java 选择java版本,输入对应版本的1,2,3就好
 update-alternatives -remove java XXX 用于删除一个命令的link值，其附带的依赖也将一起删除
 
+添加一个新的jdk版本,如:1.6
+sudo update-alternatives --install /usr/bin/java  java  /usr/lib/jvm/jdk1.6.0_45/bin/java  1000
+参数说明:
+/usr/bin/java	#指向/etc/alternatives/<命令组名称>的符号引用,一般是/usr/bin/命令组名称
+java		#所有版本的可运行java命令都是共用一个命令组名称:java
+/usr/lib/jvm/jdk1.6.0_45/bin/java	#1.6版本的java命令所在真实路径
+1000		#设置优先级

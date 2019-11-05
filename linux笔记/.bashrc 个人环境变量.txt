@@ -1,0 +1,9 @@
+vi ~/.bash_profile
+
+尾部追加jdk1.6.0_45版本JDK配置：
+export JAVA_HOME=/home/wangyong/jdk6/jdk1.6.0_45
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+保存退出
+source ~/.bash_profile
+使配置文件生效
