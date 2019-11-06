@@ -1,0 +1,10 @@
+安卓有4种类型日志:
+main	/dev/log/main	android.util.Log	对应应用日志
+system	/dev/log/system	android.util.Slog	对应系统日志
+radio	/dev/log/radio	android.util.Log	对应应无线设备日志
+events	/dev/log/events	android.util.EventLog	对应诊断系统问题日志
+如果使用 android.util.Log 和 android.util.Slog接口写入的日志是以"RIL"开头或"AT","GSM","STK","CDMA","PHONE","SMS"时.会被写入到radio类型的日志中
+
+LOGV,LOGD,LOGI,LOGW,LOGE用来写入main
+SLOGV,SLOGD,SLOGI,SLOGW,SLOGE用来写入system
+LOG_EVENT_INT,LOG_EVENT_LONG,LOGEVENT_STRING用来写入events

@@ -1,0 +1,4 @@
+JAVA_HOME=/usr/local/jdk1.6.0_45 
+export JAVA_HOME=/usr/local/jdk1.6.0_45 
+export PATH=$JAVA_HOME/bin:$PATH 
+export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:$CLASSPATH
