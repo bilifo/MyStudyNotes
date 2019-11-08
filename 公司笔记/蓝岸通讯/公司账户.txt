@@ -59,3 +59,6 @@ http://www.bluebank-rd.com.cn:8000/bugzilla/buglist.cgi?Bugzilla_restrictlogin=o
 
 提交代码:
  git push bluebank_repo HEAD:refs/for/QC26B
+
+启动主界面:
+am start -n com.android.launcher3/.Launcher

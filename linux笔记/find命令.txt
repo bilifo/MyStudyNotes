@@ -1,4 +1,7 @@
+find 是 Linux 中强大的搜索命令，不仅可以按照文件名搜索文件，还可以按照权限、大小、时间、inode 号等来搜索文件。但是 find 命令是直接在硬盘中进行搜索的，如果指定的搜索范围过大，find命令就会消耗较大的系统资源，导致服务器压力过大。所以，在使用 find 命令搜索时，不要指定过大的搜索范围。
 find  path  -option  [ -print ]  [ -exec   -ok   command ]   {} ;
+find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec|time] [path...] [expression]
+
 path 	:	搜索路径
 -print	:	find命令将匹配的文件输出到标准输出。
 -exec	:	find命令对匹配的文件执行该参数所给出的shell命令。
