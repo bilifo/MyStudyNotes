@@ -16,6 +16,8 @@
 	prerequisites:target所需要的依赖文件或是目标。
 	command:make需要执行的命令。（任意的shell命令)
 	特别注意,#的注释,会在符号前产生空格,所以注释应该单独一行比较好
+	用“@”字符在命令行前，那么，这个命令将不被make显示出来，最具代表性的例子是，我们用这个功能来像屏幕显示一些信息。
+	使用 define ... endef 来自定义命令,用 call 来调用
 简单理解:
 	目标文件 比 依赖文件 (旧,或是根本不存在) 那么执行
 		 command命令,并继续向下查找依赖文件执行,否则就截止(有点像堆栈)(往往文件最后会有 clean: 这样的功能性命令,要单独执行它,直接 make clean,指定从clean处执行)
@@ -29,12 +31,15 @@ make是如何工作的:
 
 可以使用include<文件名>来引用其他mk文件
 
-变量声明,可以使用,$(),${},$$,一个意思.$()中可以是全局变量,也可以是命令,如: cur-dir := $(shell pwd)
+变量声明,可以使用,$(),${},$$,一个意思.$()中可以是全局变量,也可以是命令,如: cur-dir := $(shell pwd),变量的展开就是字符串替换,所以不存在类型和隔离空间
 奇特之处,c或java等语言,是先赋值变量后使用,而脚本可以先使用,后赋值.即最后变量的赋值会影响到前面所有使用该变量的地方
 := , = ,+=,?=的区别:
 :=	重新复制,不影响该符号前的变量引用
 =	全局赋值,影响全部引用
 ?=	如果变量未定义,那么就赋值定义,如果定义过,就无作用
+export 修饰的变量,表示作为该目录下的所有子目录都可以使用的全局变量
+unexport 修饰变量,表示该变量不能被子目录下的其他mk文件使用到
+
 
 伪目标:
 单词phony (即phoney)的意思是：伪造的，假的。在Makefile中，.PHONY后面的target表示的也是一个伪造的target, 而不是真实存在的文件target。形如以下面的示例
@@ -45,3 +50,22 @@ clean:
 
 makefile的不足:
 变量的管理,得人工记忆,include导进来得变量可以直接使用,或是include中的同名变量会改变当前文件的值.这在一定程度上可能导致混乱,再加上它的先使用后赋值特性让程序追踪不能简单的线性进行
+
+???怎么查看makefile的变量和出处:
+	make -d > XXX文件#可以将make的执行过程保存到XXX文件中
+方法一:使用 -p 参数生成指定执行规则文件,可以看到变量的出处.eg: make -f XXXX.mk --print-data-base > XXXX_DEBUG.txt
+方法二:使用自定义查看变量脚本
+	1/新建一个 vars.mk文件,在其中输入以下内容(注意使用tab来取代其中的空格):
+	#显示这个变量当前值
+	%:
+		@echo '$*=$($*)'
+	#显示某个变量的出处和值
+	d-%:
+		@echo '$*=$($*)'
+		@echo '		origin = $(origin $*)'#file表示文件，environment表示环境变量，还有environment override，command line，override，automatic等。
+		@echo '		value = $(value  $*)'#打出这个变量没有被展开的样子
+		@echo '		flavor = $(flavor $*)'#simple表示是一般展开的变量，recursive表示递归展开的变量。
+
+	2/使用方式:
+		 make -f makefile -f var.mk TEST_VALUE 或
+		 make -f makefile -f var.mk d-TEST_VALUE

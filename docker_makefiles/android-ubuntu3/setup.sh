@@ -1,4 +1,5 @@
 apt-get update || true
+apt-get upgrade || true
 apt-get install vim
 apt-get install -y openjdk-8-jdk
 #apt-get -y install git-core gnupg flex bison gperf build-essential \

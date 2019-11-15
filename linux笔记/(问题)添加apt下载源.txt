@@ -1,0 +1,8 @@
+在 /etc/apt/sources.list 文件中添加apt下载的源
+
+如果此时没有vim或vi,也可以试着用echo的方式:
+mv /etc/apt/sources.list /etc/apt/sources.list.bak
+echo 'deb http://mirrors.163.com/debian/ jessie main non-free contrib' > /etc/apt/sources.list
+echo 'deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib' >> /etc/apt/sources.list
+echo 'deb http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib' >> /etc/apt/sources.list
+最后下载完,再将/etc/apt/sources.list.bak 改回/etc/apt/sources.list
