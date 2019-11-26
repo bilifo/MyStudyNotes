@@ -131,3 +131,9 @@ git pull
 Please, commit your changes or stash them before you can merge.
 问题:提示你本地的修改还没有commit或stash
 
+多人开发拉取需要合并问题解决:
+多人开发时会遇到你当前修改的分支,可能会被别人修改提交,导致你的commit处于很早前的记录,你此时要将修改提交,需要拉取最新的远端代码,而这有可能产生冲突.
+1/使用 git stash ,将当前的修改隐藏
+2/git pull 正常拉取最新的远端代码
+3/git stash pop,将隐藏的代码弹出,解决冲突
+

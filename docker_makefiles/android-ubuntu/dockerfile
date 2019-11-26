@@ -1,5 +1,10 @@
-FROM ubuntu
-MAINTAINER bilifo
-ADD setup.sh .
-RUN ./setup.sh
-ENV USER=root
+docker volume create --driver vieux/sshfs \
+    -o sshcmd=panjunlong@192.168.1.247:/home/panjunlong/extraSpace/panjunlong2/android_source/aosp \
+    -o password=123456 \
+    aosp_volume
+	
+	
+docker run -id \
+    --name bilifo \
+    --mount type=volume,volume-driver=vieux/sshfs,source=aosp_volume,target=/pjltt \
+    bilifo/ubuntu:test2 /bin/bash

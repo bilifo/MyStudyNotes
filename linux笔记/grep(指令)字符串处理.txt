@@ -31,3 +31,7 @@ option:
 例:
 grep 'text' text.txt	#在text.txt文件中搜索text字符
 grep -P "(?<=background:).*(?=;)" about.html	#使用-P(使用perl规则的正则表达式)来匹配,虽然有说使用 -E 也是使用拓展正则表达式,但-E好像不支持断言
+grep -wirn "Speed dial settings" --include "*.xml" ./		#在当前目录下(./) 迭代(r) 忽略大小写(i) 搜索所有.xml后缀文件中的"Speed dial settings"
+
+特大喜讯:grep支持断言
+grep -oP "(?<=config_).*(?=.xml)"

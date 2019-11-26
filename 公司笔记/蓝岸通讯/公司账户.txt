@@ -27,6 +27,17 @@ gerrit
 pan.junlong@bluebank.com.cn
 12345678Aa
 
+kaiOS账户
+pawel.potoczny@maxcom.pl
+maxcomkai789
+
+https://techandme.plan.io/账户
+tang.changqiang@bluebank.com.cn
+qwer123456
+
+eteams协作云
+http://url.eteams.cn/ZxzYUZ
+15523142285	492379
 
 
 公司项目编译
@@ -35,6 +46,7 @@ pan.junlong@bluebank.com.cn
 2/lunch 选择debug版本
 3/make -j16
 4/去项目目录下执行 ./pack_all_Flipphone.sh,生成的结果在根目录下的pub里,用特定的烧录工具烧录就好 //使用vendorsetup.sh脚本里面的pack函数将编译出来的镜像文件打包成rom
+或者使用刷机工具,load content 选带有contents.txt文件的目录
 
 
 编译单个项目
@@ -62,3 +74,4 @@ http://www.bluebank-rd.com.cn:8000/bugzilla/buglist.cgi?Bugzilla_restrictlogin=o
 
 启动主界面:
 am start -n com.android.launcher3/.Launcher
+adb shell am start -n com.android.launcher3/.Launcher
