@@ -1,0 +1,7 @@
+make: 不带任何参数则是编译整个系统；
+
+make MediaProvider  #单个模块编译,可简写成mm
+
+mm  # 编译当前目录下的模块，它和mmm一样，不编译依赖模块; 
+mmm packages/providers/MediaProvider # 编译指定目录下的模块，但不编译它所依赖的其它模块； 
+mma # 编译当前目录下的模块及其依赖项 .

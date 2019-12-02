@@ -31,7 +31,7 @@ kaiOS账户
 pawel.potoczny@maxcom.pl
 maxcomkai789
 
-https://techandme.plan.io/账户
+https://techandme.plan.io/账户(唐昌强账户)
 tang.changqiang@bluebank.com.cn
 qwer123456
 
@@ -39,6 +39,9 @@ eteams协作云
 http://url.eteams.cn/ZxzYUZ
 15523142285	492379
 
+https://techandme.plan.io/login
+Junlong_Bluebank
+12345678Aa
 
 公司项目编译
 在LINUX/android/下
@@ -75,3 +78,10 @@ http://www.bluebank-rd.com.cn:8000/bugzilla/buglist.cgi?Bugzilla_restrictlogin=o
 启动主界面:
 am start -n com.android.launcher3/.Launcher
 adb shell am start -n com.android.launcher3/.Launcher
+
+启动拨号界面:
+adb shell input keyevent 5
+
+测试传感器的工具;
+mmm vendor/qcom/proprietary/sensors/
+导入生成的app

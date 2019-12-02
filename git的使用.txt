@@ -137,3 +137,8 @@ Please, commit your changes or stash them before you can merge.
 2/git pull 正常拉取最新的远端代码
 3/git stash pop,将隐藏的代码弹出,解决冲突
 
+打patch:
+git diff > xxx.patch	//将当前的修改打个patch包
+git apply xxx.patch	//将patch导入当前分支
+
+

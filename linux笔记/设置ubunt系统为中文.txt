@@ -6,3 +6,23 @@ LANGUAGE='en_US:en' #中文可以用zh_CN:zh
 2、reboot即可
 
 但win10的子系统这样修改并不成功
+
+1/使用 " locale -a " 查询支持的语言集
+2/如果没有zh_CN相关字样,说明不支持中文,需要下载语言包.apt-get install language-pack-zh-hans
+3/执行 locale-gen zh_CN.UTF-8
+4/编辑 /etc/default/locale 文件
+LANG="zh_CN.uft8"
+LANGUAGE="zh_CN.utf8"
+5/exit 或 reboot
+
+帮助文档设置为中文
+1/sudo apt install manpages-zh
+2/在 .bashrc  文件中增加以下这行
+alias cman='man -M /usr/share/man/zh_CN' 
+想用中文man时： cman command 想用英文man：man command。
+3/由于有些系统为了使镜像文件体积尽可能的小,自带的指令是没有安装man的汉文说明的,需要重新安装这些指令,
+查看 cat /etc/dpkg/dpkg.cfg.d/excludes ,是否有该文件,有,将
+# Drop all documentation ...
+path-exclude=/usr/share/doc/*
+注释掉.无就不用管
+4/执行 dpkg -l | grep ^ii | cut -d' ' -f3 | xargs apt-get install -y --reinstall	(实测无用)

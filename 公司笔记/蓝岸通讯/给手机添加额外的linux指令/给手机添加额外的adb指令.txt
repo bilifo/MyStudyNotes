@@ -1,0 +1,16 @@
+1/连接测试机,先用下面两个指令,将权限提升 
+adb root
+adb remount
+2/将 wireless_tools_all 压缩包中的 system-bin解压,得到两个目录:bin 和 lib
+3/将bin目录下的所有文件通过下面的指令复制到测试机器内部,并一一修改文件权限.
+adb push (你的解压路径)\bin\. /system/
+adb shell chmod 777 /system/iwconfig(....后面的依此修改...)
+4/将lib目录下的所有文件通过下面的指令复制到测试机器内部
+adb push (你的解压路径)\lib\. /system/lib
+至此,测试手机可以使用这些命令了.但换个手机,还是要如此这番,下面就是将这些指令添加到安卓源码中,让版本自带
+
+
+1.将 wireless_tools_all 压缩包中 wireless_tools 解压到源码目录 external/wireless_tools/下,mm编译,即可产生
+iwconfig,iwevent,iwgetid,iwlist,iwpriv,iwpspy,iperf
+2.编写makefile,将这些添加进整个编译中(怎么写还没有实践)
+
