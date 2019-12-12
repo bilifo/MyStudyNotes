@@ -1,0 +1,1105 @@
+|-  art // Android Runtime，一种App运行模式，区别于传统的Dalvik虚拟机，旨在提高Android系统的流畅性，包括以下几个目录。            
+    |-  benchmark // 程序测试基准。        
+    |-  build // 编译文件。      
+    |-  cmdline // 命令行工具的初始化与解析。        
+    |-  compiler // 编译套件。       
+    |-  dalvikvm // Dalvik虚拟机启动程序。      
+    |-  dex2oat // 文件dex格式转换为oat格式的转换程序。        
+    |-  dexdump // 文件dex格式的内容获取程序。      
+    |-  dexlayout // 文件dex格式的布局。        
+    |-  dexlist // 文件dex格式的函数获取程序。
+    |-  dexoptanalyzer //文件dex格式的分析程序      
+    |-  disassembler // 几种反汇编实现，包括arm64、arm、mips和x86。       
+    |-  imgdiag // image诊断程序。       
+    |-  libart_fake // 一个虚假的art库，用于那些企图链接ark库的作弊程序。     
+    |-  oatdump // 文件oat格式的内容获取程序。      
+    |-  patchoat // 文件oat格式的补丁管理程序。     
+    |-  profman // 程序性能分析助手。        
+    |-  runtime // art库实现，主要为C++和汇编文件。      
+    |-  sigchainlib // 信号处理库。       
+    |-  test // 测试程序。       
+    |-  tools // 一些工具，包括python和shell脚本。     
+|-  bionic // 基础C库源代码，Android改造的C/C++库       
+    |-  benchmarks // 程序测试基准。       
+    |-  build // 编译文件。      
+    |-  libc // C库
+|-  arch-arm // ARM架构，包含系统调用汇编实现
+|-  arch-arm64 // ARM64架构，包含系统调用汇编实现
+|-  arch-common // 通用架构，包含系统调用汇编实现
+|-  arch-mips // mips架构，包含系统调用汇编实现
+|-  arch-mips64 // mips64架构，包含系统调用汇编实现
+|-  arch-x86 // x86架构，包含系统调用汇编实现
+|-  arch-x86_64 // x64架构，包含系统调用汇编实现
+|-  bionic // 由C实现的功能，架构无关
+|-  dns // bionic改造的dns服务
+|-  include // 头文件
+|-  kernel // Linux内核中的一些头文件
+|-  malloc_debug // bionic的动态调整内存工具
+|-  private // 一些私有的头文件
+|-  seccomp // Seccomp(secure computing)是Linux kernel 所支持的一种简洁的sandboxing机制。它能使一个进程进入到一种“安全”运行模式，该模式下的进程只能调用4种系统调用（system calls），即read(), write(), exit()和sigreturn()，否则进程便会被终止。
+|-  stdio // 标准io流实现
+|-  stdlib // 标准lib库实现
+|-  tools // 几个工具
+|-  tzcode // 时区相关代码
+|-  upstream-freebsd // 上传流freebsd的库
+|-  upstream-netbsd // 上传流netbsd的库
+|-  upstream-openbsd // 上传流openbsd的库
+|-  versioner-dependencies // 系统信息检测依赖库
+|-  zoneinfo // 时区信息
+|-  libdl // libdl实现，dl是动态链接，提供访问动态链接库的功能     
+|-  libm // libm数学库的实现
+|-  arm // arm架构库
+|-  arm64 // arm64架构库
+|-  i387 // i387架构库
+|-  mips // mips架构库
+|-  upstream-freebsd // 上传流freebsd架构库
+|-  upstream-netbsd // 上传流netbsd架构库
+|-  x86 // x86架构库
+|-  x86_64 // x86_64架构库            
+    |-  libstdc++ // libstdc++ C++实现库      
+    |-  linker // 动态链接器。        
+    |-  tests // 测试程序。      
+    |-  tools // 一些工具，包括python和shell脚本。     
+|-  bootable // Android程序启动导引，适合各种bootloader的通用代码，包括一个recovery目录。           
+    |-  recovery // 系统还原。
+|-  applypatch // 应用补丁的应用
+|-  bootloader_message // bootloader消息显示应用
+|-  edify // 升级脚本使用的edify脚本语言
+|-  etc // 配置文件
+|-  fonts // recovery的字体
+|-  minadbd // recovery的迷你版的adbd
+|-  minui // recovery的UI
+|-  otafault // OTA Over The Air Updates升级工具
+|-  otautil // OTA Over The Air Updates升级工具类
+|-  private // 私有头文件
+|-  res-560dpi // ui资源文件
+|-  res-hdpi // ui资源文件
+|-  res-mdpi // ui资源文件
+|-  res-xhdpi // ui资源文件
+|-  res-xxhdpi // ui资源文件
+|-  res-xxxhdpi // ui资源文件
+|-  tests // 测试文件
+|-  tools // 一些工具类
+|-  uncrypt // 加密工具
+|-  update_verifier // 升级器验证
+|-  updater // 升级器       
+|-  build // Android编译系统，包括原有的GNU make/mk和新加入的go/bp，包括以下几个目录。           
+    |-  blueprint // 编译系统组件，由go实现，用于读取类json格式的bp文件，转换成Ninja格式。
+    |-  core // 核心组件的编译规则配置文件
+    |-  envsetup.sh //  编译环境的设置脚本    
+    |-  kati // 编译系统组件，用于兼容原有的GNU make/mk，对mk文件进行格式转换。      
+    |-  make // 原有的编译系统实现，包括makefile、python、shell等。     
+    |-  soong // 编译系统组件，同样是辅助生成Ninja格式的文件。
+    |-  target // 目标机编译对象
+|-  board // 开发平台
+|-  generic // 通用
+|-  generic_arm64 // arm64配置
+|-  generic_arm64_a // arm64_a配置
+|-  generic_arm64_ab // arm64_ab配置
+|-  generic_arm_a // arm_a配置
+|-  generic_armv5 // armv5配置
+|-  generic_mips // mips配置
+|-  generic_mips64 // mips64配置
+|-  generic_x86 // x86配置
+|-  generic_x86_64 // x86_64配置
+|-  generic_x86_arm // x86_arm配置
+|-  product // 开发平台对应的编译规则
+    |-  tools // 编译中主机使用的工具及脚本
+|-  acp // Android "acp" Command
+|-  adbs //  adb检查工具
+|-  apicheck // api检查工具
+|-  atree // tree工具
+|-  droiddoc // 作用不明，java语言，网上有人说和JDK5有关
+|-  fs_config // This program takes a list of files and directories
+|-  fs_get_stats // 获取文件系统状态
+|-  ijar // jar包工具
+|-  libhost // libhost工具库
+|-  makeparallel // gnu链接工具
+|-  releasetools // release工具
+|-  signapk // apk签名工具
+|-  signtos // 标签工具
+|-  zipalign // zip压缩工具 
+|-  ziptime // zip archive alignment tool
+|-  cts // Android兼容性测试套件标准         
+    |-  apps // cts测试所使用的apk源码        
+    |-  build // cts套件的编译配置        
+    |-  common // cts套件的通用代码
+    |-  development // cts套件兼容之前使用eclipse ADT开发apk的脚本     
+    |-  hostsidetests // cts套件新增host测试项      
+    |-  libs // cts套件使用的第三方库        
+    |-  suite // cts套件       
+    |-  tests // cts套件进行的测试项        
+    |-  tools // cts套件使用的测试工具源码      
+|-  dalvik // Android Dalvik虚拟机相关内容         
+    |-  dexdump // dex反汇编    
+    |-  dexgen // 使用gradle工具编译dex文件的解析工具      
+    |-  docs // Dalvik虚拟机文档        
+    |-  dx // dx工具，将多个java转换为dex      
+    |-  libdex // dex的库      
+    |-  opcode-gen // gen的源代码
+    |-  tools // Dalvik虚拟机工具代码       
+|-  developers // Android开发者参考文档，包括以下几个目录。          
+    |-  build // gradle编译系统。        
+    |-  demos // 使用了gradle的例子。      
+    |-  samples // Android SDK中的例子。     
+|-  development // Android开发基础设施，包括以下几个目录。          
+    |-  apps // 谷歌提供的一些核心应用程序
+        |-  BluetoothDebug // 蓝牙调试程序
+        |-  BuildWidget // 小部件搭建
+        |-  CustomLocale // 自定义区域设置
+        |-  Development // 开发
+        |-  DevelopmentSettings // 开发设置
+        |-  Fallback // 回调
+        |-  GestureBuilder // 手势动作
+        |-  launchperf  // 性能测试
+        |-  NinePatchLab // 点九图片相关
+        |-  OBJViewer // OBJ查看器
+        |-  PushApiAuthenticator // PushApi验证
+        |-  PushApiTestAppOne // PushApi测试apk
+        |-  PushApiTestAppTwo // PushApi测试apk
+        |-  SdkSetup // SDK安装器
+        |-  SettingInjectorSample // 高级设置
+        |-  WidgetPreview // 预览小部件          
+    |-  build // 编译文件，包括打包用的atree文件。        
+    |-  cmds // 工具monkey。       
+    |-  docs // 说明文档。       
+    |-  host // 主机端USB驱动        
+    |-  ide // 集成开发环境，包括eclipse、emacs和intellij。        
+    |-  libraries // lib库。      
+    |-  ndk // 本地开发套件——c语言开发套件      
+    |-  python-packages // python工具包，包括adb、fastboot和gdbrunner。      
+    |-  samples // 示例代码。
+        |-  AccelerometerPlay // 展示加速计用法App
+        |-  AdaptiveIconSample // 自适应图标App
+        |-  Alarm // 紧急报警App
+        |-  AliasActivity // 应用程序命别名App
+        |-  AndroidBeamDemo // Android光束示例App
+        |-  ApiDemosAPI // 演示程序
+        |-  AppNavigation // 导航 
+        |-  BackupRestore // 备份 
+        |-  BasicGLSurfaceView // 基础GL界面展示
+        |-  BluetoothChat // 蓝牙聊天
+        |-  BluetoothHDP // 蓝牙传输
+        |-  BluetoothLeGatt // 蓝牙4.0模块
+        |-  BrokenKeyDerivation // 
+        |-  browseable // 浏览
+        |-  BusinessCard // 车卡
+        |-  Compass // 指南针
+        |-  ContactManager // 联系人管理器
+        |-  ControllerSample // 管理员示例
+        |-  CrossCompatibility // 跨平台兼容
+        |-  CubeLiveWallpaper // 动态壁纸的一个简单例程
+        |-  DataWiper // 数据擦除
+        |-  devbytes // 二进制读取
+        |-  FixedGridLayout // 自动布局
+        |-  HeavyWeight // 超重
+        |-  HelloActivity // Hello
+        |-  HelloEffects // Hello接收 
+        |-  Home // 家
+        |-  HoneycombGallery // 动态图
+        |-  JetBoy // jetBoy游戏
+        |-  KeyChainDemo // 密码管理
+        |-  LceDemo // 天线设备参数示例 
+        |-  LunarLander // LunarLander游戏
+        |-  MultiResolution // 多任务处理应用
+        |-  MultiWindow // 分屏应用
+        |-  MySampleRss  // RSS
+        |-  NotePad  // 记事本
+        |-  Obb  // 安卓游戏通用数据包示例
+        |-  OpenGL  // 图像库示例
+        |-  RandomMusicPlayer // 音乐播放器
+        |-  ReceiveShareDemo // 接收分享示例
+        |-  RenderScript // 提升轮廓提取速度示例
+        |-  RSSReader // RSS阅读器
+        |-  samples_source.prop_template // 
+        |-  SampleSyncAdapter // 更新接口
+        |-  SearchableDictionary // 目录搜索
+        |-  ShortcutDemo // 小图标
+        |-  ShortcutSample // 小图标示例
+        |-  SimpleJNI // JNI例程
+        |-  SipDemo // 支持会话发起协议(SIP)应用示例
+        |-  SkeletonApp // 空壳APP
+        |-  Snake // snake程序
+        |-  SoftKeyboard // 软键盘
+        |-  SpellChecker // 拼写检查
+        |-  Spinner // Spinner控件
+        |-  SpinnerTest // Spinner控件测试
+        |-  StackWidget // 小部件堆叠示例
+        |-  TicTacToeLib // 多库示例
+        |-  TicTacToeMain // 主库示例
+        |-  ToyVpn // vpn示例
+        |-  training // 训练
+        |-  TtsEngine // 文字语音转换(TTS)引擎
+        |-  UiAutomator // ui自动测试
+        |-  USB // usb使用
+        |-  Vault // 缺陷控制
+        |-  VoicemailProviderDemo // 读邮件应用示例
+        |-  VoiceRecognitionService // 语音识别
+        |-  WeatherListWidget // 天气小部件
+        |-  WiFiDirectDemo // WIFI直连
+        |-  WiFiDirectServiceDiscovery // WiFi直连服务发现
+        |-  Wiktionary // 维基百科
+        |-  WiktionarySimple // 维基百科示例
+        |-  XmlAdapters // xml接口应用        
+    |-  scripts // python、shell脚本。      
+    |-  sdk // sdk配置      
+    |-  sdk_overlay // sdk配置覆盖      
+    |-  sys-img // 系统镜像信息。      
+    |-  testrunner // 测试程序启动脚本。     
+    |-  tools // 一些常用的工具，如make_key等 。       
+    |-  tutorials // 教程。
+    |-  vndk // 供应商本地开发工具包        
+|-  device // Android支持的各种设备及相关配置，结构相似，包括以下几个目录。            
+    |-  asus // 华硕      
+    |-  common // 设备间共有的配置。     
+    |-  generic // 不同的CPU架构，包括arm、goldfish、emulator、mips、x86等。      
+    |-  google // 谷歌             
+    |-  huawei // 华为        
+    |-  lge // LG       
+    |-  linaro // Linario             
+    |-  sample // 例子        
+|-  docs // Android系统介绍，包括一个source.android.com目录。           
+    |-  source.android.com // AOSP，Android Open Source Project。     
+|-  external // Android中使用的外部开源库，包括以下几个目录。          
+    |-  aac // Advanced Audio Coding，高级音频编码。        
+    |-  abi-compliance-checker // ABI兼容性分析工具。       
+    |-  abi-dumper // ABI数据解析工具。        
+    |-  android-clat // Android中用NAT64/DNS64支持IPv4的程序运行于IPv6的网络。        
+    |-  androidplot // Android中用以创建动态的或静态的图表。       
+    |-  ant-glob // ANT模式匹配工具。      
+    |-  antlr // Language Recognition，一款语法分析器，可根据输入自动生成语法树并显示出来。        
+    |-  apache-commons-math // Apache数学库。       
+    |-  apache-harmony // Apache Java SE运行时类库及一些工具。     
+    |-  apache-http // Apache HTTP服务。       
+    |-  apache-xml // Apache XML解决方案。       
+    |-  archive-patcher // 补丁管理库
+    |-  arm-neon-tests/ // arm基于NEON指令的数学库     
+    |-  autotest // 自动测试框架，Python实现，起初用于Linux Kernel，后扩展到Chrome OS和Android。     
+    |-  avahi // Zeroconf规范的一种实现，可以在本地网络中发布和获知各种服务和主机。      
+    |-  avb // Ethernet Audio/Video Bridging，以太网音视频桥接技术。        
+    |-  bison // 语法分析器生成器。      
+    |-  blktrace // 收集磁盘IO信息中当IO进行到块设备层即block设备时的详细信息。      
+    |-  boringssl // BoringSSL为OpenSSL的一个分支，优化了一些加密算法。      
+    |-  bouncycastle // 加解密包。       
+    |-  bsdiff // 二进制增量分析工具，生成新、旧版本的一个patch，用以旧版本增量升级到新版本。      
+    |-  bzip2 // 基于Burrows-Wheeler算法的无损压缩技术。
+    |-  c-ares // DNS请求异步处理库。        
+    |-  caliper // 基准测量工具。      
+    |-  cblas // C interface to Legacy BLAS。        
+    |-  chromium-libpac // 基于proxy_resolver_v8。     
+    |-  chromium-trace // 以HTML的形式显示数据使用情况。     
+    |-  chromium-webview // Webview。        
+    |-  clang // 编译器。       
+    |-  cmockery // 用于C程序的单元测试。     
+    |-  compiler-rt // Compiler Routine。        
+    |-  conscrypt // A Java Security Provider。      
+    |-  crcalc // Constructive Real Calculator。     
+    |-  cros // 一些常量和定义，只有一些头文件和proto文件。        
+    |-  curl // 文件传输。       
+    |-  dagger2 // A fast dependency injector for Android and Java。     
+    |-  dbus // 数据总线，是一个低延迟，低开销，高可用性的ipc机制       
+    |-  dbus-binding-generator // dbus bind。        
+    |-  deqp // GPU测试框架。        
+    |-  dexmaker // dex maker。      
+    |-  dhcpcd-6.8.2 // DHCP client daemon。     
+    |-  dlmalloc // malloc/free routines implemented by Doug Lea。       
+    |-  dng_sdk // DNG文件读写库。        
+    |-  dnsmasq // 配置DNS和DHCP的工具。       
+    |-  doclava // Javadoc工具。       
+    |-  drm_gralloc // gralloc for drm，Direct Rendering Manager。        
+    |-  drm_hwcomposer // hwcompositor for drm。     
+    |-  droiddriver // Android UI testing library。      
+    |-  dtc // Device Tree Compiler。        
+    |-  e2fsprogs // 文件系统工具集。       
+    |-  easymock // 单元测试模拟框架。       
+    |-  eclipse-basebuilder // eclipe插件编译相关。        
+    |-  eclipse-windowbuilder // eclipse编译相关。       
+    |-  eigen // 用于线性代数的C++模板库。     
+    |-  elfutils // ELF     
+    |-  emma // 单元测试覆盖率统计。      
+    |-  esd // 音频相关。        
+    |-  expat // XML解析。     
+    |-  eyes-free // 语音交互。      
+    |-  f2fs-tools // Flash Friendly File System。       
+    |-  fdlibm // Freely Distributed LIBM，数学库。      
+    |-  fec // Forward error correction。        
+    |-  fio / io测试工具。       
+    |-  flac // Free Lossless Audio Codec。
+    |-  flatbuffers //       
+    |-  fmtlib // format。       
+    |-  fonttools // 字体处理工具。        
+    |-  freetype // 字体引擎。       
+    |-  fsck_msdos // 文件系统检查工具。     
+    |-  gemmlowp // low-precision for general matrix multiplication。        
+    |-  giflib // gif图片库。       
+    |-  glide // media管理框架。     
+    |-  google-benchmark // 支持benchmark的库，类似于单元测试。      
+    |-  google-breakpad // crash报告系统，包括client、server。       
+    |-  google-fonts // 字体。         
+    |-  googletest // C++ test framework。       
+    |-  google-tv-pairing-protocol // tv配对协议。       
+    |-  gptfdisk // 文本模式的磁盘分区工具。        
+    |-  guava // Google Core Libraries for Java。        
+    |-  guice // 依赖注入框架。        
+    |-  hamcrest // 用于测试的可以合成各种表达式的匹配器类库。       
+    |-  harfbuzz_ng // 字体排版引擎。      
+    |-  hyphenation-patterns // 各种语言的字体连接模式。        
+    |-  icu // Unicode组件。       
+    |-  ImageMagick // bitmap图片管理，支持多种格式。       
+    |-  ims // IP Multi-media System，包括rcs融合通信。     
+    |-  iproute2 // 网络配置工具包。        
+    |-  ipsec-tools // 加密的ip协议工具包。      
+    |-  iptables // IP信息包过滤系统。      
+    |-  iputils // 网络工具包。       
+    |-  iw // Netlink 802.11。       
+    |-  jacoco // 测试覆盖率工具。      
+    |-  jarjar // Java包管理工具。        
+    |-  javasqlite // sqlite        
+    |-  javassist // Java字节码编辑。     
+    |-  jcommander // 参数解析。     
+    |-  jdiff // Java代码比较工具。        
+    |-  jemalloc // 更好的内存管理工具，解决内存碎片问题。     
+    |-  jetty // servlet容器。     
+    |-  jline // 处理控制台输入。       
+    |-  jmdns // 多播DNS实现，可在本地局域网中发现和注册服务。       
+    |-  jsilver // HTML模板系统。        
+    |-  jsmn // JSON解析。     
+    |-  jsoncpp // C++处理JSON，序列化和反序列化。      
+    |-  jsr305 // Java Specification Request。       
+    |-  jsr330 // Java Specification Request。       
+    |-  junit // Java单元测试框架。        
+    |-  junit-params // jnit升级版，添加了更好用的参数化测试。       
+    |-  kernel-headers // Kernel级别头文件。      
+    |-  ksoap2 // 访问Web Service。        
+    |-  libavc // 流媒体      
+    |-  libbrillo //        
+    |-  libcap //       
+    |-  libcap-ng //        
+    |-  libchrome //        
+    |-  libconstrainedcrypto //         
+    |-  libcups //      
+    |-  libcxx //       
+    |-  libcxxabi //        
+    |-  libdaemon //        
+    |-  libdivsufsort //        
+    |-  libdrm //       
+    |-  libedit // 
+    |-  libese //      
+    |-  libevent //         
+    |-  libexif //            
+    |-  libgsm //       
+    |-  libhevc //      
+    |-  libjpeg-turbo //        
+    |-  libldac //      
+    |-  liblzf //       
+    |-  libmicrohttpd //       
+    |-  libmojo //      
+    |-  libmpeg2 //         
+    |-  libmtp // 
+    |-  libnetfilter_conntrack // 
+    |-  libnfnetlink //      
+    |-  libnl //        
+    |-  libogg //       
+    |-  libopus //      
+    |-  libpcap // 网络数据包捕获函数    
+    |-  libphonenumber //       
+    |-  libpng // png库
+    |-  libtextclassifier //       
+    |-  libunwind  //       
+    |-  libunwind_llvm //       
+    |-  libusb //       
+    |-  libusb-compat //        
+    |-  libutf //       
+    |-  libvncserver //         
+    |-  libvorbis //        
+    |-  libvpx //       
+    |-  libvterm //         
+    |-  libxml2 //      
+    |-  libyuv //       
+    |-  linux-kselftest // linux test。      
+    |-  littlemock // mock框架。       
+    |-  lld // LLVM linker。         
+    |-  llvm // Low Level Virtual Machine。      
+    |-  ltp // Linux Test Project。      
+    |-  lz4 // 快速的无损压缩算法。       
+    |-  lzma // 压缩。     
+    |-  markdown // Markdown，一种标记语言。        
+    |-  mdnsresponder // Appple Bonjour组件，方便IP网络配置。     
+    |-  mesa3d // 三维计算机图形库。     
+    |-  messageformat // International Components for Unicode for Java。     
+    |-  Microsoft-GSL // Guideline Support Library。     
+    |-  minijail // 沙盒，运行不信任的程序。        
+    |-  mksh // MirBSD Korn Shell。      
+    |-  mmc-utils // mmc卡管理。        
+    |-  mockftpserver // 模拟FTP服务以进行FTP客户端测试。        
+    |-  mockito // 测试框架。        
+    |-  mockwebserver // 测试框架。      
+    |-  modp_b64 // base64编码、解码。        
+    |-  mp4parser // mp4解析。     
+    |-  mtpd // Media Transfer Protocol。        
+    |-  nanohttpd // HTTP Server，用于嵌入其它的程序。     
+    |-  nanopb-c // ANSI-C实现的Protocol Buffer。       
+    |-  naver-fonts // 字体。      
+    |-  netcat // 网络使用查看工具。     
+    |-  netperf // 网络性能测试。      
+    |-  neven // 人脸识别算法。        
+    |-  nfacct // 流量统计。     
+    |-  nist-pkits // NIST PKI Test Suite。      
+    |-  nist-sip // nist实现的sip协议，ip电话。      
+    |-  noto-fonts // 汉语、日语、韩语字体。       
+    |-  oauth // 关于授权的开放网络标准。       
+    |-  objenesis // Java对象实例化库。        
+    |-  okhttp // HTTP&SPDY Client。     
+    |-  opencv // 计算机视觉库。       
+    |-  opencv3 // 计算机视觉库。      
+    |-  owasp // Web Application。       
+    |-  parameter-framework // system-wide parameter management。        
+    |-  pcre // Perl兼容的正则表达式库。      
+    |-  pdfium // PDF渲染引擎。      
+    |-  piex // Preview Image Extractor。        
+    |-  ppp // Point to Point Protocol，链路层协议。       
+    |-  proguard // Java class file shrinker, optimizer, obfuscator and preverifier.        
+    |-  protobuf // 数据交互格式。     
+    |-  regex-re2 // 正则表达式库。        
+    |-  replicaisland // A side scrolling video game for Android。       
+    |-  rmi4utils // Remote Method Invoke。      
+    |-  robolectric // 黑盒测试。        
+    |-  roboto-fonts // roboto font。        
+    |-  rootdev // Chromium OS version of rootdev。      
+    |-  safe-iop // safe integer operation。     
+    |-  scrypt // 加密相关。     
+    |-  seccomp-tests // Seccomp-BPF Kernel Self-Test Suite。        
+    |-  selinux // Secure Linux。        
+    |-  sfntly // 字体库。      
+    |-  shflags // shell script。        
+    |-  skia // 2D图形库。      
+    |-  sl4a // Scripting Layer for Android。        
+    |-  slf4j // Simple Logging Facade for Java。        
+    |-  smali // Dalvik虚拟机的dex格式的汇编与反汇编。        
+    |-  snakeyaml // 用于Java虚拟机的YAML文件解析器。       
+    |-  sonic // 语音开发库。     
+    |-  sonivox // 语音开发库。       
+    |-  speex // 语音开发库。     
+    |-  spirv-llvm // Khronos LLVM-SPIRV图形渲染语言格式转换。     
+    |-  sqlite // sqlite。       
+    |-  squashfs-tools // 只读的高压缩的文件系统。      
+    |-  strace // system call tracer。
+    |-  stressapptest/       
+    |-  svox // 语音库。
+    |-  swiftshader/
+    |-  syslinux/        
+    |-  tagsoup // SAX解析。       
+    |-  tcpdump // 网络监听。        
+    |-  testng // 实机测试及数据收集。        
+    |-  timezonepicker-support // Time Zone。        
+    |-  tinyalsa // ALSA处理。     
+    |-  tinycompress // 用于ALSA格式的读取，如mp3。       
+    |-  tinyxml // XML解析工具，C++实现。       
+    |-  tinyxml2 // XML解析。      
+    |-  tlsdate // 时间更新服务，TCP实现。        
+    |-  toybox // 命令行工具包。       
+    |-  tpm2 // Trusted Platform Module。        
+    |-  tremolo // ogg音频解压。     
+    |-  unicode // Unicode。     
+    |-  universal-tween-engine // Java对象插值。     
+    |-  v8 // JavaScript引擎，C++实现。       
+    |-  valgrind // 内存、性能分析工具。      
+    |-  vboot_reference // Chrome OS verified boot in firmware。     
+    |-  vixl // ARMv8 Runtime Code Generation Library。      
+    |-  vogar // vogar.
+    |-  volley/     
+    |-  vulkan-validation-layers // Vulkan组件，包括ICD Loader和Validation Layer。     
+    |-  webp // 处理WebP格式的图片。        
+    |-  webrtc // 支持浏览器、移动App的Real-time Communication。      
+    |-  wpa_supplicant_8 // WIFI Protected Access。
+    |-  wycheproof/
+    |-  x264/      
+    |-  xmlrpcpp // XmlRpc协议的C++实现。     
+    |-  xmlwriter // xml进行写入库        
+    |-  xmp_toolkit // xmp      
+    |-  zlib // 使用了DEFLATE算法的数据压缩库。     
+    |-  zopfli // C库，一种压缩算法。        
+    |-  zxing // Java库，用于识别1D/2D条形码。        
+|-  frameworks // Android基础框架。          
+    |-  av // 多媒体框架      
+        |-  camera // 多媒体的相机相关部分  
+        |-  cmds // 命令源码    
+        |-  drm // 数据保护
+        |-  include // 头文件
+        |-  media // 多媒体部分   
+        |-  radio // 无线射频部分   
+        |-  services // 服务部分    
+        |-  soundtrigger // 语音识别架构    
+        |-  tools // 工具包   
+    |-  base // base，包括以下几个目录。
+        |-  apct-tests // 性能优化测试      
+        |-  api //  java的api接口，修改了接口文件请及时更新此目录下的文件（make update-api）
+        |-  cmds // 重要命令：am、app_proce等的源码    
+        |-  core // framework层核心库     
+            |-  java // java库
+            |-  jni // jni层
+            |-  proto // 协议层
+            |-  res // 资源文件
+            |-  tests // 测试工具
+        |-  data // 字体和声音等数据文件    
+        |-  docs //  文档   
+        |-  drm //  数据保护
+        |-  graphics // 图形相关    
+        |-  keystore // 和数据签名证书相关    
+        |-  legacy-test // 安全相关测试 
+        |-  libs // lib库    
+            |-  androidfw // fw功能库
+            |-  common_time // 常用功能和工具集合，缓存，包括图片缓存、预取缓存、网络缓存;公共 View，即功能封装好的部件，包括下拉获得最新和上拉加载更多 ListView、底部加载更多 ScrollView、滑动一页 Gallery 等等。;常用工具类，包括网络、下载、资源操作、Shell、文件读写、Json、序列化/反序列化、随机数、集合（Array、List、Map）、APK 包等等。
+            |-  hwui // 硬件渲染库
+            |-  incident // 事件驱动机制库
+            |-  input // 输入库
+            |-  services // 服务库
+            |-  storage // 存储库
+            |-  usb // USB库
+        |-  location // 定位功能    
+        |-  media // 媒体相关库   
+        |-  native // native框架  
+        |-  nfc-extras // nfc额外框架  
+        |-  obex // 蓝牙传输库    
+        |-  opengl // 2D-3D加速库  
+        |-  packages // 设置、TTS、VPN程序    
+        |-  proto // 协议框架   
+        |-  rs // 资源框架   
+        |-  samples // 例子程序 
+        |-  sax // XML解析器 
+        |-  services // 各种服务程序    
+        |-  telecomm // Telecom通信框架    
+        |-  telephony // 电话通讯框架   
+        |-  test-runner // 测试工具相关 
+        |-  tests // 各种测试   
+        |-  tools // 工具
+        |-  vr // 虚拟现实相关   
+        |-  wifi // 无线    
+    |-  compile // 编译相关
+        |-  libbcc // 用于Linux性能监视的动态跟踪工具的库
+            |-  bcinfo // 获取硬件设备信息库
+            |-  gdb_plugin // gdb插件
+            |-  include // 头文件
+            |-  lib // 库文件
+            |-  tests // 测试程序
+            |-  tools // 测试工具
+        |-  mclinker // MCLinker链接器
+            |-  include // 头文件
+            |-  lib // 库文件
+            |-  templates // 模板 
+            |-  tools // 工具
+            |-  unittests // 单元测试工具 
+        |-  slang // 异常框架            
+    |-  data-binding // 数据绑定。       
+    |-  ex // ex文件解析器
+        |-  camera2 // 相机相关
+        |-  common // 共有的
+        |-  framesequence // GIF图片工具包
+        |-  photoviewer // 图片预览
+        |-  widget // 小部件
+    |-  hardware // 硬件适配接口
+        |-  interfaces // 接口文件
+            |-  current.txt // 接口记录文件
+            |-  displayservice // 显示服务
+            |-  schedulerservice // JobScheduler主要用于在未来某个时间下满足一定条件时触发执行某项任务的情况
+            |-  sensorservice // 传感器服务
+            |-  update-makefiles.sh // 更新makefile文件脚本
+            |-  vr // 虚拟现实硬件接口       
+    |-  minikin // Android原生字体，连体字效果     
+    |-  ml // 机器学习
+        |-  bordeaux // 
+            |-  learning // 学习算法 
+            |-  service // 服务     
+    |-  multidex // Multi-dex Loader。       
+    |-  native // native实现        
+        |-  aidl // aidl层，Android 接口定义语言   
+        |-  build // 编译配置   
+        |-  cmds // 命令行    
+        |-  data // 数据文件    
+        |-  docs // 文档
+        |-  include // 头文件    
+        |-  libs // 库
+            |-  arect // 图形库    
+            |-  binder // binder通信库
+            |-  diskusage // 硬盘读取库 
+            |-  gui // ui显示库
+            |-  hwc2on1adapter // 
+            |-  input // 输入库
+            |-  math // 数学库
+            |-  nativewindow // native窗口库 
+            |-  sensor // 传感器库
+            |-  ui // ui库
+            |-  vr // 虚拟现实库
+        |-  opengl // 2D-3D接口框架  
+        |-  services // 服务
+|-  audiomanager // 音频服务     
+            |-  batteryservice // 电源服务
+            |-  displayservice // 显示服务
+            |-  inputflinger // 输入框架服务
+            |-  nativeperms // 属性服务
+            |-  powermanager // 电池管理
+            |-  schedulerservice //事件消息服务
+            |-  sensorservice // 传感器服务
+            |-  surfaceflinger // 显示服务
+            |-  vr // 虚拟现实服务
+        |-  vulcan // 隐式框架 
+    |-  opt // 一些软件。
+        |-  bitmap // 二进制图
+        |-  bluetooth // 蓝牙
+        |-  calendar // 日历
+        |-  chips // 芯片工具
+        |-  colorpicker // 色彩拾取工具
+        |-  datetimepicker // 时间选择工具
+        |-  emoji // standard message elements 表情
+        |-  inputconnectioncommon // 输入连接工具
+        |-  inputmethodcommon // 输入方法工具
+        |-  net // 网络相关工具
+            |-  ethernet // 有线网络
+            |-  ims // ims
+            |-  voip // 数据网络
+            |-  wifi // 无线网络
+        |-  photoviewer // 照片预览工具
+        |-  setupwizard // 开机向导工具
+        |-  telephony // 通信工具
+        |-  timezonepicker // 时区工具
+        |-  vcard // 芯片卡片工具
+    |-  rs // Render Script，可创建3D接口。        
+    |-  support // framework支持文件      
+    |-  webview // webview framework层的接口
+    |-  wilhelm // Wilhelm，基于Khronos的OpenSL ES/OpenMAX AL的audio/multimedia实现。       
+|-  hardware // HAL层，包括以下几个目录。          
+    |-  akm // AK8975传感器，包括SensorControl和HAL层的libsensors。       
+    |-  broadcom // Boradcom，包括libbt和wlan。      
+    |-  google // Google，包括Android Packet Filter。       
+    |-  intel // Intel，包括audio、media、bootstub、img、sensor等。      
+    |-  interfaces // HAL接口       
+        |-  audio // 音频
+        |-  automotive // 车载  
+        |-  benchmarks // 标准库  
+        |-  bluetooth // 蓝牙   
+        |-  boot // 内核
+        |-  broadcastradio // 无线广播
+        |-  camera // 相机
+|-  configstore // 配置
+|-  contexthub // 数据共享
+|-  drm // 数据保护
+|-  dumpstate // 
+|-  gatekeeper // 安全技术，由苹果开发
+|-  gnss // GNSS信号模拟器
+|-  graphics // 图像显示   
+        |-  health // 心跳计数  
+        |-  ir // 
+        |-  keymaster // 秘钥链  
+        |-  light // 背光
+        |-  media // 多媒体   
+        |-  memtrack //     
+        |-  nfc // 短距进程通信 
+        |-  power // 电源   
+        |-  radio // 射频
+        |-  renderscript //   
+        |-  sensors // 传感器
+        |-  soundtrigger //  
+        |-  tests // 测试   
+        |-  thermal // 终端  
+        |-  tv // 电视
+        |-  usb // usb  
+        |-  vibrator // 震动
+        |-  vr // 虚拟    
+        |-  wifi // 无线    
+    |-  invensense // InvenSense传感。     
+    |-  libhardware // 硬件库        
+        |-  include // 头文件
+        |-  modules //模块
+            |-  audio // 音频
+            |-  audio_remote_submix // 音频
+            |-  camera // 相机
+            |-  consumerir // 红外的脉冲序列
+            |-  fingerprint // 指纹
+            |-  gralloc // Gralloc模块，封装了对帧缓冲区的所有访问操作
+            |-  hwcomposer // 视频渲染
+            |-  input // 输入
+            |-  local_time // 本地时钟
+            |-  nfc // 短程通信
+            |-  nfc-nci // 短程通信
+            |-  power // 电源
+            |-  radio // 射频
+            |-  sensors // 传感器
+            |-  soundtrigger // 音频触发
+            |-  thermal // 终端
+            |-  tv_input // 电视输入
+            |-  usbaudio // usb音频
+            |-  usbcamera // usb相机
+            |-  vehicle // 车载
+            |-  vibrator // 震动
+            |-  vr // 虚拟
+|-  tests // 测试     
+    |-  libhardware_legacy // hardware legacy    
+        |-  audio // 音频
+        |-  include // 头文件 
+        |-  power.c // 电源  
+        |-  uevent.c // 事件 
+    |-  marvell // Marvell，包括bt。        
+    |-  qcom // Qualcomm，包括audio、wlan等。     
+    |-  ril // Radio Interface Layer。       
+|-  kernel // Linux Kernel，不过Android默认不提供，需要单独下载，只有一个tests目录。           
+    |-  tests // net测试。     
+|-  libcore // Android Java核心类库           
+    |-  benchmarks // 标准库      
+    |-  dalvik // dalvik虚拟机      
+    |-  dom // dom解析      
+    |-  expectations //         
+    |-  harmony-tests // 
+    |-  include // 头文件       
+    |-  json // json库        
+    |-  jsr166-tests // JSR是指向JCP提出新增标准化技术规范的正式请求，以向Java平台增添新的API和服务。 JSR-166主要是关于J.U.C的技术规范(jdk5)         
+    |-  libart // art虚拟机库      
+    |-  luni // jdk API        
+    |-  ojluni // openjdk API      
+    |-  support // 支持     
+    |-  test-rules // 测试规则
+    |-  tools // 工具      
+    |-  tzdata // 时区解析       
+    |-  xml // xml解析     
+|-  libnativehelper // Android Java类库的native实现助手。
+    |-  include // 头文件
+    |-  platform_include // 平台头文件
+        |-  tests // 测试程序。
+|- Makefile // 全局的Makefile
+ |-  out // 编译产生的目录
+|- CaseCheck.txt  
+|- casecheck.txt  
+|- host // 在主机PC host上使用的工具，包括二进制程序以及JAVA的程序）  
+    |- common  
+    |- obj // JAVA 库  
+    |- linux-x86  
+        |- bin // 二进制程序  
+        |- framework // JAVA 库,*.jar 文件 
+        |- lib // 共享库*.so  
+        |- obj // 中间生成的目标文件
+|- target // 在目标机(如ARMv5)上运行的内容
+|- common // common表示通用的内容  
+|   |- R // 资源文件 
+|   |- docs  
+|- obj  // 目标文件，APPS中包含了打成APK包的JAVA应用程序， JAVA_LIBRARIES中包含了JAVA的库
+|- product // product 中则是针对产品的内容  
+|- generic  
+|- android-info.txt  
+|- clean_steps.mk  
+|- symbols  
+|- obj // obj/APPS目录中包含了各种打成了APK包的JAVA应用，obj/SHARED_LIBRARIES中存放所有动态库，obj/STATIC_LIBRARIES中存放所有静态库 
+|- root/  
+|- ramdisk.img // 对应于root/目录，挂载在/  
+|- system/  
+|- system.img // 挂载在system/目录，包括了主要系统apps，priv-apps 
+|- data/  
+|- userdata.img // 挂载在data/目录，用户数据 
+|- userdata-qemu.img       
+|-  packages // Android Package，包括以下几个目录。           
+    |-  apps // 各种app。
+        |-  BasicSmsReceiver // 基础短信接收
+        |-  Bluetooth // 蓝牙
+        |-  Browser2 // 浏览器
+        |-  Calendar // 日历
+        |-  Camera2 // 相机
+        |-  Car // 车载 
+        |-  CarrierConfig // 运营商配置
+        |-  CellBroadcastReceiver // 小区广播服务 
+        |-  CertInstaller // 在Android中安装数字签名，被调用
+        |-  Contacts // 联系人
+        |-  DeskClock // 桌面时钟
+        |-  DevCamera // 相机
+        |-  Dialer // 拨号盘
+        |-  DocumentsUI // 下载
+        |-  Email // 邮件
+        |-  EmergencyInfo // 工程信息 
+        |-  ExactCalculator // 计算器
+        |-  Gallery // 图库
+        |-  Gallery2 // 图库
+        |-  HTMLViewer // HTML阅读器
+        |-  KeyChain // 秘钥链
+        |-  Launcher2 // 桌面启动器
+        |-  Launcher3 // 桌面启动器
+        |-  LegacyCamera // 安全相机
+        |-  ManagedProvisioning // 
+        |-  Messaging // 短信
+        |-  Music // 音乐
+        |-  MusicFX // MusicFX是一款系统专用的音频控制面板
+        |-  Nfc // 短程通信
+        |-  OneTimeInitializer // 谷歌服务框架
+        |-  PackageInstaller // 安装
+        |-  Phone // 电话
+        |-  PhoneCommon // 电话
+        |-  Protips // 主屏幕提示
+        |-  Provision // 预设应用的状态，使能应用
+        |-  QuickSearchBox // 搜索框
+        |-  RetailDemo // 
+        |-  SafetyRegulatoryInfo // 安全监管
+        |-  Settings // 设置
+        |-  SoundRecorder // 录音
+        |-  SpareParts // 高级设置
+        |-  SpeechRecorder // 录音机
+        |-  Stk // SIM卡智能工具包
+        |-  StorageManager // 存储管理
+        |-  Tag // 标签
+        |-  Terminal // 终端
+        |-  Test // 测试
+        |-  TV // 电视
+        |-  TvSettings // 电视设置
+        |-  UnifiedEmail // 未定义邮件
+        |-  WallpaperPicker // 壁纸          
+    |-  experiment // 非release/public的测试程序。
+        |-  BugReportSender // bug上传测试 
+        |-  Bummer // 懒汉测试
+        |-  CameraPreviewTest // 相机预览测试
+        |-  DreamTheater // 
+        |-  ExampleImsFramework // ims框架测试
+        |-  FilledApp // apk上限测试
+        |-  FillService // 服务上限测试 
+        |-  InstantCookieApp // 小程序
+        |-  LoaderApp // 加载apk
+        |-  MultiPackageApk // 安卓多渠道打包工具 
+        |-  NotificationListenerSample // 消息监听测试
+        |-  NotificationLog // 消息log测试
+        |-  NotificationShowcase // 消息展示测试
+        |-  PermissionApp // 权限测试
+        |-  PrintApp // 打印测试
+        |-  PrintService // 打印服务测试
+        |-  procstatlog // 
+        |-  RpcPerformance // 远程过程调用测试 
+        |-  StrictModeTest // StrictMode最常用来捕捉应用程序的主线程，它将报告与线程及虚拟机相关的策略违例 
+        |-  TestBack // 回测     
+    |-  inputmethods // 输入法，包括LatinIME和OpenWnn。
+        |-  LatinIME // 拉丁文输入法
+        |-  OpenWnn // OpenWnn输入法        
+    |-  providers // 各种provider。
+        |-  ApplicationsProvider // 应用程序提供器，提供应用程序启动项、更新等
+        |-  BlockedNumberProvider // 黑名单电话提供器
+        |-  BookmarkProvider // 书签提供器
+        |-  CalendarProvider // 日历提供器
+        |-  CallLogProvider // 通话记录提供器 
+        |-  ContactsProvider // 联系人提供器
+        |-  DownloadProvider // 下载管理提供器
+        |-  MediaProvider // 媒体提供器，提供存储数据
+        |-  PartnerBookmarksProvider // 浏览器书签提供器
+        |-  TelephonyProvider // 彩信提供器
+        |-  TvProvider // 电视提供器
+        |-  UserDictionaryProvider // 用户字典提供器，提供用户常用字字典        
+    |-  screensavers // 屏保
+        |-  Basic // 默认屏保应用 
+        |-  PhotoTable // 照片屏保应用 
+        |-  WebView // 网络屏保应用     
+    |-  services // 各种service。
+        |-  BuiltInPrintService // 预览打印服务
+        |-  Car // 车载服务
+        |-  Mms // 短信服务
+        |-  NetworkRecommendation // 网络建议
+        |-  Telecomm // Telecom通信服务
+        |-  Telephony // Telephony通话服务    
+    |-  wallpapers // 壁纸
+        |-  LivePicker // 动态壁纸       
+|-  pdk // Android Platform Development Kit，包括以下几个目录。           
+    |-  apps // 平台测试应用
+        |-  HelloPDK // 平台测试示例
+        |-  TestingCamera // 相机测试
+        |-  TestingCamera2 // 相机测试  
+    |-  build // 编译配置       
+    |-  util // 工具包      
+|-  platform_testing // Android平台测试程序，包括以下几个目录。         
+    |-  build // 平台测试       
+    |-  libraries // lib库        
+    |-  scripts // 脚本     
+    |-  tests // 测试       
+    |-  utils // 工具包       
+|-  prebuilts // Android预编译目录，包括以下几个目录。
+|-  abi-dumps // applicationbinary interface，应用程序二进制接口的内存镜像调试工具        
+    |-  android-emulator // Android模拟器，由external/qemu/android/scripts/package-release.sh生成。     
+    |-  build-tools // Ninja编译系统的辅助工具。
+    |-  checkcolor // 色彩规范检查      
+    |-  checkstyle // Java编码规范检查。       
+    |-  clang // c/c++/object-c代码编译器。       
+    |-  deqp // Draw Elements Quality Program，适用于OpenGL ES/OpenCL的GPU应用分析。      
+    |-  devtools // 开发工具，如常见的adt、android、ddms、lint等。        
+    |-  eclipse // eclipse。     
+    |-  gcc // gcc。     
+    |-  gdb // gdb。     
+    |-  go // go。       
+    |-  gradle-plugin // gradle插件。      
+    |-  libs // libedit，这是NetBSD Editline库（libedit）的自动工具和libtoolized端口。 这个Berkeley风格的授权命令行编辑器库提供了通用的行编辑，历史记录和标记化功能，与GNU Readline中的类似。。        
+    |-  maven_repo // maven。        
+    |-  misc // 宏指令系统。       
+    |-  ndk // ndk。     
+    |-  python // python。       
+    |-  qemu-kernel // qemu 内核，QEMU是一套由法布里斯·贝拉(Fabrice Bellard)所编写的以GPL许可证分发源码的模拟处理器，在GNU/Linux平台上使用广泛。Bochs，PearPC等与其类似，但不具备其许多特性，比如高速度及跨平台的特性，通过KQEMU这个闭源的加速器，QEMU能模拟至接近真实电脑的速度。         
+    |-  sdk // 开发包。     
+    |-  tools // 工具。      
+|-  sdk // Android的Java层SDK，包括以下几个目录。           
+    |-  annotations // 注释源码     
+    |-  apkbuilder // apk打包工具源码       
+    |-  apps // sdk自带的应用 
+        |-  DeviceConfig // 设备配置
+        |-  NotificationStudio // 消息提示
+        |-  SdkController // sdk管控        
+    |-  attribute_stats // 属性状态     
+    |-  avdlauncher // 模拟器启动     
+    |-  bash_completion // bash工具     
+    |-  build // sdk编译配置       
+    |-  docs // 文档        
+    |-  dumpeventlog // 事件记录log
+    |-  eclipse // eclipse开发sdk配置
+    |-  emulator // 模拟器源码        
+    |-  eventanalyzer // 事件分析        
+    |-  files // 文件        
+    |-  find_java // java文件查找       
+    |-  find_java2 // class文件查找      
+    |-  find_lock // 锁查找        
+    |-  hierarchyviewer // hierarchyviewer工具源码     
+    |-  icons //        
+    |-  sdklauncher // sdk加载源码     
+    |-  settings // sdk设置源码        
+    |-  templates // 模板       
+    |-  testapps // 测试应用       
+|-  system // Android系统设施，包括以下几个目录。         
+    |-  bt // 蓝牙相关        
+    |-  ca-certificates // 证书颁发机构
+    |-  chre // 校验读出      
+    |-  connectivity // WIFI，包括wificond和wifilogd两个daemon。       
+        |-  wificond // WIFI配置   
+        |-  wifilogd //  WIFI 的log系统  
+    |-  core // 系统核心工具盒接口。       
+        |-  adb // adb调试工具
+        |-  adf // ADF file format解析库 
+        |-  base // 通用基础库    
+        |-  bootstat // 记录启动状态工具库
+        |-  cpio // cpio工具，创建img    
+        |-  debuggerd // 调试工具 
+        |-  demangle //  还原库  
+        |-  fastboot // 快速启动相关    
+        |-  fingerprintd // 指纹库     
+        |-  fs_mgr // 磁盘引导头  
+        |-  gatekeeperd // 锁屏密码服务系统接口 
+        |-  healthd // healthd是android4.4之后提出来的一种中介模型，该模型向下监听来自底层的电池事件，向上传递电池数据信息给framework层的batteryservice用以计算电池电量相关状态信息，batteryservice通过传递来的数据来计算电池电量显示，剩余电量，电量级别等信息
+        |-  include // 系统接口头文件 
+        |-  init // init程序源代码    
+        |-  libappfuse // AppFuse是一个集成了众多当前最流行开源框架与工具(包括Hibernate、ibatis、Struts、Spring、DBUnit、Maven、Log4J、Struts Menu、Xdoclet、SiteMesh、OSCache、JUnit、JSTL等（现在还有lucene的，无敌了）)于一身的Web开发框架。AppFuse提供了Web系统开发过程中都需要开发的一些功能，如登陆、用户密码加密，用户管理、根据不同的用户可以展现不同的菜单.J2EE开发者也可以在此基础上开发加入自己的功能模块。利用这个框架可以大幅度的提高开发速度  
+        |-  libbacktrace // 进程堆栈库
+        |-  libbinderwrapper // binder底层库    
+        |-  libcrypto_utils // 加密库 
+        |-  libcutils // 网络工具库   
+        |-  libdiskconfig // 磁盘配置库
+        |-  libgrallocusage // 显示系统库   
+        |-  libion //   ION是Google的下一代内存管理器，用来支持不同的内存分配机制，如CARVOUT(PMEM)，物理连续内存(kmalloc), 虚拟地址连续但物理不连续内存(vmalloc)， IOMMU等 
+        |-  liblog // log库  
+        |-  libmemtrack // 内存堆栈库
+        |-  libmemunreachable // 
+        |-  libmetricslogger //    
+        |-  libnativebridge // native层库 
+        |-  libnativeloader // native加载库 
+        |-  libnetutils // 网络工具包库 
+        |-  libpackagelistparser //包解析库     
+        |-  libpixelflinger // Pixelflinger是Android系统中为OpenGLES引擎提供的一套软件渲染器（renderer）。OpenGLES引擎提供了一系列基础绘图功能。这些功能包括定义各种颜色格式像素位置、画点画线、绘制矩形及三角形、填充纹理等等。由于OpenGLES相当于一个状态机，配置OpenGLEs状态的函数也均由Pixelflinger提供 
+        |-  libprocessgroup // 进程组库 
+        |-  libprocinfo //  系统属性信息
+        |-  libsparse // 稀疏矩阵库  
+        |-  libsuspend // 跟电源管理相关  
+        |-  libsync // 网络数据同步开发库
+        |-  libsysutils // 系统工具库
+        |-  libunwindstack // libunwind库为基于64位CPU和操作系统的程序提供了基本的堆栈辗转开解功能 
+        |-  libusbhost // usb库  
+        |-  libutils // 系统基本库    
+        |-  libziparchive // zip压缩算法库   
+        |-  lmkd // 低内存库    
+        |-  logcat // logcat工具源码  
+        |-  logd // log进程    
+        |-  logwrapper // log封装工具 
+        |-  mkbootimg // 制作启动boot.img的工具盒脚本   
+        |-  reboot // 重启  
+        |-  rootdir // rootfs，包含一些etc下的脚本和配置 
+        |-  run-as // 权限控制  
+        |-  sdcard // SD卡管理器
+        |-  shell_and_utilities // shell工具包 
+        |-  storaged // 存储
+        |-  toolbox // toolbox，类似busybox的工具集 
+        |-  trusty // 授权底层   
+        |-  tzdatacheck // 时区检查底层 
+    |-  extras // 核心库之外的程序，包括以下几个目录。        
+        |-  alloc-stress // 内存释放    
+        |-  ANRdaemon // 系统无响应库
+        |-  app-launcher //  launcher应用库  
+        |-  boot_control_copy // boot控制复制   
+        |-  bootctl // boot控制
+        |-  brillo_config // Brillo 系统配置   
+        |-  cppreopts //  
+        |-  cpustats // cpu状态    
+        |-  crypto-perf // 加密性能分析工具  
+        |-  ext4_utils // ext4文件系统  
+        |-  f2fs_utils // f2fs文件系统
+        |-  ioshark // io流操作泄露回收   
+        |-  iotop // io操作相关   
+        |-  kexec_tools // Kexec是Linux和Xen提供的软重启和崩溃转储工具。 这个页面是kexec各种工作的反弹点 
+        |-  ksmutils // KSM是一种节省内存的重复数据删除功能，可以合并匿名（专用）页面（不是页面缓存）。 虽然它是以这种方式开始的，但KSM目前适用于不止于虚拟机的使用，因为它对任何生成相同数据的许多实例的应用程序都是有用的    
+        |-  latencytop // a tool for software developers ，identifying system latency happen 
+        |-  libfec // fec库  
+        |-  libpagemap // pagemap库 
+        |-  librank // rank库 
+        |-  memcpy-perf // 内存性能分析
+        |-  memory_replay // 内存重写   
+        |-  memtrack // 内存堆栈  
+        |-  micro_bench //  sim相关
+        |-  mmap-perf //  系统级性能分析工具  
+        |-  multinetwork // 多网络系统实现  
+        |-  pagecache //    
+        |-  perfprofd // 系统安装相关   
+        |-  postinst //     
+        |-  preopt2cachename // dex文件优化相关     
+        |-  procmem // 用于查看系统中的内存使用情况，procrank可以查看系统中所有进程的整体内存占用情况，并按照规则排序 
+        |-  procrank // 用于查看系统中的内存使用情况，procmem可以针对某个特定的进程分析其堆、栈、共享库等内存占用情况   
+        |-  puncture_fs //  
+        |-  runconuid //    
+        |-  sane_schedstat // 射频库  
+        |-  showmap // showmap工具 
+        |-  showslab // showslab工具    
+        |-  simpleperf // Simpleperf是Android平台的一个本地层性能分析工具。它的命令行界面支持与linux-tools perf大致相同的选项，但是它还支持许多Android特有的改进  
+        |-  slideshow // 幻灯片展示   
+        |-  sound // 声音相关   
+        |-  squashfs_utils // SquashFS是一套基于Linux内核使用的压缩只读文件系统。该文件系统能够压缩系统内的文档,inode以及目录，文件最大支持2^64字节。  
+        |-  su // su命令源码  
+        |-  systrace_analysis // 系统性能分析   
+        |-  taskstats // 任务管理   
+        |-  tests // 测试工具   
+        |-  tools // 工具   
+        |-  verity // 认证  
+        |-  zram-perf // ZRAM是linux的一种内存优化技术，基本工作原理是：通过划定一片区域，将压缩过后的硬盘数据放入该区域，以实现高速读取   
+    |-  gatekeeper // 防护程序，如锁屏密码等。
+    |-  hardware //       
+    |-  hwservicemanager // Hardware Service Manager。       
+    |-  keymaster // HAL密钥管理。       
+    |-  libfmq // Message Queue。        
+    |-  libhidl // Hardware Interface Description Language。     
+    |-  libhwbinder // Hardware Binder。     
+    |-  libufdt // Unflattened Device Tree。     
+    |-  libvintf // Vendor Interface。       
+    |-  media // 包括alsa、audio、brillo、camera和radio。      
+    |-  nativepower // 用于Brillo的电源管理模块，包括客户端的libnativepower和服务端的nativepowerman以及示例代码。       
+    |-  netd // 网络模块，包括client和server。       
+    |-  nfc // Near Field Communication。        
+    |-  nvram // NVRAM访问控制。     
+    |-  security // 安全模块，包括keystore和软件模拟的softkeymaster。     
+    |-  sepolicy // Android SELinux policy configuration。       
+    |-  tools // 包括aidi和hidl。       
+    |-  tpm // Trusted Platform Module，一种安全防御工具。        
+    |-  update_engine // 系统升级。      
+    |-  vold // Volume服务，如sdk卡、usb等。        
+|-  test // Android Vendor测试框架，包括以下几个目录。            
+    |-  vts // Vendor Test Suite。       
+    |-  vts-testcase // VTS测试用例，包括fuzz、kernel、performance和security。     
+|-  toolchain // Android工具链，包括一个binutils目录。         
+    |-  binutils // bin utilities。      
+|-  tools // Android工具集，包括以下几个目录。           
+    |-  apksig // APK签名，包括一个Java库和一个Java命令行工具。      
+    |-  external // 外部工具，包括以下几个目录。      
+        |-  fat32lib // 用于FAT文件系统。  
+        |-  gradle // Gradle各种版本的源码压缩包。 
+    |-  loganalysis // log分析的Java类库。        
+    |-  repohooks // 用于repo upload，报告各仓库的修改情况。      
+    |-  test // 测试框架，Python实现。      
+    |-  tradefederation // 服务于测试

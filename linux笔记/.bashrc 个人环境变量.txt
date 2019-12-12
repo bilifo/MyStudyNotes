@@ -1,9 +1,37 @@
 vi ~/.bash_profile
 
+一.配置个人使用的jdk版本
 尾部追加jdk1.6.0_45版本JDK配置：
 export JAVA_HOME=/home/wangyong/jdk6/jdk1.6.0_45
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+二.配置命令行彩色
+找到 PS1,如没有,最后行添加,设置颜色的形式是  \[\ 色值 \]\ 
+PS1='[\u@\h\[\033[00m\] \A]\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+补课start###:
+PS1是一个全局变量,用来定义命令行提示符的字符串应该怎么写.
+PS1的常用参数以及含义:
+　　\d ：代表日期，格式为weekday month date，例如："Mon Aug 1"
+　　\H ：完整的主机名称
+　　\h ：仅取主机名中的第一个名字
+　　\t ：显示时间为24小时格式，如：HH：MM：SS
+　　\T ：显示时间为12小时格式
+　　\A ：显示时间为24小时格式：HH：MM
+　　\u ：当前用户的账号名称
+　　\v ：BASH的版本信息
+　　\w ：完整的工作目录名称
+　　\W ：利用basename取得工作目录名称，只显示最后一个目录名
+　　\# ：下达的第几个命令
+　　\$ ：提示字符，如果是root用户，提示符为 # ，普通用户则为 $
+一般使用 echo $PS1 得到   PS1='[\u@\h \W]\$ ' 
+表示   当前用户的账号名称@主机名中的第一个名字 路径$
+命令提示符即	[root@localhost pjl]$
+补课end###
+
+三.
+
 保存退出
 source ~/.bash_profile
 使配置文件生效

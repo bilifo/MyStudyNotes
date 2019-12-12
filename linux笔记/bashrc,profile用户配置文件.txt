@@ -1,0 +1,20 @@
+对于个别用户的启动配置文件		
+~/.bashrc
+~/.profile
+
+对于全局用户的启动配置文件
+/etc/bash.bashrc
+/etc/profile
+修改/etc路径下的配置文件将会应用到整个系统，属于系统级的配置，而修改用户目录下的.bashrc则只是限制在用户应用上，属于用户级设置。
+
+bashrc是在系统启动后就会自动运行。profile是在用户登录后才会运行。
+
+进行设置后，可运用source bashrc命令更新bashrc，也可运用source profile命令更新profile。
+
+/etc/profile中设定的变量(全局)的可以作用于任何用户，而~/.bashrc等中设定的变量(局部)只能继承/etc/profile中的变量，他们是"父子"关系。
+
+~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息，当用户登录时，该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。
+~/.bash_logout: 当每次退出系统(退出bash shell)时，执行该文件。
+~/.bash_profile 是交互式、login方式进入bash运行的，~/.bashrc是交互式non-login方式进入bash运行的，通常二者设置大致相同，所以通常前者会调用后者。
+~/.bash_history   记录之前输入的命令
+.bash_profile只在会话开始时被读取一次，而.bashrc则每次打开新的终端时，都要被读取。

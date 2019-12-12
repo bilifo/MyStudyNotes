@@ -23,6 +23,9 @@ url = https://android.googlesource.com/platform/manifest
 更改为
 url = https://aosp.tuna.tsinghua.edu.cn/platform/manifest
 
+repo脚本更新:
+repo selfupdate
+
 创建xxx项目分支:
 repo start xxx --all
 
@@ -37,15 +40,24 @@ repo prune [<project>…]
 切换分支:
 repo checkout <branchname>  [<project>…]
 
+添加到暂存index表:
+repo stage -i [<project>…]
+
 查看修改:
 repo diff [<project>…]
 
 查看本地repo管理的所有projects:
 repo list
 
+查看当前分支
+repo branch
+
 设置远程仓库:
 repo remote add 分支名 ssh://172.16.1.31/git_repo
 repo remote rm 分支名
+
+向服务器提交代码:
+repo push
 
 切换源码的安卓版本:
 cd 源码目录
@@ -54,6 +66,21 @@ git branch -av   # 查看可以切换的安卓版本
 cd 源码目录
 repo init -b 你选择的安卓版本,如:
 repo sync -j8
+
+对所有分支进行相同git操作:
+repo forall
+eg:repo forall -c git checkout -b pjl_test_branch
+
+拉取服务的最新,且保留本地修改:
+repo sync -d
+
+清除所有修改,不做修改保留:
+repo sync -d
+repo forall -c 'git reset --hard' 
+repo forall -c 'git clean -f -d' 
+
+强制回退版本:(回退到2019-2-1 00:00前的一个版本)
+repo forall -c 'commitId=`git log --before "2019-2-1 00:00" -1 --pretty=format:"%H"`; git reset --hard $commitId'
 
 切换源码的安卓细分版本:
 
