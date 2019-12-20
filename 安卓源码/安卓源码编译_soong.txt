@@ -1,3 +1,0 @@
-随着android工程越来越大，包含的module越来越多，以makefile组织的项目编译花费的时间越来越多。
-Soong是以前Android基于make的编译系统的替代品。它以Android.bp文件替代Android.mk，Android.bp文件用类似JSON的简洁声明来描述需要构建的模块。
-Android.bp文件设计得非常简洁。没有条件或控制流语言

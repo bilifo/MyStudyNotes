@@ -1,0 +1,106 @@
+ADB是一个C/S架构的应用程序，由三部分组成：
+1/运行在pc端的adb client：
+    命令行程序”adb”用于从shell或脚本中运行adb命令。首先，“adb”程序尝试定位主机上的ADB服务器，如果找不到ADB服务器，“adb”程序自动启动一个ADB服务器。接下来，当设备的adbd和pc端的adb server建立连接后，adb client就可以向ADB servcer发送服务请求；
+2/运行在pc端的adb server：
+    ADB Server是运行在主机上的一个后台进程。它的作用在于检测USB端口感知设备的连接和拔除，以及模拟器实例的启动或停止，ADB Server还需要将adb client的请求通过usb或者tcp的方式发送到对应的adbd上；
+3/运行在设备端的常驻进程adb demon (adbd)：
+    程序“adbd”作为一个后台进程在Android设备或模拟器系统中运行。它的作用是连接ADB服务器，并且为运行在主机上的客户端提供一些服务；
+
+adb能做什么?答案是所有能对手机的操作都能用adb实现。
+
+adb [-d | -e | -s] 指令:(-s一般用于多设备时指定某个设备)
+	
+adb version:			查看 adb 版本
+adb root:				以 root 权限运行 adbd
+adb -P <port> start-server:		指定 adb server 的网络端口
+adb devices			查询已连接设备/模拟器
+adb tcpip 5555			设备在 5555 端口监听 TCP/IP 连接
+adb connect <device-ip-address>:5555	通过无线ip地址的方式连接adb
+adb disconnect <device-ip-address>	断开相应ip地址的设备
+adb pull <设备里的文件路径> [电脑上的目录]	拉取设备里的文件
+adb push <电脑上的文件路径> <设备里的目录>	推文件到设备
+adb logcat -v threadtime			查看日志
+adb exec-out screencap -p > 电脑上的目录\文件名.png	保存截图
+adb reboot recovery			重启到 Recovery模式
+adb reboot bootloader		重启到 Fastboot 模式
+adb sideload <path-to-update.zip>	adb 上传和更新系统(需要先重启到Recovery模式)
+adb install [-lrtsdg] <待安装的apk路径>	安装apk
+	-l				将应用安装到保护目录 /mnt/asec
+	-r				允许覆盖安装
+	-t				允许安装 AndroidManifest.xml 里 application 指定 android:testOnly="true" 的应用
+	-s				将应用安装到 sdcard
+	-d				允许降级覆盖安装
+	-g				授予所有运行时权限
+adb uninstall [-k] <要卸载的apk包名>	卸载apk
+	-k				表示卸载应用但保留数据和缓存目录。
+	
+adb shell settings put global adb_enabled 0 关闭usb调试
+adb shell cat /data/misc/wifi/*.conf	查看连接过的wifi密码(需要root)
+adb shell svc wifi [disable|enable]	开启关闭wifi(需要root)
+adb shell dmesg			查看内核日志
+adb shell kmesg			
+adb shell getprop ro.product.model	查看设备信息
+adb shell getprop ro.build.version.release 	查看安卓版本
+adb shell cat /proc/cpuinfo		查看cpu信息
+adb shell wm size [480x1024|reset]	查看[或修改]分辨率,reset为还原,是x不是*
+adb shell wm density [160|reset]	查看[或修改]屏幕密度
+adb shell wm overscan [0,0,0,200|reset]	查看[或修改]显示区域
+adb shell cat /proc/meminfo		查看内存信息
+adb shell ifconfig			查看设备网络信息
+adb shell cat /system/build.prop	硬件和系统属性(需要root)
+adb shell pm list packages		查看所有应用
+adb shell pm list packages -s		系统应用
+adb shell pm list packages -3		第三方应用
+adb shell pm list packages XXX		查看包名包含XXX的应用们
+adb shell pm clear <packagename>	清除对应包的 缓存 和 数据
+adb shell dumpsys activity activities	查看正在运行的activity栈
+adb shell dumpsys activity services	查看正在运行的 Services
+adb shell dumpsys package <packagename>	查看应用详细信息
+adb shell dumpsys battery		查看电池状态
+adb shell dumpsys window displays	查看屏幕参数
+
+
+
+与应用交互:
+主要使用adb shell am <command> [options] <INTENT> 	(<INTENT> 参数很灵活，和写 Android 程序时代码里的 Intent 相对应。)
+adb shell am start -n 包名/包名.MainActivity	启动app
+adb shell am startservice -n 包名/包名.TestService	启动服务
+adb shell am broadcast -n 包名/包名.TestReceiver	发送定向广播
+adb shell am force-stop 包名			停止包名相关进程(app和服务)
+	-a					指定action
+	-c					指定category
+	-n					指定component(即包名/包名.类),明确启动哪个activity
+<INTENT>中能带的数据,就和代码中写Bundle一样:
+	--esn					null值
+	-e					
+	--ez					boolean值
+	--ei					int值
+	--el					long值
+	--ef					float值
+	--eu					URI	
+	--ecn					component name
+	--eia					int数组
+	--ela					long数组
+
+模拟按键输入:
+使用adb shell input [<source>] <command> [<arg>...]
+The sources are:
+	mouse					
+	keyboard
+	joystick
+	touchnavigation
+	touchpad
+	trackball
+	stylus
+	dpad
+	gesture
+	touchscreen
+	gamepad
+The commands and default sources are:
+      text <string> (Default: touchscreen)			在焦点处输入文本
+      keyevent [--longpress] <key code number or name> 	模拟按键,有专门的keycode表
+      tap <x> <y> (Default: touchscreen)			模拟点击坐标点(x,y)
+      swipe <x1> <y1> <x2> <y2> [duration(ms)] 		模拟滑动(x1,y1)到(x2,y2),持续时间
+      press (Default: trackball)				已经无用
+      roll <dx> <dy> (Default: trackball)			已经无用
+

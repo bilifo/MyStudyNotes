@@ -69,3 +69,6 @@ makefile的不足:
 	2/使用方式:
 		 make -f makefile -f var.mk TEST_VALUE 或
 		 make -f makefile -f var.mk d-TEST_VALUE
+
+内置函数:
+$(addprefix fixStr,str1,str2...) 	#addprefix的作用是将fixStr作为前缀,添加给str1,str2等

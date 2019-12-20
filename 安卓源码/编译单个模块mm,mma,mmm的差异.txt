@@ -5,3 +5,11 @@ make MediaProvider  #单个模块编译,可简写成mm
 mm  # 编译当前目录下的模块，它和mmm一样，不编译依赖模块; 
 mmm packages/providers/MediaProvider # 编译指定目录下的模块，但不编译它所依赖的其它模块； 
 mma # 编译当前目录下的模块及其依赖项 .
+
+mm和mmm的差别:
+mm只能到指定的目录下执行,而mmm可以在除了模块目录外的任何地方执行
+
+保存make日志:
+make v=1 -j8 >& makeinfo2.txt             v=1表示输出详细信息.
+注意:***在使用该命令进行-j多线程编译时,不要打开makeinfo2.txt,会导致make中断,报错
+
