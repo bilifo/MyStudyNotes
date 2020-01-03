@@ -10,13 +10,13 @@ import subprocess
 			stdout=None, 		#标准输出
 			stderr=None,		#错误句柄
 			preexec_fn=None,	#preexec_fn只在Unix平台下有效
-			close_fds=False,	#
+			close_fds=False,	#在windows平台下，如果close_fds被设置为True，则新创建的子进程将不会继承父进程的输入、输出、错误管道。
 			shell=False,		#设为true，程序将通过shell来执行
 			cwd=None,		#用于设置子进程的当前目录
 			env=None, 		#字典类型，用于指定子进程的环境变量
 			universal_newlines=False, #设置为True,统一把换行符当作'/n'来处理
 			startupinfo=None, 
-			creationflags=0)
+			creationflags=0)	#startupinfo与creationflags只在windows下用效，它们将被传递给底层的CreateProcess()函数，用于设置子进程的一些属性，如：主窗口的外观，进程的优先级等等。
 	一般只会用到args,stdin,stdout
 	例:
 #使用subprocess.PIPE 作为Stdin（标准输入流）Stdout（标准输出流）参数，这个是一个特殊值，用于表明这些通道要开放。
@@ -37,3 +37,8 @@ import subprocess
 	其他踩坑:https://www.cnblogs.com/havePassed/p/4950751.html
 
 	shlex.split()可以被用于序列化复杂的命令参数
+	
+在Python 3.5之后的版本中，官方文档中提倡通过subprocess.run()函数替代其他函数来使用subproccess模块的功能；
+subprocess.run()、subprocess.call()、subprocess.check_call()和subprocess.check_output()都是通过对subprocess.Popen的封装来实现的高级函数，因此如果我们需要更复杂功能时，可以通过subprocess.Popen来完成。
+
+subprocess.Popen,该类用于在一个新的进程中执行一个子程序。

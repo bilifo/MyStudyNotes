@@ -197,6 +197,8 @@ sorted(排序):
 		with open('测试文件.txt','rb',) as tempfile:
 			#取文件数据
 			pickle.load(tempfile)
+开启新进程:
+	subprocess,它优于os,能和子进程进行交互和通讯
 
 开启新线程:
 	from multiprocessing.dummy import Pool

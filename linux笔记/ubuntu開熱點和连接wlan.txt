@@ -1,4 +1,12 @@
+一/开热点:
 1.在命令行中输入指令 nm-connection-editor
 2.点击最下方“+”号，选择WiFi并创建SSID是网络名,可随意,模式设置为"热点",波段"自动",频道"默认",设备寻找wlp*,在安全性中设置密码,保存退出
 3.在设置中打开wifi,在"打开"和最小化之间,选择打开热点
+
+二/查看可以使用的无线网
+nmcli dev wifi
+
+三/连接wifi
+nmcli dev wifi connect ‘essid’（网络名称） password ‘password’（密码）
+
 
