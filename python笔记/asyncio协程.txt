@@ -1,0 +1,42 @@
+协程不是多线程,它只有一个线程,但它依靠中断运行的时候看起来像多线程.即暂时不用的函数方法可以先挂起让其他函数执行.它就相当于安卓中的Handler消息
+asyncio是python重要的并发模块,为解决异步io编程提供了一整套解决方案.
+
+event_loop:无限的循环，开启之后，可以将协程注册进来。当满足事件发生的时候，调用相应的协程函数。相当于安卓handler中的loop
+future: 是一个数据结构，表示还未完成的工作结果。event_loop可以循环监视Future对象是否完成。从而允许应用的一部分等待另一部分完成一些工作。
+task：task可以说是future的子类。一个协程对象就是一个可以挂起的函数，任务是对协程的进一步封装，其中包含了任务的各种状态
+协程:一个函数,特点是在代码块中可以将执行权交给其他协程,这个函数前面得加上 async 关键字,来表示这是一个异步的函数.而在调用异步函数,必须在调用的地方加await关键字。不能在同步函数里使用await，否则会出错
+eg:
+#一个异步方法(或者说是协程),被async声明的函数,即使被调用,也不会运行,只有当被放进event_loop中才会的到执行
+async def async_double(x):
+    return 2 * x
+#调用这个异步方法,因为await的原因,调用者也必须声明成异步
+async def print_double(x):
+    print(await async_double(x))
+
+一个简单的使用例子######:
+import asyncio
+
+async def mydefind():
+    print('this is python')
+async def mydefind2():
+    print('Hello ...')
+    await asyncio.sleep(3)#故意等待,造成阻塞
+    print('... World!')
+
+async def main():
+    #asyncio.create_task() 函数用来并发运行作为 asyncio 任务 的多个协程
+    task1 = asyncio.create_task(mydefind2())
+    task2 = asyncio.create_task(mydefind())
+    await task1#await表示可等待对象,可以是协程,task,future
+    await task2
+# 这里是一个协程对象，这个时候main函数并没有执行,这和同步不一样
+coroutine = main()
+# 获得event_loop,或者直接使用进一步封装函数 asyncio.run(main()) 
+loop = asyncio.get_event_loop()
+# 将协程包装成task,并注册到event_loop中
+loop.run_until_complete(coroutine)
+######例子end
+
+
+
+	

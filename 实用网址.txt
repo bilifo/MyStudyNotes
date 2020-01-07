@@ -6,3 +6,5 @@
 kaios网站		https://developer.kaiostech.com/introduction
 
 pycharm激活码	http://lookdiv.com/	钥匙就是lookdiv.com
+python官方文档	https://docs.python.org/zh-cn/3/
+廖雪峰python教程	https://www.liaoxuefeng.com/wiki/1016959663602400
