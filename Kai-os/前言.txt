@@ -1,0 +1,21 @@
+kaiOS是在安卓源码的基础上,删掉app层,直接改用web网页展示应用,即kaios上所有的界面,其实都是网页.
+
+KaiOS是基于FirefoxOS项目派生出来的,只是一个Firefox OS的端口(虽然官网上说不是,但基于阿三的狡辩本性,我们有理由相信这个观点,而且它们的框架一模一样)
+有意思的是,有一个更小的系统,也叫kaiOS,它是更早出现的可移动设备的杀毒系统,却被盗取了名字:)
+
+kaiOS分层:
+Gaia(前端):行在Firefox OS 平台的一个复杂的web应用集合,它是由HTML+CSS+JAVAScript组成,它于Cecko层的通讯只能通过web API进行
+Gecko(中间层,一个Firefox的渲染引擎,叫Gecko):它提供运行环境,如:app managerment, OS Management
+Gonk(或Gonk-misc)(一个底层操作系统,名叫Gonk):包含kernel(基于安卓AOSP), RIL(用户空间硬件抽象层), HW Drivers(硬件驱动)
+
+kaiOS的app本质就是web网页,可以是本地的网页压缩包或者是服务器网页.
+kaiOS的系统源码,网络上没找到任何有价值的文档,不过我们可以通过它的前身Firefox os(也可以是说是B2G OS)来了解它的Caia和Gecko层,Gonk可以参考安卓
+
+kaiOS的启动:
+和安卓一样,通过init.c读取init.rc的命令,来调起环境的服务们,但不同的是,这次调起的不是zygote受精卵,也不是Firefox OS的b2g.rc(印度人的小聪明:),或者是Firefox较早版本),在init.rc的最后看到"service servicemanager /system/bin/servicemanager",应该就是它了.
+不管怎么改,init后是启动的"SystemServer.java"这点应该是不会变的,不然那个修改量不可想象,而且它用安卓的AOSP就没意义了.
+通过lunch XXX,我们可以看到"PLATFORM_VERSION=6.0.1",即使用的是安卓6.0.1的版本.和6.0.1的安卓源码对比,很容易看到修改内容.(好像没有啥改动,唯一不同RegionalizationEnvironment好像也是安卓自己的小版本差异)
+
+从编译入手分析源码断了.没事,从这几个分层入手,github走一圈Gaia,Gecko,Gonk.会发现他们都是mozilla的项目.
+https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS
+https://developer.mozilla.org/en-US/docs/Archive/B2G_OS

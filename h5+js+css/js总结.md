@@ -1,3 +1,7 @@
+可以在html中的<script>标签下直接编写js脚本,或者使用<script>标签的src引入外部脚本
+
+
+
 基本语法:大致和Java一样
 
     1.每个语句以;结束，语句块用{...},//注释
@@ -8,12 +12,14 @@
     JavaScript对象的所有属性都是字符串，不过属性对应的值可以是任意数据类型。访问属性是通过.操作符完成,也可以通过用['xxx']来访问
     6.function abs(x),function来定义函数,允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题.关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。关键字rest参数只能写在最后，前面用...标识,表示可变参数数组
     7.lambda表达式 var fn = x => x * x ,fn为返回值,x为参数,x*x是返回表达式
+    8.在js文件开头写"use strict",启动严格模式,不允许使用未定义的变量
 
 数据类型:
 
-5 种不同的数据类型：string,number,boolean,object(Object,Date,Array),function
+6 种不同的数据类型：string,number,boolean,object(Object,Date,Array),function,symbol. 2 种空类型:null(对象或值为空) 和 undefind(类或方法未定义,没声明)
     Number() 转换为数字， String() 转换为字符串， Boolean() 转化为布尔值。
-    typeof 操作符来查看 JavaScript 变量的数据类型
+    typeof 获得 JavaScript 变量的数据类型 eg:typeof "mimu" 结果:string
+    instanceof 判断 JavaScript 变量的数据类型是否和某种类型相同.但是对于对象是(Array,Date)的比较,会不唯一,即和Array比较会返回true,和Object比较也会返回true.建议还是使用constructor eg:"mimu" instanceof string 结果:true
     constructor 属性返回所有 JavaScript 变量的构造函数。
 
 字符串:
@@ -52,8 +58,26 @@ Map或Dictionary:{}
     has('键')//判断存在
 
 对象:
-
-    用in判断一个属性存在
+    js对象是键值对的容器.如:var person={name:"蔡徐坤",age:50,like:function(){return "唱,跳,rap,打篮球";}}
+    用in判断一个属性存在.
 json:
     JSON.stringify(对象);序列化为json
     JSON.parse("...");反序列化,解析为对象
+
+比较运算符:
+    ==    等于
+    ===   绝对等于(值和类型均相等)
+    !=    不等于
+    !==   不绝对等于(值或者类型不相等,或者都不相等)
+
+输出打印:
+    console.log(XXX) 和安卓的Log.d差不多
+
+HTML DOM:
+    当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）.Document 对象是 HTML 文档的根节点。通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。(请查看"DOM结构图")
+    提示：Document 对象是 Window 对象的一部分，可通过 window.document 属性对其进行访问。
+
+    查找HTML元素:
+    一/通过id查找: var x=document.getElementById("intro"); //找id为intro的标签
+    二/通过标签名查找: var y=x.getElementsByTagName("p");//查找所有 P 标签
+    三/通过类名查找: var x=document.getElementsByClassName("intro"); //查找class='intro'的标签

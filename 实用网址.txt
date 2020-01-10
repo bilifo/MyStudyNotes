@@ -3,7 +3,10 @@
 在线脑图		https://zhimap.com/
 安卓源码		https://source.android.google.cn/
 安卓开发者	https://developer.android.google.cn/
+安卓源码在线查询	http://androidxref.com/
 kaios网站		https://developer.kaiostech.com/introduction
+
+火狐web开发者	https://developer.mozilla.org/zh-CN/
 
 pycharm激活码	http://lookdiv.com/	钥匙就是lookdiv.com
 python官方文档	https://docs.python.org/zh-cn/3/
