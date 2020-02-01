@@ -19,3 +19,12 @@ kaiOS的启动:
 从编译入手分析源码断了.没事,从这几个分层入手,github走一圈Gaia,Gecko,Gonk.会发现他们都是mozilla的项目.
 https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS
 https://developer.mozilla.org/en-US/docs/Archive/B2G_OS
+
+webIDE工具的使用:
+0/下载v57的老firefox浏览器
+1/在firefox地址处输入about:config,进入配置
+2/搜索"devtools.webide.enabled",设置为true
+3/''web开发者'->webIDE
+4/连接的手机输入:
+adb root
+adb forward tcp:6000 localfilesystem:/data/local/debugger-socket

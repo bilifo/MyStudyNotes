@@ -15,6 +15,7 @@ git reset --hard HASH 	//返回到某个节点，不保留修改。
 git reset --soft HASH 	//返回到某个节点。
 
 git checkout . 		//本地所有修改的。没有的提交的，都返回到原来的状态
+git clean -dnf		//将所有新建的文件删除,常和Git reset --hard一起只用,保持100%纯洁度的回退
 
 //将其他分支的commit,摘取到该分支,先记住要摘取的commit号,切到本分支,再
 git cherry-pick commit号	//多个commit号使用空格分割, commit号最好按提交时间先后排列, 即最先提交的commit放在前面.

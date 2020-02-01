@@ -6,5 +6,6 @@ Simplified Chinese Menu //中文目录插件
 Language Gradle //添加gradle支持,这样安卓项目才能跳转
 Language Groovy //gradle的依赖
 Trans-En-Zh//有道翻译 alt-q翻译快捷键
+Atom Beautify//格式化代码 ctrl+alt+b
 
 预览网页	Ctrl+Shift+M

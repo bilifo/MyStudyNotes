@@ -11,7 +11,7 @@ async def cmd2():
     ###asyncio.create_subprocess_shell必须重复,只想重复p.communicate是不行的,还是会阻塞
     # p = await asyncio.create_subprocess_shell("ubuntu1804", stdin=asyncio.subprocess.PIPE,stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,creationflags=subprocess.CREATE_NEW_CONSOLE, shell=True, close_fds=True)
     #使用asyncio.gather来同步运行
-    await asyncio.gather(commun_cmd(cmd2_str1()),commun_cmd(cmd2_str2()))
+    await asyncio.gather(commun_cmd(cmd2_str1()),commun_cmd(cmd2_str2()),commun_cmd(cmd2_str3()))
 
 async def commun_cmd(cmd_str):
     #注意 asyncio.subprocess.PIPE ,和subprocess.PIPE不一样
@@ -29,8 +29,21 @@ def cmd2_str2():#启动软件
     time.sleep(3)
     print("启动软件")
     return "/mnt/e/kaios软件/kaiosrt-v2.5-ubuntu-20190925163557-n378/kaiosrt/kaiosrt"
+    
+def cmd2_str3():#挂载远程映射盘到pjl_tmp下
+    time.sleep(3)
+    print("挂载远程映射盘到pjl_tmp下")
+    return "echo wode110 | sudo -S mount -t drvfs Z: /pjl_tmp"
+
+def cmd3():
+    # 执行adb root 和adb remount
+    p = subprocess.Popen("adb root", stdin=subprocess.PIPE,stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=subprocess.CREATE_NEW_CONSOLE,shell=True, close_fds=True)
+    print("adb root")
+    p = subprocess.Popen("adb remount", stdin=subprocess.PIPE,stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=subprocess.CREATE_NEW_CONSOLE,shell=True, close_fds=True)
+    print("adb remount")
 
 cmd1()
+cmd3()
 time.sleep(2)
 asyncio.run(cmd2())
 

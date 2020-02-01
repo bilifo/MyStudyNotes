@@ -1,0 +1,11 @@
+连接
+sshfs panjunlong@192.168.2.245:/home/panjunlong home/wode110
+sshfs 远端IP:路径 本地路径
+
+断开
+fusermount -u 本地路径
+
+错误:
+1/fuse: device not found, try 'modprobe fuse' first
+原因:由于win10子系统没有支持
+解决:换用其他方式,只要win10能映射到远程硬盘,子系统中是需要输入 sudo mount -t drvfs win10上的远程映射盘符 /子系统空文件

@@ -5,9 +5,16 @@
 安卓开发者	https://developer.android.google.cn/
 安卓源码在线查询	http://androidxref.com/
 kaios网站		https://developer.kaiostech.com/introduction
+koji(kaios在线编辑)	https://withkoji.com/zh-Hans
 
 火狐web开发者	https://developer.mozilla.org/zh-CN/
 
-pycharm激活码	http://lookdiv.com/	钥匙就是lookdiv.com
+win10子系统问题集	https://github.com/microsoft/WSL/issues
+
+pycharm/webstorm激活码	http://lookdiv.com/	钥匙就是lookdiv.com
 python官方文档	https://docs.python.org/zh-cn/3/
 廖雪峰python教程	https://www.liaoxuefeng.com/wiki/1016959663602400
+webpack官方教程	https://www.webpackjs.com/guides/installation/
+
+廖雪峰js教程	https://www.liaoxuefeng.com/wiki/1022910821149312
+w3c js教程		https://www.w3school.com.cn/js/js_htmldom_events.asp

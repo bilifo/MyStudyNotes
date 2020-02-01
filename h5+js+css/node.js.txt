@@ -1,0 +1,72 @@
+简单的说 Node.js 就是运行在服务端的 JavaScript.因为node.js的存在,让js编写后端代码成为可能.
+
+环境搭建:
+#npm是随同nodejs一起安装的包管理工具,和python与pip的关系类似.
+sudo apt install npm
+#nvm是nodejs的版本管理工具,和 update-alternatives 功能类似,只是针对node,且更方便
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+source ~/.bashrc
+nvm --version    #查看nvm的版本
+nvm ls-remote    #查看所有node版本,查看已安装的用 nvm ls
+nvm install 版本号    #下载对应版本的node,切换已下载的版本用 nvm use 版本号,
+#删除版本用 nvm uninstall 版本号
+
+创建一个项目:
+
+
+http:
+简单示例:使用http模块,(内置模块:http/fs/url/querystring/path/events/zlib等,通过https://nodejs.org/dist/latest-v11.x/docs/api/可查看)
+//用required指令来引入http模块.一个js文件也可以叫做模块.只有修饰过exports才能被require引用
+var http = require('http');
+//createServer这个函数会返回 一个对象,这个对象有一个叫做 listen 的方法,这个方法有一个数值参数,指定这个 HTTP 服务器监听的端口号.
+http.createServer(function (request, response) {
+    // 发送 HTTP 头部----HTTP 状态值: 200 : OK----内容类型: text/plain
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    // 发送响应数据 "Hello World"
+    response.end('Hello World\n');
+}).listen(8888);
+// 终端打印如下信息
+console.log('Server running at http://127.0.0.1:8888/');
+保存为server.js文件,然后运行
+node server.js
+Server running at http://127.0.0.1:8888/ 或在网页中输入http://127.0.0.1:8888/
+
+events:
+异步编程依托于回调来实现,回调函数在完成任务后就会被调用,Node使用了大量的回调函数,Node所有API都支持回调函数.
+因为js本身是单进程单线程的,而为了做到异步,Node.js 单线程类似进入一个while(true)的事件循环,每个异步请求事件会添加入处理队列中进行处理,结果会进入结果队列,在处于队列顶时回调给界面.
+简单示例:使用events模块(相当于安卓的handle)
+// 引入 events 模块
+var events = require('events');
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+// 自定义事件触发后要执行的程序.相当android handle触发后要处理的方法
+var connectHandler = function connected() {
+   console.log('连接成功。');
+   // 触发 data_received 事件
+   eventEmitter.emit('data_received');
+}
+// 绑定 'connection' 事件处理程序.相当android handle的handmessage方法中识别'connection'事件
+eventEmitter.on('connection', connectHandler);//除了'error'外,其他事件均需自定义
+// 使用匿名函数绑定 data_received 事件.注意on表示永久注册,而使用once表示只注册一次,也就只触发一次
+eventEmitter.on('data_received', function(){
+   console.log('数据接收成功。');
+});
+// 触发 connection 事件.相当android handle.sendMessage()
+eventEmitter.emit('connection');
+console.log("程序执行完毕。");
+
+Buffer:
+Stream:
+fs:
+
+
+全局对象:
+在浏览器 JavaScript 中，通常 window 是全局对象， 而 Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global 对象的属性。
+__filename    全局变量.表示当前正在执行的脚本文件名
+__dirname    全局变量.表示当前执行脚本所在目录
+setTimeout(cb, ms)    全局方法.在指定的毫秒(ms)后执行一次指定函数
+clearTimeout(t)    全局方法.用于停止一个之前通过 setTimeout() 创建的定时器
+setInterval(cb, ms)    全局方法.指定的毫秒(ms)数后执行指定函数(cb),不停的调用,直到 clearInterval() 被调用或窗口被关闭
+clearInterval(t)     全局方法.
+console    全局对象.用于提供控制台标准输出
+process    全局对象.用于描述当前Node.js 进程状态的对象，提供了一个与操作系统交互的简单接口.常用来执行操作系统的命令

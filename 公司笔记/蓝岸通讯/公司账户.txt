@@ -37,6 +37,17 @@ kaiOS账户
 pawel.potoczny@maxcom.pl
 maxcomkai789
 
+kaiOS bugzilla:
+https://bugzilla.kaiostech.com
+用户名：liu.feicong@bluebank.com.cn
+密码：123456
+
+kaiOS gitlab:
+https://git.kaiostech.com/
+用户名:pawel.potoczny@maxcom.pl
+密码:maxcomkai789
+
+
 https://techandme.plan.io/账户(唐昌强账户)
 tang.changqiang@bluebank.com.cn
 qwer123456
@@ -91,3 +102,12 @@ adb shell input keyevent 5
 测试传感器的工具;
 mmm vendor/qcom/proprietary/sensors/
 导入生成的app
+
+拉取28A和32A项目:
+git clone ssh://panjunlong@192.168.1.248:29418/MSM8905.LF.1.4_BB
+切28A分支		git checkout DEV_KAIOS2.5_WITH_MSM8905.LF.1.4_QC28A
+切32A分支		git checkout DEV_KAIOS2.5_WITH_MSM8905.LF.1.4_Flipphone
+
+拉取E23-Kai项目:
+git clone ssh://panjunlong@192.168.1.248:29418/QC8905_KAI2.5
+

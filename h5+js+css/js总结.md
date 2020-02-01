@@ -13,6 +13,9 @@
     6.function abs(x),function来定义函数,允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题.关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。关键字rest参数只能写在最后，前面用...标识,表示可变参数数组
     7.lambda表达式 var fn = x => x * x ,fn为返回值,x为参数,x*x是返回表达式
     8.在js文件开头写"use strict",启动严格模式,不允许使用未定义的变量
+    9.方法名或变量名前加下划线 _ 不是js的要求,只是约定俗成的表示这是应该私有的变量或方法
+    10.在方法或变量名前加 exports.XXX 或者 使用 module.exports=XXX,来暴露这个方法或变量为全局可用.要使用时,为了便于区分全局和本地,需要使用 require('全局变量或方法所在文件.js')来引进这个js文件.有点像java的import,就是写着有些别扭.
+
 
 数据类型:
 
@@ -81,3 +84,6 @@ HTML DOM:
     一/通过id查找: var x=document.getElementById("intro"); //找id为intro的标签
     二/通过标签名查找: var y=x.getElementsByTagName("p");//查找所有 P 标签
     三/通过类名查找: var x=document.getElementsByClassName("intro"); //查找class='intro'的标签
+	
+
+	
