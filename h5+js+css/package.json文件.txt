@@ -1,9 +1,0 @@
-项目中的package.json文件,一般是构建工具npm使用npm init 来生成的.
-
-package.json文件定义了这个项目所需要的各种模块，以及项目的配置信息（比如名称、版本、许可证等元数据）。npm install命令根据这个配置文件，自动下载所需的模块，也就是配置项目所需的运行和开发环境。
-
-name		项目名称
-version		版本号(遵守“大版本.次要版本.小版本”的格式）
-author		作者
-description	
-scripts		
