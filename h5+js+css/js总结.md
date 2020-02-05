@@ -76,6 +76,9 @@ json:
 输出打印:
     console.log(XXX) 和安卓的Log.d差不多
 
+弹出警告框:
+    alert("XXXX");  和安卓的toast差不多
+
 HTML DOM:
     当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）.Document 对象是 HTML 文档的根节点。通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。(请查看"DOM结构图")
     提示：Document 对象是 Window 对象的一部分，可通过 window.document 属性对其进行访问。
@@ -84,6 +87,6 @@ HTML DOM:
     一/通过id查找: var x=document.getElementById("intro"); //找id为intro的标签
     二/通过标签名查找: var y=x.getElementsByTagName("p");//查找所有 P 标签
     三/通过类名查找: var x=document.getElementsByClassName("intro"); //查找class='intro'的标签
-	
 
-	
+点击事件:
+    window.document.getElementById("id名").onclick=function(){ ...... };

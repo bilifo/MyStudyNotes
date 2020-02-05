@@ -1,0 +1,9 @@
+1
+document.getElementById返回为null
+原因:使用document.getElementById为空或不是对象,引入的js文件在head标签中加载时,就会有该类问题.获取id早于声明
+解决:把你的js片段或者加载文件放到<body>标签结束之后
+
+2
+window 或 document变量未定义
+原因:由于window和document是前端js的默认全局DOM对象,不应该存在未定义的情况,只可能是使用node.js的方式运行了js文件 
+解决:如果是使用的webstorm IDE来运行程序,运行前端js,不要直接运行js文件,而是运行.html文件

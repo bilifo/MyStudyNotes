@@ -7,6 +7,8 @@
 kaios网站		https://developer.kaiostech.com/introduction
 koji(kaios在线编辑)	https://withkoji.com/zh-Hans
 
+谷歌应用商店	https://chrome.google.com/webstore
+
 火狐web开发者	https://developer.mozilla.org/zh-CN/
 
 win10子系统问题集	https://github.com/microsoft/WSL/issues

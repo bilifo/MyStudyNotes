@@ -1,0 +1,2 @@
+npm -v   #查看npm的版本
+npm install npm -g   #升级npm

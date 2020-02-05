@@ -1,0 +1,3 @@
+当我们在项目中看到webpack.dev.config.js 或 webpack.prod.conf.js. 但却没有看到webpack.config.js时,应该意识到这是vue.js框架js项目
+
+通常项目会分成三个运行环境：开发人员在本地跑的开发环境(dev)、测试人员用来做黑盒测试的测试环境(test)和线上运行的生产环境(production)。 
