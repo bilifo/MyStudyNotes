@@ -1,3 +1,5 @@
 pip list			查看有哪些python包
 pip list --outdated		检查过时软件
 pip install --upgrade SomePackage 更新软件
+
+python -m pip install --upgrade pip	更新pip管理工具
