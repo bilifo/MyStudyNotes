@@ -13,6 +13,7 @@ git revert commit号 	//对于已经push的回退.及撤销到对应commit号前的状态,再commit
 git reset commit号	//对于还没有push的回退.
 git reset --hard HASH 	//返回到某个节点，不保留修改。
 git reset --soft HASH 	//返回到某个节点。
+git reset HASH 某个文件	//对已经add的某个文件进行取消add
 
 git checkout . 		//本地所有修改的。没有的提交的，都返回到原来的状态
 git clean -dnf		//将所有新建的文件删除,常和Git reset --hard一起只用,保持100%纯洁度的回退

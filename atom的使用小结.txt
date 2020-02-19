@@ -8,4 +8,12 @@ Language Groovy //gradle的依赖
 Trans-En-Zh//有道翻译 alt-q翻译快捷键
 Atom Beautify//格式化代码 ctrl+alt+b
 
+Autocomplete-python//自动补全python代码
+ide-python//python开发工具
+atom-python-run//运行python.F5运行,F6停止
+linter//
+atom-tenjs//js自动补全
+color-picker//
+
+
 预览网页	Ctrl+Shift+M

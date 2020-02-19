@@ -1,0 +1,8 @@
+Krypton(FlipPhone) 
+App Store
+ID: q90PQMvi6t2IEAJ0f4PJ
+Key: 1k4sRNbv7PsgatNTbqQ7
+
+Push Manager
+ID: RlxrsbEKpsHlrGCi5bfW
+Key: nxmRAOmyvkUa-5iqHKSo

@@ -111,3 +111,7 @@ git clone ssh://panjunlong@192.168.1.248:29418/MSM8905.LF.1.4_BB
 拉取E23-Kai项目:
 git clone ssh://panjunlong@192.168.1.248:29418/QC8905_KAI2.5
 
+拉取QC26B项目:
+repo init -u ssh://zhoujunzhi@192.168.1.253:29418/MSM8909W_QC26B/manifest -b bluebank -m BlueBank-LAW.BR.3.0-11400-8x09w.0.xml --repo-url=git://codeaurora.org/tools/repo.git
+将@前名字改为自己的,然后执行repo sync -j32
+

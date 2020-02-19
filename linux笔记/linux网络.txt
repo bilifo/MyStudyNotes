@@ -1,0 +1,3 @@
+查看是否有安装网卡
+dmesg | grep -in eth
+

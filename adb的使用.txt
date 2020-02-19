@@ -35,6 +35,8 @@ adb uninstall [-k] <要卸载的apk包名>	卸载apk
 	-k				表示卸载应用但保留数据和缓存目录。
 	
 adb shell settings put global adb_enabled 0 关闭usb调试
+adb shell settings get secure android_id	查看android id
+
 adb shell cat /data/misc/wifi/*.conf	查看连接过的wifi密码(需要root)
 adb shell svc wifi [disable|enable]	开启关闭wifi(需要root)
 adb shell dmesg			查看内核日志
@@ -42,11 +44,16 @@ adb shell kmesg
 adb shell getprop ro.product.model	查看设备信息
 adb shell getprop ro.build.version.release 	查看安卓版本
 adb shell cat /proc/cpuinfo		查看cpu信息
+adb shell cat /proc/meminfo		查看内存信息
+adb shell cat /system/build.prop	查看更多硬件信息
 adb shell wm size [480x1024|reset]	查看[或修改]分辨率,reset为还原,是x不是*
 adb shell wm density [160|reset]	查看[或修改]屏幕密度
 adb shell wm overscan [0,0,0,200|reset]	查看[或修改]显示区域
 adb shell cat /proc/meminfo		查看内存信息
 adb shell ifconfig			查看设备网络信息
+adb shell ifconfig | grep Mask		查看ip地址
+adb shell ifconfig wlan0		查看局域网ip
+adb shell cat /sys/class/net/wlan0/address 查看MAC地址
 adb shell cat /system/build.prop	硬件和系统属性(需要root)
 adb shell pm list packages		查看所有应用
 adb shell pm list packages -s		系统应用
@@ -59,7 +66,10 @@ adb shell dumpsys package <packagename>	查看应用详细信息
 adb shell dumpsys battery		查看电池状态
 adb shell dumpsys window displays	查看屏幕参数
 
-
+查看IMEI
+adb shell
+su
+service call iphonesubinfo 1
 
 与应用交互:
 主要使用adb shell am <command> [options] <INTENT> 	(<INTENT> 参数很灵活，和写 Android 程序时代码里的 Intent 相对应。)

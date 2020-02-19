@@ -1,0 +1,40 @@
+   每个项目访问KaiOS Store使需要使用特殊的标识(也就是key/ID pair)，此guide讲述如何正确的配置key/ID pair。你的CPM应该已经在KaiOS内部申请好了你项目专用的Key/ID pair，只要按照下述方法配置即可，目标是能够正常使用launcher中的KaiOS store。
+1. 以项目M为例，首先由KaiOS的CPM申请Key/ID pair(参见另一个附件)，以下为举例说明：
+项目M用于Push的Key/ID pair
+ID:  xxxxxxxxxxxxID1xxx(这个ID名字是为了方便说明的举例，正常的ID形式类似于iwT3Qlw42pm6E7nnwyBJ)
+Key: xxxxxxxxxxxkey1xxx(这个key名字是为了方便说明的举例，正常的ID形式类似于p9GkBaA8Io6ZUkJGSs9y)
+ 
+项目M用于Store的Key/ID pair:
+ID:  xxxxxxxxxxID2xxx(举例，形式类似于8xCPdQ4gfCGOJbvgeKcp)
+Key: xxxxxxxxxxkey2xxx(举例，形式类似于4SB4kaCvu-qaio3glxSa)
+
+另外还需要用于Metrics的Key/ID，但不用申请，复用Store的
+请注意每个项目的Key/ID pair都不同，请务必使用项目指定的。
+
+2. 如何在code中使用Key/ID pair？
+Step 1: 在代码根目录下创建三个存放key的新文件:
+    a). store_key.txt contains key of Store as: xxxxxxxxxxkey2xxx
+    b). push_key.txt contains key of Push as: xxxxxxxxxxxkey1xxx
+    c). metrics_key.txt contains key of Metric as: xxxxxxxxxxkey2xxx
+    该文件只能有一行，不要有任何回车换行符，也不能有文件头(比如记事本会产生文件头)，请严格参考附件压缩包，最终的文件尺寸应该在20字节，而不是23字节。
+
+Step 2: in gaia/Makefile
+	修改"SHARE_PERF_USAGE?" to 1
+
+Step 3: in gecko/b2g/app/b2g.js 
+    a). 修改"apps.token.uri" to https://api.kaiostech.com/v3.0/applications/xxxxxxxxxxID2xxx/tokens
+    b). 增加一个首选项：pref("device.commercial.ref", "xxxxx-xxxxxxxxxxxx");    
+	这里的CU Ref由客户自己定义，客户应该已经配置FOTA时定义过，使用一样的。
+    c). 修改"dom.push.token.uri" to https://api.kaiostech.com/v3.0/applications/xxxxxxxxxxxxID1xxx/tokens
+    d). 修改"metrics.token.uri" to https://api.kaiostech.com/v3.0/applications/xxxxxxxxxxID2xxx/tokens
+    e). 设置完后请用WebIDE检查是否成功
+
+Step 4: 设置环境变量
+    export KAI_APPS_KEY_FILE=/xxx/xxx/xxx/store_key.txt;
+    export KAI_PUSH_KEY_FILE=/xxx/xxx/xxx/push_key.txt;
+    export KAI_METRICS_KEY_FILE=/xxx/xxx/xxx/metrics_key.txt
+    请使用从根目录开始的绝对路径，请先尝试命令行的方式，然后再考虑改脚本的方式以方便编译
+    然后开始编译./build.sh
+
+3. 编译结束后，请将三个key文件、b2g.js、下面命令取出的omni.ja文件打包发给我检查
+    adb pull /system/b2g/omni.ja
