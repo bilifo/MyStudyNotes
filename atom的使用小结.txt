@@ -15,5 +15,7 @@ linter//
 atom-tenjs//js自动补全
 color-picker//
 
+script//运行多种语言
+
 
 预览网页	Ctrl+Shift+M

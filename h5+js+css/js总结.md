@@ -20,8 +20,11 @@
     7.lambda表达式 var fn = x => x * x ,fn为返回值,x为参数,x*x是返回表达式
     8.js允许先使用,后声明,即声明可以在任何地方.但在js文件开头写"use strict",启动严格模式,不允许使用未定义的变量
     9.方法名或变量名前加下划线 _ 不是js的要求,只是约定俗成的表示这是应该私有的变量或方法
-    10.在方法或变量名前加 exports.XXX 或者 使用 module.exports=XXX,来暴露这个方法或变量为全局可用.要使用时,为了便于区分全局和本地,需要使用 require('全局变量或方法所在文件.js')来引进这个js文件.有点像java的import,就是写着有些别扭.
-
+    10.在方法或变量名前加 exports.XXX 或者 使用 module.exports=XXX,来暴露这个方法或变量为全局可用.要使用时,为了便于区分全局和本地,js中需要使用 require('全局变量或方法所在文件.js')来引进这个js文件.或者是html中使用script标签引入那个js文件.有点像java的import,就是写着有些别扭.
+    11.js是支持函数式编程的,即 var 变量=function(),变量就绑定这个函数方法,而且传递这个绑定变量时,可以不需要传入参数.如:
+      var aaa=function(a,b){console.log("a:"+a);console.log("b:"+b);}
+      var bbb=function(a){console.log("a:"+a);a(1,2);console.log("a:"+a(3,4));}
+      bbb(aaa);
 
 数据类型:
 
@@ -96,3 +99,12 @@ HTML DOM:
 
 点击事件:
     window.document.getElementById("id名").onclick=function(){ ...... };
+
+define定义:
+    define([module-name], [array-of-dependencies], module-factory-or-object);
+    第一个参数,模块名称,可省略.
+    第二个参数,所依赖的模块,可省略.
+    第三个参数,模块的实现,或js对象
+
+window.customElements.define自定义标签:
+    window.customElements.define("标签名称",标签类或标签的js实现)

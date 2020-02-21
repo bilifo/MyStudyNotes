@@ -28,3 +28,14 @@ webIDE工具的使用:
 4/连接的手机输入:
 adb root
 adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
+
+调试单个app:
+用kaios提供的工具,直接运行,但是当app具有:embed-apps(嵌入式应用),engineering-mode(工程模式),embed-widgets(嵌入式小部件)权限时,无法直接安装运行.只能通过后面总方式
+
+单编app：//这里以system为例
+    在gaia目录下,执行命令：make APP=system
+将app刷入手机：
+    adb root  
+    adb remount  
+    adb push gaia\profile\webapps\system.gaiamobile.org\application.zip system/b2g/webapps/system.gaiamobile.org 
+    adb reboot
