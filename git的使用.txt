@@ -145,4 +145,7 @@ Please, commit your changes or stash them before you can merge.
 git diff > xxx.patch	//将当前的修改打个patch包
 git apply xxx.patch	//将patch导入当前分支
 
+问题：git add时中文显示‘\123\456\789.txt’
+解决：git config --global core.quotepath false
+
 
