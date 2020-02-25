@@ -4,3 +4,6 @@ tar -xvfj file.tar.bz2 //解压 tar.bz2
 tar –xvfZ file.tar.Z //解压tar.Z
 unrar e file.rar //解压rar
 unzip file.zip //解压zip
+
+sudo dpkg -ic debfile.deb//安装deb包,i--安装，c--显示内容，I--假安装，r--移除安装的软件，P--彻底移除安装的软件和配置文件，
+遇到deb安装的依赖报错时，执行下：sudo apt-get -f -y install
