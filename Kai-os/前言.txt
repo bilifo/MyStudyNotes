@@ -39,3 +39,9 @@ adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
     adb remount  
     adb push gaia\profile\webapps\system.gaiamobile.org\application.zip system/b2g/webapps/system.gaiamobile.org 
     adb reboot
+
+settings:
+adb push gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
+
+network-alerts:
+adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\network-alerts.gaiamobile.org\application.zip system/b2g/webapps/network-alerts.gaiamobile.org

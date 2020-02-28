@@ -10,6 +10,7 @@ koji(kaios在线编辑)	https://withkoji.com/zh-Hans
 谷歌应用商店	https://chrome.google.com/webstore
 
 火狐web开发者	https://developer.mozilla.org/zh-CN/
+web学习		https://developer.mozilla.org/zh-CN/docs/learn/JavaScript
 
 win10子系统问题集	https://github.com/microsoft/WSL/issues
 
@@ -20,3 +21,5 @@ webpack官方教程	https://www.webpackjs.com/guides/installation/
 
 廖雪峰js教程	https://www.liaoxuefeng.com/wiki/1022910821149312
 w3c js教程		https://www.w3school.com.cn/js/js_htmldom_events.asp
+在线编写使用react的代码	https://codepen.io/pen
+在线编写使用react的代码	https://codesandbox.io/s/new

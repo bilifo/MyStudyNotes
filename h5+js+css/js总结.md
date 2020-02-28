@@ -70,7 +70,7 @@ Map或Dictionary:{}
     has('键')//判断存在
 
 对象:
-    js对象是键值对的容器.如:var person={name:"蔡徐坤",age:50,like:function(){return "唱,跳,rap,打篮球";}}
+    js对象是键值对的容器.如:var person={name:"蔡徐坤",age:50,like:function(){return "唱,跳,rap,打篮球";}},这样我们能通过person.name得到"蔡徐坤"
     用in判断一个属性存在.
 json:
     JSON.stringify(对象);序列化为json
@@ -100,11 +100,70 @@ HTML DOM:
 点击事件:
     window.document.getElementById("id名").onclick=function(){ ...... };
 
-define定义:
+define定义一个可被其他js使用的模块:
     define([module-name], [array-of-dependencies], module-factory-or-object);
-    第一个参数,模块名称,可省略.
+    第一个参数,模块名称,可省略.如果省略,则文件名就是模块名
     第二个参数,所依赖的模块,可省略.
     第三个参数,模块的实现,或js对象
 
 window.customElements.define自定义标签:
     window.customElements.define("标签名称",标签类或标签的js实现)
+
+js的模块化import和require:
+    require/exports 是 CommonJS/AMD 中为了解决模块化语法而引入的
+    import/export 是ES6引入的新规范，因为浏览器引擎兼容问题，需要在node中用babel将ES6语法编译成ES5语法
+
+    require 是运行时调用，所以理论上可以运作在代码的任何地方
+    import 是编译时调用，所以必须放在文件的开头
+
+    require 是赋值过程，其实require的结果就是对象、数字、字符串、函数等，再把结果赋值给某个变量。它是普通的值拷贝传递。
+    import 是解构过程。使用import导入模块的属性或者方法是引用传递。且import是read-only的，值是单向传递的。default是ES6 模块化所独有的关键字，export default {} 输出默认的接口对象，如果没有命名，则在import时可以自定义一个名称用来关联这个对象
+
+    示例:    
+    1/require
+    ------------------------
+    // module.js
+    module.exports = {
+      a: function() {
+        console.log('exports from module');
+      }
+    }
+    -----------------------
+    // sample.js
+    var obj = require('./module.js');
+    obj.a()  // exports from module
+    ----------------------
+    当我们不需要导出模块中的全部数据时，使用大括号包含所需要的模块内容。
+    ----------------------
+    // module.js
+    function test(str) {
+      console.log(str);
+    }
+    module.exports = {
+      test
+    }
+    --------------------
+    // sample.js
+    let { test } =  require('./module.js');
+    test ('this is a test');
+    -----------------
+
+    2/import
+    使用import导出的值与模块中的值始终保持一致，即引用拷贝.import必须结合export使用
+    ----------------------
+    // module.js
+    export function test(args) {
+      console.log(args);
+    }
+    // 定义一个默认导出文件, 一个文件只能定义一次
+    export default {
+      a: function() {
+        console.log('export from module');
+      }
+    }
+
+    export const name = 'gzc'
+    -------------------
+    // sample.js  使用 _ 导出export default的内容
+    import _ , { test, name } from './a.js'
+    test("my name is ${name}")  // 模板字符串中使用${}加入变量
