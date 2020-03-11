@@ -1,7 +1,7 @@
 1.任意界面,按"back"5秒能退出,其他按键不能让其退出
 2.首次开机触发
 ???3.支持wifi的设备,必须通过连接wifi才能触发HFA
-4.定义CIDC???必须只能有5次机会
+4.定义CIDC???必须只能有5次机会,间隔60秒
 5.CIFUMO???循环在CIDC配置成功过后,
 6.CIFUMO必须循环,直到发现没有新的更新,如果有两个更新,依次更新,流程如下:
 Power up -> CIDC -> CIFUMO -> User opt-in -> install -> reboot -> CIFUMO -> User opt-in -> install -> reboot -> home/idle

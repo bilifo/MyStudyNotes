@@ -1,0 +1,6 @@
+需要安装的插件:
+Chinese (Simplified) Language Pack for Visual Studio Code //中文插件
+ESLint  //代码检查
+python   //python支持插件
+vscode-icons   //文件图标
+JavaScript (ES6) code snippets   //js ES6支持

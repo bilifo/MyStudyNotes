@@ -31,7 +31,7 @@ gerrit
 
 申请的高通账户
 pan.junlong@bluebank.com.cn
-12345678Aa
+Aa123456789
 
 kaiOS账户
 pawel.potoczny@maxcom.pl

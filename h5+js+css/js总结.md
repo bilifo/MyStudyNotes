@@ -1,6 +1,37 @@
 可以在html中的<script>标签下直接编写js脚本,或者使用<script>标签的src引入外部脚本
 
+工具推荐VS code
 
+前端开发发展历程，目的都是为了提高开发效率,这也是为什么我们学会了js/html/css后依然无法看懂别人js代码的原因：
+1---原生JS
+2---Jquery之类的类库（解决不同浏览器兼容性问题）
+3---前端模板引擎（避免频繁操作DOM元素，调用前端模板引擎提供的方法自动渲染页面）
+4---Vue.js / Angular.js 等（直接用框架提供的指令把数据渲染到页面上，不需要进行DOM操作，提高渲染效率）
+
+学习路线:
+1/js---html---css基础知识(3天)
+2/菜鸟教程ES6语法(ES6 是js的版本标准)(1天)
+3/菜鸟教程的react入门(只需看,因为已经过时了,半天)
+4/看并学习react官方的教程
+5/了解 webpack , less , node , npm , yarm等工具
+6/了解hooks
+
+移动端web开发:
+    移动端web的开发,分成了3个方向,但都是js+html,差异有,但是代码变化不大,方言基本的变化.
+    一/移动端网页开发.手机通过浏览器看网页,如新浪网,腾讯新闻等.只是相交pc端的网页,增加了触摸特性
+    二/移动端web app开发.一般指h5技术,借助各个浏览器增加的私有方法,能拥有一些手机元生功能的应用,如调用摄像头,麦克风的微信小程序,kaios应用等
+    三/hybrid app开发,也叫套壳开发.指使用某些特定的跨平台框架和代码生成的web app,它们编写是用同一套js,但它们实际上是将js转换成各种移动平台的原生程序语言,调用原生方法,来达到近似原生应用的效果.如react native,phoneap等
+
+    技术栈:TyperScript+react(组件框架,可以从github上搜索别人写好的UI组件来使用如ant design)+redux(数据管理,因为react的数据流向是单向,对于组件间数据交换,不是太给力)+router(路由)+less
+    但也有说直接使用react自带的hook功能,来替换掉redux的状态管理.而且简易轻型的,也没必要用redux
+
+TyperScript和javascript的关系:(即TyperScript包含javascript,可以简单的认为 TS= js + Type)
+    TyperScript的优势在于明确指定了js中变量的类型
+
+js工具链:
+    包管理器:管理第3方package包的工具.如yarn和npm
+    打包器:能让你编写模块化代码，并将它们组合在一起成为小的 package，以优化加载时间。如webpack和parcel
+    编译器:能让你编写的新版本 JavaScript 代码，在旧版浏览器中依然能够工作。如babel
 
 基本语法:大致和Java一样
 
@@ -26,6 +57,16 @@
       var bbb=function(a){console.log("a:"+a);a(1,2);console.log("a:"+a(3,4));}
       bbb(aaa);
 
+=>箭头函数表达式:
+    对于匿名函数,我们可以使用 箭头函数表达式 来简化语法.并且它使得在匿名函数中使用的this就是函数外的this,保持一致不会产生this的歧义
+    function(value1,param2=value2){...}  转换为 (value1,param2=value2)=>{...}
+    注意:
+    1/只有一个参数的时候可以省略掉圆括号,如:function(value1){...}  转换为  value1=>{...} //这实在是个画蛇添足,让事情变得更加复杂的语法特性
+    2/当函数中只有一个return语句是,可以省略return关键字和方法体的花括号,如:function(value1){return true;}  转换为   value1=>true  //同样让人讨厌的特性,它让程序可读性更差
+    3/让人火大的是,妄想用箭头表示来编写一般的方法函数,会错得让你不知所措,内部所有的this都将遗憾的变为undefine,这增加了代码维护成本.这时采用箭头表达式不满足需求,我们得换一种形式,即bind形式.如:
+    onClick={() => this.某方法(某参数)} 改写为 onClick={this.某方法.bind(this, 某参数)} 将某方法绑定到该onclick上
+
+
 数据类型:
 
 6 种不同的数据类型：string,number,boolean,object(Object,Date,Array),function,symbol. 2 种空类型:null(对象或值为空) 和 undefind(类或方法未定义,没声明)
@@ -42,6 +83,10 @@
     indexOf()//会搜索指定字符串出现的位置
     substring()//返回指定索引区间的子串
     正则表达式通常用于两个字符串方法 : search() 和 replace()。
+    includes()//返回布尔值，判断是否找到参数字符串。
+    startsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的头部。
+    endsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的尾部。
+    repeat(n)//字符串重复n次
 
 数组:[]
     直接给Array的length赋一个新的值会导致Array大小的变化.
@@ -68,6 +113,9 @@ Map或Dictionary:{}
 
     set('键',value)和get('键')来添加和获得
     has('键')//判断存在
+    for(var [key,value] of mMap){console.log(key + " = " + value);}//来遍历map
+    mMap.forEach(function(value,key){console.log(key + " = " + value);},mMap)//遍历map
+    Array.from(mMap);//map转array
 
 对象:
     js对象是键值对的容器.如:var person={name:"蔡徐坤",age:50,like:function(){return "唱,跳,rap,打篮球";}},这样我们能通过person.name得到"蔡徐坤"
@@ -81,6 +129,25 @@ json:
     ===   绝对等于(值和类型均相等)
     !=    不等于
     !==   不绝对等于(值或者类型不相等,或者都不相等)
+
+call()和apply()方法:
+    这是js内置方法,通过call改变this指代的对象.如:
+    -------------
+    var person1 = {  
+      fullName: function(city, country) {
+        return this.firstName + " " + this.lastName + "," + city +"," + country;
+      }
+    }
+    var person2 = {
+      firstName:"小", lastName: "明"
+    }
+    x = person1.fullName.call(person2,"重庆", "中国"); //结果是:小明,重庆,中国 .而不是undefind undefind,undefind,undefind
+    y = person1.fullName.apply(person2, ["重庆", "中国"]);//apply和call的区别,就在于apply接受的是数组
+    -------------
+
+Proxy:ES6后出现的
+    代理对象.
+    new Proxy(需要加工的对象,加工方法);
 
 输出打印:
     console.log(XXX) 和安卓的Log.d差不多

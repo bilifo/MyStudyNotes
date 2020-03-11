@@ -20,6 +20,12 @@ kaiOS的启动:
 https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS
 https://developer.mozilla.org/en-US/docs/Archive/B2G_OS
 
+使用react来创建kaios的web应用:
+1/使用“npx create-react-app 项目名” 来建立项目
+2/下载 git clone https://github.com/kaiostech/sample-react.git,并将public(非必要,但manifest.webapp必须要) 和 src文件夹下内容复制过来
+3/执行 "npm run build"
+4/使用kaios的IDE工具"kaiosrt",来打开该项目生成的build文件夹
+
 webIDE工具的使用:
 0/下载v57的老firefox浏览器
 1/在firefox地址处输入about:config,进入配置
@@ -28,6 +34,9 @@ webIDE工具的使用:
 4/连接的手机输入:
 adb root
 adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
+
+编辑工具:
+虽然所有文本编辑器都可以,但推荐VS code,因为它里面提供有KAIOS插件
 
 调试单个app:
 用kaios提供的工具,直接运行,但是当app具有:embed-apps(嵌入式应用),engineering-mode(工程模式),embed-widgets(嵌入式小部件)权限时,无法直接安装运行.只能通过后面总方式
@@ -41,7 +50,13 @@ adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
     adb reboot
 
 settings:
-adb push gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
+adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
 
 network-alerts:
 adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\network-alerts.gaiamobile.org\application.zip system/b2g/webapps/network-alerts.gaiamobile.org
+
+system:
+adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\system.gaiamobile.org\application.zip system/b2g/webapps/system.gaiamobile.org
+
+launcher:
+adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\launcher.gaiamobile.org\application.zip system/b2g/webapps/launcher.gaiamobile.org

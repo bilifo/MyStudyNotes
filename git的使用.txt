@@ -145,6 +145,15 @@ Please, commit your changes or stash them before you can merge.
 git diff > xxx.patch	//将当前的修改打个patch包
 git apply xxx.patch	//将patch导入当前分支
 
+git format-patch commitID	//打对应commit号的patch
+
+打.diff:
+git diff > xxx.diff	//.diff和.patch的区别在于,patch包含commit信息
+git apply xxx.diff
+
+不同项目之间,相同文件打patch:比如A项目和B项目,其实大部分代码相同,但属于不同的git库
+git apply --reject xxx.patch或xxx.diff	//强制打patch或diff.如果产生冲突,会生成冲突文件的.rej文件,来记录哪些冲突没有成功合并,需要用户手动修改
+
 问题：git add时中文显示‘\123\456\789.txt’
 解决：git config --global core.quotepath false
 

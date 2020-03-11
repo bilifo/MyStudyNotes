@@ -1,2 +1,6 @@
 npm -v   #查看npm的版本
-npm install npm -g   #升级npm
+npm install npm -g   #升级npm. -g表示全局
+npm install -g XXX	#全局安装某个依赖组件
+npm list -g	#查看所有全局安装的组件
+npm uninstall XXX	#卸载某个组件
+npm update XXX	#更新某个组件
