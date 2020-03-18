@@ -49,7 +49,42 @@ adb shell cat /system/build.prop	查看更多硬件信息
 adb shell wm size [480x1024|reset]	查看[或修改]分辨率,reset为还原,是x不是*
 adb shell wm density [160|reset]	查看[或修改]屏幕密度
 adb shell wm overscan [0,0,0,200|reset]	查看[或修改]显示区域
-adb shell cat /proc/meminfo		查看内存信息
+adb shell cat /proc/meminfo		查看内存信息 (单位kb)
+	MemTotal:	物理内存(运行内存 | RAM)总量
+	MemFree:		尚未使用的物理内存
+	Buffers:		用来给文件做缓冲大小
+	Cached:		用作缓存内存的物理内存总量
+	SwapCached:	用作交换空间的大小
+	Active: 		在活跃使用中的缓冲或高速缓冲存储器页面文件的大小，除非非常必要否则不会被移作他用.
+	Inactive: 		在不经常使用中的缓冲或高速缓冲存储器页面文件的大小，可能被用于其他途径.
+	HighTotal:
+	HighFree: 		该区域不是直接映射到内核空间。内核必须使用不同的手法使用该段内存。
+	LowTotal:
+	LowFree: 		低位可以达到高位内存一样的作用，而且它还能够被内核用来记录一些自己的数据结构
+	Unevictable:	
+	Mlocked:		
+	SwapTotal:	交换空间的总大小
+	SwapFree:		未被使用交换空间的大小
+	Dirty:		等待被写回到磁盘的内存大小。
+	Writeback:	正在被写回到磁盘的内存大小。
+	AnonPages:	未映射页的内存大小
+	Mapped: 		设备和文件等映射的大小。
+	Shmem:		
+	Slab:		内核数据结构缓存的大小，可以减少申请和释放内存带来的消耗。
+	SReclaimable:	可收回Slab的大小
+	SUnreclaim:	不可收回Slab的大小（SUnreclaim+SReclaimable＝Slab
+	KernelStack:	
+	PageTables:	管理内存分页页面的索引表的大小。
+	NFS_Unstable:	不稳定页表的大小
+	Bounce:		
+	WritebackTmp:	
+	CommitLimit:	当前可用总量
+	Committed_AS:	当前分配的内存量
+	VmallocTotal:	可以vmalloc虚拟内存大小
+	VmallocUsed:	已经被使用的虚拟内存大小。
+	VmallocChunk:	largest contigious block of vmalloc area which is free
+	CmaTotal:		
+	CmaFree:		
 adb shell ifconfig			查看设备网络信息
 adb shell ifconfig | grep Mask		查看ip地址
 adb shell ifconfig wlan0		查看局域网ip
