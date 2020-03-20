@@ -29,6 +29,10 @@ gerrit
 2/查看  .ssh/id_rsa.pub,复制下来
 3/由于 192.168.1.253 才是项目存储服务器,将id_rsa.pub内容复制到这个gerrit上的ssh key上
 
+北京gerrit账号http://124.204.36.153:8001/ 进去后把8001改成8081
+duanaijun
+密码：member123@bluebank
+
 申请的高通账户
 pan.junlong@bluebank.com.cn
 Aa123456789

@@ -91,6 +91,7 @@ js工具链:
 数组:[]
     直接给Array的length赋一个新的值会导致Array大小的变化.
     Array可以通过索引把对应的元素修改为新的值.如果通过索引赋值时，索引超过了范围，同样会引起Array大小的变化.
+    .length获得长度
 
     indexOf()//来搜索一个指定的元素的位置
     slice()//截取Array的部分元素，然后返回一个新的Array
@@ -100,9 +101,10 @@ js工具链:
     shift()//把Array的第一个元素删掉
     sort()//对当前Array进行排序
     reverse()//反转数组
-    splice()//从指定的索引开始删除若干元素，然后再从该位置添加若干元素 eg:arr.splice(2, 3, 'Google', 'Facebook');//从索引2开始删3个数,并添加'Google', 'Facebook'
+    splice()//从指定的索引开始删除并返回若干元素，然后再从该位置添加若干元素 eg:arr.splice(2, 3, 'Google', 'Facebook');//从索引2开始删3个数,并添加'Google', 'Facebook',且return 从索引2开始删3个数
     concat()//把当前的Array和另一个Array连接起来，并返回一个新的Array.(注意,该方法自动将多维降为一维)
     join()//把当前Array的每个元素都用指定的字符串连接起来,返回一个字符串 eg:['A', 'B', 'C', 1, 2, 3].join('-'); // 'A-B-C-1-2-3'
+    map(function(item,index){//item子体,index下标});//遍历
 
 set:
     创建:new Set()
@@ -166,6 +168,16 @@ HTML DOM:
 
 点击事件:
     window.document.getElementById("id名").onclick=function(){ ...... };
+    其实每个标签都可以添加事件,这些事件的类型,可以是点击,触摸,焦点等等.通过使用DOM的window.addEventListener(event,function,useCapture)来对所有事件的监听.
+      event---指定事件名 https://www.runoob.com/jsref/dom-obj-event.html
+      function---要执行的函数
+      useCapture---布尔值,指定事件是否在捕获或冒泡阶段执行?true--捕获,false--冒泡.简单的说就是设置事件透传的方向.冒泡是从开始的事件标签一直传到document对象，而捕获是从document传到目标事件
+
+    标签添加事件,两种方式:
+    1/使用window.addEventListener(react中不起作用),在function中通过event.target获得产生事件的源头(即某个标签的id).而evnet.currentTarget返回的是当前事件传递到了哪个地方
+    2/通过 标签.addEventListener,来为某个标签添加事件
+    3/通过 标签中的属性 "onXxx" (注意Xxx 就是事件类型,和event.type中的一样.如:onClick 和 event.type中的click对应)
+
 
 define定义一个可被其他js使用的模块:
     define([module-name], [array-of-dependencies], module-factory-or-object);
