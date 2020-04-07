@@ -132,6 +132,7 @@ json:
     ===   绝对等于(值和类型均相等)
     !=    不等于
     !==   不绝对等于(值或者类型不相等,或者都不相等)
+    注意:一般经常可见 if(! obj),由于obj对象时无初始值或者其值为 0、-0、null、""、false、undefined 或者 NaN时,转化为boolean型时得到false,!obj表示true
 
 call()和apply()方法:
     这是js内置方法,通过call改变this指代的对象.如:
@@ -154,6 +155,9 @@ Proxy:ES6后出现的
 
 输出打印:
     console.log(XXX) 和安卓的Log.d差不多
+    kaios的js中,使用dunp("XXX")来打印.
+    有的时候,打印object时console.log("XXX:"+XXX),会出现打印结果[object Object],改成JSON.stringify(XXX)
+
 
 弹出警告框:
     alert("XXXX");  和安卓的toast差不多

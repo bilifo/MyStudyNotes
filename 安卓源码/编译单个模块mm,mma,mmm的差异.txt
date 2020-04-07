@@ -13,3 +13,13 @@ mm只能到指定的目录下执行,而mmm可以在除了模块目录外的任�
 make v=1 -j8 >& makeinfo2.txt             v=1表示输出详细信息.
 注意:***在使用该命令进行-j多线程编译时,不要打开makeinfo2.txt,会导致make中断,报错
 
+使用mmm编好的源码下的app,使用如下脚本进行替换:
+adb root
+adb remount
+adb shell rm system/priv-app/Settings/Settings.apk
+adb uninstall com.android.settings
+adb push Z:\QC26B\MSM8909W_LAW_3001\LINUX\android\out\target\product\msm8909w\system\priv-app\Settings\Settings.apk /system/priv-app/Settings/
+pause
+adb reboot
+
+

@@ -101,6 +101,8 @@ adb shell dumpsys package <packagename>	查看应用详细信息
 adb shell dumpsys battery		查看电池状态
 adb shell dumpsys window displays	查看屏幕参数
 
+adb shell getevent			获得点击时间,触摸事件等事件
+
 查看IMEI
 adb shell
 su

@@ -24,6 +24,10 @@ gerrit
 192.168.1.248		代码管理服务器
 192.168.1.253	22	duan	722611	通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
 
+http://gerrit.bluebank-rd.com.cn:8001 上传pub key
+ http://gerrit.bluebank-rd.com.cn:8081 
+panjunlong      member456@bluebank
+
 如何拉取公司项目:
 1/在自己得远端添加git的user和email
 2/查看  .ssh/id_rsa.pub,复制下来
@@ -51,6 +55,9 @@ https://git.kaiostech.com/
 用户名:pawel.potoczny@maxcom.pl
 密码:maxcomkai789
 
+CNDS:
+bluebank2018
+bluebank2018
 
 https://techandme.plan.io/账户(唐昌强账户)
 tang.changqiang@bluebank.com.cn
@@ -59,6 +66,9 @@ qwer123456
 eteams协作云
 http://url.eteams.cn/ZxzYUZ
 15523142285	492379
+
+百度云:
+bluebank2018     bluebank
 
 https://techandme.plan.io/login
 Junlong_Bluebank
@@ -118,4 +128,7 @@ git clone ssh://panjunlong@192.168.1.248:29418/QC8905_KAI2.5
 拉取QC26B项目:
 repo init -u ssh://zhoujunzhi@192.168.1.253:29418/MSM8909W_QC26B/manifest -b bluebank -m BlueBank-LAW.BR.3.0-11400-8x09w.0.xml --repo-url=git://codeaurora.org/tools/repo.git
 将@前名字改为自己的,然后执行repo sync -j32
+
+拉sdm660项目:
+git clone ssh://yourname@192.168.1.248:29418/SDM660 -b dev/SPF/3.0.1/SDM660/main
 
