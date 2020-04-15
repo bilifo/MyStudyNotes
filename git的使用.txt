@@ -1,4 +1,4 @@
-注意:***一定要先试着了user.name和user.email后,再去生成ssh(如果已有,删除.ssh文件夹)使用命令:ssh-keygen -t rsa -C  "邮箱"
+q注意:***一定要先试着了user.name和user.email后,再去生成ssh(如果已有,删除.ssh文件夹)使用命令:ssh-keygen -t rsa -C  "邮箱"
 
 查看本机ssh:
 1/进入 .ssh 目录：cd ~/.ssh
@@ -161,5 +161,8 @@ git apply --reject xxx.patch或xxx.diff	//强制打patch或diff.如果产生冲突,会生成冲
 
 问题：git add时中文显示‘\123\456\789.txt’
 解决：git config --global core.quotepath false
+
+问题:当有一个新的远端,而我们checkout不到时
+解决:git fetch 新远端仓库名 分支名,再git pull 新远端仓库哦
 
 

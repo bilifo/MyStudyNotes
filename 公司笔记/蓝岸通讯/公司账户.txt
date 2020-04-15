@@ -24,6 +24,7 @@ gerrit
 192.168.1.248		代码管理服务器
 192.168.1.253	22	duan	722611	通过ls可以看到一个RELEASE目录，出的版本需要归档这个目录的对应项目下
 
+北京gerrit账号:
 http://gerrit.bluebank-rd.com.cn:8001 上传pub key
  http://gerrit.bluebank-rd.com.cn:8081 
 panjunlong      member456@bluebank
