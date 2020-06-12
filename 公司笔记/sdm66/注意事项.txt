@@ -1,1 +1,0 @@
-刷机使用flat build刷 *.for_factory

@@ -16,6 +16,9 @@ FREEWIFI(可翻墙)
 连接：
 cmd中输入ssh panjunlong@192.168.1.247
 
+bugzilla
+http://www.bluebank-rd.com.cn:8000/bugzilla/ 
+pan.junlong@bluebank.com.cn		 Pjl123456@
 
 gerrit			
 192.168.1.248:8080		panjunlong		123456
@@ -26,7 +29,7 @@ gerrit
 
 北京gerrit账号:
 http://gerrit.bluebank-rd.com.cn:8001 上传pub key
- http://gerrit.bluebank-rd.com.cn:8081 
+http://gerrit.bluebank-rd.com.cn:8081 
 panjunlong      member456@bluebank
 
 如何拉取公司项目:
@@ -70,6 +73,10 @@ http://url.eteams.cn/ZxzYUZ
 
 百度云:
 bluebank2018     bluebank
+
+JIRA:
+https://www.bluebank-rd.com.cn:8443/secure/Dashboard.jspa
+panjunlong	pan123
 
 https://techandme.plan.io/login
 Junlong_Bluebank

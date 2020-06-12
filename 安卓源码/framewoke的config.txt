@@ -1,0 +1,2 @@
+配置文件frameworks/base/core/res/res/values/config.xml
+

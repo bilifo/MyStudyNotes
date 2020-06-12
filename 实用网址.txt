@@ -4,8 +4,11 @@
 安卓源码		https://source.android.google.cn/
 安卓开发者	https://developer.android.google.cn/
 安卓源码在线查询	http://androidxref.com/
+安卓10各种启动流程学习	https://www.freesion.com/article/9085239974/
 kaios网站		https://developer.kaiostech.com/introduction
 koji(kaios在线编辑)	https://withkoji.com/zh-Hans
+安卓源码分析博客	https://blog.csdn.net/yiranfeng/article/details/104073200
+安卓api demos	https://github.com/android/platform_development中的sample
 
 谷歌应用商店	https://chrome.google.com/webstore
 
@@ -25,3 +28,10 @@ react教程		https://react.docschina.org/ 	选"入门教程"
 w3c js教程		https://www.w3school.com.cn/js/js_htmldom_events.asp
 在线编写使用react的代码	https://codepen.io/pen
 在线编写使用react的代码	https://codesandbox.io/s/
+
+在线制作SVG图标(在视图-->源代码中可看数据)	https://svg.wxeditor.com/
+在线转图片为SVG	https://www.vectorizer.io
+
+arduino模拟器	在win10应用中搜"virtual breadboard"
+VScode		超过notepad的文本编辑器
+在线制作3D模型,或电路图,或动效模型,可导出,可仿真arduino	https://www.tinkercad.com/

@@ -28,4 +28,4 @@ ps -eo pid,user,args # 显示安全信息
 ps -U root -u root u #格式化输出 root 用户（真实的或有效的UID）创建的进程
 
 ps -axjf | grep 用户#查看该用户当前的操作
-
+ps -aux | grep "make"#查看当前执行make操作的所有用户

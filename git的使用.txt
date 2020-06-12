@@ -66,7 +66,7 @@ git push -u origin master
 (如果以前有git,且对应有相应的远端分支)
 cd 本地项目存放文件夹
 git remote rename origin old-origin//将原来的远端分支名称更改为old-origin
-git remote add origin git@132.232.110.38:bilifo/test.git//添加现在的远端分支
+git remote add origin git@132.232.110.38:bilifo/test.git//添加现在的远端分支(这里注意下,如果是https的地址,不需要添加ssh key,如果是ssh地址,要添加key)
 git push -u origin --all//提交
 git push -u origin --tags
 
@@ -153,8 +153,9 @@ git apply xxx.patch	//将patch导入当前分支
 git format-patch commitID	//打对应commit号的patch
 
 打.diff:
-git diff > xxx.diff	//.diff和.patch的区别在于,patch包含commit信息
+git diff [比较起点commit号] [比较终点commit号] [要比较的文件]> xxx.diff	//.diff和.patch的区别在于,patch包含commit信息
 git apply xxx.diff
+git diff --name-only //只显示差异文件名
 
 不同项目之间,相同文件打patch:比如A项目和B项目,其实大部分代码相同,但属于不同的git库
 git apply --reject xxx.patch或xxx.diff	//强制打patch或diff.如果产生冲突,会生成冲突文件的.rej文件,来记录哪些冲突没有成功合并,需要用户手动修改
@@ -164,5 +165,15 @@ git apply --reject xxx.patch或xxx.diff	//强制打patch或diff.如果产生冲突,会生成冲
 
 问题:当有一个新的远端,而我们checkout不到时
 解决:git fetch 新远端仓库名 分支名,再git pull 新远端仓库哦
+
+问题:拉取了异地远端项目,添加ssh,能pull,但在push现"  scp -p -P 29418 panjunlong@192.168.5.21:hooks/commit-msg `git rev-parse --git-dir`/hooks/commit-msg ",可是执行了该句,还是无法push
+原因:192.168.5.21是异地远端的内部访问地址,需要将192.168.5.21改为外部可访问的远程访问ip地址,执行,在git commit --amend即可
+
+问题:如何忽略非必要文件
+解决:在项目下建.gitignore文件,里面写上要忽略的文件和文件夹,如 :/tmp/*
+
+问题:统计提交
+git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr
+
 
 

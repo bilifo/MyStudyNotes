@@ -1,0 +1,14 @@
+//****kernel有修改
+make kernel	
+
+//***修改了SELinux的.te文件或其他文件
+make selinux_policy
+
+//***修改了framewoke中的某些service或manager,增加了public方法
+make update-api
+
+//编译CTS套机，编译出的结果放在out目录对应版的data/app目录下面。CTS测试时有用
+make cts
+
+
+

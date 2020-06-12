@@ -20,7 +20,9 @@ adb disconnect <device-ip-address>	断开相应ip地址的设备
 adb pull <设备里的文件路径> [电脑上的目录]	拉取设备里的文件
 adb push <电脑上的文件路径> <设备里的目录>	推文件到设备
 adb logcat -v threadtime			查看日志
+adb logcat -b events			查看events日志,可以简洁看到系统运行状态
 adb exec-out screencap -p > 电脑上的目录\文件名.png	保存截图
+adb shell screenrecord /sdcard/example.mp4	录屏
 adb reboot recovery			重启到 Recovery模式
 adb reboot bootloader		重启到 Fastboot 模式
 adb sideload <path-to-update.zip>	adb 上传和更新系统(需要先重启到Recovery模式)
@@ -102,6 +104,8 @@ adb shell dumpsys battery		查看电池状态
 adb shell dumpsys window displays	查看屏幕参数
 
 adb shell getevent			获得点击时间,触摸事件等事件
+
+adb shell sm set-virtual-disk true	在没有可移动外部存储的设备上，可使用以下命令启用虚拟磁盘进行测试
 
 查看IMEI
 adb shell
