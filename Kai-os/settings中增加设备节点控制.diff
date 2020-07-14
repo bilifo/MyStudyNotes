@@ -1,0 +1,78 @@
+diff --git a/LINUX/android/apps/settings/elements/other_sounds.html b/LINUX/android/apps/settings/elements/other_sounds.html
+index 66a9e05..3879253 100755
+--- a/LINUX/android/apps/settings/elements/other_sounds.html
++++ b/LINUX/android/apps/settings/elements/other_sounds.html
+@@ -35,15 +35,6 @@
+           </select>
+         </div>
+       </li>
+-      <li role="menuitem">
+-        <span>GPIO50</span>
+-        <div class="button icon icon-dialog">
+-          <select id="gpio50" name="message.gpio50.enabled" data-value-type="boolean">
+-            <option data-l10n-id="on" value="true">On</option>
+-            <option data-l10n-id="off" value="false">Off</option>
+-          </select>
+-        </div>
+-      </li>
+      </ul>
+     </div>
+     <panel data-path="panels/other_sounds/panel"></panel>
+diff --git a/LINUX/android/apps/settings/js/panels/other_sounds/panel.js b/LINUX/android/apps/settings/js/panels/other_sounds/panel.js
+index f2497f9..b3ab05f 100755
+--- a/LINUX/android/apps/settings/js/panels/other_sounds/panel.js
++++ b/LINUX/android/apps/settings/js/panels/other_sounds/panel.js
+@@ -31,8 +31,7 @@ define(function(require) {
+         this.otherSoundsElements = {
+           dialpad: document.getElementById('dial-pad'),
+           camera: document.getElementById('camera'),
+-          sentMessage: document.getElementById('sent-message'),
+-          gpio50:document.getElementById('gpio50')
++          sentMessage: document.getElementById('sent-message')
+         };
+ 
+         SettingsListener.observe('phone.ring.keypad', true, value => {
+@@ -46,15 +45,6 @@ define(function(require) {
+         SettingsListener.observe('message.sent-sound.enabled', true, value => {
+           this.otherSoundsElements.sentMessage.value = value;
+         });
+-
+-        SettingsListener.observe('message.gpio50.enabled', true, value => {
+-          dump("*******message.gpio50.enabled123:");
+-          if(value==true){//对设备节点进行写入操作
+-            navigator.engmodeExtension.fileWriteLE("0", "/sys/class/gpio/gpio50/value", "f");// orange-breath
+-          }else{
+-            navigator.engmodeExtension.fileWriteLE("1", "/sys/class/gpio/gpio50/value", "f");// orange-breath
+-          }
+-        });
+       },
+ 
+       onBeforeShow: function() {
+diff --git a/LINUX/android/apps/settings/manifest.webapp b/LINUX/android/apps/settings/manifest.webapp
+old mode 100755
+new mode 100644
+index 47f85da..d7cee48
+--- a/LINUX/android/apps/settings/manifest.webapp
++++ b/LINUX/android/apps/settings/manifest.webapp
+@@ -9,7 +9,6 @@
+     "browser": {},
+     "embed-apps": {},
+     "mobileconnection":{},
+-    "engmode-extension": {},       //[此句注释需要删除]增加控制权限
+     "voicemail":{},
+     "bluetooth":{},
+     "device-storage:pictures":{ "access": "readonly" },
+diff --git a/LINUX/android/gecko/proprietary/engmodeEx/engmodeExtension.js b/LINUX/android/gecko/proprietary/engmodeEx/engmodeExtension.js
+old mode 100755
+new mode 100644
+index a9bf866..a7f1f76
+--- a/LINUX/android/gecko/proprietary/engmodeEx/engmodeExtension.js
++++ b/LINUX/android/gecko/proprietary/engmodeEx/engmodeExtension.js
+@@ -965,7 +965,6 @@ engmodeIDOMExtension.prototype = {
+         ('/system/system.ver' == path) ||
+         ('/proc/study' == path) ||
+         ('/data/userdata.ver' == path) ||
+-		('/sys/class/gpio/gpio50/value' == path) ||      //[此句注释需要删除]增加需要控制的结点全路径
+         ('/system/b2g/defaults/pref/user.js' == path) ||
+         ('/data/nfc_pcd.txt' == path)) {
+         return true;

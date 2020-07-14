@@ -1,0 +1,41 @@
+安装:
+pip install opencv-python
+
+读入图像:
+img = cv2.imread(文件名,[,参数])
+参数(1) cv2.IMREAD_UNCHANGED  (图像不可变)
+参数(2) cv2.IMREAD_GRAYSCALE (灰度图像)
+参数(3) cv2.IMREAD_COLOR (读入彩色图像)
+参数(4) cv2.COLOR_BGR2RGB (图像通道BGR转成RGB)
+
+显示图像:
+cv2.imshow(窗口名, 图像名)//窗口名---显示窗口的title和标识 ,图像名---就是读入图像变量img
+
+窗口等待:
+cv2.waitKey(delay)
+键盘绑定函数，共一个参数，表示等待毫秒数，将等待特定的几毫秒，看键盘是否有输入，返回值为ASCII值。如果其参数为0，则表示无限期的等待键盘输入；参数>0表示等待delay毫秒；参数<0表示等待键盘单击。
+
+删除所有窗口:
+cv2.destroyAllWindows() 删除所有窗口
+cv2.destroyWindows() 删除指定的窗口
+
+写入图片:
+retval = cv2.imwrite(文件地址, 文件名)
+
+========测试代码========
+# -*- coding:utf-8 -*-
+import cv2
+# 读取图片
+img = cv2.imread("C:/Users/panjunlong/Desktop/log/123.png")
+# 显示图像
+cv2.imshow("Demo", img)
+# 等待显示
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+# 写入图像
+cv2.imwrite("testyxz.jpg", img)
+========end===========
+
+读取某个像素点:
+
+

@@ -155,3 +155,6 @@ The commands and default sources are:
       press (Default: trackball)				已经无用
       roll <dx> <dy> (Default: trackball)			已经无用
 
+查看切片:
+1/先在设备上安装slice-viewer.apk(https://github.com/android/user-interface-samples/releases)
+2/输入命令:adb shell am start -a android.intent.action.VIEW -d slice-<your slice URI>

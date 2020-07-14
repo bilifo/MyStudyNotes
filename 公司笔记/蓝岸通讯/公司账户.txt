@@ -16,6 +16,10 @@ FREEWIFI(可翻墙)
 连接：
 cmd中输入ssh panjunlong@192.168.1.247
 
+CSDN
+账号bluebank2018
+密码bluebank2018
+
 bugzilla
 http://www.bluebank-rd.com.cn:8000/bugzilla/ 
 pan.junlong@bluebank.com.cn		 Pjl123456@
@@ -81,6 +85,11 @@ panjunlong	pan123
 https://techandme.plan.io/login
 Junlong_Bluebank
 12345678Aa
+
+冉贵州电脑:
+rnblcsbq40286
+
+吴怀曦电脑:
 
 公司项目编译
 在LINUX/android/下

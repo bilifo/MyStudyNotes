@@ -1,0 +1,23 @@
+一/给settings-->-->sound -->other_sound中添加一项选择:
+1.修改elements\other_sounds.html
+增加
+     <li role="menuitem">
+        <span>GPIO50</span>
+        <div class="button icon icon-dialog">
+          <select id="gpio50" name="message.gpio50.enabled" data-value-type="boolean">
+            <option data-l10n-id="on" value="true">On</option>
+            <option data-l10n-id="off" value="false">Off</option>
+          </select>
+        </div>
+      </li>
+注意"message.gpio50.enabled"有所不同.
+2.修改js\panels\other_sounds\panel.js
+      SettingsListener.observe('message.gpio50.enabled', true, value => {
+          dump("*******message.gpio50.enabled123:");
+          this.otherSoundsElements.gpio50.value = value;
+        });
+注意,不要添加任何注释
+3.修改 LINUX\android\gaia\build\config\common-settings.json
+增加
+"message.gpio50.enabled": true
+

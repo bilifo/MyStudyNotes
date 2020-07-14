@@ -1,0 +1,5 @@
+确认是否成功集成了kika输入法:
+查看 /system/vendor下有没有dict/kika目录
+
+输入法修改路径:
+android/gecko/dom/imeconnect/kika/IMEConnect.cpp

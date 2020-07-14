@@ -10,5 +10,45 @@ make update-api
 //编译CTS套机，编译出的结果放在out目录对应版的data/app目录下面。CTS测试时有用
 make cts
 
+//修改frameworks/base/services/下文件后单独编译
+mmm frameworks/base/services/
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+adb shell rm /system/framework/services.jar
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\services.jar /system/framework/services.jar
+
+//修改packages/apps/Settings/下文件后单独编译
+mmm packages/apps/Settings/
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+adb shell rm system/product/priv-app/Settings/Settings.apk
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\product\priv-app\Settings\Settings.apk /system/product/priv-app/Settings/
+
+//修改packages/apps/Launcher3/ 下文件后单独编译
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+adb shell rm /product/priv-app/Launcher3QuickStep/Launcher3QuickStep.apk
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\product\priv-app\Launcher3QuickStep\Launcher3QuickStep.apk /product/priv-app/Launcher3QuickStep/
+
+//修改frameworks/base/packages/SystemUI/ 下文件后单独编译
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+adb shell rm /product/priv-app/SystemUI/SystemUI.apk
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\product\priv-app\SystemUI\SystemUI.apk /product/priv-app/SystemUI/
+
+//修改frameworks/base/core/res/ 下文件后单独编译
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+framework-res.apk
+
+//修改frameworks/base/core/java/ 下文件后单独编译
+adb root		//编译完成后替换设备中对应jar包
+adb remount
+adb shell rm /system/framework/framework.jar
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\framework.jar /system/framework/framework.jar
+
+adb shell rm /system/framework/framework-res.apk
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\framework-res.apk /system/framework/framework-res.apk
+
 
 

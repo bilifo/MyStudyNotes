@@ -1,0 +1,6 @@
+1/首先设备设置开发者模式,关闭锁屏,增加息屏时间
+2/在装有CTS测试环境的机器上,进入 CTS/CTS-10_R4/android-cts/tools/,运行脚本'cts-treade',插上测试设备,会显示 设备号
+3/输入测试命令,
+run cts -m 模块名 -t 类名#类里面的测试方法 -s 设备号
+如:run cts -m CtsDevicePolicyManagerTestCases  -t  com.android.cts.devicepolicy.CrossProfileAppsHostSideTest#testPrimaryUserToManagedProfile
+4/测试完后,会看到时候pass或fail,使用"l r",看对应设备号生成的log和result

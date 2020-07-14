@@ -175,5 +175,9 @@ git apply --reject xxx.patch或xxx.diff	//强制打patch或diff.如果产生冲突,会生成冲
 问题:统计提交
 git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr
 
+单个文件或目录回滚:
+1/git log XX文件或目录	//查看该文件或目录的修改log
+2/git reset 回滚到哪个commitID  XX文件或目录	//对文件或目录进行回滚
+
 
 

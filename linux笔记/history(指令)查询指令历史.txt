@@ -1,2 +1,10 @@
 检查Home目录下的用户主目录下的“.bash_history”文件，该文件记录了用户所使用的命令和历史信息。
 
+临时显示指令历史的时间:
+输入  export HISTTIMEFORMAT='%F %T' 
+
+永久输入指令历史的时间:
+编辑名为“.bashrc”的隐藏文件, 注意：此文件中home命令下。在末尾添加上 export HISTTIMEFORMAT='%F %T  '
+输入“source ~/.bashrc”使之立刻生效。
+
+
