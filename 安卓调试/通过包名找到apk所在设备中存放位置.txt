@@ -1,0 +1,4 @@
+pull出设备中的 /data/system/packages.xml 文件
+
+搜索包名和"name"相匹配,codePath就是apk存放路径
+<package name="com.huawei.android.wfdft" codePath="/system/app/HwWiFiDirect.apk" nativeLibraryPath="/data/app-lib/HwWiFiDirect" flags="4767301" mtkFlags="0" ft="11b7e237e00" it="11b7e237e00" ut="11b7e237e00" version="6008" userId="10045">

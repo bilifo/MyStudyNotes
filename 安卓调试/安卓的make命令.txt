@@ -42,6 +42,7 @@ adb remount
 framework-res.apk
 
 //修改frameworks/base/core/java/ 下文件后单独编译
+前置条件:需要将device\qcom\sdm660_64\BoardConfig.mk 中的WITH_DEXPREOPT 改为 false
 adb root		//编译完成后替换设备中对应jar包
 adb remount
 adb shell rm /system/framework/framework.jar
