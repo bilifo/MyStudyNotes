@@ -24,6 +24,10 @@ bugzilla
 http://www.bluebank-rd.com.cn:8000/bugzilla/ 
 pan.junlong@bluebank.com.cn		 Pjl123456@
 
+qc28A
+192.168.1.245:8000/bugzilla
+pan.junlong@bluebank.com.cn		Pjl123456@
+
 gerrit			
 192.168.1.248:8080		panjunlong		123456
 192.168.1.253:8080

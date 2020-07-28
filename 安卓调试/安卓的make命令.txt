@@ -10,6 +10,9 @@ make update-api
 //编译CTS套机，编译出的结果放在out目录对应版的data/app目录下面。CTS测试时有用
 make cts
 
+//单独编译vendor目录,生成vendor.img
+make vnod
+
 //修改frameworks/base/services/下文件后单独编译
 mmm frameworks/base/services/
 adb root		//编译完成后替换设备中对应jar包
@@ -51,5 +54,8 @@ adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\pro
 adb shell rm /system/framework/framework-res.apk
 adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\framework-res.apk /system/framework/framework-res.apk
 
-
-
+//使用nija单独编译
+编译:prebuilts/build-tools/linux-x86/bin/ninja -f out/combined-sdm660_64.ninja audio.primary.sdm660
+替换:
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\vendor\lib64\hw\audio.primary.sdm660.so /vendor/lib64/hw/audio.primary.sdm660.so
+adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\vendor\lib\hw\audio.primary.sdm660.so /vendor/lib/hw/audio.primary.sdm660.so

@@ -57,7 +57,7 @@ adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
     adb reboot
 
 settings:
-adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
+adb push \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
 
 network-alerts:
 adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\network-alerts.gaiamobile.org\application.zip system/b2g/webapps/network-alerts.gaiamobile.org
@@ -66,4 +66,6 @@ system:
 adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\system.gaiamobile.org\application.zip system/b2g/webapps/system.gaiamobile.org
 
 launcher:
-adb push Z:\32A\MSM8905.LF.1.4_BB\LINUX\android\gaia\profile\webapps\launcher.gaiamobile.org\application.zip system/b2g/webapps/launcher.gaiamobile.org
+adb push  \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\launcher.gaiamobile.org\application.zip system/b2g/webapps/launcher.gaiamobile.org
+
+adb push \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\keyboard.gaiamobile.org\application.zip system/b2g/webapps/keyboard.gaiamobile.org

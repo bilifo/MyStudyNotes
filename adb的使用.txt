@@ -23,6 +23,7 @@ adb logcat -v threadtime			查看日志
 adb logcat -b events			查看events日志,可以简洁看到系统运行状态
 adb exec-out screencap -p > 电脑上的目录\文件名.png	保存截图
 adb shell screenrecord /sdcard/example.mp4	录屏
+adb pull /sdcard/example.mp4 电脑上的目录\
 adb reboot recovery			重启到 Recovery模式
 adb reboot bootloader		重启到 Fastboot 模式
 adb sideload <path-to-update.zip>	adb 上传和更新系统(需要先重启到Recovery模式)
@@ -158,3 +159,8 @@ The commands and default sources are:
 查看切片:
 1/先在设备上安装slice-viewer.apk(https://github.com/android/user-interface-samples/releases)
 2/输入命令:adb shell am start -a android.intent.action.VIEW -d slice-<your slice URI>
+
+查看熔丝:
+adb reboot bootloader
+fastboot getvar secure
+如果返回的结果是yes，就是已熔丝.返回no，代表未熔丝

@@ -3,3 +3,23 @@
 
 输入法修改路径:
 android/gecko/dom/imeconnect/kika/IMEConnect.cpp
+
+确认输入法是否激活:
+检查手机里有没有kika的so文件：/system/lib/libIQQILib.so
+检查手机是否有相应的dict文件： 比如/system/vendor/dict/kika/English_US.dict
+检测日志: apps/keyboard/js/imeconnect_sdk.js的const createInstance = (adaptor) => {加上的log是否打印
+
+取消输入法的默认勾选是英文:
+gaia/build/config/common-settings.json
+   //可以根据你们的需要进行修改
+   "keypad.active-layout": "english_us", 
+   "keypad.layouts.english_us": true
+
+gaia/build/settings.js
+function setDefaultKeypadSettings(settings, config) {
+  settings['keypad.t9-enabled'] = true;
+  settings['keypad.active-mode'] = 'abc';
+  settings['keypad.layouts.english'] = true;  //可以根据你们的需要进行修改
+  setIMElist(settings, config);
+}
+
