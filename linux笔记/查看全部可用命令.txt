@@ -1,0 +1,11 @@
+成熟的linux系统中双按tab键可以显示所有的命令,但有的精简系统却没有,这是因为缺少了bash的内置命令
+
+缺少命令补全解决(不针对adb,adb是安卓自己写的工具,自己实现的补全,如果不行,得下新的adb版本):
+下载安装bash_completion
+compgen和complete是bash shell的一个内建命令,使用 man complete 或 man bash 可以查看其帮助.
+
+使用命令查看全部可用命令:
+compgen -c	//通过该方式查询的可执行文件,有可能带有 .exe .dll等
+
+通过文件夹查看可用命令:
+可执行的命令一般位于 bin/ 的文件夹下(安卓的再system/bin/下面),可用使用 ls bin/ 查看

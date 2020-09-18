@@ -1,76 +1,81 @@
-可以在html中的<script>标签下直接编写js脚本,或者使用<script>标签的src引入外部脚本
+# **js总结**
+可以在html中的\<script\>标签下直接编写js脚本,或者使用\<script\>标签的src引入外部脚本
 
-工具推荐VS code
+>工具推荐VS code
 
-前端开发发展历程，目的都是为了提高开发效率,这也是为什么我们学会了js/html/css后依然无法看懂别人js代码的原因：
-1---原生JS
-2---Jquery之类的类库（解决不同浏览器兼容性问题）
-3---前端模板引擎（避免频繁操作DOM元素，调用前端模板引擎提供的方法自动渲染页面）
-4---Vue.js / Angular.js 等（直接用框架提供的指令把数据渲染到页面上，不需要进行DOM操作，提高渲染效率）
-
-学习路线:
-1/js---html---css基础知识(3天)
-2/菜鸟教程ES6语法(ES6 是js的版本标准)(1天)
-3/菜鸟教程的react入门(只需看,因为已经过时了,半天)
-4/看并学习react官方的教程
-5/了解 webpack , less , node , npm , yarm等工具
-6/了解hooks
-
-移动端web开发:
-    移动端web的开发,分成了3个方向,但都是js+html,差异有,但是代码变化不大,方言基本的变化.
-    一/移动端网页开发.手机通过浏览器看网页,如新浪网,腾讯新闻等.只是相交pc端的网页,增加了触摸特性
-    二/移动端web app开发.一般指h5技术,借助各个浏览器增加的私有方法,能拥有一些手机元生功能的应用,如调用摄像头,麦克风的微信小程序.
+前端开发发展历程，目的都是为了提高开发效率,这也是为什么我们学会了js/html/css后依然无法看懂别人js代码的原因：  
+1---原生JS  
+2---Jquery之类的类库（解决不同浏览器兼容性问题）  
+3---前端模板引擎（避免频繁操作DOM元素，调用前端模板引擎提供的方法自动渲染页面）  
+4---Vue.js / Angular.js 等（直接用框架提供的指令把数据渲染到页面上，不需要进行DOM操作，提高渲染效率）  
+  
+学习路线:  
+1/js---html---css基础知识(3天)  
+2/菜鸟教程ES6语法(ES6 是js的版本标准)(1天)  
+3/菜鸟教程的react入门(只需看,因为已经过时了,半天)  
+4/看并学习react官方的教程  
+5/了解 webpack , less , node , npm , yarm等工具  
+6/了解hooks  
+  
+移动端web开发:  
+    移动端web的开发,分成了3个方向,但都是js+html,差异有,但是代码变化不大,方言基本的变化.  
+    一/移动端网页开发.手机通过浏览器看网页,如新浪网,腾讯新闻等.只是相交pc端的网页,增加了触摸特性  
+    二/移动端web app开发.一般指h5技术,借助各个浏览器增加的私有方法,能拥有一些手机元生功能的应用,如调用摄像头,麦克风的微信小程序.  
     三/hybrid app开发,混合开发,套壳开发.使应用像app一样可以安装打开,但使用的是浏览器.如kaios应用等
-    四/react native类似,指使用某些特定的跨平台框架和代码生成的web app,它们编写是用同一套js,但它们实际上是将js转换成各种移动平台的原生程序语言,调用原生方法,来达到近似原生应用的效果.如react native,phoneap等
+    四/react native类似,指使用某些特定的跨平台框架和代码生成的web app,它们编写是用同一套js,但它们实际上是将js转换成各种移动平台的原生程序语言,调用原生方法,来达到近似原生应用的效果.如react native,phoneap等  
+>技术栈:TyperScript+react(组件框架,可以从github上搜索别人写好的UI组件来使用如ant design)+redux(数据管理,因为react的数据流向是单向,对于组件间数据交换,不是太给力)+router(路由)+less,但也有说直接使用react自带的hook功能,来替换掉redux的状态管理.而且简易轻型的,也没必要用redux
 
-    技术栈:TyperScript+react(组件框架,可以从github上搜索别人写好的UI组件来使用如ant design)+redux(数据管理,因为react的数据流向是单向,对于组件间数据交换,不是太给力)+router(路由)+less
-    但也有说直接使用react自带的hook功能,来替换掉redux的状态管理.而且简易轻型的,也没必要用redux
+TyperScript和javascript的关系:(即TyperScript包含javascript,可以简单的认为 TS= js + Type)  
+    TyperScript的优势在于明确指定了js中变量的类型  
 
-TyperScript和javascript的关系:(即TyperScript包含javascript,可以简单的认为 TS= js + Type)
-    TyperScript的优势在于明确指定了js中变量的类型
+js工具链:  
+    包管理器:管理第3方package包的工具.如yarn和npm  
+    打包器:能让你编写模块化代码，并将它们组合在一起成为小的 package，以优化加载时间。如webpack和parcel  
+    编译器:能让你编写的新版本 JavaScript 代码，在旧版浏览器中依然能够工作。如babel  
 
-js工具链:
-    包管理器:管理第3方package包的工具.如yarn和npm
-    打包器:能让你编写模块化代码，并将它们组合在一起成为小的 package，以优化加载时间。如webpack和parcel
-    编译器:能让你编写的新版本 JavaScript 代码，在旧版浏览器中依然能够工作。如babel
+基本知识和概念:  
+    浏览器  
 
-基本语法:大致和Java一样
+基本语法:大致和Java一样  
+  1.每个语句以;结束，语句块用{...},//注释  
+  2.let 只在自身所在的{}花括号内起作用,且let不允许在相同作用域内，重复声明同一个变量，否则报错,即一个花括号里let只能声明一次.  
+    var声明函数内的局部变量.  
+    const 表常量  
+    变量前什么都不加,表全局变量  
+    不区分整数和浮点数，统一用Number表示  
+  3.JavaScript允许对任意数据类型做比较.==比较，它会自动转换数据类型再比较，很多时候，不同类型见比较会得到非常诡异的结果；===比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较  
+  4.[]数组,可以包括任意数据类型.也可以通过Array()函数实现数组.索引的起始值为0.字符串也是数组(不可变数组)  
+  5.JavaScript的对象是一组由键-值组成的无序集合.eg:var person={name:'Bob',age:20}  
+  JavaScript对象的所有属性都是字符串，不过属性对应的值可以是任意数据类型。访问属性是通过.操作符完成,也可以通过用['xxx']来访问  
+  6.function abs(x),function来定义函数,允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题.  
+  关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。  
+  关键字rest参数只能写在最后，前面用...标识,表示可变参数数组  
+  7.lambda表达式 var fn = x => x * x ,fn为返回值,x为参数,x*x是返回表达式  
+  8.js允许先使用,后声明,即声明可以在任何地方.但在js文件开头写"use strict",启动严格模式,不允许使用未定义的变量  
+  9.方法名或变量名前加下划线 _ 不是js的要求,只是约定俗成的表示这是应该私有的变量或方法  
+  10.在方法或变量名前加 exports.XXX 或者 使用 module.exports=XXX,来暴露这个方法或变量为全局可用.要使用时,为了便于区分全局和本地,js中需要使用 require('全局变量或方法所在文件.js')来引进这个js文件.或者是html中使用script标签引入那个js文件.有点像java的import,就是写着有些别扭.  
+  11.js是支持函数式编程的,即 var 变量=function(),变量就绑定这个函数方法,而且传递这个绑定变量时,可以不需要传入参数.如:  
+    var aaa=function(a,b){console.log("a:"+a);console.log("b:"+b);}   
+    var bbb=function(a){console.log("a:"+a);a(1,2);console.log("a:"+a(3,4));}  
+    bbb(aaa);  
 
-    1.每个语句以;结束，语句块用{...},//注释
-    2.let 只在自身所在的{}花括号内起作用,且let不允许在相同作用域内，重复声明同一个变量，否则报错,即一个花括号里let只能声明一次.
-      var声明函数内的局部变量.
-      const 表常量
-      变量前什么都不加,表全局变量
-      不区分整数和浮点数，统一用Number表示
-    3.JavaScript允许对任意数据类型做比较.==比较，它会自动转换数据类型再比较，很多时候，不同类型见比较会得到非常诡异的结果；===比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较
-    4.[]数组,可以包括任意数据类型.也可以通过Array()函数实现数组.索引的起始值为0.字符串也是数组(不可变数组)
-    5.JavaScript的对象是一组由键-值组成的无序集合.eg:var person={name:'Bob',age:20}
-    JavaScript对象的所有属性都是字符串，不过属性对应的值可以是任意数据类型。访问属性是通过.操作符完成,也可以通过用['xxx']来访问
-    6.function abs(x),function来定义函数,允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题.
-    关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。
-    关键字rest参数只能写在最后，前面用...标识,表示可变参数数组
-    7.lambda表达式 var fn = x => x * x ,fn为返回值,x为参数,x*x是返回表达式
-    8.js允许先使用,后声明,即声明可以在任何地方.但在js文件开头写"use strict",启动严格模式,不允许使用未定义的变量
-    9.方法名或变量名前加下划线 _ 不是js的要求,只是约定俗成的表示这是应该私有的变量或方法
-    10.在方法或变量名前加 exports.XXX 或者 使用 module.exports=XXX,来暴露这个方法或变量为全局可用.要使用时,为了便于区分全局和本地,js中需要使用 require('全局变量或方法所在文件.js')来引进这个js文件.或者是html中使用script标签引入那个js文件.有点像java的import,就是写着有些别扭.
-    11.js是支持函数式编程的,即 var 变量=function(),变量就绑定这个函数方法,而且传递这个绑定变量时,可以不需要传入参数.如:
-      var aaa=function(a,b){console.log("a:"+a);console.log("b:"+b);}
-      var bbb=function(a){console.log("a:"+a);a(1,2);console.log("a:"+a(3,4));}
-      bbb(aaa);
-
-=>箭头函数表达式:
-    对于匿名函数,我们可以使用 箭头函数表达式 来简化语法.并且它使得在匿名函数中使用的this就是函数外的this,保持一致不会产生this的歧义
-    function(value1,param2=value2){...}  转换为 (value1,param2=value2)=>{...}
-    注意:
-    1/只有一个参数的时候可以省略掉圆括号,如:function(value1){...}  转换为  value1=>{...} //这实在是个画蛇添足,让事情变得更加复杂的语法特性
-    2/当函数中只有一个return语句是,可以省略return关键字和方法体的花括号,如:function(value1){return true;}  转换为   value1=>true  //同样让人讨厌的特性,它让程序可读性更差
-    3/让人火大的是,妄想用箭头表示来编写一般的方法函数,会错得让你不知所措,内部所有的this都将遗憾的变为undefine,这增加了代码维护成本.这时采用箭头表达式不满足需求,我们得换一种形式,即bind形式.如:
-    onClick={() => this.某方法(某参数)} 改写为 onClick={this.某方法.bind(this, 某参数)} 将某方法绑定到该onclick上
+=>箭头函数表达式:    
+对于匿名函数,我们可以使用 箭头函数表达式 来简化语法.并且它使得在匿名函数中使用的this就是函数外的this,保持一致不会产生this的歧义  
+function(value1,param2=value2){...}  转换为 (value1,param2=value2)=>{...}  
+注意:  
+1/只有一个参数的时候可以省略掉圆括号,如:function(value1){...}  转换为  value1=>{...} //这实在是个画蛇添足,让事情变得更加复杂的语法特性  
+2/当函数中只有一个return语句是,可以省略return关键字和方法体的花括号,如:function(value1){return true;}  转换为   value1=>true  //同样让人讨厌的特性,它让程序可读性更差  
+3/让人火大的是,妄想用箭头表示来编写一般的方法函数,会错得让你不知所措,内部所有的this都将遗憾的变为undefine,这增加了代码维护成本.这时采用箭头表达式不满足需求,我们得换一种形式,即bind形式.如:  
+onClick={() => this.某方法(某参数)} 改写为 onClick={this.某方法.bind(this, 某参数)} 将某方法绑定到该onclick上  
 
 
-数据类型:
-
-6 种不同的数据类型：string,number,boolean,object(Object,Date,Array),function,symbol. 2 种空类型:null(对象或值为空) 和 undefind(类或方法未定义,没声明)
+数据类型:  
+  6 种不同的数据类型：string,number,boolean,object(Object,Date,Array),function,symbol. 2 种空类型:null(对象或值为空) 和 undefind(类或方法未定义,没声明)
+也可以分成  
+    值类型包括Number、Boolean、String、undefined、 null、Symbol (ES6 新增)。
+    引用类型包括Object 、Array、Function、Date、RegExp
+值类型存放在栈内存中，引用类型的数据是存放在堆内存中。值类型的数据在复制的时候会在栈内存中新建一个新的存储区域用来存储新的变量，和之前的值没有任何关系.
+引用类型，定义一个对象的时候会在栈内存中存储了一个指针，该指针指向堆内存中该对象的存储地址，当复制这个对象赋值给另一个对象的时候，只是把该对象的指针地址赋值给了另一个对象变量，他们都指向同一个对象，所以当一个值改变的时候，另一个值会跟着改变.
     Number() 转换为数字， String() 转换为字符串， Boolean() 转化为布尔值。
     typeof 获得 JavaScript 变量的数据类型 eg:typeof "mimu" 结果:string
     instanceof 判断 JavaScript 变量的数据类型是否和某种类型相同.但是对于对象是(Array,Date)的比较,会不唯一,即和Array比较会返回true,和Object比较也会返回true.建议还是使用constructor eg:"mimu" instanceof string 结果:true
@@ -122,7 +127,28 @@ Map或Dictionary:{}
 
 对象:
     js对象是键值对的容器.如:var person={name:"蔡徐坤",age:50,like:function(){return "唱,跳,rap,打篮球";}},这样我们能通过person.name得到"蔡徐坤"
-    用in判断一个属性存在.
+    用in判断一个属性存在.且in不能用于字符串和字符串数组的比较,因为字符串和字符串数组中的字符串的引用值是不同的,但可以用于集合,因为集合的key是唯一的  
+    所有的对象都会有一个constructor属性，constructor始终指向创建当前对象的构造函数  
+    所有的函数都有一个prototype属性（又称为：显式属性），是一个普通对象，这个prototype有一个constructor属性指向该函数。  
+    所有的引用类型都有一个_proto_属性（又称为：隐式属性）,指向它的构造函数的prototype属性（比如：obj._proto_指向Object.prototype）  
+```js
+function Animal (name) {
+//属性
+this.name =name || 'Animal';
+//实例方法
+this. Sleep = function () {
+  console.log (this.name +'睡觉');
+  }
+}
+//原型方法,在Animal类型外部,添加了一个方法
+Animal.prototype.eat= function(food){
+console.log (this.name + "正在吃" + food);};
+//原型继承 
+function Cat(){}
+Cat.prototype = new Animal();
+Cat.prototype.name ="cat":
+```
+
 json:
     JSON.stringify(对象);序列化为json
     JSON.parse("...");反序列化,解析为对象

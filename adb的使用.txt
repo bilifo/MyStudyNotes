@@ -122,6 +122,7 @@ adb shell am force-stop 包名			停止包名相关进程(app和服务)
 	-a					指定action
 	-c					指定category
 	-n					指定component(即包名/包名.类),明确启动哪个activity
+	-f	神秘的存在,cts测试里面看见的
 <INTENT>中能带的数据,就和代码中写Bundle一样:
 	--esn					null值
 	-e					
@@ -164,3 +165,9 @@ The commands and default sources are:
 adb reboot bootloader
 fastboot getvar secure
 如果返回的结果是yes，就是已熔丝.返回no，代表未熔丝
+
+适用于FFOS(kaios)系统的指令:
+adb shell b2g-ps		查看手机正在运行的进程PID
+adb shell b2g-info		查看手机正在运行的进程PID
+adb shell b2g-prlimit		查看手机正在运行的进程PID
+adb shell b2g-procrank		查看手机正在运行的进程PID

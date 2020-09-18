@@ -45,17 +45,36 @@ adb remount
 framework-res.apk
 
 //修改frameworks/base/core/java/ 下文件后单独编译
-前置条件:需要将device\qcom\sdm660_64\BoardConfig.mk 中的WITH_DEXPREOPT 改为 false
-adb root		//编译完成后替换设备中对应jar包
-adb remount
-adb shell rm /system/framework/framework.jar
-adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\framework.jar /system/framework/framework.jar
+前置条件:
+将device\qcom\sdm660_64\BoardConfig.mk 中的WITH_DEXPREOPT 改为 false
+将build/make/core/board_config.mk 中的 WITH_DEXPREOPT 改为 false
+将build/make/core/dex_preopt_config.mk 中的 WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY 改为 false
+将build/make/core/dex_preopt_config.mk 中如下逻辑注释掉
+====
+ifeq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
+  ifneq (true,$(WITH_DEXPREOPT))
+     ifneq (true,$(WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY))
+       $(call pretty-error, DEXPREOPT must be enabled for user and userdebug builds)
+    endif
+  endif
+endif
+=====
+全编,烧录改前提修改的系统,后面就可以使用make framework单编，然后将生成的framework.jar push到手机
 
-adb shell rm /system/framework/framework-res.apk
-adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\system\framework\framework-res.apk /system/framework/framework-res.apk
-
-//使用nija单独编译
+//使用nija单独编译 名为：audio.primary.sdm660的模块
 编译:prebuilts/build-tools/linux-x86/bin/ninja -f out/combined-sdm660_64.ninja audio.primary.sdm660
 替换:
 adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\vendor\lib64\hw\audio.primary.sdm660.so /vendor/lib64/hw/audio.primary.sdm660.so
 adb push \\192.168.1.245\panjunlong\sdm660_2\SDM660\LINUX\android\out\target\product\sdm660_64\vendor\lib\hw\audio.primary.sdm660.so /vendor/lib/hw/audio.primary.sdm660.so
+
+//使用nija单独编译settings:
+prebuilts/build-tools/linux-x86/bin/ninja -f out/combined-sdm660_64.ninja Settings
+
+=====使用nijia替代make编译======
+注意：使用nijia单编模块前，一定要使用make整编系统，使其在out目录下产生.nijia文件，如果修改过Android.mk 或 Android.bp，也需要使用make重新生成.nijia
+命令格式:   
+prebuilts/build-tools/linux-x86/bin/ninja -f  out/combined-XXX.ninja xxx目标模块
+说明:
+prebuilts/build-tools/linux-x86/bin/ninja是安卓源码中将nijia源码放入,make后就能使用了,这样我们就不需要自己的机器再去安装nijia环境
+-f 表示后面接的是输入文件,即makefile 和 bp 转换后的 ninja 文件.
+xxx目标模块就是我们需要的产物,Android.mk：查找 LOCAL_PACKAGE_NAME 或 LOCAL_MODULE 等对应的值.Android.bp：查找 module 中 name 对应的值

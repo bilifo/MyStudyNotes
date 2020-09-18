@@ -1,5 +1,11 @@
 ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。
 
+5种状态:
+R:run运行 S:sleeping中断 D:不可中断 T:stop停止 Z:zombie僵死
+
+参数:
+
+
 通常使用 ps -aux 来显示全部进程
 USER		用户
 PID		进程id
@@ -29,3 +35,6 @@ ps -U root -u root u #格式化输出 root 用户（真实的或有效的UID）�
 
 ps -axjf | grep 用户#查看该用户当前的操作
 ps -aux | grep "make"#查看当前执行make操作的所有用户
+
+修改优先级:
+使用 ps -l

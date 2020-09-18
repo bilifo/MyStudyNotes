@@ -1,0 +1,2 @@
+index.html(权限/依赖) 和 root.html(主界面) 是最重要的入口
+注意:有个坑点,你以为root.html是主界面,想通过hidden对地理位置设置项进行隐藏,但是不可能成功,因为 startup.js 里面才是真正设置gps的地方

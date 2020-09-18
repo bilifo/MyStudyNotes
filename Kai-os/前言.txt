@@ -5,8 +5,8 @@ KaiOS是基于FirefoxOS项目派生出来的,只是一个Firefox OS的端口(虽
 
 kaiOS分层:
 Gaia(前端):行在Firefox OS 平台的一个复杂的web应用集合,它是由HTML+CSS+JAVAScript组成,它于Cecko层的通讯只能通过web API进行
-Gecko(中间层,一个Firefox的渲染引擎,叫Gecko):它提供运行环境,如:app managerment, OS Management
-Gonk(或Gonk-misc)(一个底层操作系统,名叫Gonk):包含kernel(基于安卓AOSP), RIL(用户空间硬件抽象层), HW Drivers(硬件驱动)
+Gecko(中间层,一个Firefox的渲染或者说是排版引擎,提供了一个丰富的程序界面以供因特网相关的应用程序使用，例如网页浏览器、HTML编辑器、客户端/服务器等等。):它提供运行环境,如:app managerment, OS Management
+Gonk(或Gonk-misc)(一个底层操作系统,名叫Gonk):包含kernel(基于安卓AOSP), RIL(用户空间硬件抽象层), HW Drivers(硬件驱动)。Gonk 是一个设备接口层，可看作是 硬件和 Gecko 之间的适配器。
 
 kaiOS的app本质就是web网页,可以是本地的网页压缩包或者是服务器网页.
 kaiOS的系统源码,网络上没找到任何有价值的文档,不过我们可以通过它的前身Firefox os(也可以是说是B2G OS)来了解它的Caia和Gecko层,Gonk可以参考安卓
@@ -32,6 +32,40 @@ https://developer.mozilla.org/en-US/docs/Archive/B2G_OS
 1/将项目文件夹放到 apps 或 gaia/apps 下
 2/在  gaia\build\config\phone\apps-production.list中添加项目名 (但是这样会导致 file not found)
 
+如何看navigator.mozSettings的设置项:
+adb pull /system/b2g/defaults/settings.json
+
+蓝牙名称:
+最终的蓝牙名称是由navigator.mozBluetooth提供,不是在上层定义的，navigator.mozBluetooth只是读取值的一个接口，这个默认名字是在BSP里面定义的，需要MTK支持
+
+系统按键处理：
+system/js/hardware_button.js
+
+activity处理：
+system/js/activity_window.js
+system/js/activity_window_manager.js
+
+新增或删除铃声:
+路径在  gaia/shared/resources/media/notifications/目录中，并且在该目录的list.json中 新增或删除 相关配置，请参照已有格式。
+
+更改默认的铃声:
+在gaia\build\settings.js 文件里,
+function setNotification(settings, config) {
+  // Grab notifier_firefox.opus and convert it into a base64 string
+  let notification_name = 'notifier_que_paso.ogg';
+  let notification_l10nID = 'notifier_que_paso';
+  setTone(settings, config, 'alerttone', notification_name,
+          notification_l10nID);
+}
+
+修改硬件时间:
+驱动修改设备节点文件 /dev/rtc0
+
+修改sim卡的网络类型:
+settings/js/supported_network_type_helper.js,这个文件是针对当前底层报上来的支持网络进行过滤处理,最后结果呈现到settings\js\carrier.js::cs_updateNetworkTypeSelector进行处理显示
+
+缺少开发者模式:
+输入 ＊＃＊＃33284＃＊＃＊
 
 webIDE工具的使用:
 0/下载v57的老firefox浏览器

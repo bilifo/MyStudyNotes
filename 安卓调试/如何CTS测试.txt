@@ -4,3 +4,13 @@
 run cts -m 模块名 -t 类名#类里面的测试方法 -s 设备号
 如:run cts -m CtsDevicePolicyManagerTestCases  -t  com.android.cts.devicepolicy.CrossProfileAppsHostSideTest#testPrimaryUserToManagedProfile
 4/测试完后,会看到时候pass或fail,使用"l r",看对应设备号生成的log和result
+
+如何解决cts错误：
+assertTrue（“错误信息”，表达式）----如果表示为true，不输出错误信息。否则运行失败，输出错误信息
+
+如何定位错误:
+1/看device_logcat_test_XX的log,查 TestRunner 快速定位问题.
+2/再查Running command,因为一般cts的测试指令都是通过adb命令的形式执行的,这样可以看到出问题前cts发出了个什么指令导致的
+3/可以查 START u0 来看是否启动了界面,这可以辅助看一些cts启动界面的命令是否成功执行
+4/
+

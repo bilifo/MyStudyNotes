@@ -1,0 +1,47 @@
+后台命令的开启：
+nohup adb logcat > 123.txt & //nohup表示不间断的运行命令,&表示放后台
+
+后台命令的查看：
+jobs 或 ps -aux|grep logcat
+使用jobs，“+”代表最近的一个任务（当前任务），“-”代表之前的任务。
+只有在当前命令行中使用 nohup和& 时，jobs命令才能将它显示出来。如果将他们写到 .sh 脚本中，然后执行脚本，是显示不出来的
+
+后台命令的结束：
+kill
+1/通过jobs命令查看jobnum，然后执行   kill %jobnum
+2/通过ps命令查看进程号PID，然后执行  kill %PID
+
+前后台任务切换:
+1/fg---将后台命令调到前台执行(如果只有一个任务,就直接fg,如果是多个,就fg 2或其他jobs号)
+2/ctrl+z---将正在运行的前台任务放到后台,并暂停
+3/bg---将一个暂停的后台命令,变成后台继续运行
+
+--------后台抓取logcat--------
+进入adb shell,使用命令:"logcat > sdcard/log.txt &".
+断开usb后,重新连接usb,使用 "ps | grep logcat" 查看运行的后台logcat命令的PID号.
+使用"kill PID号"来结束logcat的抓取
+
+--------后台抓取getevent-----
+进入adb shell,使用命令:"getevent | tee -a sdcard/event.txt &".(这里使用tee来进行重定向,也可以使用 getevent > sdcard/event.txt &)
+
+--------一个在后台通过参数选择,抓logcat和event的脚本------
+***pkill可以通过name来干掉线程
+if [ -n $1 && -n $2 ] ; then
+	if [ $1 == "run" ] ;then
+		if [ $2 == "log" ] ;then
+			getevent > /sdcard/event.txt &
+		elif [ $2 == "event" ] ;then
+			logcat -v time > /sdcard/log.txt &
+		fi
+	elif [ $1 == "stop" ] ;then
+		if [ $2 == "log" ] ;then
+			echo $(ls -l /sdcard/)
+			pkill  logcat
+		elif [ $2 == "event" ] ;then
+			echo $(ls -l /sdcard/)
+			pkill getevent
+		fi
+	fi
+else 
+	echo "缺少参数"
+fi;
