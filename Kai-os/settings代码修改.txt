@@ -1,2 +1,8 @@
 index.html(权限/依赖) 和 root.html(主界面) 是最重要的入口
 注意:有个坑点,你以为root.html是主界面,想通过hidden对地理位置设置项进行隐藏,但是不可能成功,因为 startup.js 里面才是真正设置gps的地方
+
+修改device information中的版本信息:
+software-->gecko\b2g\confvars.sh中的MOZ_APP_VERSION
+OS version-->gecko\b2g\confvars.sh中的MOZ_B2G_VERSION
+硬件版本-->apps/settings/js/panels/about_more_info/hardware_info.js
+mode型号-->version/version_msm8909_512_Flipphone.txt 中的TARGET_PRODUCT_MODEL

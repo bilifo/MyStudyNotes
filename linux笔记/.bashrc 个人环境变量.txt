@@ -5,6 +5,8 @@ vi ~/.bash_profile
 export JAVA_HOME=/home/wangyong/jdk6/jdk1.6.0_45
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=PATH:路径1:路径2:...:路径n，意思是可执行文件的路径包括原先设定的路径，也包括从“路径1”到“路径n”的所有路径。当用户输入一个一串字符并按回车后，shell会依次在这些路径
+里找对应的可执行文件并交给系统核心执行
 
 二.配置命令行彩色
 找到 PS1,如没有,最后行添加,设置颜色的形式是  \[\ 色值 \]\ 
@@ -35,3 +37,7 @@ PS1的常用参数以及含义:
 保存退出
 source ~/.bash_profile
 使配置文件生效
+
+配置个人使用的python2.7版本:
+在.bashrc文件最后添加
+alias python='/usr/bin/python2.7'

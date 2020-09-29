@@ -23,3 +23,5 @@ function setDefaultKeypadSettings(settings, config) {
   setIMElist(settings, config);
 }
 
+如何验证修改是否生效:
+在老版火狐浏览器的webIDE中,选上Built-in Keyboard应用,输入:window.IMEConnectSDK.adaptor.name,如果出现:kika,就表示当前输入法是kika

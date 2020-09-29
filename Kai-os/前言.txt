@@ -64,8 +64,43 @@ function setNotification(settings, config) {
 修改sim卡的网络类型:
 settings/js/supported_network_type_helper.js,这个文件是针对当前底层报上来的支持网络进行过滤处理,最后结果呈现到settings\js\carrier.js::cs_updateNetworkTypeSelector进行处理显示
 
+获得当前是否插入耳机:
+navigator.mozAudioChannelManager.headphones
+注册耳机变化的监听(需要自己实现该接口内容):
+navigator.mozAudioChannelManager.onheadphoneschange
+
+window.addEventListener	//窗口事件监听,kaios可以监听所有按键的'keydown','keyup',和窗口的'load'等事件	
+
+navigator.mozTelephony	//返回该设备是否是手机
+navigator.mozAudioChannelManager.headphones   //是检测是否有耳机的插入状态的
+navigator.mozAudioChannelManager.onheadphoneschange   //是耳机变化监听
+
+通话界面代码: callscreen 应用
+通话过程中界面底部的按键: apps\callscreen\js\call_screen_menu.js
+
+launcher应用中,跳转去摄像机:
+LaunchStore.launch('manifestURL', 'app://camera.gaiamobile.org/manifest.webapp');
+
+launcher应用中,跳转去联系人:
+LaunchStore.launch('manifestURL', 'app://communications.gaiamobile.org/manifest.webapp');
+
+launcher应用中,修改长按5键的功能:
+由于 快速拨号SpeedDialHelper默认启用,要修改两个地方,main_view.js中_longPressTimer里要增加5的处理,同时在 speed_dial_helper.js 中注释掉case 5:
+
+设置震动:
+navigator.vibrate(n*500)
+
+蓝牙地址:
+navigator.mozBluetooth.defaultAdapter.address
+
 缺少开发者模式:
 输入 ＊＃＊＃33284＃＊＃＊
+
+浏览器调试模式中代码只有一行:
+点击行号下面的{},进行格式化
+
+被混淆的代码:
+如果有vendor文件夹下的js文件,有eval,那多半就是混淆的地方了,直接去掉eval就好
 
 webIDE工具的使用:
 0/下载v57的老firefox浏览器
@@ -78,6 +113,11 @@ adb forward tcp:6000 localfilesystem:/data/local/debugger-socket
 
 编辑工具:
 虽然所有文本编辑器都可以,但推荐VS code,因为它里面提供有KAIOS插件
+
+离线全编(发现编译的大部分时间都是在网络验证):
+source build/ensetup.sh
+lunch XXX
+OFFLINE=1 make -j8
 
 调试单个app:
 用kaios提供的工具,直接运行,但是当app具有:embed-apps(嵌入式应用),engineering-mode(工程模式),embed-widgets(嵌入式小部件)权限时,无法直接安装运行.只能通过后面总方式

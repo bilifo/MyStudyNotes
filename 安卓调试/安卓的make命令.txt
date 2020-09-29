@@ -13,6 +13,10 @@ make cts
 //单独编译vendor目录,生成vendor.img
 make vnod
 
+//全编
+如果之前编译过的话，需要再次全编,不用删除整个out 目录,只需要删除out/target 目录， 
+可以节省一半以上的编译时间
+
 //修改frameworks/base/services/下文件后单独编译
 mmm frameworks/base/services/
 adb root		//编译完成后替换设备中对应jar包

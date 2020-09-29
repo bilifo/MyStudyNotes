@@ -163,6 +163,12 @@ set集合(和java的set一样)
 	lambda形成的匿名函数，相当于java的三元表达式。(编程中提到的 lambda 表达式，通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数。)
 	作用域？
 
+属性:  
+	是普通函数(或者叫方法)的变种.定义时,在普通方法上加上@property 装饰器,且仅有一个self参数.调用时无需括号
+	eg:
+	 @property
+	def names(self):
+		return self.name_alias
 
 sorted(排序):
 	sort 会改变集合的顺序
@@ -175,6 +181,8 @@ sorted(排序):
 	isinstance函数可以判断一个变量是不是字符串
 
 	locals返回当前作用域中定义的变量集合
+	
+	range(开始数,结束数[,step])	范围.创建一个整数列表,一般用在循环中
 
 文件操作:
 	os.path.split(或str.split('/')[-1])		取目录与文件名.

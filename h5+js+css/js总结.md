@@ -93,6 +93,7 @@ onClick={() => this.某方法(某参数)} 改写为 onClick={this.某方法.bind
     startsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的头部。
     endsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的尾部。
     repeat(n)//字符串重复n次
+    虽然使用== 和 === 能比较字符串,但是,当两个相同的字符串不匹配时,要对字符串进行去空格操作, strValue.trim().toString(),再比较
 
 数组:[]
     直接给Array的length赋一个新的值会导致Array大小的变化.
