@@ -93,6 +93,8 @@ navigator.vibrate(n*500)
 蓝牙地址:
 navigator.mozBluetooth.defaultAdapter.address
 
+index.html文件中,定义了那些能被 控制台debug看到的文件.
+
 缺少开发者模式:
 输入 ＊＃＊＃33284＃＊＃＊
 
@@ -119,6 +121,21 @@ source build/ensetup.sh
 lunch XXX
 OFFLINE=1 make -j8
 
+生成minidump分析文件:
+make buildsymbols
+
+抓取 RILQ 日志来分析mcc:
+Settings->Device->Developer->RIL output in ADB
+
+JSON.stringify(对象);序列化为json
+JSON.parse("...");反序列化,解析为对象
+
+或者
+   adb root && adb shell
+   setprop persist.log.tag.ril VERBOSE && setprop persist.radio.adb_log_on 1 && setprop persist.data.qmi.adb_logmask  3
+   exit
+   adb reboot
+
 调试单个app:
 用kaios提供的工具,直接运行,但是当app具有:embed-apps(嵌入式应用),engineering-mode(工程模式),embed-widgets(嵌入式小部件)权限时,无法直接安装运行.只能通过后面总方式
 
@@ -129,6 +146,14 @@ OFFLINE=1 make -j8
     adb remount  
     adb push gaia\profile\webapps\system.gaiamobile.org\application.zip system/b2g/webapps/system.gaiamobile.org 
     adb reboot
+
+怎么看kaios的logcat日志:
+看按键操作:
+	[BrowserElement] event type: keydown, key: Enter(这里就是按下的哪个按键),
+	
+	nsMobileSignalStrength mLevel=0(当前信号强度)
+
+	Signal Strength changed(查看信号改变)
 
 settings:
 adb push \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 

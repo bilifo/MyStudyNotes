@@ -88,7 +88,7 @@ onClick={() => this.某方法(某参数)} 改写为 onClick={this.某方法.bind
     var uper = "hello".toUpperCase()//字符串全部变为大写
     indexOf()//会搜索指定字符串出现的位置
     substring()//返回指定索引区间的子串
-    正则表达式通常用于两个字符串方法 : search() 和 replace()。
+    正则表达式通常用于两个字符串方法 : search() 和 replace(),和test()。正则的写法为: / 正则表示式 / ,不需要双引号
     includes()//返回布尔值，判断是否找到参数字符串。
     startsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的头部。
     endsWith(string,index)：返回布尔值，判断在index位置,参数字符串是否在原字符串的尾部。
@@ -153,6 +153,28 @@ Cat.prototype.name ="cat":
 json:
     JSON.stringify(对象);序列化为json
     JSON.parse("...");反序列化,解析为对象
+    **注意:一般简单的json解析器,对json最后项添加逗号,是会报错而解析失败的,所以手写json,采用符号前置,能更直观的看到错误:
+
+      {"a": "a"
+      ,"b": "b"
+      }
+  
+    **注意:有的时候,JSON.stringify(对象)会返回{},其实是undefined、任意的函数function以及 symbol 被 JSON.stringify() 序列化时都会返回 undefined,而 undefined 在字符串中又不显示.
+    终极打印:  
+
+    JSON.stringify(data, (key, value) => {
+      switch (true) {
+        case typeof value === "undefined":
+          return "undefined";
+        case typeof value === "symbol":
+          return value.toString();
+        case typeof value === "function":
+          return value.toString();
+        default:
+          break;
+      }
+      return value;
+    })
 
 比较运算符:
     ==    等于

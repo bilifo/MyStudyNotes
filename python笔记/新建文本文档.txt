@@ -16,7 +16,7 @@ https://docs.python.org/zh-cn/3.8/ python中文手册
 
 	#!/usr/bin/env python3
 	# -*- coding: utf-8 -*-
-	第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；
+	第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释,有的时候,window系统下有这句反而会让程序运行出现问题,但只要它不是第一行就没问题；
 	第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
 	申明了UTF-8编码并不意味着你的.py文件就是UTF-8编码的，必须并且要确保文本编辑器正在使用UTF-8 without BOM编码：
 
@@ -68,6 +68,12 @@ https://docs.python.org/zh-cn/3.8/ python中文手册
 		...
 	else:
 		...
+
+	从1循环到50:
+	for i in range(1,50)
+	
+	从0循环某个list:
+	for i in range(len(list))
 
 字符串：
 	占位符：
@@ -139,6 +145,8 @@ set集合(和java的set一样)
 
 
 类型转化：
+	由于python和java,c一样是强类型语言,需要我们使用主动调用类型转换方法来进行各种不同类型间的转化.
+
 	int(x) 将x转换为一个整数。 int(x,16) 将hex形式的字符x转成int//(当然,可以不止2,8,16进制,任何进制都可以)
 	float(x) 将x转换到一个浮点数。
 	list（range(5)）新生成的0到5的序列，转成数组
@@ -149,6 +157,14 @@ set集合(和java的set一样)
 	complex(x) 将x转换到一个复数，实数部分为 x，虚数部分为 0。
 	complex(x, y) 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。
 
+	由于Python作为动态语言，在定义变量、函数返回值、方法参数都不需要指定数据类型,
+	因此无法判断变量类型，所有IDE就不知道变量有那些属性和方法，没有智能提示变量类型的错误.完全依赖文档和注释,正确与否取决于运行.
+	在大型项目，特别是多人合作的项目上,静态类型特性就尤为重要.在Python3.5 的PEP484 中有了类型提示:
+	定义函数时，可以指定函数的返回值类型、参数的类型。
+	定义方式如下:「: str」与 「-> str」，前者用来说明 name 的类型，后者指函数返回值的类型。
+		def greeting(name: str) -> str:
+			return 'Hello ' + name
+		
 迭代器：
 	a=iter（list）将list数组交给迭代器a
 	next（a）输出迭代器a的下一个元素
@@ -161,6 +177,8 @@ set集合(和java的set一样)
 函数：
 	以def关键字开头，后接函数方法名称和（），括号内为传入参数，如在括号内给参数赋值，则为默认值。变量名前面加*的表示不定参数。由于参数不像java一样传递类型，。return用来退出函数，并返回一个表达式。
 	lambda形成的匿名函数，相当于java的三元表达式。(编程中提到的 lambda 表达式，通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数。)
+	eg:
+		lambda 返回值的形参 : 函数(参数1,参数2)
 	作用域？
 
 属性:  
@@ -238,6 +256,8 @@ pip:
 	pip hash 包档案的散列
 	pip completion 用于命令完成的辅助命令?
 	pip help
+
+	pip install  -i https://pypi.douban.com/simple 使用某个镜像源镜像安装
 
 爬虫要解决的要点:
 	1/判重算法

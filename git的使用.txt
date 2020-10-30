@@ -179,5 +179,6 @@ git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr
 1/git log XX文件或目录	//查看该文件或目录的修改log
 2/git reset 回滚到哪个commitID  XX文件或目录	//对文件或目录进行回滚
 
-
+清理git的空间占用:
+git gc --aggressive
 

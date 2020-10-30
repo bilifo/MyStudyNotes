@@ -93,3 +93,119 @@ _斜体_ (反正做为特殊格式使用前和后,加空格就对了)
 	代码区域,使用4个空格或者一个制表符(Tab 键).
 	也可以使用```指定一种语言(也可以不指定) 需要显示的一些代码 ```三个英文顿号(非单引号)包裹一段代码,代码段前后都要空一行
 	
+流程图:	
+	如何让vscode支持流程图预览显示,需要先下一个 预览插件 "Markdown Preview Mermaid Support".
+	由于Mermaid是一种简单的类似 Markdown 的脚本语言,通过 JavaScript 编程语言，将文本转换为图片。非markdown标准.
+	支持流程图,时序图,类图.细节可以查阅mermaid的在线文档
+	注意: 符号 ` 是上顿号,符号 - 是短中间横,不要写成减号,还有tab缩进的控制
+	
+	流程图语法格式是:
+		```mermaid
+		graph TD;
+			A[这是A的描述]-->B;
+			A-->C;
+			B(这是B的描述)-->D;
+			C-->D;
+		```
+	--> 带箭头
+	--- 不带箭头
+	-.- 虚线
+	-.-> 虚线带箭头
+	==> 加粗带箭头
+	--描述--- 带描述的实线
+	--描述--> 带描述的箭头
+	-.描述.-> 带描述的虚线箭头
+	==描述==> 带描述的虚线箭头
+	graph 指定流程图方向：graph LR 横向，graph TD 纵向
+	A[描述] 以直角矩形绘制
+	B(描述) 以圆角矩形绘制
+	B{描述} 以菱形绘制
+	B>描述] 以不对称矩形绘制
+	B((描述)) 以圆形绘制
+	
+		
+	时序图:
+		```mermaid
+		sequenceDiagram
+			title: ABC
+			A ->> B: hello
+			B -> C:world
+		​	C -->> B:fine
+		```
+	-> 表示实线不带箭头
+	->>表示实线带箭头
+	--> 表示虚线不带箭头
+	-->>表示虚线带箭头
+	
+	状态图:
+		```mermaid
+		stateDiagram
+			[*] --> s1
+			s1 --> s2: 01
+			s2 --> s1: 11
+			s2 --> s2: 00
+			s2 --> s3: 10
+			s3 --> [*]
+		```
+	[*] 表示开始或者结束，如果在箭头右边则表示结束。
+	
+	类图:
+	```mermaid
+	classDiagram
+		Animal <|-- Duck
+		Animal <|-- Fish
+		Animal <|-- Zebra
+		Animal : +int age
+		Animal : +String gender
+		Animal: +isMammal()
+		Animal: +mate()
+		class Duck{
+		+String beakColor
+		+swim()
+		+quack()
+		}
+		class Fish{
+		-int sizeInFeet
+		-canEat()
+		}
+		class Zebra{
+		+bool is_wild
+		+run()
+		}
+	```
+	在开头使用关键字 classDiagram 指明，<|-- 表示继承，+ 表示 public，- 表示 private
+	
+	甘特图:
+		```mermaid
+		gantt
+			dateFormat YYYY-MM-DD
+			title 标题名
+			section 环节描述
+			任务描述:done,des1, 2019-01-06,2019-01-08
+			原型:active,des2, 2019-01-09, 3d
+			UI设计:des3, after des2, 5d
+			未来任务:des4, after des3, 5d
+			section 开发
+			理解需求:crit, done, 2019-01-06,24h
+			设计框架:crit, done, after des2, 2d
+			开发:crit, active, 3d
+			未来任务:crit, 5d
+			休息时间:2d
+		```
+	section里面包含的任务步骤的写法有两种:
+		描述: 状态,id,开始日期,结束日期/持续时间
+		描述: 状态,id,after id2,持续时间
+	每个步骤有两种状态done （已完成）/ active（执行中）
+	crit ：可用于标记该步骤需要被修正，将高亮显示
+	
+	饼图:
+	在开头使用关键字 pie 指明，标题下面分别是区域名称及其百分比。
+		```mermaid
+		pie
+			​title 数学成绩饼图
+			​“90分以上” : 15
+			​“80-90分” : 21
+			​“70-80分” : 12
+			​“60-70分” : 8
+			​“60分以下” : 3
+		```

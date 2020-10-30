@@ -1,5 +1,27 @@
+	pip install 安装包
+	pip download 下载包
+	pip uninstall 卸载包
+	pip freeze  在需求模式中安装包?
+	pip list 列出已经安装的包
+	pip show 看包的具体信息
+	pip check 验证已安装的包是否需要兼容的依赖项
+	pip search 搜索PyPI上的包
+	pip wheel 根据你的需求构造轮子?
+	pip hash 包档案的散列
+	pip completion 用于命令完成的辅助命令?
+	pip help
+
+	pip install  -i https://pypi.douban.com/simple 使用某个镜像源镜像安装
+
 pip list			查看有哪些python包
 pip list --outdated		检查过时软件
 pip install --upgrade SomePackage 更新软件
 
 python -m pip install --upgrade pip	更新pip管理工具
+
+常用的模块:
+pip install mypy  #静态类型检查.在控制台输入: mypy XXX.py ,且需要配合typing模块使用
+pip install typing #静态类型模块 int,long,float: 整型,长整形,浮点型;bool,str: 布尔型，字符串类型；List, Tuple, Dict, Set:列表，元组，字典, 集合;Iterable,Iterator:可迭代类型，迭代器类型；Generator：生成器类型；使用or关键字表示多种类型,也可以用Union
+pip install PyQt5 #pyqt5界面设计模块,安装PyQt5后，系统会默认安装QtDesigner工具。
+QtDesigner的默认默认路径： E:\python\python\Lib\site-packages\PyQt5\designer.exe
+pip install PyQt5-tools #Python环境需要安装designer。 在终端执行pip命令安装完PyQt5-tools。

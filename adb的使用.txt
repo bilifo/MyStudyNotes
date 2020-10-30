@@ -166,8 +166,39 @@ adb reboot bootloader
 fastboot getvar secure
 如果返回的结果是yes，就是已熔丝.返回no，代表未熔丝
 
+adb设置音量:
+adb shell media volume --show --stream 4 --set 1
+ STREAM_VOICE_CALL = 0;
+ STREAM_SYSTEM = 1;
+ STREAM_RING = 2;
+ STREAM_MUSIC = 3;
+ STREAM_ALARM = 4;
+ STREAM_NOTIFICATION = 5;
+ STREAM_BLUETOOTH_SCO = 6;
+ STREAM_SYSTEM_ENFORCED = 7;
+ STREAM_DTMF = 8;
+ STREAM_TTS = 9;
+
 适用于FFOS(kaios)系统的指令:
 adb shell b2g-ps		查看手机正在运行的进程PID
 adb shell b2g-info		查看手机正在运行的进程PID
 adb shell b2g-prlimit		查看手机正在运行的进程PID
 adb shell b2g-procrank		查看手机正在运行的进程PID
+
+adb可以抓取的日志:
+adb logcat –v time > c:\appLog.txt	普通logcat日志
+adb logcat –v time –b radio >c:\radioLog.txt	radio关键字日志
+adb logcat -v time -b system        	system关键字日志
+adb logcat -v time -b events		events关键字日志
+adb shell cat /proc/kmsg > kernel.log	kernel log
+adb shell dmesg > dmesg.txt		导出当前缓存的kernel log,也说是开机日志
+adb shell kmsgcat			查看kernel log
+adb pull /data/anr			导出anr阻塞日志
+adb pull /data/tombstones		导出死机重启日志
+adb pull  /data/log/core		导出core日志
+adb pull /data/logcatch		导出
+adb pull /sdcard/logs		导出高通qxdm分析日志
+adb bugreport > bugreport.txt
+
+代码中停止logcat,使用:
+taskkill /F /T /PID 启动adb logcat的线程pid号
