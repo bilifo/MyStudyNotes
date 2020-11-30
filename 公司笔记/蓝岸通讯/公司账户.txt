@@ -53,6 +53,11 @@ duanaijun
 pan.junlong@bluebank.com.cn
 Aa123456789
 
+vail项目的高通账户
+Luo.Yihua@flex.com
+Bluebank@123456
+
+
 kaiOS账户
 pawel.potoczny@maxcom.pl
 maxcomkai789
@@ -80,7 +85,7 @@ http://url.eteams.cn/ZxzYUZ
 15523142285	492379
 
 百度云:
-bluebank2018     bluebank
+bluebank2018     bluebank2020
 
 JIRA:
 https://www.bluebank-rd.com.cn:8443/secure/Dashboard.jspa

@@ -12,6 +12,7 @@
 	pip help
 
 	pip install  -i https://pypi.douban.com/simple 使用某个镜像源镜像安装
+	pip install robotframework==2.8.7  安装指定版本的包==
 
 pip list			查看有哪些python包
 pip list --outdated		检查过时软件
@@ -23,5 +24,6 @@ python -m pip install --upgrade pip	更新pip管理工具
 pip install mypy  #静态类型检查.在控制台输入: mypy XXX.py ,且需要配合typing模块使用
 pip install typing #静态类型模块 int,long,float: 整型,长整形,浮点型;bool,str: 布尔型，字符串类型；List, Tuple, Dict, Set:列表，元组，字典, 集合;Iterable,Iterator:可迭代类型，迭代器类型；Generator：生成器类型；使用or关键字表示多种类型,也可以用Union
 pip install PyQt5 #pyqt5界面设计模块,安装PyQt5后，系统会默认安装QtDesigner工具。
-QtDesigner的默认默认路径： E:\python\python\Lib\site-packages\PyQt5\designer.exe
+QtDesigner的默认默认路径： E:\python\python\Lib\site-packages\PyQt5-tools\designer.exe
 pip install PyQt5-tools #Python环境需要安装designer。 在终端执行pip命令安装完PyQt5-tools。
+pip install viztracer  #一个以时间为轴的python性能分析工具

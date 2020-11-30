@@ -19,3 +19,18 @@ pyinstaller将Python脚本打包成可执行程序，使在没有Python环境的机器上运行,可运行在
 	-F:	打包为单文件
 	-w:	Windows程序，不显示命令行窗口
 	-i:	是程序图标，app.py是你要打包的py文件
+
+问题:
+1/安装时报"AttributeError: type object 'Callable' has no attribute '_abc_registry'"
+解决:pip uninstall typing
+原因:因为typer版本不同所致
+
+2/打包时报"AttributeError: module 'win32ctypes.pywin32.win32api' has no attribute 'error'"
+原因:pyinstaller打包时图片的格式不对 应该为.ico格式
+
+3/打包时报"struct.error: unpack requires a buffer of 16 bytes"
+原因:擅自将非.ico的图片改为.ico导致
+
+4/使用 pyinstaller -F -w -i "C:\xxx.ico" c:\XXX.py 打包exe后,代码中使用 subprocess 的语句失效
+原因:pyinstaller 的-w 和 subprocess中的 shell=True ,其实表示的是一个意思,即不弹出cmd的命令窗口.固有冲突.
+解决:打包时不使用 -w ,直接 pyinstaller -F -i .或将py代码中将subprocess.Popen的原先参数shell=False设为shell=True(实测,改shell为True,好像没起作用)

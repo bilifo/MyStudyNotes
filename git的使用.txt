@@ -182,3 +182,6 @@ git log | grep "^Author: " | awk '{print $2}' | sort | uniq -c | sort -k1,1nr
 清理git的空间占用:
 git gc --aggressive
 
+清理项目编译环境:
+git clean -dxf 
+git checkout .

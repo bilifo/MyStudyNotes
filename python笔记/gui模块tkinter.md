@@ -1,5 +1,6 @@
 当时选择的理由:Tkinter是python内置的,这就足够了.反正我只是用来写写脚本小工具
 后面放弃的理由:没有拖拽式的控件放置,写个规矩点的布局都需要好久,还有控件功能简单,有坑
+再次入坑的理由:其他模块同样有坑,而且需要环境,需要依赖,还不如tk.其实主要是我找到了能界面放置控件的辅助工具----PyWinDesign (https://bbs.125.la/thread-14519599-1-1.html)
 
 |tkinter类|元素|
 |-|-|
@@ -23,6 +24,8 @@
 |Text|多行输入框|
 |Toplevel|顶层,提供窗口管理接口|
 |messageBox|消息框|
+
+所有控件都继承自BaseWidget类,使用winfo_id()可以获得控件id.(http://visionegg.sourceforge.net/reference/Tkinter.BaseWidget-class.html)
 
 ## 简单示例讲解创建过程
 首先要创建一个主窗口，就像作画一样，先要架好架子和画板，然后才能在上面放画纸和各种绘画元素，创建好主窗口才能在上面放置各种控件元素。
@@ -131,6 +134,15 @@ menubar.post(event.x_root, event.y_root)#菜单控件显示位置
 右键菜单:
     控件.bind("<Button-3>", lambda x: 右键菜单(x, 参数)) # x是子菜单序号
 
+### combobox下拉菜单
+
+    combox = tk.Combobox(父控件)
+    combox['values'] = (1, '2', ...)     # 设置下拉列表的值
+    combox.current(0)    # 设置下拉列表默认显示的值，0为 numberChosen['values'] 的下标值
+    cmb.bind("<<ComboboxSelected>>",点击事件的def方法) #绑定事件
+
+    cmb.get()   #获得当前选择值
+
 ### Frame绘制区
 类似安卓的fragment
     frame = tk.Frame(父控件, bg="blue")
@@ -196,6 +208,89 @@ menubar.post(event.x_root, event.y_root)#菜单控件显示位置
 |y|1. 指定该组件的垂直偏移位置（像素）<br>2. 如同时指定了 rely 选项，优先实现 rely 选项| 
 
 ### 控件的点击事件
+声明控件时绑定一个点击事件:
+
+    b = Button(root, text='按钮', command=clickhandler)
+
+生成控件后绑定事件:
+    
+    控件.bind(('<event>', eventhandler, add='')
+
+其中，<event>为事件类型，eventhandler为事件处理函数，可选参数add默认为''，表示事件处理函数替代其他绑定，如果为‘+’，则加入事件处理队列。
+
+对某种类型进行事件绑定:
+
+    c = Canvas(); c.bind_class('Canvas', '<Button-2>', eventhandler)
+
+tkinter事件通常采用了将事件名称放置于尖括号内的字符串表示，尖括号中的内容我们称之为事件类型。
+<[modifier-]…type[-detail]>
+    方括号内的内容为可选参数
+    modifier为组合键的定义，例如，同时按下Ctrl键；
+    type为通用类型，例如，键盘按键（KeyPress）
+    detail用于具体信息，如按下键盘中‘B’键
+
+鼠标事件类型:
+<Key>               随便一个按键，键值会以char的格式放入event对象。
+<Button-1>          按下了鼠标左键        <ButtonPress-1>
+<Button-2>          按下了鼠标中键        <ButtonPress-2>
+<Button-3>          按下了鼠标右键        <ButtonPress-3>
+<Enter>             鼠标进入组件区域
+<Leave>             鼠标离开组件区域
+<FocusIn>           控件获得焦点
+<FocusOut>             控件失去焦点
+<ButtonRelease-1>   释放了鼠标左键
+<ButtonRelease-2>   释放了鼠标中键
+<ButtonRelease-3>   释放了鼠标右键
+<B1-Motion>          按住鼠标左键移动
+<B2-Motion>          按住鼠标中键移动
+<B3-Motion>          按住鼠标右键移动 
+<Double-Button-1>   双击鼠标左键
+<Double-Button-2>   双击鼠标中键
+<Double-Button-3>   双击鼠标右键
+<Button-4>        滚动鼠标滚轮 向上滚动
+<Button-5>        滚动鼠标滚轮 向下滚动
+注意： 如果同时绑定单击事件 (<Button-1>) 和双击事件 (<Double-Button-1>), 则两个回调都会被调用.
+
+键盘事件类型:
+<KeyPress>                       表示任何键盘按下
+<KeyRelease>                   表示松开键盘任意按键
+<KeyPress-A>                   表示按下键盘A键    A可以设置为其他的按键
+<KeyRelease-A>               表示松开键盘A键    A可以设置为其他的按键
+<Alt-KeyPress-A>             表示同时按下Alt和A键    A可以设置为其他的按键
+<Control-KeyPress-A>      表示同时按下Ctrl和A键    A可以设置为其他的按键
+<Shift-KeyPress-A>          表示同时按下Shift和A键    A可以设置为其他的按键
+<Double-KeyPress-A>      表示双击键盘A键    A可以设置为其他的按键
+<Lock-KeyPress-A>          表示开启大写之后键盘A键    A可以设置为其他的按键
+<Alt-Control-KeyPress-A> 表示同时按下alt+Ctrl和A键    A可以设置为其他的按键
+<Return>                键位绑定，回车键，其它还有<BackSpace>,<Escape>,<Left>,<Up>,<Right>,<Down>等等
+
+控件属性改变事件:
+<Configure>              重要:如果widget的大小改变了，或者是位置，新的大小（width和height）会打包到event发往handler。
+
+窗口和组件相关事件类型
+<Activate>           当中组件由不可以用变为可用时  针对于state的变值
+<Deactivate>       当组件由可用变为不可用时触发 state=Tkinter.DISABLED
+<Configure>        当组件大小发生变化时触发
+<Destory>           当组件销毁时触发
+<FocusIn>           当组件获取焦点时触发 针对于Entry和Text有效
+<FocusOut>        组件失去焦点的时候触发
+<Map>                 当组件由隐藏变为显示时触发
+<UnMap>            当组件由显示变为隐藏时触发
+<Perproty>          当窗口属性发生变化时触发
+
+事件对象(这是事件方法隐藏携带的对象,一般写为event)中包含的信息:
+x,y                     当前触发事件时鼠标相对触发事件的组件的坐标值
+x_root,y_root    当前触发事件时鼠标相对于屏幕的坐标值
+char                  获取当前键盘事件时按下的键对应的字符（仅键盘事件，string）
+keycode            获取当前键盘事件时按下的键对应的的ascii码
+type                  获取事件的类型
+num                  获取鼠标按键类型  123 左中右(按钮num，仅鼠标事件)
+widget              重要:触发事件的组件(产生event的实例，不是名字，所有对象拥有)
+width/height     组件改变之后的大小和configure()相关（widget新大小）
+type                 事件类型
+
+
+
 #### 右键菜单
     #菜单功能一
     def right_click_connect():

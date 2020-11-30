@@ -104,7 +104,10 @@ adb shell dumpsys package <packagename>	查看应用详细信息
 adb shell dumpsys battery		查看电池状态
 adb shell dumpsys window displays	查看屏幕参数
 
-adb shell getevent			获得点击时间,触摸事件等事件
+adb shell getevent	[-l:显示事件类型和名称]		获得点击时间,触摸事件等事件
+	[设备名称]: [类型] [code] [value]
+adb shell sendevent	[设备名称]: [类型] [code] [value]		模拟发送一个驱动事件,getEvent获取的值是16进制的,而sendEvent输入的值是10进制
+
 
 adb shell sm set-virtual-disk true	在没有可移动外部存储的设备上，可使用以下命令启用虚拟磁盘进行测试
 
@@ -202,3 +205,6 @@ adb bugreport > bugreport.txt
 
 代码中停止logcat,使用:
 taskkill /F /T /PID 启动adb logcat的线程pid号
+
+获取当前界面包名:
+adb shell dumpsys window | findstr mCurrentFocus

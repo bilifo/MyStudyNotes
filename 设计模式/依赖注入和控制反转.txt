@@ -1,0 +1,24 @@
+依赖注入:
+	即本来我接受各种参数来构造一个对象，现在只接受一个参数——基于某个接口的已经实例化的对象。一般是工厂模式出来的对象
+	
+控制反转示例代码:
+class Factory {
+   //通过 控制反转,由使用类来决定工厂输出对象的属性
+    public Jiang getJiang(String msg){
+     if(msg="10"){
+       return new Jiang(10) 
+     }else if(msg="red"){
+       return new Jiang("red") 
+     };
+    };
+}
+
+class Chuan {//船中控制获得怎样的浆
+    Jiang j ;
+     void run(){
+      Factory h = new Factory()；
+      j=h.getJiang(“red“); //得到了红色的桨
+      j=h.getJiang(“10“); //得到长度10的桨 
+     //极端一点的,可能会结合 状态机
+   };
+}

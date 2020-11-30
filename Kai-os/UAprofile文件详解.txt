@@ -1,0 +1,7 @@
+由于有的运营商网络采取限制,必须要在请求头里添加UAString或UAprof才允许使用其功能.如收发彩信
+
+这是我们需要将本机的信息做成一个UAprofile的xml给运营商做一个备份
+
+下面是这个UAprofile.xml的参数解释:
+
+BitsPerPixel:

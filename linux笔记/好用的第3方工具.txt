@@ -1,0 +1,1 @@
+sudo apt install tmate #结对编程或远程窗口协助工具

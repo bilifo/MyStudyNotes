@@ -3,6 +3,10 @@ https://docs.python.org/zh-cn/3.8/ python中文手册
 
 基本数据类型和转义字符是一样的,单引号双引号都表示字符串
 
+python3环境运行python2代码:
+	python3自带了py.exe来方便那些需要python2来运行的代码.
+	py -2 xxx.py
+	py -2 -m pip install XXXX
 
 执行命令:
 	不带返回:			os.system("命令行")
@@ -32,6 +36,9 @@ https://docs.python.org/zh-cn/3.8/ python中文手册
 	**变量名	关键参数(传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict)
 	可变参数 和 关键参数 区别在于关键参数传入的是 eg:def person(name, age, *, city, job):	--	person('Jack', 24, city='Beijing', job='Engineer')
 	注意:参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。 eg:def f2(a, b, c=0, *, d, **kw):
+self 和 this的区别:
+	self表示当前class中全局可用,this只表示当前方法中可用
+
 
 运算符：
 	*	乘
@@ -121,7 +128,11 @@ IO：
 字典(相当于map)
 	dict关键字.
 	{“one”：1，“two”：“2”，“three”：temp...}表示map集合。花括号
-	eg:diec={"姓":'张',"名":'三'}   diec['名']=='三'
+	eg:diec={"姓":'张',"名":'三'}   
+	diec['名']=='三'	新增键值对
+	pop(key)   删除某个key键值对
+	
+	
 
 set集合(和java的set一样)
 	setdata=set()
@@ -140,9 +151,45 @@ set集合(和java的set一样)
 	class XXX(ZZZ):#ZZZ就是父类
 		def __init__(self):
 			ZZZ.__init__()
+多继承:
+	python支持多继承,但不推荐,一个子类有多个直接父类时，该子类会继承得到所有父类的方法，排在前面的父类中的方法会“遮蔽”后面父类中的方法。
+	class XX(XX1,XX2):
+		pass
+
 超类:每个类都有一个超类object
 
+创建类的执行流程:
+	python中所有事物都是对象,所有类也是对象,默认由type对象创建.
+	1/遇到class关键字,执行type的__init__方法,创建出这个类.
+	2/当遇到需要实例化这个类时,执行的是type的__call__方法.在call方法里,调用了这个新创建类的__new__方法来负责创建对象,然后执行这个新创建类的__init__方法来初始化
 
+重写:
+	在子类中创建一个和父类方法同名的方法,即是重写
+
+依赖注入:
+	即本来我接受各种参数来构造一个对象，现在只接受一个参数——基于某个接口的已经实例化的对象。一般是工厂模式出来的对象
+	
+示例代码:
+	class Factory {
+	//通过 控制反转,由使用类来决定工厂输出对象的属性
+    public Jiang getJiang(String msg){
+     if(msg="10"){
+       return new Jiang(10) 
+     }else if(msg="red"){
+       return new Jiang("red") 
+     };
+    };
+}
+
+class Chuan {//船中控制获得怎样的浆
+    Jiang j ;
+     void run(){
+      Factory h = new Factory()；
+      j=h.getJiang(“red“); //得到了红色的桨
+      j=h.getJiang(“10“); //得到长度10的桨 
+	  //极端一点的,可能会结合 状态机
+   };
+}
 
 类型转化：
 	由于python和java,c一样是强类型语言,需要我们使用主动调用类型转换方法来进行各种不同类型间的转化.
@@ -178,7 +225,10 @@ set集合(和java的set一样)
 	以def关键字开头，后接函数方法名称和（），括号内为传入参数，如在括号内给参数赋值，则为默认值。变量名前面加*的表示不定参数。由于参数不像java一样传递类型，。return用来退出函数，并返回一个表达式。
 	lambda形成的匿名函数，相当于java的三元表达式。(编程中提到的 lambda 表达式，通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数。)
 	eg:
-		lambda 返回值的形参 : 函数(参数1,参数2)
+		返回值=lambda 匿名函数的形参 : 表达式或代码或 函数(函数参数1,函数参数2)
+	注意:网上说python的lambda不能写多行语句,但其实可以
+	eg:
+		lambda : ( print("1111") , print("2222") )
 	作用域？
 
 属性:  
@@ -242,6 +292,10 @@ sorted(排序):
 	results=pool.map(方法函数名,方法函数的参数)
 	pool.close()#关闭进程池，不再接受新的进程
 	pool.join()#主进程阻塞等待子进程的退出
+
+性能分析:
+	使用pip install viztracer  #一个以时间为轴的python性能分析工具
+
 pip:
 	包管理工具.它可以从PyPI下载一些软件包和框架,能查看软件包信息
 	pip install 安装包

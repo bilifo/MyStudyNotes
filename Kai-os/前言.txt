@@ -58,6 +58,31 @@ function setNotification(settings, config) {
           notification_l10nID);
 }
 
+settings的很多默认在: gaia/build/config/common-settings.json 中;
+bluetooth.enabled		默认蓝牙开关
+screen.timeout		屏幕超时(还有一处在 gaia/Makefile SCREEN_TIMEOUT=300)
+wifi.enabled		默认wifi开关(但是,也需要检索代码中使用 navigator.mozSettings.createLock().set({'wifi.enabled': false}) 来设置wifi默认的情况 , 这里有一个kaios的坑,在刷完机后的首次开机时,有引导程序ftu,而没在引导程序中连接网络,那就会强制设置wifi网络为关)
+platform version		(改gecko/config/milestone.txt)
+
+gecko\b2g\confvars.sh中包含了一些devices information:
+MOZ_APP_BASENAME=B2G
+MOZ_APP_VENDOR=KaiOS
+MOZ_APP_VERSION=2.5.3.2
+MOZ_APP_UA_NAME=KAIOS
+MOZ_UA_OS_AGNOSTIC=1
+MOZ_B2G_VERSION=2.5.3.2
+MOZ_B2G_OS_NAME=KaiOS
+
+.idl是接口文件,一般是c或者cpp的接口
+.jsm是Firefox JavaScript Module为 Mozilla Firefox 软件程序开发的 Mozilla文件类型.jsm中规定的方法和变量,可以让webide中的调试控制台对其进行控制
+.rst 如javadoc一样的描述文档
+.ini 某些平台或软件上的配置文件的非正式标准，以节(section)和键(key)构成，常用于微软Windows操作系统中
+
+user版本和userdebug配置不同的功能:
+在 gaia/build/settings.js 中添加,如userdebug默认开启debug功能:
+settings['debug.console.enabled'] = true;
+settings['developer.menu.enabled'] = true;
+
 修改硬件时间:
 驱动修改设备节点文件 /dev/rtc0
 
@@ -90,13 +115,47 @@ launcher应用中,修改长按5键的功能:
 设置震动:
 navigator.vibrate(n*500)
 
+这些 Moz开头的类型(如MozMobileConnection),多是以ipdl或webidl结尾的文件.一般在gecko/dom下,可以在moz.build文件中找到声明.
+
+移动卡不支持evdo
+preferred network菜单选项内容是需要你们自己根据项目定制的:
+请根据需求添加下面property值来定制双卡需要支持的网络制式和能力
+#network support types
+ro.moz.ril.0.network_types=gsm,wcdma,lte
+ro.moz.ril.1.network_types=gsm
+如果系统没有定义上面的property值，就会使用缺省的值：gsm,wcdma,cdma,evdo,lte
+
+查看彩信成功发送:
+MmsService: Broadcasting the MMS system message: sms-sent
+
+查看彩信或短信的接收:
+b2g_telephony ...../sms.cpp的wappush
+
 蓝牙地址:
 navigator.mozBluetooth.defaultAdapter.address
 
+修改蓝牙默认名称:
+device/qcom/common/bdroid_buildcfg.h
+#define BTM_DEF_LOCAL_NAME   "QCOM-BTD"
+
 index.html文件中,定义了那些能被 控制台debug看到的文件.
+
+UA即浏览器User Agent, 当前设备UA可以在用如下方式查看：
+    - WebIDE Console中输入`navigator.userAgent`；
+
+* OEM可以加入device model，如`Nokia 8810 4G`默认UA为：
+      `Mozilla/5.0 (Mobile; Nokia_8810_4G; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5`。
+    (注:KaiOS 要求移动设备产品在UA中必须加入device model信息，格式应该是下划线"_"连接的产品品牌和型号名。_3G/4G 不是必选。256MB的产品第三段更建议使用_256而非"_3G"或"_4G")
+* 一般网站会识别"Mobile"关键字，给出移动端网页；部分网站可能无法做到兼容；不建议加入"Android"字样做以适合此类网站，网站可能有Android only代码，导致在KaiOS设备上无法正常浏览部分内容。
+* UA生成逻辑如下,如果要定制UA string, 可以在gecko/b2g/app/b2g.js中添加'general.useragent.override: 
+   1. 会先读取preference值'general.useragent.override'
+   2. 如果这个preference值为空, 会走 `gecko/netwerk/protocol/http/nsHttpHandler.cpp::BuildUserAgent()`。
 
 缺少开发者模式:
 输入 ＊＃＊＃33284＃＊＃＊
+
+logmanager:
+*#*#0574#*#*
 
 浏览器调试模式中代码只有一行:
 点击行号下面的{},进行格式化
@@ -154,6 +213,21 @@ JSON.parse("...");反序列化,解析为对象
 	nsMobileSignalStrength mLevel=0(当前信号强度)
 
 	Signal Strength changed(查看信号改变)
+
+	sendMessage to content process(查看发送信息线程)
+
+	SettingsRequestManager: key: wifi.enabled (查看当前wifi开关)
+
+kaios同样支持adb shell getevent来查看按键驱动事件:
+kaios的大多数驱动事件如下:
+	/dev/input/event0: 0004 0004 0000001a
+	/dev/input/event0: 0001 0160 00000001
+	/dev/input/event0: 0000 0000 00000000
+使用getevent -l查看:
+	/dev/input/event0: EV_MSC       MSC_SCAN             0000001a
+	/dev/input/event0: EV_KEY       KEY_OK               DOWN
+	/dev/input/event0: EV_SYN       SYN_REPORT           00000000
+即EV_KEY才是真正代表按键的驱动事件,EV_SYN只是系统对按键的响应回复
 
 settings:
 adb push \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 
