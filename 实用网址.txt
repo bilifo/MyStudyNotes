@@ -22,6 +22,8 @@ python官方文档	https://docs.python.org/zh-cn/3/
 廖雪峰python教程	https://www.liaoxuefeng.com/wiki/1016959663602400
 webpack官方教程	https://www.webpackjs.com/guides/installation/
 
+安卓和linux博客	http://gityuan.com/tags/
+
 react教程		https://react.docschina.org/ 	选"入门教程"
 
 廖雪峰js教程	https://www.liaoxuefeng.com/wiki/1022910821149312
@@ -35,7 +37,10 @@ w3c js教程		https://www.w3school.com.cn/js/js_htmldom_events.asp
 arduino模拟器	在win10应用中搜"virtual breadboard"
 VScode		超过notepad的文本编辑器
 在线制作3D模型,或电路图,或动效模型,可导出,可仿真arduino	https://www.tinkercad.com/
+开源文件对比工具meld	http://meldmerge.org/  或 https://github.com/GNOME/meld/
 
 python在线编程	使用google浏览器打开,登录google账号.https://colab.research.google.com/#create=true
+
+python闯关	https://www.codewars.com/    bilifo  bilifo110
 
 网上数据传输	https://wetransfer.com/

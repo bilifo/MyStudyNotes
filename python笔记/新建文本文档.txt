@@ -61,6 +61,9 @@ self 和 this的区别:
 	else：
 		ZZZ
 
+	简写语法糖:	
+		true的处理   if   判断语句   else  false的处理 
+
 循环：(格式 for i in list:)
 	for 单个变量 in 集合or范围(相当于java的foreach):
 	else：（在循环中没有遇到break或continue时，额外执行
@@ -82,6 +85,9 @@ self 和 this的区别:
 	从0循环某个list:
 	for i in range(len(list))
 
+	简写语法糖:
+		一层for循环:处理   for  循环的条件
+		二层for循环:
 字符串：
 	占位符：
 		使用:
@@ -104,8 +110,12 @@ self 和 this的区别:
 		len("XXX")   	数组a[-1]表示最后一个元素,[-2]表倒数第二
 
 	isinstance函数可以判断一个变量是不是字符串
+	
+	str.title()	每个单词的首字母转为大写，其他字母全部转为小写.
+	str.lower()   全部转换为小写
+	str.upper()  全部转换为大写
 
-
+	"-".join(["a","b","c"])    join是连接处理,结果为 "a-b-c"
 
 IO：
 	输出显示：	print	eg：print("XXX")
@@ -125,6 +135,13 @@ IO：
 	数组里的元素可以是不同的类型（不像java一样严格区分），数组里可以包含数组
 
 	(1，“2”，temp....)表示不可变数组。小括号
+
+	创建一维数组   sz=[]
+	创建二维数组   sz=[[]]
+	创建二维定长为3数组   sz=[[]]*3
+
+	list(filter(None,test_list))   清除数组中的None
+
 字典(相当于map)
 	dict关键字.
 	{“one”：1，“two”：“2”，“three”：temp...}表示map集合。花括号
@@ -132,8 +149,9 @@ IO：
 	diec['名']=='三'	新增键值对
 	pop(key)   删除某个key键值对
 	
+	创建字典:  zd={}
 	
-
+	
 set集合(和java的set一样)
 	setdata=set()
 
@@ -204,6 +222,8 @@ class Chuan {//船中控制获得怎样的浆
 	complex(x) 将x转换到一个复数，实数部分为 x，虚数部分为 0。
 	complex(x, y) 将 x 和 y 转换到一个复数，实数部分为 x，虚数部分为 y。x 和 y 是数字表达式。
 
+	ord(x)  字符转换为asc码
+	chr(x)  asc转换为字符
 	由于Python作为动态语言，在定义变量、函数返回值、方法参数都不需要指定数据类型,
 	因此无法判断变量类型，所有IDE就不知道变量有那些属性和方法，没有智能提示变量类型的错误.完全依赖文档和注释,正确与否取决于运行.
 	在大型项目，特别是多人合作的项目上,静态类型特性就尤为重要.在Python3.5 的PEP484 中有了类型提示:

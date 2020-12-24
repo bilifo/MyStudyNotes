@@ -15,8 +15,8 @@ int main(){
 
 using namespace std命名空间有什么用?
 cout是std空间下的iostream文件的方法,虽然导了iostream,这是为了防止你也有一个iostream,里面也有一个cout方法.
-它起到的作用和java import com.XXX.xxx.iostream 一样.
-如果不使用命名空间,那在调用cout时,需要写成 std::cout < <"  " < <std::endl;
+它起到的作用和java import com.XXX.xxx.iostream 包一样.
+如果不使用命名空间,那在调用cout时,需要写成 std::cout < <"  " < <std::endl;和java的 System.out.println() 一样
 建议不使用命名空间
 
 导包:#include <包名>			区别于java:implement com.XX.XXX
@@ -24,7 +24,7 @@ cout是std空间下的iostream文件的方法,虽然导了iostream,这是为了�
 
 基本类型:bool				区别于java:boolean
 基本类型:wchar_t			区别于java:
-常量:const					区别于java:final
+不变常量:const					区别于java:final
 
 数字后加U/u或L/l表示该数字是无符号整数unsigned,长整数long
 引用&:
@@ -73,6 +73,47 @@ type_name 是结构体类型的名称，member_type1 member_name1 是标准的�
 用"."来访问结构体成员.
 函数的形参:void printBook( struct Books book );
 指向结构的指针:struct Books *struct_pointer;
+
+文件操作:
+在操作系统中，为了统一对各种硬件的操作，简化接口，不同的硬件设备也都被看成一个文件。对这些文件的操作，等同于对磁盘上普通文件的操作。
+常见硬件设备所对应的文件:
+	stdin:标准输入文件，一般指键盘；scanf()、getchar() 等函数默认从 stdin 获取输入。
+	stdout:标准输出文件，一般指显示器；printf()、putchar() 等函数默认向 stdout 输出数据。
+	stderr:标准错误文件，一般指显示器；perror() 等函数默认向 stderr 输出数据（后续会讲到）。
+	stdprn:标准打印文件，一般指打印机。
+数据从文件复制到内存的过程叫做 输入流，从内存保存到文件的过程叫做 输出流。文件是数据源的一种，除了文件，还有数据库、网络、键盘等；
+<stdio.h> 头文件中的 fopen() 函数即可打开文件
+	FILE *fopen(char *filename, char *mode);//filename为文件名（包括文件路径），mode为打开方式("r"读,"w"写,"a"追加,"+"读写,"t"默认,作为文本,"b"作为二进制文件)，它们都是字符串。返回FILE 类型的结构体变量的地址
+	fclose(fp);//关闭文件
+	int fgetc (FILE *fp);//读取字符,p 为文件指针。fgetc() 读取成功时返回读取到的字符，读取到文件末尾或读取失败时返回EOF,EOF通常是-1,但也可能是其他负数,这要看编译器的实现。但是很多函数在读取出错时也返回 EOF，那么当返回 EOF 时，到底是文件读取完毕了还是读取出错了？我们可以借助 stdio.h 中的两个函数来判断，分别是 feof() 和 ferror()
+	int feof ( FILE * fp );//用来判断文件内部指针是否指向了文件末尾,当指向文件末尾时返回非零值，否则返回零值。
+	int ferror ( FILE *fp );//ferror() 函数用来判断文件操作是否出错，出错时返回非零值，否则返回零值。
+	int fputc ( int ch, FILE *fp );//写入字符,ch 为要写入的字符，fp 为文件指针。fputc() 写入成功时返回写入的字符，失败时返回 EOF，返回值类型为 int 也是为了容纳这个负数。
+	//读写升级:单个字符到多个字符
+	char *fgets ( char *str, int n, FILE *fp );//读取字符串,str 为字符数组,读到的内容在这里，n 为要读取的字符数目，fp 为文件指针。返回值：读取成功时返回字符数组首地址，也即 str；读取失败时返回 NULL；如果开始读取时文件内部指针已经指向了文件末尾，那么将读取不到任何字符，也返回 NULL。
+	int fputs( char *str, FILE *fp );//写入字符串.str 为要写入的字符串，fp 为文件指针。写入成功返回非负数，失败返回 EOF。
+	//读写再升级:多个字符到多行字符
+	size_t fread ( void *ptr, size_t size, size_t count, FILE *fp );//
+	size_t fwrite ( void * ptr, size_t size, size_t count, FILE *fp );
+	//ptr 为内存区块的指针，它可以是数组、变量、结构体等。fread() 中的 ptr 用来存放读取到的数据，fwrite() 中的 ptr 用来存放要写入的数据。size：表示每个数据块的字节数。count：表示要读写的数据块的块数。fp：表示文件指针。理论上，每次读写 size*count 个字节的数据。
+eg:
+		fp = fopen("d:\\demo.txt", "rt");
+		//每次读取一个字节，直到读取完毕
+    		while( (ch=fgetc(fp)) != EOF ){
+    		    putchar(ch);
+   		}
+		fclose(fp);
+
+类型定义:
+	对于结构体,struct 看起来就是多余的,但不写又会报错。如果将结构体类型简化为XXX object_names,那就简练了.
+	使用关键字 typedef 可以为类型起一个新的别名。typedef 的用法一般为：
+		typedef  oldName  newName;
+	所以会经常看到
+		typedef struct student{
+		    char name[20];
+		    int age;
+		    char sex;
+		}  STU;//使用STU来代表struct student
 
 类：
 class 定义一个类
@@ -196,13 +237,27 @@ new 和 delete 运算符:new和java一样,但java是自动回收,没有delete
 		int *array=new int [m]；// 动态分配,数组长度为 m
 		Box* myBoxArray = new Box[4];//动态分配对象数组(类似java的list)
 		
-预处理:
+预处理/宏定义:
 预处理器是一些指令，指示编译器在实际编译之前所需完成的预处理。
 所有的预处理器指令都是以井号（#）开头，只有空格字符可以出现在预处理指令之前。预处理指令不是 C++ 语句，所以它们不会以分号（;）结尾。
 C++ 还支持很多预处理指令，比如 #include、#define、#if、#else、#line 等
 	#define		宏名	会被宏名所替换的文本	//用于创建符号常量。该符号常量通常称为宏
+参数宏定义:
+	一般宏只是字符串替换,但是带参宏可以作为简单算式
+	eg:#define M(y) y*y
+	但是要特别注意如下情况:
+	sq = M(a+1);//a=9,输出的结果sq=19,这是因为宏替换时,sq=a+1*a+1
+	如果#define M(y) (y)*(y) ,则sq=(a+1)*(a+1)
+	但如果sq=200 / M(a+1);此时的宏替换sq=200/(a+1)*(a+1),同样a=9,则结果sq=200,而不是我们猜测的2
+	所以最保险的写法,是#define M(y) ((y)*(y))
 
 条件编译
+	#if、#elif、#else 和 #endif 都是预处理命令,这些操作都是在预处理阶段完成的，多余的代码以及所有的宏都不会参与编译，不仅保证了代码的正确性，还减小了编译后文件的体积。这种能够根据不同情况编译不同代码、产生不同目标文件的机制，称为条件编译。条件编译是预处理程序的功能，不是编译器的功能。
+	#if 后面接表达式,为true执行.
+	#ifdef 后面接宏名,如果当前的宏已被定义过,则执行.
+	#ifndef 后接宏名,如果当前的宏未被定义,则执行.
+	#error 后接,阻止继续编译
+
 	#ifdef NULL
 	   #define NULL 0 (或是该处是些不需要编译的代码)
 	#endif

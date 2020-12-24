@@ -15,6 +15,13 @@ gaia/build/config/common-settings.json
    "keypad.active-layout": "english_us", 
    "keypad.layouts.english_us": true
 
+增加或删除某些输入法选项:
+gaia/build/config/common-settings.json
+gaia/build/config/ime-settings.json
+通常采取修改common-setting.json的方法做,但也可以在 
+apps\settings\js\panels\input_languages_selection\panel.js
+中添加了限定代码,只是不规范
+
 gaia/build/settings.js
 function setDefaultKeypadSettings(settings, config) {
   settings['keypad.t9-enabled'] = true;

@@ -229,7 +229,7 @@ tkinter事件通常采用了将事件名称放置于尖括号内的字符串表�
     type为通用类型，例如，键盘按键（KeyPress）
     detail用于具体信息，如按下键盘中‘B’键
 
-鼠标事件类型:
+鼠标事件类型:tkinter.EventType
 <Key>               随便一个按键，键值会以char的格式放入event对象。
 <Button-1>          按下了鼠标左键        <ButtonPress-1>
 <Button-2>          按下了鼠标中键        <ButtonPress-2>

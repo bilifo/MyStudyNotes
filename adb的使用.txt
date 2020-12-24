@@ -8,6 +8,8 @@ ADB是一个C/S架构的应用程序，由三部分组成：
 
 adb能做什么?答案是所有能对手机的操作都能用adb实现。
 
+adb工具只需要"adb.exe" , "AdbWinApi.dll" , "AdbWinUsbApi.dll"这3个文件
+
 adb [-d | -e | -s] 指令:(-s一般用于多设备时指定某个设备)
 	
 adb version:			查看 adb 版本
@@ -104,7 +106,7 @@ adb shell dumpsys package <packagename>	查看应用详细信息
 adb shell dumpsys battery		查看电池状态
 adb shell dumpsys window displays	查看屏幕参数
 
-adb shell getevent	[-l:显示事件类型和名称]		获得点击时间,触摸事件等事件
+adb shell getevent	[-l:显示事件类型和名称][-p:查看设备报告的所有键和轴][-i:获取更多信息，包括 HID 映射表和调试信息][-t:显示时间]	获得点击时间,触摸事件等事件
 	[设备名称]: [类型] [code] [value]
 adb shell sendevent	[设备名称]: [类型] [code] [value]		模拟发送一个驱动事件,getEvent获取的值是16进制的,而sendEvent输入的值是10进制
 
@@ -190,7 +192,7 @@ adb shell b2g-procrank		查看手机正在运行的进程PID
 
 adb可以抓取的日志:
 adb logcat –v time > c:\appLog.txt	普通logcat日志
-adb logcat –v time –b radio >c:\radioLog.txt	radio关键字日志
+adb logcat –v time –b radio >c:\radioLog.txt	radio关键字日志,在调试Android通信方面的代码时，这个Log 非常关键
 adb logcat -v time -b system        	system关键字日志
 adb logcat -v time -b events		events关键字日志
 adb shell cat /proc/kmsg > kernel.log	kernel log
@@ -208,3 +210,23 @@ taskkill /F /T /PID 启动adb logcat的线程pid号
 
 获取当前界面包名:
 adb shell dumpsys window | findstr mCurrentFocus
+
+获取冷启动时间,用于分析app启动性能:
+adb shell am start -S -R 10 -W com.example.app/.MainActivity
+	-S表示每次启动前先强行停止；
+	-R表示重复测试次数。
+	-c 和 -a 为可选参数，可以为 intent 指定 和 。
+
+通过adb shell来播放音频:
+am start -n com.android.music/com.android.music.MediaPlaybackActivity -d /sdcard/timian.mp3 
+控制:
+input keyevent 24 #增加音量
+input keyevent 25 #降低音量
+input keyevent 85 #暂停/播放
+input keyevent 126 #恢复播放
+input keyevent 127 #停止播放
+退出:
+ps -A | grep music
+#找到music的pid
+kill pid
+

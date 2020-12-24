@@ -162,3 +162,5 @@ repo init -u ssh://zhoujunzhi@192.168.1.253:29418/MSM8909W_QC26B/manifest -b blu
 拉sdm660项目:
 git clone ssh://yourname@192.168.1.248:29418/SDM660 -b dev/SPF/3.0.1/SDM660/main
 
+11a
+git clone ssh://panjunlong@192.168.1.248:29418/Nicobar.LA.2.0 -b DEV_NICOBAR.LA.2.0_SM6125_QC11A

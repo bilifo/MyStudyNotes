@@ -73,6 +73,10 @@ MOZ_UA_OS_AGNOSTIC=1
 MOZ_B2G_VERSION=2.5.3.2
 MOZ_B2G_OS_NAME=KaiOS
 
+修改版本中间号:
+version\version_msm8909_512_Flipphone.txt
+TARGET_SW_VERSION_MINOR=31
+
 .idl是接口文件,一般是c或者cpp的接口
 .jsm是Firefox JavaScript Module为 Mozilla Firefox 软件程序开发的 Mozilla文件类型.jsm中规定的方法和变量,可以让webide中的调试控制台对其进行控制
 .rst 如javadoc一样的描述文档
@@ -124,6 +128,13 @@ preferred network菜单选项内容是需要你们自己根据项目定制的:
 ro.moz.ril.0.network_types=gsm,wcdma,lte
 ro.moz.ril.1.network_types=gsm
 如果系统没有定义上面的property值，就会使用缺省的值：gsm,wcdma,cdma,evdo,lte
+
+系统添加ro属性:
+1/在 android\build\tools\buildinfo.sh 中添加 echo "ro.XXX.XXX=xxx"
+1/在 version/version_msm8909_512_Flipphone.txt 中添加 TARGET_PROPERTY_XXX=QC_8905_3_10_49_SEC_1
+2/在 android\vendor\bluebank\build\set_version.sh 中 添加 
+sed '/^ro.XXX.XXX=/d' -i device/qcom/${TARGET_PRODUCT}/${BLUEBANK_TARGET_PRODUCT}/overrides.prop
+echo "ro.XXX.XXX==$TARGET_PROPERTY_XXX" >> device/qcom/${TARGET_PRODUCT}/${BLUEBANK_TARGET_PRODUCT}/overrides.prop
 
 查看彩信成功发送:
 MmsService: Broadcasting the MMS system message: sms-sent

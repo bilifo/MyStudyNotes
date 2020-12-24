@@ -4,3 +4,40 @@ ESLint  //代码检查
 python   //python支持插件
 vscode-icons   //文件图标
 JavaScript (ES6) code snippets   //js ES6支持
+C/C++   //c和c++开发基础插件
+C/C++ Intellisense   //调试拓展插件
+TODO Tree    //管理todo注释的工具
+Bookmarks    //在成千上万个源文件之间跳转,这个能方便的创建和管理书签.看到哪个位置想加个书签就按快捷键 Ctrl + Alt + K ，多按一次就是删除
+Bracket Pair Colorizer   //彩虹括号
+koroFileHeader    //自动插入头文件开头说明,按下快捷键Ctrl + Alt +i 即可自动即可自动生成这样一个模板.对函数的说明注释模板，只需按下快捷键Ctrl + Alt +t 即可完成
+Switcher    //能在头文件和 C/C++ 文件之间跳转。
+shellman   //Linux shell 脚本辅助工具
+Debug Visualizer   //可视化debug工具,按 Shift + F1 开启视图
+
+
+快捷键:
+Ctrl + Shift + P  ---------打开 VsCode 命令窗口,可以查看各种插件的快捷键
+Ctrl + P    ---------输入文件名关键字匹配文件
+Ctrl + F    ---------文件内查找
+F12   ---------跳转到定义，跳转到函数或符号的定义
+Alt + F12 --------- 以预览方式在当前页面显示定义，不会跳出当前文件到定义文件，而是在当前文件打开一个小窗口预览
+Alt + 左/右箭头 ---------前进或者后退到光标所在源码的上一个位置。
+
+VS远程开发:
+1/安装插件包Remote,一般公司是win个人电脑+linux云主机,所以选Remote - SSH 安装
+	Remote - SSH - 通过使用 SSH 链接虚拟或者实体Linux主机。
+	Remote - Containers – 连接 Docker 开发容器。
+	Remote - WSL - 连接 Windows Subsystem for Linux （Linux子系统）。
+2/点侧边栏的「远程资源管理器」之后点击「设置按钮」，进入远程机器配置界面。选择 C:\Users\XXX\.ssh\config,进行编辑
+	
+	Host pjl_vs_ssh
+    	HostName 
+    	User panjunlong
+    	Port 22
+    	IdentityFile ~/.ssh/id_rsa
+	
+3/点击连接，登录远程服务器，需要输入几次远程服务器的密码（后面会教你怎么免密登录），输入确认即可。第一次连接会做VS Code Server的初始化工作比较慢，耐心等待。
+4/登录成功，即可像操作本地环境一样，在VS Code客户端操作远程云主机上的文件。注意，下图中的「打开文件夹」已经是远端机器上的目录结构了。
+
+
+
