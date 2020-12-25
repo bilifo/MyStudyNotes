@@ -81,6 +81,9 @@ self 和 this的区别:
 
 	从1循环到50:
 	for i in range(1,50)
+
+	从1循环到50,步长为2:
+	for i in range(1,50,2)
 	
 	从0循环某个list:
 	for i in range(len(list))
@@ -115,7 +118,12 @@ self 和 this的区别:
 	str.lower()   全部转换为小写
 	str.upper()  全部转换为大写
 
-	"-".join(["a","b","c"])    join是连接处理,结果为 "a-b-c"
+	list转字符串:"-".join(["a","b","c"])    join是连接处理,结果为 "a-b-c"
+
+	字符串的切割:
+		"a,b,d".split(",") //以逗号为分隔符切割	
+	字符串的截取:
+		eg:test="abcdef"  result=test[1:3],结果: result为"bcd"    
 
 IO：
 	输出显示：	print	eg：print("XXX")
@@ -141,6 +149,10 @@ IO：
 	创建二维定长为3数组   sz=[[]]*3
 
 	list(filter(None,test_list))   清除数组中的None
+
+	数组转化为字符串:
+		"".join('%s' %i for i in arr)   //eg:arr=[1,2,3,4] 结果:1234
+		str(arr)	//eg:arr=[1,2,3,4] 结果:[1,2,3,4]
 
 字典(相当于map)
 	dict关键字.
