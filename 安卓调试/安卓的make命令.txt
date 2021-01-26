@@ -1,3 +1,11 @@
+安卓的编译系统要求每一个模块都有一个Android.mk文件。Android.mk实际上是一个Makefile脚本，用来描述模块编译信息。换言之,只有具有Android.mk的,才能被m/mm/mmm/make
+
+m 
+mm		编译当前目录的所有模块,但不含依赖
+mmm		编译指定目录下的所有模块,但不含依赖
+mma		编译当前目录的所有模块,含依赖
+mmma		编译指定目录下的所有模块,含依赖
+
 //****kernel有修改
 make kernel	
 

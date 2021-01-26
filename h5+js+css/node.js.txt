@@ -73,3 +73,9 @@ setInterval(cb, ms)    全局方法.指定的毫秒(ms)数后执行指定函数(
 clearInterval(t)     全局方法.
 console    全局对象.用于提供控制台标准输出
 process    全局对象.用于描述当前Node.js 进程状态的对象，提供了一个与操作系统交互的简单接口.常用来执行操作系统的命令
+
+
+require和module.exports:
+Node.js require函数是将模块导入到当前文件的主要方式。在Node.js中有三种的模块:核心模块，文件模块和外部node_modules。
+当我们使用相对路径（例如，require（'./filename'）或require（'../foldername / filename'））调用require时，Node.js在新作用域中运行目标JavaScript文件，并返回分配给该文件中module.exports的最终值。
+要找出程序包所在的位置，请使用 require.resolve()函数。它返回模块的路径。

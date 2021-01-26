@@ -134,7 +134,7 @@ A. 通过log定位exception，或者通过dump分析backtrace。一般js错误�
 ---
 #### Q. Gaia层是否都可以在Web Developer之类的PC工具上调试？如何调试？Native code如何调试？
 A. Webapps可以用Firefox Web IDE来调试。
-> 注意不是所有的js都能被调试，有些没加载出来的就不能调试，native code如果是js文件可以直接把手机里面的/system/b2g/omni.ja拿出来修改直接push进手机重启生效。
+> 注意不是所有的js都能被调试，有些没加载出来的就不能调试，native code如果是js文件可以直接把手机里面的/system/b2g/omni.ja拿出来修改直接push进手机重启生效。(比如 MmsService.js)
 
 ---
 #### Q. 如何令User Mode软件可以连接ADB？
@@ -161,6 +161,8 @@ else # !enable_target_debugging
 endif # !enable_target_debugging
 ```
 
+还有一个方法:在settings--> device--> device information--> more information.在“OS version”上,按顺序“左软键,左软键,右软键,左软键,右软键,右软键”,可打开关闭调试
+但会出现 adb.exe: device unauthorized. 问题
 ---
 ## 客制化
 
@@ -187,7 +189,7 @@ endif # !enable_target_debugging
 * OEM可以加入device model，如`Nokia 8810 4G`默认UA为：
       `Mozilla/5.0 (Mobile; Nokia 8810 4G; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5`。
 * 一般网站会识别"Mobile"关键字，给出移动端网页；部分网站可能无法做到兼容；不建议加入"Android"字样做以适合此类网站，网站可能有Android only代码，导致在KaiOS设备上无法正常浏览部分内容。
-* UA生成逻辑见 `gecko/netwerk/protocol/http/nsHttpHandler.cpp::BuildUserAgent()`。
+* UA生成逻辑见 `gecko/netwerk/protocol/http/nsHttpHandler.cpp::BuildUserAgent()`。方法内增加mProductName.AssignLiteral("Nokia 8810 4G");//增加Nokia 8810 4G
 
 ---
 #### Q. 如何针对特定的网址修改UA?
@@ -210,7 +212,7 @@ endif # !enable_target_debugging
 
 ---
 #### Q. 如何设置MMS UA Profile?
-* MMS UA Profile 在`gecko/dom/mobilemessage/gonk/MMSService.js`里设置:
+* MMS UA Profile 在`gecko/dom/mobilemessage/gonk/MMSService.js`里设置:(这个UA profile 和 前面UA不一样,前面的UA代表的是网络请求头的一个字符串)
 
 ```
     // UAProf headers.
@@ -230,9 +232,12 @@ endif # !enable_target_debugging
 pref("wap.UAProf.url", "");
 pref("wap.UAProf.tagname", "x-wap-profile")
 ```
-* 添加相关pref覆盖默认值即可；此后可检查Http Request头x-wap-profile项判断是否设置成功。
+* 添加相关pref覆盖默认值即可；不过gecko\b2g\chrome\content\settings.js中的值会覆盖它.此后可检查Http Request头x-wap-profile项判断是否设置成功。
+* 检查方法:
+  1/发送彩信时,使用 " adb shell tcpdump -i any -s 0  -U -w /data/tcpdump.pcap " 抓取tcpdump日志
+  2/然后使用 "Wireshark" 网络分析器,过滤查找"http",看 Hypertext Transfer Protocol里的User-Agent,有没有配置的url
 * UA profile 文件
-    - 一般是 .xml或.rdf格式，描述终端设备相关信息；
+    - 一般是 .xml或.rdf格式，描述终端设备相关信息；"wap.UAProf.tagname"均是使用"x-wap-profile".
     - 由OEM或Operator服务器维护, 文件url填入上述"wap.UAProf.url"。
 
 ---
@@ -2444,6 +2449,31 @@ behaviorValue|value
   'blank-non_carrier': ‘inputDialog’
 }
 ```
+
+#### 短信收发问题日志抓取
+settings中开启 
+Settings->navigate to tab 'Device', 
+enter item 'Developer'->enable items  'RIL output in ADB', 'Console enabled''Debug traces' and 'Network output in ADB','Wi-fi output in ADB';
+
+
+#### 无法发送短信问题:cs域未成功注册
+某些运营商在LTE only下,关闭volte和vowifi,无法发送短信,却可以使用数据上网,这是因为该运营商的lte没有cs域
+
+检查是否存在cs 或 ps域:
+通过下面的Log来判断RIL_REQUEST_VOICE_REGISTRATION_STATE代表CS domain,
+RIL_REQUEST_DATA_REGISTRATION_STATE代表PS domain, state值为1（Home）或者5(roaming)时代表注册上了, 具体定义请参考hardware/ril/include/telephony/ril.h里的注释， 这里同安卓一样。
+
+Volte_shut_off(1).txt:7362: 01-15 21:13:23.080 D/SERVICE_STATE_TRACKER(  497): RIL_REQUEST_VOICE_REGISTRATION_STATE state = 5,mRadioTechnology = 14 gxf
+Volte_shut_off(1).txt:8086: 01-15 21:13:24.643 D/SERVICE_STATE_TRACKER(  497): RIL_REQUEST_VOICE_REGISTRATION_STATE state = 2,mRadioTechnology = 0 gxf
+
+Volte_shut_off(1).txt:16022: 01-15 21:14:15.447 D/SERVICE_STATE_TRACKER(  497): RIL_REQUEST_DATA_REGISTRATION_STATE state = 5, mDataRadioTechnology = 14, mTAC =-1 gxf
+Volte_shut_off(1).txt:16440: 01-15 21:14:17.795 D/SERVICE_STATE_TRACKER(  497): RIL_REQUEST_DATA_REGISTRATION_STATE state = 2, mDataRadioTechnology = 0, mTAC =-1 gxf
+Volte_shut_off(1).txt:16926: 01-15 21:14:18.105 D/SERVICE_STATE_TRACKER(  497): RIL_REQUEST_DATA_REGISTRATION_STATE state = 5, mDataRadioTechnology = 14, mTAC =-1 gxf
+
+或者通过WEBIDE 看下navigator.mozMobileConnections 里voice、data
+
+#### 如何查看信号强弱
+log关键字:SIGNAL_STRENGTH
 
 ---
 

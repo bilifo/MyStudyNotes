@@ -44,3 +44,5 @@ python在线编程	使用google浏览器打开,登录google账号.https://colab.
 python闯关	https://www.codewars.com/    bilifo  bilifo110
 
 网上数据传输	https://wetransfer.com/
+
+神经网络学习	https://www.captainai.net/yishuihancheng/

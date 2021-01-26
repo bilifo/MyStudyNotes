@@ -284,6 +284,7 @@ sorted(排序):
 	
 	range(开始数,结束数[,step])	范围.创建一个整数列表,一般用在循环中
 
+	eval()函数十分强大,将字符串str当成有效的表达式来求值并返回计算结果。eg:print("10进制转16进制:"+eval("hex(16)")); 
 文件操作:
 	os.path.split(或str.split('/')[-1])		取目录与文件名.
 		eg:os.path.splitext("/root/a.py")	结果('/root/a', '.py')

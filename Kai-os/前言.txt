@@ -20,6 +20,9 @@ kaiOS的启动:
 https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS
 https://developer.mozilla.org/en-US/docs/Archive/B2G_OS
 
+JSON.stringify(对象);序列化为json
+JSON.parse("...");反序列化,解析为对象
+
 使用react来创建kaios的web应用:
 1/使用“npx create-react-app 项目名” 来建立项目
 2/下载 git clone https://github.com/kaiostech/sample-react.git,并将public(非必要,但manifest.webapp必须要) 和 src文件夹下内容复制过来
@@ -139,8 +142,15 @@ echo "ro.XXX.XXX==$TARGET_PROPERTY_XXX" >> device/qcom/${TARGET_PRODUCT}/${BLUEB
 查看彩信成功发送:
 MmsService: Broadcasting the MMS system message: sms-sent
 
+查看短信成功发送:
+Messages: Content JS LOG: message log :: message has been sent successfully
+
 查看彩信或短信的接收:
 b2g_telephony ...../sms.cpp的wappush
+
+高通启动短信发送失败:
+[0590]< RIL_REQUEST_CDMA_SEND_SMS { messageRef=1, errorCode=3}
+use-Rlog/RLOG-SMS: Received error code 2 in RIL_REQUEST_SEND_SMS response //gxf
 
 蓝牙地址:
 navigator.mozBluetooth.defaultAdapter.address
@@ -173,6 +183,13 @@ logmanager:
 
 被混淆的代码:
 如果有vendor文件夹下的js文件,有eval,那多半就是混淆的地方了,直接去掉eval就好
+
+setting应用增加webide无法找到的js文件:
+在 js\startup.js 中的 var lazyFiles 数组中增加 js文件相对路径
+
+system中增加webide无法找到的js文件:
+
+LazyLoader.load('shared/js/bookmarks_database.js');
 
 webIDE工具的使用:
 0/下载v57的老firefox浏览器
@@ -239,6 +256,12 @@ kaios的大多数驱动事件如下:
 	/dev/input/event0: EV_KEY       KEY_OK               DOWN
 	/dev/input/event0: EV_SYN       SYN_REPORT           00000000
 即EV_KEY才是真正代表按键的驱动事件,EV_SYN只是系统对按键的响应回复
+
+热点开启无网络日志:
+开启热点的时候, gecko层会去读取这个系统属性. 如果这个系统属性设置为1, 那么就需要有配置dun type的APN, 如果没有dun type的, externalIfname 就会用rmnet0, 这时WIFI热点就无法上网.
+01-12 18:32:57.063   502  1408 I NetworkUtils:      internalIfname: wlan0
+01-12 18:32:57.063   502  1408 I NetworkUtils:      externalIfname: rmnet0
+01-12 18:32:57.063   502  1408 I NetworkUtils: Starting Wifi Tethering on wlan0 <-> rmnet0
 
 settings:
 adb push \\192.168.1.245\panjunlong\E23-kai\QC8905_KAI2.5\LINUX\android\gaia\profile\webapps\settings.gaiamobile.org\application.zip system/b2g/webapps/settings.gaiamobile.org 

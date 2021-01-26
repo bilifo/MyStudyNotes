@@ -230,3 +230,22 @@ ps -A | grep music
 #找到music的pid
 kill pid
 
+通过wpa_supplicant+wpa_cli来操作wifi:
+wpa_supplicant是服务端，用于与内核交流；wpa_cli是客户端，用于与wpa_supplicant交流；即wpa_cli首先发送命令给wpa_supplicant，wpa_supplicant再将命令转告给内核，内核完成wifi操作
+查看当前网络状态:
+	wpa_cli status
+扫描wifi网络:
+	wpa_cli scan
+	wpa_cli scan_results
+查看预先配置的网络:
+	wpa_cli list_networks
+增加一个网络配置:
+	wpa_cli add_network
+对list_networks中已经存在的网络配置进行修改:
+	wpa_cli set_network (netwoke id) ssid \"wifi名称\"     //配置wifi名称
+	wpa_cli set_network (netwoke id) psk \"wifi的密码\"	//配置wifi密码
+	eg: wpa_cli set_network 0 ssid \"wode110\"  //双引号加反斜杠,避免失败
+配置的wifi默认是禁用的，启用，启用后如果没有连接wifi，新增wifi可见就会自动连接的
+	wpa_cli enable_network (netwoke id)
+选择网络进行连接:
+	wpa_cli select_network (netwoke id)   //再次查看status,如果是COMPLETED表示完成连接

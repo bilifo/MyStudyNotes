@@ -50,11 +50,12 @@ Android系统的APN配置文件：frameworks/base/core/res/res/xml/apns.xml
 |-|-|
 |Default|默认网络连接|
 |Mms|彩信专用连接，此连接与default类似，用于与载体的多媒体信息服务器对话的应用程序|
-|Supl|是Secure User Plane Location“安全用户面定位”的简写，此连接与default类似，用于帮助定位设备与载体的安全用户面定位服务器对话的应用程序|
-|Dun|Dial Up Networking拨号网络的简称，此连接与default连接类似，用于执行一个拨号网络网桥，使载体能知道拨号网络流量的应用程序|
+|Supl|是Secure User Plane Location“安全用户面定位”的简写，此连接与default类似，用于帮助定位设备与载体的安全用户面定位服务器对话的应用程序,用于gprs上网|
+|Dun|Dial Up Networking拨号网络的简称，此连接与default连接类似，用于执行一个拨号网络网桥，使载体能知道拨号网络流量的应用程序.这个配置和 手机开热点有关,type中设置了这个,手机开热点还能访问网络.一般和 data 或 Default 配在一起,需要使用运营商无线热点的，CMCC、ChinaNet等|
 |Hipri|高优先级网络，与default类似，但路由设置不同。只有当进程访问移动DNS服务器，并明确要求使用requestRouteToHost(int, int)才会使用此连接|
 |ims| 普通通话,可以不用上层设置,moden端默认会设置|
-|
+|cbs| 小区广播|
+|ia| 紧急通话,一般和ims是一起的|
 
 此表中的数据连接优先级是:Hipri>Dun>Supl>Mms>Default
 

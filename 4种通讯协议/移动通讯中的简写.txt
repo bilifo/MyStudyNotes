@@ -1,0 +1,27 @@
+网络类型:
+LTE------3.9G,long Term Evolution（长期演进）的缩写,刚开始定位为3G技术的演进升级,可以简单的认为是3.9G
+CDMA 1x------2G
+CDMA 2000-----3G,又称EVDO
+GSM-----2G
+WCDMA-----3G
+TD-SCDMA-----3G
+GPRS----2.5G
+
+通过高通qxdm查看当前attcah是否只支持PS域,attcah_result状态判断:
+PS模式：EPS service only
+CS/PS模式1或者CS/PS模式2：EPS和non-EPS service。
+PS模式下只支持NB-S1模式：EPS service 和“SMS only”
+紧急服务
+
+gsmRssi----Rssi:Received Signal Strength Indication接收的信号强度指示，无线发送层的可选部分，用来判定链接质量，以及是否增大广播发送强度。
+gsmBer----Ber:Bit Error Rate【通信】误码率,误比特率,在一段时间内，传输错误的比特占所有传输比特总数的比率。
+cdmaDbm----Dbm:是一个表示功率绝对值的值，信号强度值，详细参考：3GPP TS 27.007 V8.5.0 (2008-09)Signal quality +CSQ
+	DBM level 4 >= -75 level 3 >= -85 level 2 >= -95 level 1 >= -100  最低的是-120
+cdmaEcio----Ec/Io：这是一个反映手机端当前接收的导频信号（Pilot）的水平。体现了所接收信号的强度和邻小区干扰水平的比值。
+	Ecio level 4 >= -90 level 3 >= -110 level 2 >= -130 level 1 >= -150 
+evdoSnr----evdo:（EV-DO)实际上是三个单词的缩写：Evolution（演进）、 Data Only。 其全称为：CDMA2000 1xEV-DO，是CDMA2000 1x演进（3G)的一条路径的一个阶段。
+	Snr:信噪比，又称为讯噪比，即放大器的输出信号的电压与同时输出的噪声电压的比，常常用分贝数表示。设备的信噪比越高表明它产生的杂音越少。一般来说，信噪比越大，说明混在信号里的噪声越小，声音回放的音质量越高，否则相反。
+lteRssi----lte:英文Long Term Evolution的缩写。LTE也被通俗的称为3.9G，具有100Mbps的数据下载能力，被视作从3G向4G演进的主流技术。
+lteRsrp----Rsrp:(Reference Signal Receiving Power，参考信号接收功率) 是LTE网络中可以代表无线信号强度的关键参数以及物理层测量需求之一。
+lteRsrq----Rsrq:参考信号接收质量。
+lteCqi----Cqi:信道质量指示符(CQI)是无线信道的通信质量的测量标准。CQI代表一个给定信道的信道测量标准。

@@ -21,4 +21,7 @@ for /l %x in (1, 1, 80) do echo hello world%x      循环80次,调用 echo hello worl
 
 timeout /nobreak /t 3    延时3秒
 
+格式： %date:~x,y%以及%time:~x,y%
+说明： x是开始位置，y是取得字符数
+
 win10要添加开机任务,可以将bat脚本放到 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 目录下

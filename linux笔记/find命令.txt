@@ -45,3 +45,4 @@ option参数:
 
 find . -name "文件名"
 find . -name "目录名" -type d
+find . -name "文件名" -exec ls -lh {} \;  ###在使用find时,也执行ls -l的命令

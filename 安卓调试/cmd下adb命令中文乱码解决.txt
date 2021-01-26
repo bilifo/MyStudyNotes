@@ -1,0 +1,5 @@
+原因:
+Android中使用的是UTF-8字符，而CMD默认字符集是ANSI，中文环境下即为GBK，代码页为936。
+在cmd中输入 chcp ,会得到当前cmd使用的字符集
+解决:
+在cmd中输入,chcp 65001,即utf-8
