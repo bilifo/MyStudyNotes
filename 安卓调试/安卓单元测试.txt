@@ -1,0 +1,36 @@
+安卓单元测试框架用的junit
+
+JUnit 是一个 Java 编程语言的单元测试框架。JUnit 在测试驱动的开发方面有很重要的发展
+
+注意事项：
+测试方法必须使用 @Test 修饰
+测试方法必须使用 public void 进行修饰，不能带参数
+一般使用单元测试会新建一个 test 目录存放测试代码，在生产部署的时候只需要将 test 目录下代码删除即可
+测试代码的包应该和被测试代码包结构保持一致
+测试单元中的每个方法必须可以独立测试，方法间不能有任何依赖
+测试类一般使用 Test 作为类名的后缀
+测试方法使一般用 test 作为方法名的前缀
+
+测试失败说明：
+Failure：一般是由于测试结果和预期结果不一致引发的，表示测试的这个点发现了问题
+error：是由代码异常引起的，它可以产生于测试代码本身的错误，也可以是被测试代码中隐藏的 bug
+
+一些常用注解：
+@Test:将一个普通方法修饰成一个测试方法 @Test(excepted=xx.class): xx.class 表示异常类，表示测试的方法抛出此异常时，认为是正常的测试通过的 @Test(timeout = 毫秒数) :测试方法执行时间是否符合预期
+@BeforeClass： 会在所有的方法执行前被执行，static 方法 （全局只会执行一次，而且是第一个运行）
+@AfterClass：会在所有的方法执行之后进行执行，static 方法 （全局只会执行一次，而且是最后一个运行）
+@Before：会在每一个测试方法被运行前执行一次
+@After：会在每一个测试方法运行后被执行一次
+@Ignore：所修饰的测试方法会被测试运行器忽略
+@RunWith：可以更改测试运行器 org.junit.runner.Runner
+Parameters：参数化注解
+
+安卓中将单元测试分成了两个路径,一个 androidTest 是运行于安卓设备上的单元测试,一个test是运行于无关安卓平台的逻辑单元测试
+
+API:
+​void assertEquals​(boolean expected, boolean actual)​    检查两个变量或者等式是否平衡
+​​void assertFalse​(boolean condition)​    检查条件是假的
+​​void assertNotNull​(Object object)​    检查对象不是空的
+​​void assertNull​(Object object)​    检查对象是空的
+​​void assertTrue​(boolean condition)​    检查条件为真
+​​void fail​()​    在没有报告的情况下使测试不通过

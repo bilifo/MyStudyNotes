@@ -186,11 +186,11 @@ endif # !enable_target_debugging
     - WebIDE Console中输入`navigator.userAgent`；
     - Browser中打开在线工具，如 http://www.enhanceie.com/ua.aspx ；
 * KaiOS 2.5R2的默认UA为：`Mozilla/5.0 (Mobile; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5.2`。
-* OEM可以加入device model，如`Nokia 8810 4G`默认UA为：
+* OEM可以加入device model，如`Nokia 8810 4G`默认UA为(注意,UA指的是下面这一长串全部,而不是仅仅指Nokia 8810 4G)：
       `Mozilla/5.0 (Mobile; Nokia 8810 4G; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5`。
 * 一般网站会识别"Mobile"关键字，给出移动端网页；部分网站可能无法做到兼容；不建议加入"Android"字样做以适合此类网站，网站可能有Android only代码，导致在KaiOS设备上无法正常浏览部分内容。
 * UA生成逻辑见 `gecko/netwerk/protocol/http/nsHttpHandler.cpp::BuildUserAgent()`。方法内增加mProductName.AssignLiteral("Nokia 8810 4G");//增加Nokia 8810 4G
-
+* 要完全替换改变UA内容,在gecko/b2g/app/b2g.js中添加  pref("general.useragent.override", "motoe6");
 ---
 #### Q. 如何针对特定的网址修改UA?
 * 修改如下两个pref：
@@ -239,6 +239,13 @@ pref("wap.UAProf.tagname", "x-wap-profile")
 * UA profile 文件
     - 一般是 .xml或.rdf格式，描述终端设备相关信息；"wap.UAProf.tagname"均是使用"x-wap-profile".
     - 由OEM或Operator服务器维护, 文件url填入上述"wap.UAProf.url"。
+    - kaios可参考的 UA profile :
+    注意:
+    - x-wap-profile(UA profile文件)中的 MMS version 要和js代码中保持一致: gaia/build/preference.js
+    this.userPrefs['dom.mms.version'] = 0x11 //代表 1.1
+    #this.userPrefs['dom.mms.version'] = 0x12 //代表 1.2  logcat中看 MmsService: Running protocol version
+
+
 
 ---
 #### Q. 如何配置APN?

@@ -56,6 +56,8 @@ Android系统的APN配置文件：frameworks/base/core/res/res/xml/apns.xml
 |ims| 普通通话,可以不用上层设置,moden端默认会设置|
 |cbs| 小区广播|
 |ia| 紧急通话,一般和ims是一起的|
+|fota| 下载软件进行升级 |
+|admin | |
 
 此表中的数据连接优先级是:Hipri>Dun>Supl>Mms>Default
 
