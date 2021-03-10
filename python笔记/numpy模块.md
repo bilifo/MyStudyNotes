@@ -174,4 +174,7 @@ b.transpose((1, 0, 2))#b 位置变换
 	# newarr = arr[arr > 62] #输出大于62的值
 	print(newarr)
 
+	使用 where 过滤
+	arr = np.array([61, 62, 63, 64, 65])
+	arr2=np.where(arr > 62)
 

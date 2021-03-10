@@ -56,16 +56,20 @@
 ### Button
 
     b = tk.Button(tkinter.Tk() 或 父控件, text="hit me", command=hit_me) #command接按钮按下的事件实现函数
+    或者通过bind来绑定按键事件
+    b.bind('<Button-1>',事件函数) # def 事件函数(self,event):
 
 ### Entry
 
     e1 = tk.Entry(tkinter.Tk() 或 父控件, show='*', font=('Arial', 14))   # 显示成密文形式
     e2 = tk.Entry(tkinter.Tk() 或 父控件, show=None, font=('Arial', 14))  # 显示成明文形式
     text=e1.get() #获得输入内容
+    注意:使用输入框控件时,一定要用 Entry ,而不能使用 Text,避免中文文件地址乱码带来的文件无法打开问题
 
 ### Text
 
     t = tk.Text(tkinter.Tk() 或 父控件, height=3) #指定height=3为文本框是三个字符高度
+    text.get('1.0', tk.END) #获取文本
 
 ### Scale
 

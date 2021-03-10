@@ -21,6 +21,7 @@ pycharm/webstorm激活码	http://lookdiv.com/	钥匙就是lookdiv.com
 python官方文档	https://docs.python.org/zh-cn/3/
 廖雪峰python教程	https://www.liaoxuefeng.com/wiki/1016959663602400
 webpack官方教程	https://www.webpackjs.com/guides/installation/
+python练习网	https://zhuanlan.zhihu.com/p/23561159
 
 安卓和linux博客	http://gityuan.com/tags/
 
@@ -46,3 +47,8 @@ python闯关	https://www.codewars.com/    bilifo  bilifo110
 网上数据传输	https://wetransfer.com/
 
 神经网络学习	https://www.captainai.net/yishuihancheng/
+
+win10自带浏览器允许添加谷歌应用商店拓展:
+... --> 拓展 -->了解更多信息 --> Chrome Web Store。-->允许
+
+谷歌浏览器拓展	https://www.extfans.com/

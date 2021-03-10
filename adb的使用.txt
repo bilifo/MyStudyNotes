@@ -239,7 +239,7 @@ wpa_supplicant是服务端，用于与内核交流；wpa_cli是客户端，用�
 	wpa_cli scan_results
 查看预先配置的网络:
 	wpa_cli list_networks
-增加一个网络配置:
+增加一个网络配置(成功会返回network id):
 	wpa_cli add_network
 对list_networks中已经存在的网络配置进行修改:
 	wpa_cli set_network (netwoke id) ssid \"wifi名称\"     //配置wifi名称
@@ -249,3 +249,22 @@ wpa_supplicant是服务端，用于与内核交流；wpa_cli是客户端，用�
 	wpa_cli enable_network (netwoke id)
 选择网络进行连接:
 	wpa_cli select_network (netwoke id)   //再次查看status,如果是COMPLETED表示完成连接
+注意:在高级安卓版本上,select_network 连接成功后会马上断掉,这是因为安卓系统不影响uknow的网络连接
+
+
+adb下查找文件,不出现 Permission denied:将错误输出到虚空
+	find . -name "XXX" 2>/dev/null 
+
+adb下修改文件:
+	busybox vi XXX.txt
+	或
+	cat >> XXX.txt
+
+adb下对文件修改权限:
+	将文件复制到 /data/local/tmp 目录下,再chmod
+
+tcpdump日志抓取:
+	adb shell tcpdump -i any -s 0  -U -w /data/tcpdump.pcap
+
+查看是32位还是64位:
+	adb shell getprop ro.product.cpu.abi

@@ -34,3 +34,5 @@ pyinstaller将Python脚本打包成可执行程序，使在没有Python环境的机器上运行,可运行在
 4/使用 pyinstaller -F -w -i "C:\xxx.ico" c:\XXX.py 打包exe后,代码中使用 subprocess 的语句失效
 原因:pyinstaller 的-w 和 subprocess中的 shell=True ,其实表示的是一个意思,即不弹出cmd的命令窗口.固有冲突.
 解决:打包时不使用 -w ,直接 pyinstaller -F -i .或将py代码中将subprocess.Popen的原先参数shell=False设为shell=True(实测,改shell为True,好像没起作用)
+
+5/注意py文件,一定不要是中文

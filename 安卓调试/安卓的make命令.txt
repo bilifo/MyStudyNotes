@@ -90,3 +90,6 @@ prebuilts/build-tools/linux-x86/bin/ninja -f  out/combined-XXX.ninja xxx目标�
 prebuilts/build-tools/linux-x86/bin/ninja是安卓源码中将nijia源码放入,make后就能使用了,这样我们就不需要自己的机器再去安装nijia环境
 -f 表示后面接的是输入文件,即makefile 和 bp 转换后的 ninja 文件.
 xxx目标模块就是我们需要的产物,Android.mk：查找 LOCAL_PACKAGE_NAME 或 LOCAL_MODULE 等对应的值.Android.bp：查找 module 中 name 对应的值
+
+=====全编=====
+不用删除整个out 目录，  只需要删除    out/target 目录，可以节省一半以上的编译时间。

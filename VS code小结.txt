@@ -13,6 +13,7 @@ koroFileHeader    //自动插入头文件开头说明,按下快捷键Ctrl + Alt 
 Switcher    //能在头文件和 C/C++ 文件之间跳转。
 shellman   //Linux shell 脚本辅助工具
 Debug Visualizer   //可视化debug工具,按 Shift + F1 开启视图
+Find All in File	//本文件全部查找
 
 
 快捷键:
@@ -39,5 +40,5 @@ VS远程开发:
 3/点击连接，登录远程服务器，需要输入几次远程服务器的密码（后面会教你怎么免密登录），输入确认即可。第一次连接会做VS Code Server的初始化工作比较慢，耐心等待。
 4/登录成功，即可像操作本地环境一样，在VS Code客户端操作远程云主机上的文件。选择"文件"-->"打开文件夹",此时就是远程目录路径
 
-
-
+win10中,运行python脚本,输出窗口乱码:
+右键我的电脑，点属性，高级系统设置，环境变量，系统变量 新建一个变量名称，变量名PYTHONIOENCODING，值设置为UTF8

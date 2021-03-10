@@ -46,6 +46,7 @@ self 和 this的区别:
 	//	整除
 	**	幂（多次方）
 	没有++和--运算能力
+	判断为空字符串,使用 =="",而不能==''
 
 判断：(格式 if(XXX):)
 	和java不同的是,python的if,会自动判断非0和非空为True,即a=1,if(a):return True
@@ -145,7 +146,7 @@ IO：
 	(1，“2”，temp....)表示不可变数组。小括号
 
 	创建一维数组   sz=[]
-	创建二维数组   sz=[[]]
+	创建二维数组   sz=[[]]  注意:多维数据循环,使用 for ... in 迭代循环时,不需要写两个for循环
 	创建二维定长为3数组   sz=[[]]*3
 
 	list(filter(None,test_list))   清除数组中的None
@@ -153,6 +154,12 @@ IO：
 	数组转化为字符串:
 		"".join('%s' %i for i in arr)   //eg:arr=[1,2,3,4] 结果:1234
 		str(arr)	//eg:arr=[1,2,3,4] 结果:[1,2,3,4]
+	
+	字符串数组过滤空值方法:
+		def not_empty(s):
+			return s and s.strip()
+		list(filter(not_empty, ['A', '', 'B', None, 'C', '  ']))
+		# 结果: ['A', 'B', 'C']
 
 字典(相当于map)
 	dict关键字.
@@ -242,7 +249,7 @@ class Chuan {//船中控制获得怎样的浆
 	定义函数时，可以指定函数的返回值类型、参数的类型。
 	定义方式如下:「: str」与 「-> str」，前者用来说明 name 的类型，后者指函数返回值的类型。
 		def greeting(name: str) -> str:
-			return 'Hello ' + name
+			return 'Hello ' + name	
 		
 迭代器：
 	a=iter（list）将list数组交给迭代器a
@@ -305,7 +312,7 @@ sorted(排序):
 	read
 
 异常处理:
-	try: ... except: ...(如果选择不处理,用pass) finally: ...(都会执行)
+	try: ... except Exception as e: log('Reason:', str(e))...(如果选择不处理,用pass) finally: ...(都会执行)
 通用储存:
 	使用pickle引擎(相当于安卓shard),以二进制方式储存和读写
 	用法:

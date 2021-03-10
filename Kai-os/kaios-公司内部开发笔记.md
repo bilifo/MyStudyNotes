@@ -245,7 +245,25 @@ pref("wap.UAProf.tagname", "x-wap-profile")
     this.userPrefs['dom.mms.version'] = 0x11 //代表 1.1
     #this.userPrefs['dom.mms.version'] = 0x12 //代表 1.2  logcat中看 MmsService: Running protocol version
 
+**注意** 有的运营商,会使用拓展协议,要求X-MDN中携带本机号码:
+  gecko/dom/mobilemessage/gonk/MmsService.js 中的 sendHttpRequest 方法中添加本机号码
+```
+@@ -823,6 +823,14 @@ XPCOMUtils.defineLazyGetter(this, "gMmsTransactionHelper", function() {
+           xhr.setRequestHeader(uaProfTagname, uaProfUrl);
+         }
 
++               //gxf add for bug114558 begin
++               let phoneNumber = mmsConnection.getPhoneNumber();
++               let from = phoneNumber ?  phoneNumber  : null;
++               xhr.setRequestHeader("X_MDN",from);
++               xhr.setRequestHeader("X_WAP_NETWORK_CLIENT_MSISDN",from);
++               xhr.setRequestHeader("mobile_number_header",from);
++        //gxf add for bug114558 end
++
+         // Setup event listeners
+         xhr.onreadystatechange = () => {
+           if (xhr.readyState != Ci.nsIXMLHttpRequest.DONE) {
+```
 
 ---
 #### Q. 如何配置APN?
@@ -272,6 +290,7 @@ pref("wap.UAProf.tagname", "x-wap-profile")
 * `apn.json`源自[AOSP device sample](https://android.googlesource.com/device/sample/+/refs/heads/master/etc/apns-full-conf.xml)，由`gaia/shared/resources/apn`下`apns_conf_xxx.xml`文件生成，生成方式请参考该目录下README.md。APN相关field意义请参考Android相关文档。
 * `apn.json`修改后，需重新编入System和Settings应用，恢复出厂设置以使之生效。
 * `adb shell ls /system/etc` 看到的`apns-conf.xml`一般来自`vendor/xxx`，由QCOM/MTK/UNISOC编入，在KaiOS系统中不会生效。
+* 注意,kaios的apn过滤这块的设计是每个类型的apn 只会过滤出来排在最前面的那条给gecko.所以有效的apn必须排首位.且空的apn是不被采用的
 
 ---
 #### Q. 如何定制开关机动画？

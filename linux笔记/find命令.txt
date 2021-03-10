@@ -43,6 +43,10 @@ option参数:
 	which 查找命令是否存在，以及命令的存放位置在哪儿。
 	whereis 只能用于搜索程序名，而且只搜索二进制文件（参数-b）、man说明文件（参数-m）和源代码文件（参数-s）
 
-find . -name "文件名"
+find /system/ -name "文件名"
+
 find . -name "目录名" -type d
+
 find . -name "文件名" -exec ls -lh {} \;  ###在使用find时,也执行ls -l的命令
+或
+find . -name "文件名" |xargs ls -l ### xargs 作用就是将前面的输出,作为后面命令的输入参数
